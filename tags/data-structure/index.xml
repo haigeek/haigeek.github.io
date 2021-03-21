@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data-structure on Kiss&#39;Em!</title>
+    <link>https://example.com/tags/data-structure/</link>
+    <description>Recent content in data-structure on Kiss&#39;Em!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 28 Dec 2017 21:48:16 +0800</lastBuildDate><atom:link href="https://example.com/tags/data-structure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Introduction to Data Structure</title>
+      <link>https://example.com/note/computerscience/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%AA%E8%AE%BA/</link>
+      <pubDate>Thu, 28 Dec 2017 21:48:16 +0800</pubDate>
+      
+      <guid>https://example.com/note/computerscience/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%BB%AA%E8%AE%BA/</guid>
+      <description>数据结构绪论  数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。 数据元素：是组成数据，有一定意义的基本单位，在计算机中通常作为整体处理，也被称为记录。 数据项：一个数据元素可以由多个数据项组成，数据项是不可分割的最小单位 数据对象：是性质相同的数据元素的集合，是数据的子集 数据结构：是相互之间存在一种或者多种特定关系数据元素的集合 数据结构的分类： 逻辑结构：  集合结构 线性结构 树形结构 图形结构   物理结构  顺序存储结构 链接存储结构    </description>
+    </item>
+    
+    <item>
+      <title>data-structure-tree</title>
+      <link>https://example.com/note/computerscience/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91/</link>
+      <pubDate>Tue, 28 Nov 2017 21:48:16 +0800</pubDate>
+      
+      <guid>https://example.com/note/computerscience/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91/</guid>
+      <description>非线性结构-树 树  树的定义   树有很多节点组成，最上面的结点称为树的根，结点拥有的直接子节点称为结点的度，度为0的结点称为叶子； 所有结点的最大值就是该树的度 一个结点的直接子节点称为它的孩子，相应的，该结点称为孩子的双亲，相同双亲的孩子称为兄弟 一个结点的祖先是从根到该结点的所经过的所有结点，一个结点下的所有结点称为该结点的子孙 树有层次之分，根记为第一层，依次类推，称为该树的深度，双亲在同一层的结点称为堂兄弟  二叉树 二叉树是一种常见的数据结构，它的特点是一个结点的直接子节点最多只能有两个，并且有左右之分
+ 在二叉树中有种常见的称为完全二叉树结构，它的特点是除最后一层外每一层的结点树为2^(i-1),最后一层的结点树若不满足2^(i-1),那么最后一层的结点是从左向右排列的 二叉树也有顺序存储和链式存储两种 线索二叉树：用结点空的指针域来指向他的前驱或者后继结点，不浪费空的指针域  树的遍历  前序遍历：先访问根节点。再访问左子节点，最后访问右子节点 中序遍历：先访问左子节点，再访问根节点，最后访问右子节点 后序遍历：先访问左子节点，在访问右子节点，最后访问根节点 宽度优先遍历：一层一层访问，在同一层中，按照从左到右的顺序打印  堆 堆是一种经过排序的完全二叉树，其中任一非叶子节点的值均不大于（或不小于）其左孩子和右孩子节点的值。最大堆和最小堆是二叉堆的两种形式。
+最大堆：根节点的键值是所有堆结点键值中最大者；最小堆：根节点的键值是所有堆结点键值中最小者；
+最大-最小堆集结了最大最小堆的优点，最大-最小堆是最大层和最小层交替出现的二叉树，即最大层结点的儿子属于最小层，最小层结点的儿子属于最大层。
+ 最小堆   最大堆  二叉排序树 二叉排序树又叫二叉查找树，主要用于查找，或是一颗空树，或者是具有下列性质的二叉树
+ 若左子树不空，则左子树上所有结点的值均小于它的根结点的值； 若右子树不空，则右子树上所有结点的值均大于它的根结点的值； 左、右子树也分别为二叉排序树；  哈夫曼树 哈夫曼树也成最优二叉树，它是带权路径长度最小的二叉树
+哈夫曼的构造步骤如下：
+假设有n个权值，则构造的哈夫曼树有n个叶子节点。n个权值分别为
+ ​  </description>
+    </item>
+    
+    <item>
+      <title>Linear table</title>
+      <link>https://example.com/note/computerscience/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/</link>
+      <pubDate>Thu, 28 Sep 2017 21:48:16 +0800</pubDate>
+      
+      <guid>https://example.com/note/computerscience/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/</guid>
+      <description>线性表 顺序存储结构 线性表是零个或者多个数据元素的有限序列
+ 数据长度与线性表的长度区别：数据表的长度可以是已经规定的；线性表的长度是随着线性表的插入和删除而变化 地址计算方法：线性表的定义是从1开始，而数组是从0开始，于是线性表的第i个元素要存储在数租下标为i-1的位置；线性表的第i+1 个数据的存储位置和第i个元素的存储位置满足：LOC（ai+1）=LOC（ai）+1；第i个数据元素的ai的存储位置可以由a1推算出： LOC（ai）=LOC（a1）+（i-1）*c  顺序存储结构的插入和删除  插入算法思路  如果插入位置不合理，抛出异常 如果线性表长度大于或者等于数组的长度，抛出异常或者动态增加容量 从最后一个元素开始向前遍历到第i个位置，分别将他们都向后移动一个元素 将要插入元素填入位置i处 表长加1   复杂度 顺序存储结构在读，存数据的时候，复杂度为O(1)；插入或者删除的时候，时间复杂度为O(n) 优缺点：  优点：无需为表中元素之间的逻辑关系而增加额外的空间；可以快速地存取表中任意一位置的元素 缺点：插入和删除需要操作大量的元素；当线性表的长度变化较大时，难以确定存储空间的容量 容易造成存储空间的碎片化    线性表的链式存储结构 typedof struct Node { ElemType data; struct Node *next; }Node;*LinkList  假设L是LinkList型的变量，则L为单链表的头指针。它指向表中的第一个结点； 假设p是指向线性表中的第i个数据元素的指针，则p-&amp;gt;next是指向第i+1个数据元素的指针  单链表的整表创建 单链表整表的创建思路
+ 声明一结点和计数器变量i 初始化一空链表L； 让L的头结点的指针指向NULL，即建立一个头结点的单链表； 循环：  生成一新节点赋值给P； 随机生成一数字赋值给p的数据域p-&amp;gt;data； 将p插入到头结点与前一新结点之间    </description>
+    </item>
+    
+  </channel>
+</rss>

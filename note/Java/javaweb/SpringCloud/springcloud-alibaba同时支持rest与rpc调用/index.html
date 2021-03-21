@@ -1,0 +1,326 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+               
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+</div>
+
+
+
+
+
+<h1 class="title"></h1>
+
+<div class="content">
+
+    
+    <h1 id="springcloud-alibaba对rest与rpc的支持">SpringCloud-ALibaba对Rest与Rpc的支持</h1>
+<h2 id="springcloud-alibaba服务提供方式与调用">SpringCloud-ALibaba服务提供方式与调用</h2>
+<p>这里主要分为三种场景进行介绍，基于SpringCloud-ALibaba微服务体系</p>
+<h3 id="springcloud传统rest调用">SpringCloud传统Rest调用</h3>
+<p>SpringCloud-ALibaba原生支持基于openfeign的调用方式，即可以按照Spring Cloud Netflix套件下编写微服务的方式来进行服务的暴露和调用，不同的是可以使用nacos进行服务发现，也可以使用其他服务发现（Eureka、zookeeper等），<strong>也就是说SpringCloud-ALibaba具有兼容其他微服务套件的能力，可以很好的进行融合。</strong></p>
+<p>首先定义接口，这里按照dubbo风格进行接口定义，也可以只是在一个服务模块里进行接口的定义，也可以不定义接口，直接在具体的服务类上设置路由。</p>
+<p>接口定义：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">RestService</span> <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@GetMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/param&#34;</span><span style="color:#f92672">)</span>
+    String <span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@RequestParam</span> String para<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>接口实现：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@RestController</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RestServiceImpl</span> <span style="color:#66d9ef">implements</span> RestService <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span>String para<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;hello rest &#34;</span><span style="color:#f92672">+</span>para<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>服务调用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@RestController</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloRestController</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#a6e22e">@Autowired</span>
+    <span style="color:#a6e22e">@Lazy</span>
+    <span style="color:#66d9ef">private</span> RestService restService<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@GetMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/rest/hello&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@RequestParam</span> String para<span style="color:#f92672">){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>restService<span style="color:#f92672">.</span><span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span>para<span style="color:#f92672">));</span>
+        <span style="color:#66d9ef">return</span> restService<span style="color:#f92672">.</span><span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span>para<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+
+</code></pre></div><p>这种方式也是目前我们微服务改造的实现方式</p>
+<h3 id="dubbo的rpc调用">Dubbo的RPC调用</h3>
+<p>SpringCloud-ALibaba对Dubbo做了很好的融合，甚至可以理解为SpringCloud-ALibaba专门将dubbo迁移到了SpringCloud-ALibaba体系中，服务的注册与发现和使用原生dubbo框架没有差别。</p>
+<p>接口定义：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">EchoService</span> <span style="color:#f92672">{</span>
+    String <span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span>String para<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>接口实现：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Service</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EchoServiceImpl</span> <span style="color:#66d9ef">implements</span> EchoService <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span>String para<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;hello&#34;</span><span style="color:#f92672">+</span>para<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>这里的@service注解就是dubbo提供的 org.apache.dubbo.config.annotation.Service</p>
+<p>服务调用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@RestController</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloDubboController</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#a6e22e">@Reference</span>
+    <span style="color:#66d9ef">private</span> EchoService echoService<span style="color:#f92672">;</span>
+
+
+    <span style="color:#a6e22e">@GetMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/dubbo/hello&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@RequestParam</span> String para<span style="color:#f92672">){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>echoService<span style="color:#f92672">.</span><span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span>para<span style="color:#f92672">));</span>
+        <span style="color:#66d9ef">return</span> echoService<span style="color:#f92672">.</span><span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span>para<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>服务调用使用org.apache.dubbo.config.annotation.Reference 注解，即可完成服务的调用</p>
+<h3 id="使用feign调用dubboservice提供的服务">使用Feign调用Dubbo@Service提供的服务</h3>
+<p>上述两种方式相对独立，一种是传统概念的SpringCloud rest调用，一种是Dubbo框架的Rpc调用。SpringCloud-ALibaba一个比较重点的特性是将他们做了融合。对于这种融合也不算是非常神奇的事情，Rpc（远程过程调用）并非dubbo独有，dubbo提供了一种Rpc的实现，在SpringCloud-ALibaba还未诞生之前，dubbo官方文档对<a href="https://dubbo.apache.org/zh-cn/docs/user/rest.html">如何开发Rest风格的远程调用</a>也有介绍，只不过相对比较麻烦。在SpringCloud-ALibaba诞生后，大大简化了开发Rest接口的步骤，也正好符合了SpringCloud的Rest调用的能力。在SpringCloud-ALibaba的GitHub也提供了<a href="https://github.com/alibaba/spring-cloud-alibaba/tree/master/spring-cloud-alibaba-examples/spring-cloud-alibaba-dubbo-examples">两个Rest风格的demo</a>，分为是web提供者和非web提供者，这里主要介绍下web提供者方式。</p>
+<p>接口定义：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@FeignClient</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;provider&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#a6e22e">@DubboTransported</span><span style="color:#f92672">(</span>protocol <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dubbo&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">DubboRestService</span> <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@GetMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/param&#34;</span><span style="color:#f92672">)</span>
+    String <span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@RequestParam</span> String para<span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>使用@FeignClient定义服务提供者</p>
+<p>@DubboTransported是核心注解，实现了使用Feign调用Dubbo@Service提供的服务</p>
+<p>接口实现：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Service</span>
+<span style="color:#a6e22e">@RestController</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DubboRestServiceImpl</span> <span style="color:#66d9ef">implements</span> DubboRestService <span style="color:#f92672">{</span>
+    <span style="color:#a6e22e">@Override</span>
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span> String para<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;hello dubbo rest&#34;</span><span style="color:#f92672">+</span>para<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>@RestController实现了对Rest调用的支持，而dubbo的@service直接实现了服务注册，在nacos可以发现，服务的地址也不是dubbo的20880端口，可以我们服务提供者的rest接口：</p>
+<p><img src="images/image-20200412165753668.png" alt="image-20200412165753668"></p>
+<p>接口调用：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@RestController</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloDubboRestController</span> <span style="color:#f92672">{</span>
+
+
+    <span style="color:#a6e22e">@Autowired</span>
+    <span style="color:#a6e22e">@Lazy</span>
+    <span style="color:#66d9ef">private</span> DubboRestService dubboRestService<span style="color:#f92672">;</span>
+
+    <span style="color:#a6e22e">@GetMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/dubbo/rest/hello&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span><span style="color:#a6e22e">@RequestParam</span> String para<span style="color:#f92672">){</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>dubboRestService<span style="color:#f92672">.</span><span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span>para<span style="color:#f92672">));</span>
+        <span style="color:#66d9ef">return</span> dubboRestService<span style="color:#f92672">.</span><span style="color:#a6e22e">hello</span><span style="color:#f92672">(</span>para<span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+
+</code></pre></div><p>可以看到，可以不再使用@Reference也完成了对dubbo服务的Rest调用。</p>
+<p>但是个人理解，这种调用场景其实并不是非常常见，在具体的业务中也没有非常强的需求，**因为我们想实现rest调用可以直接使用SpringCloud传统Rest调用即可。**但是假如我们需要三方dubbo服务的时候（假如三方不提供rest接口），可以采用这种方式。</p>
+<p>总体来说，我们更需要关注我们的服务提供能力而不是服务协议。</p>
+<h2 id="原生dubbo服务如何使用springcloud-alibaba服务">原生Dubbo服务如何使用SpringCloud-ALibaba服务</h2>
+<p>这里主要分析已有基于Dubbo框架的系统如何调用SpringCloud-ALibaba的提供的服务，目前整个微服务改造情况如下：</p>
+<p>以支撑系统指标为例，指标已经完成了基于SpringCloud传统Rest调用的改造，并采用了dubbo开发风格提供二方Api包的方式，可以方便子系统调用。</p>
+<p>但是对于实施监督系统来说，微服务改造尚未完成，服务调用方式依旧是@Reference方式，使用zk作为注册中心进行服务发现，假如希望改造完成的指标依旧可以提供dubbo调用能力的话，需要做以下步骤。</p>
+<h2 id="指标系统改造">指标系统改造</h2>
+<h3 id="1增加service注解">1、增加@service注解</h3>
+<p>将服务使用@service进行暴露，原有的@RestController依旧保留（这样就同时支持了Rest和Dubbo Rpc调用）</p>
+<h3 id="2增加zk注册中心兼容旧版dubbo应用">2、增加zk注册中心兼容旧版dubbo应用</h3>
+<p>对于老版本的dubbo应用依旧采用zk注册的方式，这里可以这么操作,将被@Service标记的服务注册到zk，对于Rest的服务依旧注册到Nacos，具体配置如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#f92672">spring</span>:
+  <span style="color:#f92672">application</span>:
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">provider</span>
+  <span style="color:#f92672">cloud</span>:
+    <span style="color:#f92672">nacos</span>:
+      <span style="color:#f92672">discovery</span>:
+        <span style="color:#f92672">server-addr</span>: <span style="color:#ae81ff">127.0.0.1</span>:<span style="color:#ae81ff">8848</span> <span style="color:#75715e">#127.0.0.1:8848 #192.168.200.39:8848</span>
+<span style="color:#75715e">#    zookeeper:</span>
+<span style="color:#75715e">#      enabled: true</span>
+<span style="color:#75715e">#      connect-string: 127.0.0.1:2181</span>
+
+<span style="color:#f92672">dubbo</span>:
+  <span style="color:#f92672">registry</span>:
+    <span style="color:#f92672">address</span>: <span style="color:#ae81ff">zookeeper://127.0.0.1:2181</span>
+    <span style="color:#f92672">simplified</span>: <span style="color:#66d9ef">true</span>
+  <span style="color:#f92672">scan</span>:
+    <span style="color:#75715e"># dubbo 服务扫描基准包</span>
+    <span style="color:#f92672">base-packages</span>: <span style="color:#ae81ff">com.dist.cloud.provider.service</span>
+  <span style="color:#f92672">protocol</span>:
+    <span style="color:#75715e"># dubbo 协议</span>
+    <span style="color:#f92672">name</span>: <span style="color:#ae81ff">dubbo</span>
+    <span style="color:#75715e"># dubbo 协议端口（ -1 表示自增端口，从 20880 开始）</span>
+    <span style="color:#f92672">port</span>: -<span style="color:#ae81ff">1</span>
+<span style="color:#f92672">server</span>:
+  <span style="color:#f92672">port</span>: <span style="color:#ae81ff">8084</span>
+</code></pre></div><h2 id="老dubbo应用改造">老dubbo应用改造</h2>
+<p>对于老dubbo应用的一个需求就是能否不改代码就可以调用新的服务，结论是目前的3.0.1 版本支持不佳（需要继续debug），但是2.6.0之后版本没有问题。</p>
+<h3 id="dubbo不同版本互相调用">dubbo不同版本互相调用</h3>
+<p>首先比较关心的一个问题是dubbo低版本是否可以调用高版本服务，dubbo官方也做了说明：</p>
+<p><img src="images/image-20200412171033248.png" alt="image-20200412171033248"></p>
+<p>也就是说dubbo是提供了低版本高版本互相调用能力的</p>
+<p>在实际的验证中也验证了我们使用的dubbo3.0.1是可以发现高版本dubbo提供的服务的，也就是说服务发现没有问题，但是依旧出现了调用失败的问题，错误异常如下：</p>
+<pre><code>RpcInvocation [methodName=hello, parameterTypes=[], arguments=null, attachments={path=com.dist.cloud.api.EchoService, input=195, dubbo=3.0.1, version=0.0.0}]
+</code></pre><h3 id="解决方案">解决方案</h3>
+<p>一种解决方式是将dubbo版本升级到dubbo官方的版本，验证2.6.0调用没有问题，同时debug了2.6.0版本invoke时的参数，参数如下：</p>
+<pre><code>RpcInvocation [methodName=hello, parameterTypes=[class java.lang.String], arguments=[1], attachments={path=com.dist.cloud.api.EchoService, input=194, timeout_filter_start_time=1586621708650, dubbo=2.6.0, interface=com.dist.cloud.api.EchoService, version=0.0.0, timeout=500000}]
+</code></pre><p>可以看出和我们已有3.0.1版本主要区别在于Rpc请求解析存在不一致的地方。但是还没有进行进一步debug为什么已有的3.0.1为何会调用失败。</p>
+<p><strong>在实际操作中，dubbo版本由我们的3.0.1变更为2.6.0相对比较方便，只是改动了pom版本</strong>。</p>
+
+
+    
+    
+        <div class="related">
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

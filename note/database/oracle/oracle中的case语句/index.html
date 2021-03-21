@@ -1,0 +1,274 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+             oracle的case、if  
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+        
+<a class="subtitle is-6" href="/tags/oracle/">#oracle</a>
+
+
+
+
+    
+</div>
+
+
+
+<h2 class="subtitle is-6">
+    
+    
+        December 27, 2017 | 22:03
+    
+</h2>
+
+
+
+<h1 class="title">oracle的case、if</h1>
+
+<div class="content">
+
+    
+    <h1 id="plsql中的case语句和if语句">PL/SQL中的case语句和if语句</h1>
+<p>case语句存在两种形式：case和搜索式case，case语句可以设定选择器， 选择器会决定需要执行哪组动作，而搜索式case语句没有选择器，搜索条件会按顺序计算，从而决定采取哪组动作。</p>
+<h3 id="case语句">case语句</h3>
+<p>case语句的结构</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">case</span> selector
+	<span style="color:#66d9ef">when</span> expression1 <span style="color:#66d9ef">then</span> statement1;
+	<span style="color:#66d9ef">when</span> expression2 <span style="color:#66d9ef">then</span> statement2;
+	...
+	<span style="color:#66d9ef">when</span> expression n <span style="color:#66d9ef">then</span> <span style="color:#66d9ef">statement</span> n;
+	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">statement</span> N<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">end</span> <span style="color:#66d9ef">case</span>;
+</code></pre></div><p>选择器决定哪个WHEN子句应该被执行，每个WHEN子句都包含一个EXPRESSION以及与之关联的一个或者多个可执行语句，else语句是可选的；选择器只会计算一次，会顺序计算WHEN子句，表达式的值与选择器的值进行比较</p>
+<h3 id="搜索式case语句">搜索式case语句</h3>
+<p>搜索式语句有个能产生布尔值的搜索条件，当特定的搜索条件的计算结果为TURE时，会执行与该条件相关的语句组合。</p>
+<p>搜索式case语句的结构：</p>
+<pre><code>case
+	when search condition 1 then statement 1;
+	when search condition 2 then statement 2;
+	...
+	when search condition n then statement n;
+	else statement N+1;
+end case;
+</code></pre><p>当搜索条件的计算结果为true时，执行控制权传递给相关的语句，如果任何搜索条件都不会产生true，则会执行与else子句相关的语句</p>
+<h3 id="case语句和搜索式case语句的差别">case语句和搜索式case语句的差别</h3>
+<p>搜索式case语句没有选择器，除此之外，它的when子句能够产生布尔值的搜索条件（类似if语句）而不会生成任意类型值的表达式</p>
+<h2 id="case表达式">case表达式</h2>
+<p>在case语句中，when和else子句包含一个可执行的语句，每个可执行语句的结尾处都是分号，在case表达式中，when和else子句包含的表达式的结尾处不是分号，分号出现在保留字end后面，end终止case表达式</p>
+<h3 id="case-when-在语句中不同位置的用法">case when 在语句中不同位置的用法</h3>
+<ol>
+<li>
+<p>select case when 用法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span>   grade, <span style="color:#66d9ef">COUNT</span> (<span style="color:#66d9ef">CASE</span> <span style="color:#66d9ef">WHEN</span> sex <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span> <span style="color:#66d9ef">THEN</span> <span style="color:#ae81ff">1</span>      
+                       <span style="color:#66d9ef">ELSE</span> <span style="color:#66d9ef">NULL</span>
+                       <span style="color:#66d9ef">END</span>) <span style="color:#960050;background-color:#1e0010">男生数</span>,
+                <span style="color:#66d9ef">COUNT</span> (<span style="color:#66d9ef">CASE</span> <span style="color:#66d9ef">WHEN</span> sex <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> <span style="color:#66d9ef">THEN</span> <span style="color:#ae81ff">1</span>
+                       <span style="color:#66d9ef">ELSE</span> <span style="color:#66d9ef">NULL</span>
+                       <span style="color:#66d9ef">END</span>) <span style="color:#960050;background-color:#1e0010">女生数</span>
+    <span style="color:#66d9ef">FROM</span> students <span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span> grade;
+</code></pre></div></li>
+<li>
+<p>where case when用法</p>
+<pre><code>SELECT T2.*, T1.*
+   FROM T1, T2
+  WHERE (CASE WHEN T2.COMPARE_TYPE = 'A' AND
+                   T1.SOME_TYPE LIKE 'NOTHING%'
+                THEN 1
+              WHEN T2.COMPARE_TYPE != 'A' AND
+                   T1.SOME_TYPE NOT LIKE 'NOTHING%'
+                THEN 1
+              ELSE 0
+           END) = 1
+</code></pre></li>
+<li>
+<p>group by case when用法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span>  
+<span style="color:#66d9ef">CASE</span> <span style="color:#66d9ef">WHEN</span> salary <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">500</span> <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;1&#39;</span>  
+<span style="color:#66d9ef">WHEN</span> salary <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">500</span> <span style="color:#66d9ef">AND</span> salary <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">600</span>  <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;2&#39;</span>  
+<span style="color:#66d9ef">WHEN</span> salary <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">600</span> <span style="color:#66d9ef">AND</span> salary <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">800</span>  <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;3&#39;</span>  
+<span style="color:#66d9ef">WHEN</span> salary <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">800</span> <span style="color:#66d9ef">AND</span> salary <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1000</span> <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;4&#39;</span>  
+<span style="color:#66d9ef">ELSE</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">END</span> salary_class, <span style="color:#75715e">-- 别名命名
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">COUNT</span>(<span style="color:#f92672">*</span>)  
+<span style="color:#66d9ef">FROM</span>    Table_A  
+<span style="color:#66d9ef">GROUP</span> <span style="color:#66d9ef">BY</span>  
+<span style="color:#66d9ef">CASE</span> <span style="color:#66d9ef">WHEN</span> salary <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">500</span> <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;1&#39;</span>  
+<span style="color:#66d9ef">WHEN</span> salary <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">500</span> <span style="color:#66d9ef">AND</span> salary <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">600</span>  <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;2&#39;</span>  
+<span style="color:#66d9ef">WHEN</span> salary <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">600</span> <span style="color:#66d9ef">AND</span> salary <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">800</span>  <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;3&#39;</span>  
+<span style="color:#66d9ef">WHEN</span> salary <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">800</span> <span style="color:#66d9ef">AND</span> salary <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1000</span> <span style="color:#66d9ef">THEN</span> <span style="color:#e6db74">&#39;4&#39;</span>  
+<span style="color:#66d9ef">ELSE</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">END</span>;  
+</code></pre></div><p>​</p>
+</li>
+</ol>
+<h4 id="heading"></h4>
+
+
+    
+    
+        <div class="related">
+
+
+<h3>Similar articles</h3>
+
+<ul>
+	
+	<li><a href="/note/database/oracle/oracle%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/">oracleQ&amp;A</a></li>
+	
+	<li><a href="/note/database/oracle/oracle%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/">Oracle常见函数</a></li>
+	
+	<li><a href="/note/database/oracle/oracle%E7%94%A8%E6%88%B7%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90/">Oracle用户角色权限</a></li>
+	
+</ul>
+
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

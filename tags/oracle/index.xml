@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>oracle on Kiss&#39;Em!</title>
+    <link>https://example.com/tags/oracle/</link>
+    <description>Recent content in oracle on Kiss&#39;Em!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 27 Dec 2018 22:03:05 +0800</lastBuildDate><atom:link href="https://example.com/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker下oracle数据库导入</title>
+      <link>https://example.com/note/database/oracle/docker%E4%B8%8Boracle%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6/</link>
+      <pubDate>Thu, 27 Dec 2018 22:03:05 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/oracle/docker%E4%B8%8Boracle%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6/</guid>
+      <description>docker下oracle数据库导入 进入oracle docker环境   假如使用的oracle镜像版本为：wnameless/oracle-xe-11g 这个镜像进入bash默认的用户为root，需要切换到oracle用户下进行操作 *   进入容器 docker exec -it containerid bash # 切换为oracle用户 su - oracle #设置环境变量（设置过可忽略） export ORACLE_SID=orcl export ORACLE_HOME=/u01/app/oracle/product/11.2.0/xe export PATH=$ORACLE_HOME/bin:$PATH 使用impdp方式进行数据的导入 # 创建表空间 create tablespace dgpdg logging datafile &amp;#39;/u01/app/oracle/oradata/XE/dgpdg.dbf&amp;#39; size 1500m autoextend on next 100m maxsize 10000m extent management local; # 创建用户并配置表空间，授权 create user dgpdg identified by pass DEFAULT TABLESPACE dgpdg; grant dba to dgpdg; # 创建dump目录,并将dmp文件放在该文件夹下 create directory dmp_dir as &amp;#39;/u01/app/oracle/dump&amp;#39; # 授权目录读写权限 grant read,write on directory dmp_dir to dgpdg; # impdp方式导入 impdp dgpsd/pass directory=dmp_dir dumpfile=DGPDG20181009.</description>
+    </item>
+    
+    <item>
+      <title>oracle的expdp impdp</title>
+      <link>https://example.com/note/database/oracle/oracle-expdp-impdp%E6%95%B0%E6%8D%AE%E6%B3%B5/</link>
+      <pubDate>Tue, 27 Mar 2018 22:03:05 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/oracle/oracle-expdp-impdp%E6%95%B0%E6%8D%AE%E6%B3%B5/</guid>
+      <description>expdp impdp使用 参考 http://blog.51cto.com/yemingtian/1851919
+创建远程连接 假如我需要拷贝远程的数据库数据并将其迁移到我本机上，那么我不需要登录远程服务器，直接在本机与远程数据库建立连接即可 create public database link connect to DGPDG identified by pass using &amp;lsquo;ip address/orcl&amp;rsquo;;
+创建导出目录 创建逻辑目录，该命令不会在操作系统创建真正的目录（最好手工先建好），最好以administrator等管理员创建。
+SQL&amp;gt;create directory dir as &#39;d:\dump&#39;; --dir名称可以随便命名 是oracle可识别的名字 但是存储目录 d:\dump 需要在系统硬盘上手工创建
+向用户授权读写目录 给用户赋予在指定目录下的读写权限
+Grant read,write on directory dir_name to user_name;
+执行导出  按照表模式导出 按照查询条件导出 按照表空间导出 按照用户导出 导出整个数据库  执行导入  按照表导入 按照用户导入 按照表空间导入 全库导入  转换表空间迁移数据 expdp system/sys directory=dir_dp dumpfile=dgpfp.dmp logfile=dgpdg20171115.log SCHEMAS=dgpfp
+总结： 执行impdp时无需创建b用户，在导入时会自动创建并改名用户a为b（拥有a的所有权限等），自动设置默认表空间为转换后的表空间b。如果有多个表空间需要转换，则使用多个remap_tablespace=源表空间：目标表空间。此种方法只限于支持oracle10g以上版本。
+expdp system/sys directory=exp_dir dumpfile=dgpfp.dmp logfile=dgpfp20180411.log SCHEMAS=dgpfp create directory expdir as &#39;D:/exp_dir&#39;; expdp system/sys@orcl directory=expdir dumpfile=dgpfp20180411.</description>
+    </item>
+    
+    <item>
+      <title>oracleQ&amp;A</title>
+      <link>https://example.com/note/database/oracle/oracle%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 27 Dec 2017 22:03:05 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/oracle/oracle%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description>在删除oracle用户的时候，出现无法连接正在连接的用户 select username,sid,serial# from v$session; alter system kill session&#39;94,229&#39; drop user dgpcd cascade ; Oracle数据库监听配置常见问题  ORA-12710 连接超时   解决：可能是防火墙问题，在入站规则添加对应的端口即可，默认端口为1521
+  ORA-12514 TNS 监听程序当前无法识别连接描述符中请求服务   解决：使用net configuration assistant重新配置本地网络名配置
+  使局域网的电脑可以访问本机的数据库   在服务端的listener.ora文件进行如下编辑，除了localhost之外，添加一行地址设置本机ip
+ LISTENER = (DESCRIPTION_LIST = (DESCRIPTION = (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521)) ) (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (ADDRESS = (PROTOCOL = TCP)(HOST = 你的主机IP地址)(PORT = 1521)) ) ) </description>
+    </item>
+    
+    <item>
+      <title>oracle的case、if</title>
+      <link>https://example.com/note/database/oracle/oracle%E4%B8%AD%E7%9A%84case%E8%AF%AD%E5%8F%A5/</link>
+      <pubDate>Wed, 27 Dec 2017 22:03:05 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/oracle/oracle%E4%B8%AD%E7%9A%84case%E8%AF%AD%E5%8F%A5/</guid>
+      <description>PL/SQL中的case语句和if语句 case语句存在两种形式：case和搜索式case，case语句可以设定选择器， 选择器会决定需要执行哪组动作，而搜索式case语句没有选择器，搜索条件会按顺序计算，从而决定采取哪组动作。
+case语句 case语句的结构
+case selector when expression1 then statement1; when expression2 then statement2; ... when expression n then statement n; else statement N+1 end case; 选择器决定哪个WHEN子句应该被执行，每个WHEN子句都包含一个EXPRESSION以及与之关联的一个或者多个可执行语句，else语句是可选的；选择器只会计算一次，会顺序计算WHEN子句，表达式的值与选择器的值进行比较
+搜索式case语句 搜索式语句有个能产生布尔值的搜索条件，当特定的搜索条件的计算结果为TURE时，会执行与该条件相关的语句组合。
+搜索式case语句的结构：
+case when search condition 1 then statement 1; when search condition 2 then statement 2; ... when search condition n then statement n; else statement N+1; end case; 当搜索条件的计算结果为true时，执行控制权传递给相关的语句，如果任何搜索条件都不会产生true，则会执行与else子句相关的语句
+case语句和搜索式case语句的差别 搜索式case语句没有选择器，除此之外，它的when子句能够产生布尔值的搜索条件（类似if语句）而不会生成任意类型值的表达式
+case表达式 在case语句中，when和else子句包含一个可执行的语句，每个可执行语句的结尾处都是分号，在case表达式中，when和else子句包含的表达式的结尾处不是分号，分号出现在保留字end后面，end终止case表达式
+case when 在语句中不同位置的用法   select case when 用法</description>
+    </item>
+    
+    <item>
+      <title>Oracle常见函数</title>
+      <link>https://example.com/note/database/oracle/oracle%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Mon, 27 Nov 2017 22:03:05 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/oracle/oracle%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0/</guid>
+      <description>Oracle常见函数 单行函数 字符函数   LOWER函数和UPPER函数：
+作用：将字符串转换为大/小写的格式
+  length(char):
+作用：返回字符串的长度
+  initcap函数：
+作用：将字符串中每个单词转换为首字母大写，其余字符小写
+  ASCII函数和CHR函数
+作用：字符和ascii码相互转换
+  substr(char,m,n):
+作用：截取字符串的子串，n代表n个字符的意思，不是代表取到第n个
+  replace(char1, search_string, replace_string)
+作用:替换函数
+  instr(c1,c2,i,j)：
+作用：判断某字符或者字符串是否存在，存在返回出现位置的索引，否则返回小于1；在一个字符串中搜索指定的字符，返回发现指定的字符的位置；C1 被搜索的字符串，C2希望搜索的字符串，I 搜索的开始位置，默认为1，J 出现的位置，默认为1
+  select instr(&amp;#39;azhangsanbcd&amp;#39;, &amp;#39;zhangsan&amp;#39;) from dual; --返回2 select instr(&amp;#39;oracle traning&amp;#39;, &amp;#39;ra&amp;#39;, 1, 1) instring from dual; --返回2 select instr(&amp;#39;oracle traning&amp;#39;, &amp;#39;ra&amp;#39;, 1, 2) instring from dual; --返回9 select instr(&amp;#39;oracle traning&amp;#39;, &amp;#39;ra&amp;#39;, 1, 3) instring from dual; --返回0 select instr(&amp;#39;abc&amp;#39;,&amp;#39;d&amp;#39;) from dual; --返回0  LPAD函数和RPAD函数：</description>
+    </item>
+    
+    <item>
+      <title>Oracle用户角色权限</title>
+      <link>https://example.com/note/database/oracle/oracle%E7%94%A8%E6%88%B7%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90/</link>
+      <pubDate>Wed, 27 Sep 2017 22:03:05 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/oracle/oracle%E7%94%A8%E6%88%B7%E8%A7%92%E8%89%B2%E6%9D%83%E9%99%90/</guid>
+      <description>Oracle用户角色权限 Oracle用户管理 创建用户
+create user username identified by password default tablespace tablespace temporary tablespace tablespace profile profile 查询用户
+select username, default_tablespace, temporary_tablespace from dba_users;--查询用户默认表空间，临时表空间 select * from dba_profiles;--查询系统资源文件名 创建用户的profile文件
+ create profile student limit // student为资源文件名 FAILED_LOGIN_ATTEMPTS 3 //指定锁定用户的登录失败次数 PASSWORD_LOCK_TIME 5 //指定用户被锁定天数 PASSWORD_LIFE_TIME 30 //指定口令可用天数 修改用户
+1、修改口令字： SQL&amp;gt;Alter user acc01 identified by &amp;quot;12345&amp;quot;; 2、修改用户缺省表空间： SQL&amp;gt; Alter user acc01 default tablespace users; 3、修改用户临时表空间 SQL&amp;gt; Alter user acc01 temporary tablespace temp_data; 4、强制用户修改口令字： SQL&amp;gt; Alter user acc01 password expire; 5、将用户加锁 SQL&amp;gt; Alter user acc01 account lock; // 加锁 SQL&amp;gt; Alter user acc01 account unlock; // 解锁 监视用户</description>
+    </item>
+    
+  </channel>
+</rss>

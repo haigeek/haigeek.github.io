@@ -1,0 +1,250 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+             Redis的数据类型  
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+        
+<a class="subtitle is-6" href="/tags/redis/">#redis</a>
+
+
+
+
+    
+</div>
+
+
+
+<h2 class="subtitle is-6">
+    
+    
+        May 27, 2018 | 22:03
+    
+</h2>
+
+
+
+<h1 class="title">Redis的数据类型</h1>
+
+<div class="content">
+
+    
+    <h1 id="redis的数据类型">Redis的数据类型</h1>
+<p>Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。</p>
+<h2 id="string">String</h2>
+<p>String是Redis最基本的类型，一个key对应一个value，String可以包含任何数据，例如jpg图片或者序列化的对象，string 类型可以存储最大的数据值是512MB</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; set name <span style="color:#e6db74">&#34;hello&#34;</span>
+OK
+127.0.0.1:6379&gt; get name
+<span style="color:#e6db74">&#34;hello&#34;</span>
+</code></pre></div><h2 id="hash">Hash</h2>
+<p>Redis hash 是一个键值(key=&gt;value)对集合，是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象。实例中我们使用了 Redis HMSET, HGET 命令，HMSET 设置了两个 field=&gt;value 对, HGET 获取对应 field 对应的 value。
+每个 hash 可以存储 2的32次方减1个键值对（40多亿）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; hmset myhash field1 <span style="color:#e6db74">&#34;hello&#34;</span> field2 <span style="color:#e6db74">&#34;world&#34;</span>
+OK
+127.0.0.1:6379&gt; hget myhash field1
+<span style="color:#e6db74">&#34;hello&#34;</span>
+127.0.0.1:6379&gt; hget myhash field2
+<span style="color:#e6db74">&#34;world&#34;</span>
+</code></pre></div><h2 id="set">Set</h2>
+<p>Redis的Set是string类型的无序集合。集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是O(1)。
+添加数据使用sadd 命令。添加一个 string 元素到 key 对应的 set 集合中，成功返回1，如果元素已经在集合中返回 0，如果 key 对应的 set 不存在则返回错误。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; sadd settest hello
+<span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> <span style="color:#ae81ff">1</span>
+127.0.0.1:6379&gt; sadd settest world
+<span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> <span style="color:#ae81ff">1</span>
+127.0.0.1:6379&gt; sadd settest !
+<span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> <span style="color:#ae81ff">1</span>
+127.0.0.1:6379&gt; sadd settest !
+<span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> <span style="color:#ae81ff">0</span>
+127.0.0.1:6379&gt; SMEMBERS settest
+1<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;!&#34;</span>
+2<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;world&#34;</span>
+3<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;hello&#34;</span>
+</code></pre></div><h2 id="zset">Zset</h2>
+<p>有序集合，Redis zset 和 set 一样也是string类型元素的集合,且不允许重复的成员。
+不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。zset的成员是唯一的,但分数(score)却可以重复。
+命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">zadd key score member 
+</code></pre></div><p>demo</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">127.0.0.1:6379&gt; ZADD zsettest <span style="color:#ae81ff">0</span> hello
+<span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> <span style="color:#ae81ff">1</span>
+127.0.0.1:6379&gt; ZADD zsettest <span style="color:#ae81ff">0</span> world
+<span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> <span style="color:#ae81ff">1</span>
+127.0.0.1:6379&gt; ZADD zsettest <span style="color:#ae81ff">0</span> ！
+<span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> <span style="color:#ae81ff">1</span>
+127.0.0.1:6379&gt; ZADD zsettest <span style="color:#ae81ff">0</span> ！
+<span style="color:#f92672">(</span>integer<span style="color:#f92672">)</span> <span style="color:#ae81ff">0</span>
+127.0.0.1:6379&gt; ZRANGEBYSCORE zsettest <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">100</span>
+1<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;hello&#34;</span>
+2<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;world&#34;</span>
+3<span style="color:#f92672">)</span> <span style="color:#e6db74">&#34;\xef\xbc\x81&#34;</span>
+</code></pre></div>
+
+    
+    
+        <div class="related">
+
+
+<h3>Similar articles</h3>
+
+<ul>
+	
+	<li><a href="/note/database/redis/redis%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">redis的安装和配置</a></li>
+	
+	<li><a href="/note/database/redis/redis%E6%8C%87%E4%BB%A4/">redis-shell</a></li>
+	
+</ul>
+
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

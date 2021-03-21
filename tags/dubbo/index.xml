@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>dubbo on haigeek-blog</title>
+    <link>https://haigeek.me/tags/dubbo/</link>
+    <description>Recent content in dubbo on haigeek-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Dec 2020 00:34:27 +0800</lastBuildDate><atom:link href="https://haigeek.me/tags/dubbo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DubboRpc的ExceptionFilter过滤器</title>
+      <link>https://haigeek.me/posts/backend/dubbo/dubbo-rpc-filter-exception-handler/</link>
+      <pubDate>Sun, 27 Dec 2020 00:34:27 +0800</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/dubbo/dubbo-rpc-filter-exception-handler/</guid>
+      <description>&lt;p&gt;在使用dubbo进行接口调用的时候,在接口抛出异常的时候会在ExceptionFilter最终抛出异常。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>dubbo使用随机端口</title>
+      <link>https://haigeek.me/posts/backend/dubbo/dubbo-random-port/</link>
+      <pubDate>Wed, 01 Apr 2020 23:17:02 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/dubbo/dubbo-random-port/</guid>
+      <description>&lt;p&gt;dubbo在进行服务间通信的时候需要使用端口进行通信,但是这个端口的指定规则是什么。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

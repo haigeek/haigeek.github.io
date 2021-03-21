@@ -1,0 +1,692 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+               
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+</div>
+
+
+
+
+
+<h1 class="title"></h1>
+
+<div class="content">
+
+    
+    <h1 id="shell脚本分享">shell脚本分享</h1>
+<h2 id="一介绍shell">一、介绍shell</h2>
+<p>Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell 既是一种命令语言，又是一种程序设计语言。</p>
+<p>Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务。</p>
+<p>Shell 脚本（shell script），是一种为 shell 编写的脚本程序。</p>
+<p>业界所说的 shell 通常都是指 shell 脚本。</p>
+<p>shell 编程跟 JavaScript、php 编程一样，只要有一个能编写代码的文本编辑器和一个能解释执行的脚本解释器就可以了。</p>
+<p>为什么使用shell脚本？</p>
+<p>简化对于多个重复命令的操作，适用于批处理。（原本是觉得docker没有怎么简化操作，每次都要敲那么多代码，后来发现可以用shell脚本写脚本批处理运行之）。</p>
+<p>shell脚本以.sh为文件名的后缀(不强制，规范而已)</p>
+<p>脚本第一行以<code>#!/bin/bash</code>或者 <code>#!/bin/sh</code> 开头（不是必须的）</p>
+<p>执行：</p>
+<pre><code>1. chmod +x 脚本名 : 授予执行权 然后可以 ./文件名运行
+2. sh 脚本名
+3. /bin/bash 脚本名
+4. bash 脚本名
+</code></pre>
+<h2 id="二代码实操">二、代码实操</h2>
+<h3 id="hello-world">hello world</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">vim helloworld.sh
+
+<span style="color:#75715e">#!/bin/bash</span>
+echo <span style="color:#e6db74">&#34;hello wolrd!!!&#34;</span>
+</code></pre></div><p>运行</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sh helloworld.sh
+</code></pre></div><h3 id="变量">变量</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 给变量名赋值  注意等于号中间没有括号</span>
+变量名<span style="color:#f92672">=</span>变量值
+
+<span style="color:#75715e">#使用变量名</span>
+$变量名 或者  <span style="color:#e6db74">${</span>变量名<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e">#只读变量</span>
+readonly 变量名<span style="color:#f92672">=</span>变量值;
+<span style="color:#75715e">#变量名=变量值2;   标记了只读变量 修改会报错</span>
+
+<span style="color:#75715e">#删除变量</span>
+unset 变量名
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>  <span style="color:#75715e"># 变量可以写在一行</span>
+  v1<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> v2<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aa&#34;</span>;
+  <span style="color:#75715e"># 将文件名赋值给变量v3</span>
+  v3<span style="color:#f92672">=</span>$0
+  <span style="color:#75715e"># 这里建议使用${}的形式使用变量</span>
+  echo <span style="color:#e6db74">&#34;v1=</span><span style="color:#e6db74">${</span>v1<span style="color:#e6db74">}</span><span style="color:#e6db74">, v2=</span>$v2<span style="color:#e6db74">, v3=</span>$v3<span style="color:#e6db74">&#34;</span>
+  <span style="color:#75715e"># 将打印结果赋值给变量 files</span>
+  files<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>ls /usr/dev/sh<span style="color:#e6db74">`</span>
+  <span style="color:#75715e"># 遍历输出</span>
+  <span style="color:#66d9ef">for</span> f in $files
+  <span style="color:#66d9ef">do</span>
+    echo $f;
+  <span style="color:#66d9ef">done</span>
+  
+  readonly myUrl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;www.qqq&#34;</span>;
+  <span style="color:#75715e">#myUrl=&#34;111111&#34;;</span>
+  echo $myUrl
+
+</code></pre></div><ul>
+<li>
+<p>局部变量</p>
+<p>在函数中定义局部变量使其不影响函数外的同名变量</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>  
+c<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+<span style="color:#66d9ef">function</span> f1<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+  local a<span style="color:#f92672">=</span>1;
+  b<span style="color:#f92672">=</span>2;
+  echo <span style="color:#e6db74">&#34;函数内变量a=</span>$a<span style="color:#e6db74">&#34;</span>;
+  echo <span style="color:#e6db74">&#34;函数内变量b=</span>$b<span style="color:#e6db74">&#34;</span>;
+  echo <span style="color:#e6db74">&#34;函数内变量c=</span>$c<span style="color:#e6db74">&#34;</span>;
+<span style="color:#f92672">}</span>
+f1;
+echo <span style="color:#e6db74">&#34;函数外变量a=</span>$a<span style="color:#e6db74">&#34;</span>;  <span style="color:#75715e">#不打印</span>
+echo <span style="color:#e6db74">&#34;函数外变量b=</span>$b<span style="color:#e6db74">&#34;</span>;  <span style="color:#75715e">#打印</span>
+echo <span style="color:#e6db74">&#34;函数外变量b=</span>$c<span style="color:#e6db74">&#34;</span>;  <span style="color:#75715e">#打印</span>
+</code></pre></div><p>demo中的12行获取不到变量a的值，因为a是函数内的局部变量</p>
+</li>
+<li>
+<p>shell文件内部变量(全局变量)</p>
+<p>shell变量是由shell程序设置的特殊变量。shell变量中有一部分是环境变量，有一部分是局部变量，这些变量保证了shell的正常运行</p>
+<p>上面的demo可以看出变量B可以被函数外部引用，那么b就是一个全局变量</p>
+</li>
+<li>
+<p>环境变量</p>
+<p>所有的程序，包括shell启动的程序，都能访问环境变量，有些程序需要环境变量来保证其正常运行。必要的时候shell脚本也可以定义环境变量。</p>
+<p>使用<code>env</code>或者<code>export</code>可以查看环境变量</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">echo $HOME
+</code></pre></div><p>将变量升级为环境变量</p>
+<p>export str=&ldquo;aaa&rdquo;;</p>
+<p>或者 str=&ldquo;aaa&rdquo;;</p>
+<p>​	export str</p>
+<p>只对当前用户的当前shell和子shell有效，退出脚本和退出登录后也失效</p>
+<ul>
+<li>设置永久的环境变量</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">echo <span style="color:#e6db74">&#34;NAME=&#39;QIAO&#39;&#34;</span> &gt;&gt; /etc/profile
+<span style="color:#75715e"># 查看profile中设置的内容</span>
+cat /etc/profile|grep <span style="color:#e6db74">&#34;NAME=&#39;QIAO&#39;&#34;</span>
+<span style="color:#75715e">#然后刷新profile文件</span>
+source /etc/profile
+echo $NAME
+<span style="color:#75715e"># 删除文件中的最后一行</span>
+sed -i <span style="color:#e6db74">&#39;$d&#39;</span> profile
+</code></pre></div></li>
+<li>
+<p>位置变量和特殊变量</p>
+<ul>
+<li>
+<p>位置变量</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>echo $0
+echo <span style="color:#e6db74">&#34;第一个:</span>$1<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第二个:</span>$2<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第三个:</span>$3<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第四个:</span>$4<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第五个:</span>$5<span style="color:#e6db74">&#34;</span>
+shift 5;  <span style="color:#75715e">#踢除前五个  下标会从1开始</span>
+echo <span style="color:#e6db74">&#34;第一个:</span>$1<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第二个:</span>$2<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第三个:</span>$3<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第四个:</span>$4<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第五个:</span>$5<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第六个:</span>$6<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第七个:</span>$7<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第八个:</span>$8<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第九个:</span>$9<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第十个:</span>$10<span style="color:#e6db74">&#34;</span>
+echo <span style="color:#e6db74">&#34;第十一个:</span>$11<span style="color:#e6db74">&#34;</span>
+</code></pre></div><p>sh lo.sh 1 2 3 4 5 6 7 8 9 10 11</p>
+</li>
+<li>
+<p>特殊变量</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$?：（常用）上一条代码执行的回传指令，回传0表示标准输出，即正确执行，否则为标准错误输出。
+$$：当前shell的PID。除了执行bash命令和shell脚本时，$$不会继承父shell的值，其他类型的子shell都继承。
+$BASHPID：当前shell的PID，这和<span style="color:#e6db74">&#34;</span>$$<span style="color:#e6db74">&#34;</span>是不同的，因为每个shell的$BASHPID是独立的。而<span style="color:#e6db74">&#34;</span>$$<span style="color:#e6db74">&#34;</span>有时候会继承父shell的值。
+$!：最近一次执行的后台进程PID。
+$#：（常用）统计参数的个数。	
+$@：（常用）所有单个参数，如<span style="color:#e6db74">&#34;a&#34;&#34;b&#34;&#34;c&#34;&#34;d&#34;</span>。
+$*：以一个单字符串显示所有向脚本传递的参数，如“abcd”。
+$0：（常用）脚本名。
+$1……$n：（常用）参数位置。
+</code></pre></div><p>lo.sh</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>echo <span style="color:#e6db74">&#39;$?:&#39;</span>$?
+echo <span style="color:#e6db74">&#39;$$:&#39;</span>$$
+echo <span style="color:#e6db74">&#39;$!:&#39;</span>$!
+echo <span style="color:#e6db74">&#39;$#:&#39;</span>$#
+echo <span style="color:#e6db74">&#39;$@:&#39;</span>$@
+echo <span style="color:#e6db74">&#39;$*:&#39;</span>$*
+echo <span style="color:#e6db74">&#39;$0:&#39;</span>$0
+echo <span style="color:#e6db74">&#39;$1:&#39;</span>$1
+echo <span style="color:#e6db74">&#39;$2:&#39;</span>$2
+echo <span style="color:#e6db74">&#39;$3:&#39;</span>$3
+echo <span style="color:#e6db74">&#39;$4:&#39;</span>$4
+<span style="color:#66d9ef">for</span> item in $@
+<span style="color:#66d9ef">do</span>
+  echo $item
+<span style="color:#66d9ef">done</span>
+</code></pre></div><p>常用 <code>$?</code>,  <code>$#</code> <code>$@</code> <code>$0</code> <code>$1...$n</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="数组">数组</h3>
+<ul>
+<li>
+<p>普通数组</p>
+<p>第一种 arr=(A B)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>arr<span style="color:#f92672">=(</span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> 4<span style="color:#f92672">)</span>
+echo <span style="color:#e6db74">${</span>arr[2]<span style="color:#e6db74">}</span>
+</code></pre></div><p>这里要注意 数组内的元素以空格隔开 不是逗号</p>
+<p>第二种：自定义索引位置</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">arr2<span style="color:#f92672">[</span>0<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;a&#34;</span>
+arr2<span style="color:#f92672">[</span>2<span style="color:#f92672">]=</span><span style="color:#e6db74">&#34;b&#34;</span>
+echo <span style="color:#e6db74">${</span>arr2[0]<span style="color:#e6db74">}</span>;
+echo <span style="color:#e6db74">${</span>arr2[2]<span style="color:#e6db74">}</span>
+  
+<span style="color:#75715e"># 使用*或者打印数组内得所有元素</span>
+echo <span style="color:#e6db74">${</span>arr2[*]<span style="color:#e6db74">}</span>
+echo <span style="color:#e6db74">${</span>arr2[@]<span style="color:#e6db74">}</span>
+  
+<span style="color:#75715e"># 获取数组的索引</span>
+echo <span style="color:#e6db74">${</span>!arr2[*]<span style="color:#e6db74">}</span>
+echo <span style="color:#e6db74">${</span>!arr2[@]<span style="color:#e6db74">}</span>
+  
+<span style="color:#75715e"># 显示下标为1的数组变量的字符长度</span>
+echo <span style="color:#e6db74">${#</span>arr2[0]<span style="color:#e6db74">}</span>
+  
+<span style="color:#75715e"># 显示数组中的元素个数（只统计值不为空的元素）</span>
+echo <span style="color:#e6db74">${#</span>arr2[*]<span style="color:#e6db74">}</span>  
+echo <span style="color:#e6db74">${#</span>arr2[@]<span style="color:#e6db74">}</span>
+</code></pre></div><p>下标可以不按顺序写</p>
+</li>
+<li>
+<p>关联数组</p>
+<p>关联数组支持字符串作为数组索引。使用关联数组必须先使用declare -A声明它。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># 声明一个关联数组</span>
+declare -A arr3
+arr3<span style="color:#f92672">=([</span>name1<span style="color:#f92672">]=</span>zhangshan <span style="color:#f92672">[</span>name2<span style="color:#f92672">]=</span>li<span style="color:#f92672">)</span>
+echo <span style="color:#e6db74">${</span>arr3[name1]<span style="color:#e6db74">}</span>
+  
+declare -A arr4
+arr4<span style="color:#f92672">[</span>name1<span style="color:#f92672">]=</span>qiao
+arr4<span style="color:#f92672">[</span>name2<span style="color:#f92672">]=</span>gege
+echo <span style="color:#e6db74">${</span>arr4[name1]<span style="color:#e6db74">}</span>
+  
+<span style="color:#75715e"># 查看数组的所有值  值是倒叙的 gege qiao这样</span>
+echo <span style="color:#e6db74">${</span>arr4[*]<span style="color:#e6db74">}</span>
+echo <span style="color:#e6db74">${</span>arr4[@]<span style="color:#e6db74">}</span>
+  
+<span style="color:#75715e"># 查看数组的长度</span>
+echo <span style="color:#e6db74">${#</span>arr4[*]<span style="color:#e6db74">}</span>
+echo <span style="color:#e6db74">${#</span>arr4[@]<span style="color:#e6db74">}</span>
+</code></pre></div><p>数组内元素的截取与替换</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># -----------数组的截取与替换-------</span>
+arr5<span style="color:#f92672">=(</span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> 4<span style="color:#f92672">)</span>
+<span style="color:#75715e"># 修改单个值</span>
+arr5<span style="color:#f92672">[</span>1<span style="color:#f92672">]=</span>6;
+<span style="color:#75715e"># 从数组全部元素中第2个元素向后截取2个元素出来（即3 4）</span>
+arr5_1<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>arr5[*]:2:2<span style="color:#e6db74">}</span>
+<span style="color:#75715e"># 将数组中的5替换称6</span>
+arr5_2<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>arr5[*]/4/6<span style="color:#e6db74">}</span>
+  
+echo <span style="color:#e6db74">${</span>arr5_1[*]<span style="color:#e6db74">}</span>;
+echo <span style="color:#e6db74">${</span>arr5_2[*]<span style="color:#e6db74">}</span>;
+</code></pre></div><p>遍历数组 #注意for后面的分号 ;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>  
+arr<span style="color:#f92672">=(</span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#e6db74">&#34;qiao&#34;</span><span style="color:#f92672">)</span>
+  
+<span style="color:#75715e"># 通过元素的值</span>
+<span style="color:#66d9ef">for</span> i in <span style="color:#e6db74">${</span>arr[*]<span style="color:#e6db74">}</span>; <span style="color:#66d9ef">do</span>
+    echo $i
+<span style="color:#66d9ef">done</span>
+  
+<span style="color:#75715e"># 通过索引</span>
+<span style="color:#66d9ef">for</span> idx in <span style="color:#e6db74">${</span>!arr[*]<span style="color:#e6db74">}</span>; <span style="color:#66d9ef">do</span>
+   echo <span style="color:#e6db74">${</span>arr[<span style="color:#e6db74">${</span>idx<span style="color:#e6db74">}</span>]<span style="color:#e6db74">}</span>
+<span style="color:#66d9ef">done</span>
+  
+<span style="color:#75715e"># 通过元素的个数</span>
+<span style="color:#66d9ef">for</span> <span style="color:#f92672">((</span>i<span style="color:#f92672">=</span>0; i&lt;<span style="color:#e6db74">${#</span>arr[*]<span style="color:#e6db74">}</span>;i++<span style="color:#f92672">))</span>; <span style="color:#66d9ef">do</span>
+   echo <span style="color:#e6db74">${</span>arr[$i]<span style="color:#e6db74">}</span>
+<span style="color:#66d9ef">done</span>
+  
+<span style="color:#75715e"># 遍历当前文件所在文件夹下的所有文件</span>
+PRG<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$0<span style="color:#e6db74">&#34;</span>  <span style="color:#75715e">#文件名</span>
+PRGDIR<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>dirname <span style="color:#e6db74">&#34;</span>$PRG<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">`</span> <span style="color:#75715e"># 当前文件所在的文件夹</span>
+echo $PRGDIR;
+  
+<span style="color:#66d9ef">for</span> i in <span style="color:#e6db74">`</span>ls <span style="color:#e6db74">${</span>PRGDI<span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>;<span style="color:#66d9ef">do</span>  <span style="color:#75715e"># 遍历</span>
+    echo $i
+<span style="color:#66d9ef">done</span>
+</code></pre></div></li>
+</ul>
+<h3 id="string">String</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aaa&#34;</span>
+echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>str=111<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>  <span style="color:#75715e"># 默认为111</span>
+
+<span style="color:#75715e">#字符串长度</span>
+str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;abc&#34;</span>
+echo <span style="color:#e6db74">${#</span>str<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e"># 字符串截取</span>
+str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;abcdefcg&#34;</span>
+echo <span style="color:#e6db74">${</span>str:5<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e">#指定长度截取 下标从0开始</span>
+echo <span style="color:#e6db74">${</span>str:2:3<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e">#从开头字符串删除 支持正则表达式 删除从a到c</span>
+echo <span style="color:#e6db74">${</span>str#a*c<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e"># 从开头开始删除最长的a到c串</span>
+echo <span style="color:#e6db74">${</span>str##a*c<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e">#从结尾删除 </span>
+echo <span style="color:#e6db74">${</span>str%f*g<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e">#从结尾删除最长的子串</span>
+echo <span style="color:#e6db74">${</span>str%%c*g<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e"># 字符串替换</span>
+<span style="color:#75715e"># 用TEST替换str中的第一个bac</span>
+echo <span style="color:#e6db74">${</span>str/abc/TEST<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e">#  用m替换str中的所有c</span>
+echo <span style="color:#e6db74">${</span>str//c/m<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e"># 从str开头，用TEST替换最长的a*c</span>
+echo <span style="color:#e6db74">${</span>str/#a*c/TEST<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e">##### 使用  expr 操作字符串</span>
+str<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;1994-12-18&#39;</span>
+len<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>expr length $str<span style="color:#e6db74">`</span>
+echo $len
+
+<span style="color:#75715e"># 截取字符串</span>
+substr<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>expr substr $str <span style="color:#ae81ff">1</span> 4<span style="color:#e6db74">`</span>
+
+<span style="color:#75715e"># 获取字符串的下标 下标从1开始  不存在返回0 如果是12结果就不正确--未解决</span>
+index<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>expr index <span style="color:#e6db74">&#34;</span>$str<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;2&#34;</span><span style="color:#e6db74">`</span>
+echo $index
+
+<span style="color:#75715e"># split字符串</span>
+str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1994-12-18&#34;</span>
+arr<span style="color:#f92672">=(</span><span style="color:#e6db74">${</span>str//-/<span style="color:#e6db74">}</span><span style="color:#f92672">)</span>
+echo <span style="color:#e6db74">${</span>arr[@]<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e"># 字符串连接</span>
+str1<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;qiao&#34;</span>
+str2<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gege&#34;</span>
+echo <span style="color:#e6db74">${</span>str1<span style="color:#e6db74">}${</span>str2<span style="color:#e6db74">}</span>
+</code></pre></div><p>博文链接: <a href="https://blog.csdn.net/u010376788/article/details/50463191">Shell字符串操作大全</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#f92672">(</span>1<span style="color:#f92672">)</span> <span style="color:#e6db74">${</span>value<span style="color:#66d9ef">:-</span>word<span style="color:#e6db74">}</span> <span style="color:#75715e"># 这个常用来给变量默认值</span>
+	当变量未定义或者值为空时,返回值为word的内容,否则返回变量的值.
+<span style="color:#f92672">(</span>2<span style="color:#f92672">)</span> <span style="color:#e6db74">${</span>value:=word<span style="color:#e6db74">}</span>
+	若变量未定义或者值为空时,在返回word的值的同时将word赋值给value
+<span style="color:#f92672">(</span>3<span style="color:#f92672">)</span> <span style="color:#e6db74">${</span>value:?message<span style="color:#e6db74">}</span>  <span style="color:#75715e">## 为空抛异常终止程序</span>
+	若变量有值的话,正常替换.否则将消息message送到标准错误输出<span style="color:#f92672">(</span>若	
+	此替换出现在Shell程序中,那么该程序将终止运行<span style="color:#f92672">)</span>
+<span style="color:#f92672">(</span>4<span style="color:#f92672">)</span> <span style="color:#e6db74">${</span>value:+word<span style="color:#e6db74">}</span>
+	若变量有值的话,其值才用word替换,否则不进行任何替换
+
+
+<span style="color:#75715e"># shell变量处理</span>
+<span style="color:#75715e">#${value:-word}  若变量未定义或者值为空返回world， 否则返回value</span>
+str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>
+echo <span style="color:#e6db74">&#34;1: </span><span style="color:#e6db74">${</span>str<span style="color:#66d9ef">:-</span>hello<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+
+<span style="color:#75715e"># 如果变量str不存在(未定义)返回world 否则返回str</span>
+echo <span style="color:#e6db74">&#34;2: 变量不存在测试 </span><span style="color:#e6db74">${</span>qiao=world<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+
+<span style="color:#75715e"># 如果str有值， 则返回world</span>
+str<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;abc&#34;</span>
+echo <span style="color:#e6db74">&#34;3: </span><span style="color:#e6db74">${</span>str:+world<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+
+<span style="color:#75715e"># 如果str未空 抛异常 程序终止</span>
+echo <span style="color:#e6db74">&#34;4: </span><span style="color:#e6db74">${</span>str:?我是异常信息<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</code></pre></div><h3 id="函数">函数</h3>
+<p>创建的两种方式</p>
+<p>注意：函数体之间不能为空</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>
+f1<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+ echo $1
+<span style="color:#f92672">}</span>
+f1 22;
+
+<span style="color:#66d9ef">function</span> f2<span style="color:#f92672">(){</span>
+  echo <span style="color:#e6db74">&#34;ni hao &#34;</span>  
+<span style="color:#f92672">}</span>
+f2
+
+<span style="color:#75715e">#  有返回值的函数</span>
+funWithReturn<span style="color:#f92672">(){</span>
+   echo <span style="color:#e6db74">&#34;这个函数会对输入的两个数字进行相加运算...&#34;</span>
+   echo <span style="color:#e6db74">&#34;输入第一个数字: &#34;</span>
+   read aNum
+   echo <span style="color:#e6db74">&#34;输入第二个数字: &#34;</span>
+   read anotherNum
+   echo <span style="color:#e6db74">&#34;两个数字分别为 </span>$aNum<span style="color:#e6db74"> 和 </span>$anotherNum<span style="color:#e6db74"> !&#34;</span>
+   <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">$((</span>$aNum<span style="color:#f92672">+</span>$anotherNum<span style="color:#66d9ef">))</span>
+<span style="color:#f92672">}</span>
+funWithReturn
+echo <span style="color:#e6db74">&#34;输入的两个数字之和为 </span>$?<span style="color:#e6db74"> !&#34;</span>
+
+<span style="color:#75715e"># 下面返回字符串运行将会报错 只能返回数字</span>
+<span style="color:#66d9ef">function</span> returnstr <span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+       <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;aa&#34;</span>
+<span style="color:#f92672">}</span>
+returnstr
+$?
+</code></pre></div><p>函数调用： 直接在函数名后面跟参数 参数之间以空格隔开（注意不是逗号）</p>
+<p>函数的取值：使用<code>$1...$n</code></p>
+<p>返回值：$?， 只能返回数字</p>
+<p>常用 <code>$? : 返回值</code>,  <code>$# ：参数个数</code> <code>$@ ：所有单个参数</code>  <code>$1...$n ： 顺序取值</code>,</p>
+<p><code>$? :显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误。 </code> 可以用这个来判断上一个函数是否成功运行</p>
+<h3 id="循环与控制语句">循环与控制语句</h3>
+<p>循环标签</p>
+<p><code>for</code></p>
+<p>​	for循环在数组里面已经介绍过, 这里略过</p>
+<p><code>while</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># 计算从1加到10</span>
+sum<span style="color:#f92672">=</span>0;
+i<span style="color:#f92672">=</span>1;
+<span style="color:#66d9ef">while</span> <span style="color:#f92672">((</span>i &lt;<span style="color:#f92672">=</span> 10<span style="color:#f92672">))</span>
+<span style="color:#66d9ef">do</span>
+ <span style="color:#f92672">((</span>sum <span style="color:#f92672">+=</span> i<span style="color:#f92672">))</span>
+ <span style="color:#f92672">((</span>i++<span style="color:#f92672">))</span>
+<span style="color:#66d9ef">done</span>
+echo <span style="color:#e6db74">${</span>sum<span style="color:#e6db74">}</span>
+
+<span style="color:#75715e"># 遍历数组</span>
+arr<span style="color:#f92672">=(</span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> 4<span style="color:#f92672">)</span>;
+i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+<span style="color:#66d9ef">while</span> <span style="color:#f92672">((</span>i &lt; <span style="color:#e6db74">${#</span>arr[*]<span style="color:#e6db74">}</span><span style="color:#f92672">))</span>
+<span style="color:#66d9ef">do</span>
+ echo <span style="color:#e6db74">${</span>arr[$i]<span style="color:#e6db74">}</span>
+ <span style="color:#f92672">((</span>i++<span style="color:#f92672">))</span>
+<span style="color:#66d9ef">done</span>
+</code></pre></div><p>控制标签</p>
+<p><code>if</code></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> command <span style="color:#f92672">]</span>;<span style="color:#66d9ef">then</span>
+     符合该条件执行的语句
+<span style="color:#66d9ef">elif</span> <span style="color:#f92672">[</span> command <span style="color:#f92672">]</span>;<span style="color:#66d9ef">then</span>
+     符合该条件执行的语句
+<span style="color:#66d9ef">else</span>
+     符合该条件执行的语句
+<span style="color:#66d9ef">fi</span>
+</code></pre></div><p>注意：</p>
+<pre><code>1、[ ]表示条件测试。注意这里的空格很重要。要注意在'['后面和']'前面都必须要有空格
+2、在shell中，then和fi是分开的语句。如果要在同一行里面输入，则需要用分号将他们隔开。
+3、注意if判断中对于变量的处理，需要加引号，以免一些不必要的错误。
+4、判断是不支持浮点值的
+5、如果只单独使用&gt;或者&lt;号，系统会认为是输出或者输入重定向，虽然结果显示正确，但是其实是错误的，因此要对这些符号进行转义
+6、数值比较时，建议双方同时加0，避免变量为空时报错
+7、当变量可能为空的时候，强烈建议在变量的基础上加上其他辅助字符串
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>v1<span style="color:#f92672">=</span>10;
+v2<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aa&#34;</span>
+
+<span style="color:#75715e"># v1有可能为空 加x防止空报错</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>v1<span style="color:#e6db74">}</span><span style="color:#e6db74">x&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;10x&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        echo <span style="color:#e6db74">&#34;v1等于10&#34;</span>
+<span style="color:#66d9ef">fi</span>
+
+<span style="color:#75715e"># 这里加0也是为了防止空指针</span>
+<span style="color:#66d9ef">if</span> test <span style="color:#66d9ef">$((</span>$v1<span style="color:#f92672">+</span><span style="color:#ae81ff">0</span><span style="color:#66d9ef">))</span> -eq <span style="color:#66d9ef">$((</span><span style="color:#ae81ff">10</span><span style="color:#f92672">+</span><span style="color:#ae81ff">0</span><span style="color:#66d9ef">))</span>
+<span style="color:#66d9ef">then</span>
+  echo <span style="color:#e6db74">&#34;v1也等于10&#34;</span>
+<span style="color:#66d9ef">fi</span>
+
+v3<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;aa&#34;</span>
+<span style="color:#75715e"># -z检验字符串为空  [ ! -z ${v3} ] 否定校验字符串不为空</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">${</span>v3<span style="color:#e6db74">}</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+ echo <span style="color:#e6db74">&#34;v3为空&#34;</span>;
+<span style="color:#66d9ef">elif</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$v3x<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bbbx&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+ echo <span style="color:#e6db74">&#34;v3为bbb&#34;</span>
+<span style="color:#66d9ef">else</span>
+  echo <span style="color:#e6db74">&#34;v3为其他值</span><span style="color:#e6db74">${</span>v3<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+<span style="color:#66d9ef">fi</span>
+
+<span style="color:#75715e"># -n 校验不为空</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -n <span style="color:#e6db74">${</span>v3<span style="color:#e6db74">}</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+  echo <span style="color:#e6db74">&#34;v3不为空&#34;</span>
+<span style="color:#66d9ef">fi</span>;
+
+v4<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;abc.jar&#34;</span>;
+v5<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;abc.jar.jpa&#34;</span>;
+<span style="color:#75715e"># 简单的正则表达式校验字符串的开头和结尾</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$v4<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span>~ <span style="color:#e6db74">&#34;jar&#34;</span>$  <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+ echo <span style="color:#e6db74">&#34;v4以jar结尾&#34;</span>;
+<span style="color:#66d9ef">fi</span>;
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> <span style="color:#e6db74">&#34;</span>$v5<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span>~ ^<span style="color:#e6db74">&#34;abc&#34;</span> <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+ echo <span style="color:#e6db74">&#34;v5以abc开头&#34;</span>;
+<span style="color:#66d9ef">fi</span>
+</code></pre></div><p><code>case</code></p>
+<pre><code>case 值 in
+模式1)
+    command1
+    command2
+    command3
+    ;;
+模式2）
+    command1
+    command2
+    command3
+    ;;
+*)  #相当于default
+    command1
+    command2
+    command3
+    ;;
+esac
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span>
+echo <span style="color:#e6db74">&#39;Input a number between 1 to 4&#39;</span>
+echo <span style="color:#e6db74">&#39;Your number is:\c&#39;</span>
+read aNum
+<span style="color:#66d9ef">case</span> $aNum in
+    1<span style="color:#f92672">)</span>  echo <span style="color:#e6db74">&#39;You select 1&#39;</span>
+    ;;
+    2<span style="color:#f92672">)</span>  echo <span style="color:#e6db74">&#39;You select 2&#39;</span>
+    ;;
+    3<span style="color:#f92672">)</span>  echo <span style="color:#e6db74">&#39;You select 3&#39;</span>
+    ;;
+    4<span style="color:#f92672">)</span>  echo <span style="color:#e6db74">&#39;You select 4&#39;</span>
+    ;;
+    *<span style="color:#f92672">)</span>  echo <span style="color:#e6db74">&#39;You do not select a number between 1 to 4&#39;</span>
+    ;;
+<span style="color:#66d9ef">esac</span>
+
+</code></pre></div><h3 id="脚本之间的调用">脚本之间的调用</h3>
+<p>当前脚本中的变量在子脚本中都可以访问（包括局部变量)</p>
+<p>脚本 cont.sh</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">PRG<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$0<span style="color:#e6db74">&#34;</span>;
+PRGDIR<span style="color:#f92672">=</span><span style="color:#e6db74">`</span>dirname <span style="color:#e6db74">&#34;</span>$PRG<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">`</span>;
+<span style="color:#66d9ef">function</span> func<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+ local v1<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;qiao&#34;</span>;
+ v2<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gege&#34;</span>
+ . <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>PRGDIR<span style="color:#e6db74">}</span><span style="color:#e6db74">/subcont.sh&#34;</span>;
+ echo <span style="color:#e6db74">&#34;子脚本中的c = </span>$c<span style="color:#e6db74">&#34;</span>;
+<span style="color:#f92672">}</span>
+func;
+</code></pre></div><p>脚本 subcont.sh</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">echo “父脚本中的a <span style="color:#f92672">=</span> $v1“;
+echo ”父脚本中的b <span style="color:#f92672">=</span> $v2”;
+c<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;uncleqiao&#34;</span>
+</code></pre></div><p>结果</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">“父脚本中的a <span style="color:#f92672">=</span> qiao“
+”父脚本中的b <span style="color:#f92672">=</span> gege”
+子脚本中的c <span style="color:#f92672">=</span> uncleqiao
+</code></pre></div><h2 id="三介绍一个简单的部署脚本">三、介绍一个简单的部署脚本</h2>
+
+
+    
+    
+        <div class="related">
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

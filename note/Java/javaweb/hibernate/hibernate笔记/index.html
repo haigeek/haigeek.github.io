@@ -1,0 +1,677 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+             Hibernate笔记  
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+        
+<a class="subtitle is-6" href="/tags/hibernate/">#hibernate</a>
+
+
+
+
+    
+</div>
+
+
+
+<h2 class="subtitle is-6">
+    
+    
+        June 1, 2016 | 22:21
+    
+</h2>
+
+
+
+<h1 class="title">Hibernate笔记</h1>
+
+<div class="content">
+
+    
+    <h1 id="hibernate笔记">Hibernate笔记</h1>
+<h2 id="搭建hibernate环境">搭建Hibernate环境</h2>
+<ol>
+<li>导入jar包</li>
+<li>创建实体类
+<ul>
+<li>使用Hibernate的时候，不需要手动创建表，Hibernate帮我们创建表</li>
+</ul>
+</li>
+<li>配置实体类和数据库表的一一对应关系
+使用配置文件实现映射关系
+<ol>
+<li>创建xml格式的配置文件，映射配置文件名称和位置没有固定要求，建议在实体类所在的包创建，实体类名称.hbm.xml</li>
+<li>配置是xml格式，在配置文件引进xml约束</li>
+<li>配置映射关系</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#75715e">&lt;!DOCTYPE hibernate-mapping PUBLIC 
+</span><span style="color:#75715e">    &#34;-//Hibernate/Hibernate Mapping DTD 3.0//EN&#34;
+</span><span style="color:#75715e">    &#34;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&#34;&gt;</span>
+<span style="color:#f92672">&lt;hibernate-mapping&gt;</span>
+    <span style="color:#75715e">&lt;!-- 配置类和表对应
+</span><span style="color:#75715e">    name属性：实体类的全路径 
+</span><span style="color:#75715e">    table属性：数据库的名称--&gt;</span>
+    <span style="color:#f92672">&lt;class</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;cn.haigeek.entity.User&#34;</span> <span style="color:#a6e22e">table=</span><span style="color:#e6db74">&#34;t_user&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#75715e">&lt;!-- 配置实体类id和表id
+</span><span style="color:#75715e">        hibernate要求实体类有一个属性唯一值
+</span><span style="color:#75715e">        hibernate要求表有字段作为唯一值 --&gt;</span>
+        <span style="color:#75715e">&lt;!-- id标签 name属性：
+</span><span style="color:#75715e">        实体类里面id属性名称 
+</span><span style="color:#75715e">        column属性：生成表的字段名称  --&gt;</span>
+        <span style="color:#f92672">&lt;id</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;uid&#34;</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;uid&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#75715e">&lt;!-- 数据库表id主键字段增长 --&gt;</span>
+            <span style="color:#f92672">&lt;generator</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;native&#34;</span><span style="color:#f92672">&gt;&lt;/generator&gt;</span>
+        <span style="color:#f92672">&lt;/id&gt;</span>
+        <span style="color:#75715e">&lt;!-- 配置其他属性和表字段对应 --&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;username&#34;</span>  <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;username&#34;</span><span style="color:#f92672">&gt;&lt;/property&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;password&#34;</span><span style="color:#f92672">&gt;&lt;/property&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;address&#34;</span> <span style="color:#a6e22e">column=</span><span style="color:#e6db74">&#34;address&#34;</span><span style="color:#f92672">&gt;&lt;/property&gt;</span>
+    <span style="color:#f92672">&lt;/class&gt;</span>
+<span style="color:#f92672">&lt;/hibernate-mapping&gt;</span>
+4. 创建hibernate的核心文件
+- 文件格式xml；位置src下，名称hibernate.cfg.xml
+- 引入约束
+- hibernate在操作过程中，只加载核心配置文件
+- 配置文件实例
+```xml
+<span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#75715e">&lt;!DOCTYPE hibernate-configuration PUBLIC
+</span><span style="color:#75715e">    &#34;-//Hibernate/Hibernate Configuration DTD 3.0//EN&#34;
+</span><span style="color:#75715e">    &#34;http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd&#34;&gt;</span>
+    <span style="color:#f92672">&lt;hibernate-configuration&gt;</span>
+    <span style="color:#f92672">&lt;session-factory&gt;</span>
+        <span style="color:#75715e">&lt;!-- 配置数据库信息 （必须）--&gt;</span>
+        <span style="color:#75715e">&lt;!-- jdbc 的连接 url 和数据库--&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;connection.url&#34;</span><span style="color:#f92672">&gt;</span>jdbc:mysql://localhost:3306/hibernate<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#75715e">&lt;!--表示使用的数据库驱动类 --&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;connection.driver_class&#34;</span><span style="color:#f92672">&gt;</span>com.mysql.jdbc.Driver<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;connection.username&#34;</span><span style="color:#f92672">&gt;</span>root<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;connection.password&#34;</span><span style="color:#f92672">&gt;</span>*****<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#75715e">&lt;!-- 配置hibernate信息 --&gt;</span>
+        <span style="color:#75715e">&lt;!-- 数据库使用的方言 （可选） --&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;dialect&#34;</span><span style="color:#f92672">&gt;</span>org.hibernate.dialect.MySQLDialect<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#75715e">&lt;!-- 设置 打印输出 sql 语句 为真 --&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;show_sql&#34;</span><span style="color:#f92672">&gt;</span>true<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#75715e">&lt;!-- 设置格式为 sql --&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;format_sql&#34;</span><span style="color:#f92672">&gt;</span>true<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#75715e">&lt;!-- 第一次加载 hibernate 时根据实体类自动建立表结构，以后自动更新表结构 --&gt;</span>
+        <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;hbm2ddl.auto&#34;</span><span style="color:#f92672">&gt;</span>update<span style="color:#f92672">&lt;/property&gt;</span>
+        <span style="color:#75715e">&lt;!-- 将映射文件放进核心文件（必须） --&gt;</span>
+        <span style="color:#f92672">&lt;mapping</span> <span style="color:#a6e22e">resource=</span><span style="color:#e6db74">&#34;cn/haigeek/entity/User.hbm.xml&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#75715e">&lt;!-- DB schema will be updated if needed --&gt;</span>
+        <span style="color:#75715e">&lt;!-- &lt;property name=&#34;hbm2ddl.auto&#34;&gt;update&lt;/property&gt; --&gt;</span>
+    <span style="color:#f92672">&lt;/session-factory&gt;</span>
+<span style="color:#f92672">&lt;/hibernate-configuration&gt;</span>
+</code></pre></div><p>`</p>
+</li>
+</ol>
+<h2 id="实现添加操作">实现添加操作</h2>
+<ul>
+<li>加载hibernate核心配置文件</li>
+<li>创建SessionFactory对象</li>
+<li>使用SessionFactory对象创建Session对象</li>
+<li>开启事务</li>
+<li>写具体逻辑crud操作</li>
+<li>提交事务</li>
+<li>关闭资源
+实例如下</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> cn.haigeek.hibernatetest<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> org.hibernate.Session<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.hibernate.SessionFactory<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.hibernate.Transaction<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> org.hibernate.cfg.Configuration<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> cn.haigeek.entity.User<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HibernateDemo</span> <span style="color:#f92672">{</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">){</span>
+		<span style="color:#75715e">// 加载hibernate核心配置文件
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">//到src下面找到名称是hibernate.cfg.xml
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">//在hibernate里面封装对象
+</span><span style="color:#75715e"></span>		Configuration cfg<span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> Configuration<span style="color:#f92672">();</span>
+		cfg<span style="color:#f92672">.</span><span style="color:#a6e22e">configure</span><span style="color:#f92672">();</span>
+		<span style="color:#75715e">// 创建SessionFactory对象
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">//读取hibernate核心配置文件的内容，创建SessionFactory
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">//在过程中，根据映射关系，在配置数据库里把表创建
+</span><span style="color:#75715e"></span>		SessionFactory sessionFactory<span style="color:#f92672">=</span>cfg<span style="color:#f92672">.</span><span style="color:#a6e22e">buildSessionFactory</span><span style="color:#f92672">();</span>
+		<span style="color:#75715e">//使用SessionFactory对象创建Session对象
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">//类似于连接
+</span><span style="color:#75715e"></span>		Session session<span style="color:#f92672">=</span>sessionFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">openSession</span><span style="color:#f92672">();</span>
+		<span style="color:#75715e">//开启事务
+</span><span style="color:#75715e"></span>		Transaction tx<span style="color:#f92672">=</span>session<span style="color:#f92672">.</span><span style="color:#a6e22e">beginTransaction</span><span style="color:#f92672">();</span>
+		<span style="color:#75715e">//写具体逻辑crud操作
+</span><span style="color:#75715e"></span>		User user<span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> User<span style="color:#f92672">();</span>
+		user<span style="color:#f92672">.</span><span style="color:#a6e22e">setUsername</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;haigeek&#34;</span><span style="color:#f92672">);</span>
+		user<span style="color:#f92672">.</span><span style="color:#a6e22e">setPassword</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;23&#34;</span><span style="color:#f92672">);</span>
+		user<span style="color:#f92672">.</span><span style="color:#a6e22e">setAddress</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;中国&#34;</span><span style="color:#f92672">);</span>
+		session<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>user<span style="color:#f92672">);</span>
+		<span style="color:#75715e">//提交事务
+</span><span style="color:#75715e"></span>		tx<span style="color:#f92672">.</span><span style="color:#a6e22e">commit</span><span style="color:#f92672">();</span>
+		<span style="color:#75715e">//关闭资源
+</span><span style="color:#75715e"></span>		session<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+		sessionFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+	<span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><h2 id="hibernate核心api">hibernate核心api</h2>
+<h3 id="configuration">Configuration</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Configuration cfg<span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> Configuration<span style="color:#f92672">();</span>
+cfg<span style="color:#f92672">.</span><span style="color:#a6e22e">configure</span><span style="color:#f92672">();</span>
+</code></pre></div><p>到src下面找到hibernate.cfg.xml配置文件，创建对象，把配置文件放在对象中</p>
+<h3 id="sessionfactory">SessionFactory</h3>
+<p>使用configuration创建SessionFactory对象</p>
+<ol>
+<li>创建SessionFactory过程中做事情：根据核心配置文件中，有数据库配置，有映射文件部分，到数据库里面根据映射关系把表创建
+<!-- raw HTML omitted -->update<!-- raw HTML omitted --></li>
+<li>创建SessionFactory过程中，耗资源
+在hibernate操作中，一个项目一般创建一个SessionFactory对象</li>
+<li>具体实现
+写工具类，写静态代码块实现，静态代码块在类加载时执行，执行一次</li>
+</ol>
+<h3 id="session">session</h3>
+<ol>
+<li>session类似jdbc中 connection</li>
+<li>调用session里面不同的方法实现curd方法
+<ul>
+<li>添加save方法</li>
+<li>修改update方法</li>
+<li>删除delete方法</li>
+<li>根据id查询get方法</li>
+</ul>
+</li>
+<li>session对象单线程对象
+<ul>
+<li>session对象不能共用，只能自己使用</li>
+</ul>
+</li>
+</ol>
+<h3 id="transaction">Transaction</h3>
+<ol>
+<li>事务对象
+Transaction tx=session.bebeginTransaction();</li>
+<li>事务提交和回滚方法
+tx.commit()</li>
+</ol>
+<p>tx.rollback()
+3. 事务概念</p>
+<ul>
+<li>原子性：整个事务的所有操作要么全部提交成功，要不全部失败回滚。事务在执行过程中发生错误，会被回滚（Rollback）到事务开始前的状态，就像这个事务从来没有执行过一样。</li>
+<li>一致性：在事务开始之前和事务结束以后，数据库的完整性没有被破坏。</li>
+<li>隔离性：数据库允许多个并发事务同时对其数据进行读写和修改的能力，隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。</li>
+<li>持久性：事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</li>
+</ul>
+<h2 id="实体类编写规则">实体类编写规则</h2>
+<ol>
+<li>实体类属性是私有的</li>
+<li>私有属性使用公开的set和get操作</li>
+<li>要求实体类有属性作为唯一值（一般使用id值）</li>
+<li>实体类属性不建议使用基本的数据类型，使用基本数据类型的包装类
+<ol>
+<li>八个基本数据类型的包装类
+<ul>
+<li>int-Integer</li>
+<li>char-Character</li>
+<li>其他的都是首字母大写</li>
+</ul>
+</li>
+<li>使用基本数据类型包装类的好处
+<ul>
+<li>如 Integer score=0（分数为0）；Integer score=null（没有参加考试）；</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="hibernate主键生成策略">hibernate主键生成策略</h2>
+<ol>
+<li>hibernate要求在实体类有一个属性作为唯一值，对应表主键，主键可以有不同的生成策略，生成策略有很多值</li>
+<li>在class属性可以设置不同值
+<ol>
+<li>native：根据数据库帮助选择哪个值</li>
+<li>hibernate帮助我们生成uuid值
+<ul>
+<li>使用uuid生成策略，实体类id属性类型必须为字符串类型</li>
+<li>配置部分写出uuid值</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="实体类操作">实体类操作</h2>
+<h3 id="对实体类crud操作">对实体类crud操作</h3>
+<h4 id="添加操作">添加操作</h4>
+<ol>
+<li>调用session里面的save方法实现</li>
+</ol>
+<h4 id="根据id查询">根据id查询</h4>
+<p>调用session里面的方法实现</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">User user<span style="color:#f92672">=</span>session<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>User<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> 1<span style="color:#f92672">);</span>
+</code></pre></div><h4 id="修改操作">修改操作</h4>
+<ol>
+<li>根据id查询</li>
+<li>向返回的对象设置修改的值</li>
+<li>调用session的方法修改update</li>
+</ol>
+<h4 id="删除操作">删除操作</h4>
+<ol>
+<li>根据id查询</li>
+<li>调用session的方法delete</li>
+</ol>
+<h2 id="hibernate的一级缓存">hibernate的一级缓存</h2>
+<h3 id="什么是缓存">什么是缓存</h3>
+<p>数据存储在数据库中，数据库本身是文件系统，使用流文件操作文件效率不高；将数据存放在内存中，可以提高读取效率</p>
+<h3 id="hibernate缓存">hibernate缓存</h3>
+<p>hibernate框架提供多种优化方式，缓存就是一种优化方式</p>
+<h4 id="hibernate缓存特点">hibernate缓存特点</h4>
+<ol>
+<li>hibernate的一级缓存
+<ul>
+<li>一级缓存默认打开</li>
+<li>一级缓存有使用范围，是session的范围</li>
+<li>一级缓存中，存储数据必须持久化数据</li>
+</ul>
+</li>
+<li>hibernate二级缓存
+<ul>
+<li>目前不使用，替代技术redis</li>
+<li>默认不打开，需要配置，使用范围是SessionFactory范围</li>
+</ul>
+</li>
+<li>一级缓存特性
+<ul>
+<li>持久态自动更新数据库
+根据id查询，设置返回对象值</li>
+</ul>
+</li>
+</ol>
+<h2 id="hibernate事务操作">hibernate事务操作</h2>
+<h3 id="事务代码规范写法">事务代码规范写法</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testTx</span><span style="color:#f92672">(){</span>
+		SessionFactory sessionFactory<span style="color:#f92672">=</span><span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+		Session session<span style="color:#f92672">=</span><span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+		Transaction tx<span style="color:#f92672">=</span><span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+		<span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+			sessionFactory<span style="color:#f92672">=</span>HibernateUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">getSessionFactory</span><span style="color:#f92672">();</span>
+			session<span style="color:#f92672">=</span>sessionFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">openSession</span><span style="color:#f92672">();</span>
+			<span style="color:#75715e">//开启事务
+</span><span style="color:#75715e"></span>			tx<span style="color:#f92672">=</span>session<span style="color:#f92672">.</span><span style="color:#a6e22e">beginTransaction</span><span style="color:#f92672">();</span>
+			<span style="color:#75715e">//相关操作
+</span><span style="color:#75715e"></span>			<span style="color:#75715e">//提交事务
+</span><span style="color:#75715e"></span>			tx<span style="color:#f92672">.</span><span style="color:#a6e22e">commit</span><span style="color:#f92672">();</span>
+		<span style="color:#f92672">}</span><span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+			tx<span style="color:#f92672">.</span><span style="color:#a6e22e">rollback</span><span style="color:#f92672">();</span><span style="color:#75715e">// TODO: handle exception
+</span><span style="color:#75715e"></span>		<span style="color:#f92672">}</span><span style="color:#66d9ef">finally</span><span style="color:#f92672">{</span>
+			session<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+			sessionFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+		<span style="color:#f92672">}</span>
+	<span style="color:#f92672">}</span>
+</code></pre></div><h3 id="hibernate绑定session">hibernate绑定session</h3>
+<ol>
+<li>session类似jdbc的connection</li>
+<li>hibernate帮助实现与本地线程绑定session</li>
+<li>获取本地线程session
+<ul>
+<li>在hibernate核心配置文件中配置</li>
+<li>调用SessionFactory里面的方法得到</li>
+</ul>
+</li>
+<li>获取与本地绑定session时候，关闭session报错，不需要手动关闭了</li>
+</ol>
+<h2 id="hibernate的api的使用">hibernate的api的使用</h2>
+<h3 id="query对象">Query对象</h3>
+<ol>
+<li>使用query对象，不需要写sql语句，但是写hql语句
+<ol>
+<li>hql：hibernate query language 提供查询语言</li>
+<li>hql和sql的区别：
+<ul>
+<li>使用sql操作表和表字段</li>
+<li>使用hql操作实体类和属性</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>查询所有sql语句
+<ol>
+<li>from 实体类名称</li>
+</ol>
+</li>
+<li>Query对象的使用
+<ol>
+<li>创建query对象</li>
+<li>调用Query对象里面的方法得到结果</li>
+</ol>
+</li>
+</ol>
+<h3 id="criteria对象">Criteria对象</h3>
+<ol>
+<li>使用该对象查询，不需要写语句，直接调用方法使用</li>
+<li>实现过程
+<ol>
+<li>创建对象</li>
+<li>调用对象的方法得到结果</li>
+</ol>
+</li>
+</ol>
+<h3 id="sql-query对象">SQL Query对象</h3>
+<ol>
+<li>使用hibernate时候，调用底层sql语句实现</li>
+<li>实现过程
+<ol>
+<li>创建对象</li>
+<li>调用对象的方法得到结果</li>
+</ol>
+</li>
+</ol>
+<h2 id="表与表之间的关系">表与表之间的关系</h2>
+<ol>
+<li>一对多
+一对多键表，通过外键建立关系</li>
+<li>多对多
+多对多建表，创建第三张表维护关系</li>
+<li>一对一</li>
+</ol>
+<h2 id="hibernate一对多操作">hibernate一对多操作</h2>
+<h3 id="一对多映射配置">一对多映射配置</h3>
+<p>以客户联系人为例：</p>
+<ol>
+<li>创建两个实体类，客户和联系人</li>
+<li>让两个实体类之间互相表示
+<ol>
+<li>在客户实体类里面表示多个联系人，使用set集合</li>
+<li>在联系人实体类表示所属客户，使用客户对象来表示</li>
+</ol>
+</li>
+<li>配置映射关系
+<ol>
+<li>一般一个实体类对应一个映射文件</li>
+<li>完成映射的基本配置</li>
+<li>在映射文件中，配置一对多关系
+<ul>
+<li>在客户映射文件中，表示所有联系人</li>
+<li>在联系人映射文件中，表示所属客户</li>
+</ul>
+</li>
+<li>创建核心配置文件，把映射文件引入配置文件中</li>
+</ol>
+</li>
+</ol>
+<h3 id="一对多级联操作">一对多级联操作</h3>
+<h4 id="级联保存">级联保存</h4>
+<p>添加一个客户，为这个客户添加多个联系人</p>
+<ul>
+<li>复杂写法</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">	<span style="color:#75715e">//一对多级联保存
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">@Test</span>
+	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">testAddDemo1</span><span style="color:#f92672">(){</span>
+		SessionFactory sessionFactory<span style="color:#f92672">=</span><span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+		Session session<span style="color:#f92672">=</span><span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+		Transaction tx<span style="color:#f92672">=</span><span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+		<span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+			sessionFactory<span style="color:#f92672">=</span>HibernateUtils<span style="color:#f92672">.</span><span style="color:#a6e22e">getSessionFactory</span><span style="color:#f92672">();</span>
+			session<span style="color:#f92672">=</span>sessionFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">openSession</span><span style="color:#f92672">();</span>
+			<span style="color:#75715e">//开启事务
+</span><span style="color:#75715e"></span>			tx<span style="color:#f92672">=</span>session<span style="color:#f92672">.</span><span style="color:#a6e22e">beginTransaction</span><span style="color:#f92672">();</span>
+			<span style="color:#75715e">//相关操作
+</span><span style="color:#75715e"></span>			<span style="color:#75715e">//添加一个客户，为这个客户添加一个联系人 
+</span><span style="color:#75715e"></span>			Customer customer<span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> Customer<span style="color:#f92672">();</span>
+			customer<span style="color:#f92672">.</span><span style="color:#a6e22e">setCustName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;姓名&#34;</span><span style="color:#f92672">);</span>
+			customer<span style="color:#f92672">.</span><span style="color:#a6e22e">setCustLevel</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;vip&#34;</span><span style="color:#f92672">);</span>
+			customer<span style="color:#f92672">.</span><span style="color:#a6e22e">setCustSource</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;网络&#34;</span><span style="color:#f92672">);</span>
+			customer<span style="color:#f92672">.</span><span style="color:#a6e22e">setCustPhone</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;110&#34;</span><span style="color:#f92672">);</span>
+			customer<span style="color:#f92672">.</span><span style="color:#a6e22e">setCustMobile</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;123&#34;</span><span style="color:#f92672">);</span>
+			
+			LinkMan linkMan<span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> LinkMan<span style="color:#f92672">();</span>
+			linkMan<span style="color:#f92672">.</span><span style="color:#a6e22e">setLkm_name</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;lucy&#34;</span><span style="color:#f92672">);</span>
+			linkMan<span style="color:#f92672">.</span><span style="color:#a6e22e">setLkm_gender</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;男&#34;</span><span style="color:#f92672">);</span>
+			linkMan<span style="color:#f92672">.</span><span style="color:#a6e22e">setLkm_phone</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;122&#34;</span><span style="color:#f92672">);</span>
+			<span style="color:#75715e">//建立客户对象和联系人对象关系
+</span><span style="color:#75715e"></span>			<span style="color:#75715e">//1.把联系人对象放到客户实体类对象的set集合里
+</span><span style="color:#75715e"></span>			customer<span style="color:#f92672">.</span><span style="color:#a6e22e">getSetLinkMan</span><span style="color:#f92672">().</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>linkMan<span style="color:#f92672">);</span>
+			<span style="color:#75715e">//2.把客户对象放到联系人对象里面
+</span><span style="color:#75715e"></span>			linkMan<span style="color:#f92672">.</span><span style="color:#a6e22e">setCustomer</span><span style="color:#f92672">(</span>customer<span style="color:#f92672">);</span>
+			
+			<span style="color:#75715e">//保存到数据库
+</span><span style="color:#75715e"></span>			session<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>customer<span style="color:#f92672">);</span>
+			session<span style="color:#f92672">.</span><span style="color:#a6e22e">save</span><span style="color:#f92672">(</span>linkMan<span style="color:#f92672">);</span>
+			<span style="color:#75715e">//提交事务
+</span><span style="color:#75715e"></span>			tx<span style="color:#f92672">.</span><span style="color:#a6e22e">commit</span><span style="color:#f92672">();</span>
+		<span style="color:#f92672">}</span><span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+			tx<span style="color:#f92672">.</span><span style="color:#a6e22e">rollback</span><span style="color:#f92672">();</span><span style="color:#75715e">// TODO: handle exception
+</span><span style="color:#75715e"></span>		<span style="color:#f92672">}</span><span style="color:#66d9ef">finally</span><span style="color:#f92672">{</span>
+			session<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+			<span style="color:#75715e">//sessionFactory.close();
+</span><span style="color:#75715e"></span>		<span style="color:#f92672">}</span>
+	
+	<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>简化写法</li>
+</ul>
+<ol>
+<li>在客户映射文件中进行配置，在客户映射文件里面set标签进行配置
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;set</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;setLinkMan&#34;</span> <span style="color:#a6e22e">cascade=</span><span style="color:#e6db74">&#34;save-update&#34;</span><span style="color:#f92672">&gt;</span>
+</code></pre></div></li>
+<li>创建客户和联系人对象，只需要把联系人放到客户里面就可以了，最终只需要保存客户就可以</li>
+</ol>
+<h4 id="级联删除">级联删除</h4>
+<p>删除某个客户，这个客户的所有联系人也删除</p>
+<ol>
+<li>在客户映射文件set标签，进行配置，使用属性cascade属性值delete</li>
+<li>删除客户，根据id查询，调用session里面的delete方法删除</li>
+<li>执行过程
+<ul>
+<li>根据id查询客户</li>
+<li>根据外键的id值查询联系人</li>
+<li>把联系人的外键设置为null</li>
+<li>删除联系人和客户</li>
+</ul>
+</li>
+</ol>
+<h3 id="一对多修改操作">一对多修改操作</h3>
+<ol>
+<li>改变lucy所属客户不是a，而是百度</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">		<span style="color:#75715e">//根据id查询lucy的联系人 根据id查询百度的用户
+</span><span style="color:#75715e"></span>		Customer baidu<span style="color:#f92672">=</span>session<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>Customer<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span>1 <span style="color:#f92672">);</span>
+		LinkMan lucy<span style="color:#f92672">=</span>session<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>LinkMan<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span>2<span style="color:#f92672">);</span>
+		<span style="color:#75715e">//设置持久态对象
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">//把联系人放到客户里
+</span><span style="color:#75715e"></span>		baidu<span style="color:#f92672">.</span><span style="color:#a6e22e">getSetLinkMan</span><span style="color:#f92672">().</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>lucy<span style="color:#f92672">);</span>
+		<span style="color:#75715e">//把客户放到联系人中
+</span><span style="color:#75715e"></span>		lucy<span style="color:#f92672">.</span><span style="color:#a6e22e">setCustomer</span><span style="color:#f92672">(</span>baidu<span style="color:#f92672">);</span>
+</code></pre></div><ol start="2">
+<li>inverse属性
+<ol>
+<li>hibernate双向维护外键，在客户和联系人都需要维护外键，修改联系人的时候修改一次维护外键，修改联系人的时候也修改一次外键</li>
+<li>解决方式，让一方不在维护外键</li>
+<li>具体实现：在放弃关系维护的映射文件中，进行配置，在set标签使用inverse属性</li>
+</ol>
+</li>
+</ol>
+<h2 id="hibernate多对多操作">hibernate多对多操作</h2>
+<h3 id="多对多映射配置">多对多映射配置</h3>
+<p>以用户和角色为例</p>
+<ol>
+<li>创建实体类，用户和角色</li>
+<li>让两个实体类相互表示
+<ol>
+<li>一个用户里面表示所有角色，使用set集合</li>
+<li>一个角色有多个用户，使用set集合</li>
+</ol>
+</li>
+<li>配置映射关系</li>
+<li>在核心配置文件中引入映射文件</li>
+</ol>
+<h3 id="多对多级联保存">多对多级联保存</h3>
+<h3 id="多对多级联删除">多对多级联删除</h3>
+<h3 id="维护第三张表的关系">维护第三张表的关系</h3>
+
+
+    
+    
+        <div class="related">
+
+
+<h3>Similar articles</h3>
+
+<ul>
+	
+	<li><a href="/note/java/javaweb/hibernate/hibernate%E5%9F%BA%E7%A1%80/">什么是hibernate</a></li>
+	
+</ul>
+
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

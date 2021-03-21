@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hibernate on Kiss&#39;Em!</title>
+    <link>https://example.com/tags/hibernate/</link>
+    <description>Recent content in hibernate on Kiss&#39;Em!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 01 Aug 2018 22:21:02 +0800</lastBuildDate><atom:link href="https://example.com/tags/hibernate/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hibernate的一级缓存与二级缓存</title>
+      <link>https://example.com/note/java/javaweb/hibernate/hibernate%E7%9A%84%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98%E4%B8%8E%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98/</link>
+      <pubDate>Wed, 01 Aug 2018 22:21:02 +0800</pubDate>
+      
+      <guid>https://example.com/note/java/javaweb/hibernate/hibernate%E7%9A%84%E4%B8%80%E7%BA%A7%E7%BC%93%E5%AD%98%E4%B8%8E%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98/</guid>
+      <description>hibernate的一级缓存与二级缓存 什么是缓存 缓存是介于物理数据源与应用程序之间，是对数据库中的数据复制一份临时放在内存中的容器，其作用是为了减少应用程序对物理数据源访问的次数，从而提高了应用程序的运行性能。Hibernate 在进行读取数据的时候，根据缓存机制在相应的缓存中查询，如果在缓存中找到了需要的数据 (我们把这称做 “缓存命中 &amp;ldquo;)，则就直接把命中的数据作为结果加以利用，避免了大量发送 SQL 语句到数据库查询的性能损耗。
+缓存策略提供商： 提供了 HashTable 缓存，EHCache，OSCache，SwarmCache，jBoss Cathe2，这些缓存机制，其中 EHCache，OSCache 是不能用于集群环境（Cluster Safe）的，而 SwarmCache，jBoss Cathe2 是可以的。HashTable 缓存主要是用来测试的，只能把对象放在内存中，EHCache，OSCache 可以把对象放在内存（memory）中，也可以把对象放在硬盘（disk）上（为什么放到硬盘上？上面解释了）。
+一级缓存 定义 一级缓存是Session 缓存（又称作事务缓存）：Hibernate 内置的，不能卸除。
+缓存范围：缓存只能被当前 Session 对象访问。缓存的生命周期依赖于 Session 的生命周期，当 Session 被关闭后，缓存也就结束生命周期。
+实例 Hibernate 一些与一级缓存相关的操作（时间点）：
+数据放入缓存：
+1、save()。当 session 对象调用 save() 方法保存一个对象后，该对象会被放入到 session 的缓存中。
+2、get() 和 load()。当 session 对象调用 get() 或 load() 方法从数据库取出一个对象后，该对象也会被放入到 session 的缓存中。
+3、使用 HQL 和 QBC 等从数据库中查询数据。
+使用 get() 或 load() 证明缓存的存在：
+public class Client { public static void main(String[] args) { Session session = HibernateUtil.</description>
+    </item>
+    
+    <item>
+      <title>Hibernate笔记</title>
+      <link>https://example.com/note/java/javaweb/hibernate/hibernate%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 01 Jun 2016 22:21:02 +0800</pubDate>
+      
+      <guid>https://example.com/note/java/javaweb/hibernate/hibernate%E7%AC%94%E8%AE%B0/</guid>
+      <description>Hibernate笔记 搭建Hibernate环境  导入jar包 创建实体类  使用Hibernate的时候，不需要手动创建表，Hibernate帮我们创建表   配置实体类和数据库表的一一对应关系 使用配置文件实现映射关系  创建xml格式的配置文件，映射配置文件名称和位置没有固定要求，建议在实体类所在的包创建，实体类名称.hbm.xml 配置是xml格式，在配置文件引进xml约束 配置映射关系  &amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;!DOCTYPE hibernate-mapping PUBLIC &amp;#34;-//Hibernate/Hibernate Mapping DTD 3.0//EN&amp;#34; &amp;#34;http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd&amp;#34;&amp;gt; &amp;lt;hibernate-mapping&amp;gt; &amp;lt;!-- 配置类和表对应 name属性：实体类的全路径 table属性：数据库的名称--&amp;gt; &amp;lt;class name=&amp;#34;cn.haigeek.entity.User&amp;#34; table=&amp;#34;t_user&amp;#34;&amp;gt; &amp;lt;!-- 配置实体类id和表id hibernate要求实体类有一个属性唯一值 hibernate要求表有字段作为唯一值 --&amp;gt; &amp;lt;!-- id标签 name属性： 实体类里面id属性名称 column属性：生成表的字段名称 --&amp;gt; &amp;lt;id name=&amp;#34;uid&amp;#34; column=&amp;#34;uid&amp;#34;&amp;gt; &amp;lt;!-- 数据库表id主键字段增长 --&amp;gt; &amp;lt;generator class=&amp;#34;native&amp;#34;&amp;gt;&amp;lt;/generator&amp;gt; &amp;lt;/id&amp;gt; &amp;lt;!-- 配置其他属性和表字段对应 --&amp;gt; &amp;lt;property name=&amp;#34;username&amp;#34; column=&amp;#34;username&amp;#34;&amp;gt;&amp;lt;/property&amp;gt; &amp;lt;property name=&amp;#34;password&amp;#34; column=&amp;#34;password&amp;#34;&amp;gt;&amp;lt;/property&amp;gt; &amp;lt;property name=&amp;#34;address&amp;#34; column=&amp;#34;address&amp;#34;&amp;gt;&amp;lt;/property&amp;gt; &amp;lt;/class&amp;gt; &amp;lt;/hibernate-mapping&amp;gt; 4. 创建hibernate的核心文件 - 文件格式xml；位置src下，名称hibernate.</description>
+    </item>
+    
+    <item>
+      <title>什么是hibernate</title>
+      <link>https://example.com/note/java/javaweb/hibernate/hibernate%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Wed, 01 Jun 2016 22:21:02 +0800</pubDate>
+      
+      <guid>https://example.com/note/java/javaweb/hibernate/hibernate%E5%9F%BA%E7%A1%80/</guid>
+      <description>Hibernate基础知识 什么是Hibernate Hibernate是一种ORM框架（OBject/Relational Mapping）；ORM意为对象关系映射，因此Hibernate会在java对象和关系数据库之间建立某种映射，以达到存取java对象的目的，是实现持久化存储（将内存中的数据存储在关系型的数据库、磁盘文件、XML数据文件中等等）的一种解决方案。
+Hibernate 不仅管理 Java 类到数据库表的映射（包括从 Java 数据类型到 SQL 数据类型的映射），还提供数据查询和获取数据的方法，可以大幅度减少开发时人工使用 SQL 和 JDBC 处理数据的时间。这正是它的设计目标，即将软件开发人员从大量相同的数据持久层相关编程工作中解放出来。
+什么是orm思想  让实体类和数据库表一一对应关系  让实体类和数据库表进行一一对应关系 让实体类属性和表里面的字段对应   不需要操作数据库表，而操作表对应实体类对象  Hibernate体系结构 从上图可以看出，HIbernate使用使用数据库和配置信息（Hibernate.properties)来为应用程序提供持久化服务（以及持久对象的Persistent OBjects）
+ 轻型的体系结构方案 要求应用程序提供自己的JDBC连接并管理自己的事务，这种方案使用了Hibernate API 的最小集：  全面解决的体系结构方案 将应用底层的JDBC/JTA API 中抽象出来，让Hibernate来处理这些细节   基本APIs  SessionFactory 对于单个数据库映射关系经过编译后的内存缓存，他是线程安全且不可变的。是session生成的工厂实例，也是ConnectProvider的一个客户端（会用到ConnectionProvider）。他在进程或集群的级别上，为那些在事务之前可重复使用的数据提供了选择性的二级缓存 Session 提供应用程序和持久化存储介质之间的一个单线程的会话对象，此对象生存期短，他隐藏了JDBC连接，也是Transaction的工厂实例，对于应用的持久化对象及其集合，他提供了一个一级缓存；当遍历导航对象图或者根据持久化标识查找对象时，会用到这个一级缓存  </description>
+    </item>
+    
+  </channel>
+</rss>

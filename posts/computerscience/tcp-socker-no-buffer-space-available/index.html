@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Tcp-socker-No-buffer-space-available | haigeek-blog</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="我是谁 🔗 爱折腾，伪文青，斯人已去，勿念，现在学习编程。(2016-2018） haigeek是我在网络上常用的昵称，因为他的谐音和我们真实名字">
+<meta name="generator" content="Hugo 0.76.5" />
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+ 
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'your-google-analytics-id', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/tags">Tags</a>
+	<a href="/about">About</a>
+
+	
+		<a href="https://wiki.haigeek.me">WIKI</a>
+	
+
+	
+	  <a href="https://haigeek.me/index.xml">RSS</a>
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title">Tcp-socker-No-buffer-space-available</h1>
+
+    <div class="tip">
+        <span>
+          May 8, 2019 22:38
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          
+            2259 words
+          
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          5 minute read
+        </span>
+    </div>
+
+    <div class="content">
+      <p>tcp在实际的使用中，客户端和服务端可能都会出现端口不够用的情况，重新温习了一下tcp的四次挥手来寻找这个问题出现的原因。</p>
+<h1 id="一次tcp端口耗尽引发的思考">一次Tcp端口耗尽引发的思考 <a href="#%e4%b8%80%e6%ac%a1tcp%e7%ab%af%e5%8f%a3%e8%80%97%e5%b0%bd%e5%bc%95%e5%8f%91%e7%9a%84%e6%80%9d%e8%80%83" class="anchor">🔗</a></h1><h2 id="起因">起因 <a href="#%e8%b5%b7%e5%9b%a0" class="anchor">🔗</a></h2><p>访问接口服务端既不报错但是也无响应，登录服务器查看后台有报错，报错的堆栈的信息大致为：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">Caused by<span style="color:#666">:</span> java<span style="color:#666">.</span><span style="color:#b44">net</span><span style="color:#666">.</span><span style="color:#b44">SocketException</span><span style="color:#666">:</span> No buffer space <span style="color:#00a000">available</span> <span style="color:#666">(</span>maximum connections reached<span style="color:#666">?):</span> connect
+at org<span style="color:#666">.</span><span style="color:#b44">apache</span><span style="color:#666">.</span><span style="color:#b44">axis</span><span style="color:#666">.</span><span style="color:#b44">AxisFault</span><span style="color:#666">.</span><span style="color:#b44">makeFault</span><span style="color:#666">(</span>AxisFault<span style="color:#666">.</span><span style="color:#b44">java</span><span style="color:#666">:</span>101<span style="color:#666">)</span>
+at org<span style="color:#666">.</span><span style="color:#b44">apache</span><span style="color:#666">.</span><span style="color:#b44">axis</span><span style="color:#666">.</span><span style="color:#b44">transport</span><span style="color:#666">.</span><span style="color:#b44">http</span><span style="color:#666">.</span><span style="color:#b44">HTTPSender</span><span style="color:#666">.</span><span style="color:#b44">invoke</span><span style="color:#666">(</span>HTTPSender<span style="color:#666">.</span><span style="color:#b44">java</span><span style="color:#666">:</span>154<span style="color:#666">)</span>
+at org<span style="color:#666">.</span><span style="color:#b44">apache</span><span style="color:#666">.</span><span style="color:#b44">axis</span><span style="color:#666">.</span><span style="color:#b44">strategies</span><span style="color:#666">.</span><span style="color:#b44">InvocationStrategy</span><span style="color:#666">.</span><span style="color:#b44">visit</span><span style="color:#666">(</span>InvocationStrategy<span style="color:#666">.</span><span style="color:#b44">java</span><span style="color:#666">:</span>32<span style="color:#666">)</span>
+at org<span style="color:#666">.</span><span style="color:#b44">apache</span><span style="color:#666">.</span><span style="color:#b44">axis</span><span style="color:#666">.</span><span style="color:#b44">SimpleChain</span><span style="color:#666">.</span><span style="color:#b44">doVisiting</span><span style="color:#666">(</span>SimpleChain<span style="color:#666">.</span><span style="color:#b44">java</span><span style="color:#666">:</span>118<span style="color:#666">)</span>
+at org<span style="color:#666">.</span><span style="color:#b44">apache</span><span style="color:#666">.</span><span style="color:#b44">axis</span><span style="color:#666">.</span><span style="color:#b44">SimpleChain</span><span style="color:#666">.</span><span style="color:#b44">invoke</span><span style="color:#666">(</span>SimpleChain<span style="color:#666">.</span><span style="color:#b44">java</span><span style="color:#666">:</span>83<span style="color:#666">)</span>
+at org<span style="color:#666">.</span><span style="color:#b44">apache</span><span style="color:#666">.</span><span style="color:#b44">axis</span><span style="color:#666">.</span><span style="color:#b44">client</span><span style="color:#666">.</span><span style="color:#b44">AxisClient</span><span style="color:#666">.</span><span style="color:#b44">invoke</span><span style="color:#666">(</span>AxisClient<span style="color:#666">.</span><span style="color:#b44">java</span><span style="color:#666">:</span>165<span style="color:#666">)</span>
+at org<span style="color:#666">.</span><span style="color:#b44">apache</span><span style="color:#666">.</span><span style="color:#b44">axis</span><span style="color:#666">.</span><span style="color:#b44">client</span><span style="color:#666">.</span><span style="color:#b44">Call</span><span style="color:#666">.</span><span style="color:#b44">invokeEngine</span><span style="color:#666">(</span>Call<span style="color:#666">.</span><span style="color:#b44">java</span><span style="color:#666">:</span>2784<span style="color:#666">)</span>
+at org<span style="color:#666">.</span><span style="color:#b44">apache</span><span style="color:#666">.</span><span style="color:#b44">axis</span><span style="color:#666">.</span><span style="color:#b44">client</span><span style="color:#666">.</span><span style="color:#b44">Call</span><span style="color:#666">.</span><span style="color:#b44">invoke</span><span style="color:#666">(</span>Call<span style="color:#666">.</span><span style="color:#b44">java</span><span style="color:#666">:</span>2767<span style="color:#666">)</span>
+at org<span style="color:#666">.</span><span style="color:#b44">apache</span><span style="color:#666">.</span><span style="color:#b44">axis</span><span style="color:#666">.</span><span style="color:#b44">client</span><span style="color:#666">.</span><span style="color:#b44">Call</span><span style="color:#666">.</span><span style="color:#b44">invoke</span><span style="color:#666">(</span>Call<span style="color:#666">.</span><span style="color:#b44">java</span><span style="color:#666">:</span>2443<span style="color:#666">)</span>
+at org<span style="color:#666">.</span><span style="color:#b44">apache</span><span style="color:#666">.</span><span style="color:#b44">axis</span><span style="color:#666">.</span><span style="color:#b44">client</span><span style="color:#666">.</span><span style="color:#b44">Call</span><span style="color:#666">.</span><span style="color:#b44">invoke</span><span style="color:#666">(</span>Call<span style="color:#666">.</span><span style="color:#b44">java</span><span style="color:#666">:</span>2366<span style="color:#666">)</span>
+at org<span style="color:#666">.</span><span style="color:#b44">apache</span><span style="color:#666">.</span><span style="color:#b44">axis</span><span style="color:#666">.</span><span style="color:#b44">client</span><span style="color:#666">.</span><span style="color:#b44">Call</span><span style="color:#666">.</span><span style="color:#b44">invoke</span><span style="color:#666">(</span>Call<span style="color:#666">.</span><span style="color:#b44">java</span><span style="color:#666">:</span>1812<span style="color:#666">)</span>
+</code></pre></div><h2 id="问题分析">问题分析 <a href="#%e9%97%ae%e9%a2%98%e5%88%86%e6%9e%90" class="anchor">🔗</a></h2><p>从报错信息来看是socket端口使用数已经超过了最发限度，定位到应该是服务器的原因，尝试请求这台服务器部署的其他应用，对于的后台也会报相同的错误。基本可以定位到是因为可用的socket端口不足的原因。</p>
+<p>那么为什么会出现这个情况呢？</p>
+<p>出现这种情况，我们可以使用命令 <code>netstat -at</code>来查看一下当前系统下端口的连接状况，可以发现此时会有很多的端口会处于TIME_WAIT的状态，处于这个状态的端口是无法释放的，因此系统并发过大，连接数过多，部分socket连接无法释放关闭，而持续请求又导致无法释放的socket连接不断积压，最终导致No buffer space available。</p>
+<p>我们重新来温习一下TCP连接的三次握手和挥手</p>
+<h3 id="tcp连接的三次握手和挥手">TCP连接的三次握手和挥手 <a href="#tcp%e8%bf%9e%e6%8e%a5%e7%9a%84%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b%e5%92%8c%e6%8c%a5%e6%89%8b" class="anchor">🔗</a></h3><h4 id="三次握手">三次握手 <a href="#%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b" class="anchor">🔗</a></h4><p><p class="markdown-image">
+  <img src="/images/tcp-handshake.png" alt=""  />
+</p></p>
+<p>tcp的三次握手的流程如下：</p>
+<ol>
+<li>
+<p>客户端发送SYN标志位为1，seq（Sequence Number）为x的连接请求报文，然后客户端进入SYN_SEND状态，等待服务器端的确认响应。</p>
+</li>
+<li>
+<p>服务端收到客户端的请求，对这个SYN报文进行确认，发送ACK（Acknowledgment Number）为x+1（Sequence+1），SYN和ACK的标志位均为1，seq为y的报文段为y的报文段（即SYN+ACK的报文段），此时服务端进入SYN_RECV状态</p>
+</li>
+<li>
+<p>客户端收到服务器的SYN+ACK报文段，确认ACK后，发送ACK为y+1，SYN标志位为0，ACK标志位为1的报文段，发送完成后，客户端和服务器端都进入ESTABLISHED状态，完成TCP三次握手，客户端和服务器端成功地建立连接，可以开始传输数据了。</p>
+</li>
+</ol>
+<h4 id="四次挥手">四次挥手 <a href="#%e5%9b%9b%e6%ac%a1%e6%8c%a5%e6%89%8b" class="anchor">🔗</a></h4><p><p class="markdown-image">
+  <img src="/images/tcp-bye.png" alt="tcp-bye"  />
+</p></p>
+<p>tcp的四次挥手的流程如下：</p>
+<p>连接可以由客户端或者服务端发起，这里以客户端发起为例：</p>
+<ol>
+<li>客户端发送Seq为x+2，Ack为y+1的FIN报文段，客户端进入FIN_WAIT_1状态，即告诉服务端没有数据需要传输了，请求关闭连接；</li>
+<li>服务端收到客户端的FIN报文段后，向客户端应答一个Ack为Seq+1（即x+3）的ACK报文段，即告诉客户端你的请求我收到了，但是我还没准备好，请等待我的关闭请求。客户端收到后进入FIN_WAIT_2状态；</li>
+<li>服务端完成数据传输后向客户端发送Seq为y+1的FIN报文段，请求关闭连接，服务器进入LAST_ACK状态；</li>
+<li>客户端收到服务端的FIN报文段后，向服务端应答一个Ack为Seq+1的ACK报文段，然后客户端进入TIME_WAIT状态；服务端收到客户端的ACK报文段后关闭连接进入CLOSED状态，客户端等待2MSL（2 Max Segment Lifetime）后依然没有收到回复，则证明服务端已正常关闭，客户端此时关闭连接进入CLOSED状态。</li>
+</ol>
+<h3 id="为什么有time_wait的状态">为什么有TIME_WAIT的状态 <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%9c%89time_wait%e7%9a%84%e7%8a%b6%e6%80%81" class="anchor">🔗</a></h3><ol>
+<li>
+<p>确保最终的ACK已经到达；</p>
+<p>假如最终的ACK丢失，那么服务端会重新发送FIN，当最终的ACK在1个MSL没有到达，那么在下一个MSL里重新发送的FIN需要到达，客户端必须维护TCP状态信息以便可以重发最终的ACK，否则会发送RST，结果服务端认为发生错误。</p>
+</li>
+<li>
+<p>防止延迟的无效消息包被误认为是合法的</p>
+<p>假如客户端A和服务端B在传输数据，假如传输了一节数据，因为网络的原因发生了延迟，在未到达B的时候，AB就已经关闭了传输通道。然后AB马上又重新建立起一个相同的IP地址和端口之间的TCP连接，那么这个延迟的数据包是有可能重新到达的，这样就引起了混乱。处于TIME_WAIT的端口是不允许创建新的连接的，2MSL可以保证这个丢失的数据可以失效。</p>
+</li>
+</ol>
+<p>在centos下可以使用<code>sysctl -a|grep net.ipv4.tcp_fin_timeout</code>查看超时时间</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">net.ipv4.tcp_fin_timeout = 60
+</code></pre></div><h3 id="本地有多少端口可用">本地有多少端口可用 <a href="#%e6%9c%ac%e5%9c%b0%e6%9c%89%e5%a4%9a%e5%b0%91%e7%ab%af%e5%8f%a3%e5%8f%af%e7%94%a8" class="anchor">🔗</a></h3><p>TCP协议中<code>PORT</code>部分是用两个字节来表示的，也就是说可用的端口数量肯定不能超过65536个。
+另外，这其中还有些端口是系统保留的，需要root权限才可以使用的，在CentOS系统中，client端可以使用的端口可以通过<code>sysctl -a|grep net.ipv4.ip_local_port_range</code>来查看</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">net.ipv4.ip_local_port_range <span style="color:#666">=</span> 32768	<span style="color:#666">60999</span>
+</code></pre></div><h3 id="单机请求的qps">单机请求的QPS <a href="#%e5%8d%95%e6%9c%ba%e8%af%b7%e6%b1%82%e7%9a%84qps" class="anchor">🔗</a></h3><p>如果client机器有32768端口可用，TIME_WAIT 60秒，短连接的方式发起请求，那么这个client发起的请求的QPS是不能超过28233/60的</p>
+<h2 id="问题解决">问题解决 <a href="#%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3" class="anchor">🔗</a></h2><p>以下设置需要根据Windows和linux系统使用对应的命令去设置。</p>
+<ol>
+<li>解决问题最快的方式是重启服务器，可以释放大量的端口，但是弊端也比较明显</li>
+<li>检查代码中webservice或httpclient调用未进行连接释放，导致资源无法回收。</li>
+<li>修改系統默认的TIMEOUT时间</li>
+<li>打开<code>tcp_tw_reuse</code>也就是允许将TIME-WAIT sockets重新用于新的TCP连接，打开这个选项之后，TCP包里面会带上发包机器的当前时间戳</li>
+</ol>
+<p>windows 系统处理方式</p>
+<p>通过regedit启动注册表编译器找到如下路径：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+</code></pre></div><p>添加参数：</p>
+<p>(1)新建</p>
+<p>值名称：MaxUserPort</p>
+<p>值类型：DWORD</p>
+<p>值数据：65534（十六进制是FFFE）</p>
+<p>有效范围：5000 - 65534 (十进制)</p>
+<p>默认：0x1388 5000（十进制）</p>
+<p>(2)新建</p>
+<p>值名称：TCPTimedWaitDelay</p>
+<p>值类型：DWORD</p>
+<p>值数据：0000001e（30）</p>
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="https://haigeek.me/tags/tcp">Tcp</a>
+            
+                <a href="https://haigeek.me/tags/socket">Socket</a>
+            
+        </div>
+    
+    
+     
+  <div id="comment">
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "your-disqus-shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+
+
+</section>
+
+
+    </main>
+    
+    <footer id="footer">
+    
+        <div id="social">
+
+
+    <a class="symbol" href="https://github.com/haigeek" target="_blank">
+        
+        <svg fill="#bbbbbb" width="28" height="28"  viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>Github</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Social-Icons---Rounded-Black" transform="translate(-264.000000, -939.000000)">
+            <g id="Github" transform="translate(264.000000, 939.000000)">
+                <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z" id="Rounded" fill="#bbbbbb"></path>
+                <path d="M35.9985,13 C22.746,13 12,23.7870921 12,37.096644 C12,47.7406712 18.876,56.7718301 28.4145,59.9584121 C29.6145,60.1797862 30.0525,59.4358488 30.0525,58.7973276 C30.0525,58.2250681 30.0315,56.7100863 30.0195,54.6996482 C23.343,56.1558981 21.9345,51.4693938 21.9345,51.4693938 C20.844,48.6864054 19.2705,47.9454799 19.2705,47.9454799 C17.091,46.4500754 19.4355,46.4801943 19.4355,46.4801943 C21.843,46.6503662 23.1105,48.9634994 23.1105,48.9634994 C25.2525,52.6455377 28.728,51.5823398 30.096,50.9649018 C30.3135,49.4077535 30.9345,48.3460615 31.62,47.7436831 C26.2905,47.1352808 20.688,45.0691228 20.688,35.8361671 C20.688,33.2052792 21.6225,31.0547881 23.1585,29.3696344 C22.911,28.7597262 22.0875,26.3110578 23.3925,22.9934585 C23.3925,22.9934585 25.4085,22.3459017 29.9925,25.4632101 C31.908,24.9285993 33.96,24.6620468 36.0015,24.6515052 C38.04,24.6620468 40.0935,24.9285993 42.0105,25.4632101 C46.5915,22.3459017 48.603,22.9934585 48.603,22.9934585 C49.9125,26.3110578 49.089,28.7597262 48.8415,29.3696344 C50.3805,31.0547881 51.309,33.2052792 51.309,35.8361671 C51.309,45.0917119 45.6975,47.1292571 40.3515,47.7256117 C41.2125,48.4695491 41.9805,49.9393525 41.9805,52.1877301 C41.9805,55.4089489 41.9505,58.0067059 41.9505,58.7973276 C41.9505,59.4418726 42.3825,60.1918338 43.6005,59.9554002 C53.13,56.7627944 60,47.7376593 60,37.096644 C60,23.7870921 49.254,13 35.9985,13" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+    </a>
+
+
+</div>
+
+    
+
+    <p class="copyright">
+    
+       © Copyright 
+       2021 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       haigeek
+    
+    </p>
+    <p class="powerby">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+  </body>
+</html>

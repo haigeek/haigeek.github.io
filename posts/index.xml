@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on haigeek-blog</title>
+    <link>https://haigeek.me/posts/</link>
+    <description>Recent content in Posts on haigeek-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Dec 2020 00:34:27 +0800</lastBuildDate><atom:link href="https://haigeek.me/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DubboRpc的ExceptionFilter过滤器</title>
+      <link>https://haigeek.me/posts/backend/dubbo/dubbo-rpc-filter-exception-handler/</link>
+      <pubDate>Sun, 27 Dec 2020 00:34:27 +0800</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/dubbo/dubbo-rpc-filter-exception-handler/</guid>
+      <description>&lt;p&gt;在使用dubbo进行接口调用的时候,在接口抛出异常的时候会在ExceptionFilter最终抛出异常。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>dubbo使用随机端口</title>
+      <link>https://haigeek.me/posts/backend/dubbo/dubbo-random-port/</link>
+      <pubDate>Wed, 01 Apr 2020 23:17:02 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/dubbo/dubbo-random-port/</guid>
+      <description>&lt;p&gt;dubbo在进行服务间通信的时候需要使用端口进行通信,但是这个端口的指定规则是什么。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nacos作为配置中心的使用</title>
+      <link>https://haigeek.me/posts/backend/microservice/nacos-base-learn/</link>
+      <pubDate>Wed, 08 Jan 2020 22:31:21 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/microservice/nacos-base-learn/</guid>
+      <description>&lt;p&gt;nacos的初步认识与使用&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2019掠影</title>
+      <link>https://haigeek.me/posts/%E7%94%9F%E6%B4%BB/2019-life-summary/</link>
+      <pubDate>Sun, 29 Dec 2019 22:34:23 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/%E7%94%9F%E6%B4%BB/2019-life-summary/</guid>
+      <description>&lt;p&gt;2019年度总结&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>位运算在权限管理中的应用</title>
+      <link>https://haigeek.me/posts/computerscience/bit-in-rbac/</link>
+      <pubDate>Sat, 28 Dec 2019 21:48:16 +0800</pubDate>
+      
+      <guid>https://haigeek.me/posts/computerscience/bit-in-rbac/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>并发登录下session的处理</title>
+      <link>https://haigeek.me/posts/java/spring/concurrent-login-session/</link>
+      <pubDate>Wed, 16 Oct 2019 23:26:39 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/java/spring/concurrent-login-session/</guid>
+      <description>&lt;p&gt;在进行性能测试的时候并发请求登录接口时候出现失败的情况，对排查记录做一下总结。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Tcp-socker-No-buffer-space-available</title>
+      <link>https://haigeek.me/posts/computerscience/tcp-socker-no-buffer-space-available/</link>
+      <pubDate>Wed, 08 May 2019 22:38:38 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/computerscience/tcp-socker-no-buffer-space-available/</guid>
+      <description>&lt;p&gt;tcp在实际的使用中，客户端和服务端可能都会出现端口不够用的情况，重新温习了一下tcp的四次挥手来寻找这个问题出现的原因。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>docker镜像的基本操作</title>
+      <link>https://haigeek.me/posts/backend/docker/docker-image-basic/</link>
+      <pubDate>Wed, 20 Feb 2019 23:26:39 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/docker/docker-image-basic/</guid>
+      <description>&lt;p&gt;镜像是docker的一个核心组成部分&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>docker容器的操作</title>
+      <link>https://haigeek.me/posts/backend/docker/docker-container-basic/</link>
+      <pubDate>Sun, 17 Feb 2019 23:26:39 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/docker/docker-container-basic/</guid>
+      <description>&lt;p&gt;容器是docker的一个核心组成部分，和镜像的运行有直接关系。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker简介与安装</title>
+      <link>https://haigeek.me/posts/backend/docker/docker-basic-install/</link>
+      <pubDate>Sat, 16 Feb 2019 23:26:39 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/docker/docker-basic-install/</guid>
+      <description>&lt;p&gt;Docker是一个开源的应用容器引擎；是一个轻量级容器技术&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>springboot全局跨域与过滤器跨域</title>
+      <link>https://haigeek.me/posts/java/springboot/springboot-filter-cros/</link>
+      <pubDate>Sun, 06 Jan 2019 23:05:54 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/java/springboot/springboot-filter-cros/</guid>
+      <description>&lt;p&gt;当项目中使用了过滤器的时候,使用springboot全局跨域设置有时候并不能满足我们的需求,具体表现为明明设置了全局允许跨域,前端同学依旧说我们的接口不允许跨域。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Maven Profile和Spring Profile进行多环境配置</title>
+      <link>https://haigeek.me/posts/java/springboot/springboot-maven-profile/</link>
+      <pubDate>Sun, 06 Jan 2019 23:05:54 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/java/springboot/springboot-maven-profile/</guid>
+      <description>&lt;p&gt;Springboot使用Maven Profile和Spring Profile进行多环境配置&lt;/p&gt;
+&lt;p&gt;在实际的项目上，一般会分三种环境dev、test、prod来方便我们的开发和部署，要求我们在开发的时候可以方便地进行环境的切换，又要满足在发布版本的时候可以尽可能减少测试人员的配置。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2018-life-summary</title>
+      <link>https://haigeek.me/posts/%E7%94%9F%E6%B4%BB/2018-life-summary/</link>
+      <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/%E7%94%9F%E6%B4%BB/2018-life-summary/</guid>
+      <description>&lt;p&gt;2018年度总结&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jenkins快速复制已经存在的项目</title>
+      <link>https://haigeek.me/posts/backend/devops/jenkins/jenkins-clone-project/</link>
+      <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/devops/jenkins/jenkins-clone-project/</guid>
+      <description>jenkins的pipeline的灵活之处在于对于已经存在的项目，可以快速复制出来，创建新的任务。 Jenkins快速复制已经存在的项目 🔗针对</description>
+    </item>
+    
+    <item>
+      <title>Jenkins部署项目到远程windows</title>
+      <link>https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/</link>
+      <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/</guid>
+      <description>&lt;p&gt;核心是使用ssh进行jenkins主节点与目标部署服务器进行通信,文件传输走scp协议,执行执行使用ssh命令远程到目标主机进行执行.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CentOS搭建FTP服务器vsftpd</title>
+      <link>https://haigeek.me/posts/linux/centos-install-ftp-vsftpd/</link>
+      <pubDate>Wed, 06 Sep 2017 20:46:37 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/linux/centos-install-ftp-vsftpd/</guid>
+      <description>&lt;p&gt;vsftpd是linux平台下的一款ftp软件&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>二叉树的遍历（递归，非递归）的实现</title>
+      <link>https://haigeek.me/posts/algorithm/traversing-the-binary-tree/</link>
+      <pubDate>Sat, 22 Jul 2017 21:19:54 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/algorithm/traversing-the-binary-tree/</guid>
+      <description>&lt;p&gt;二叉树的遍历（前序，中序，后序）的递归与非递归遍历&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>winestory中struts2的使用</title>
+      <link>https://haigeek.me/posts/project/winestory-struts2/</link>
+      <pubDate>Sat, 22 Jul 2017 20:27:55 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/project/winestory-struts2/</guid>
+      <description>&lt;p&gt;使用ssh框架做的一个小论坛是我的第一个项目，ssh框架在现在早已经过时，但是当初学习和解决问题的精神却是最重要的，因此我将相关的博文进行归档，记录并缅怀初学编程时的历程。这一篇是struts2框架相关内容。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>从后往前输出链表</title>
+      <link>https://haigeek.me/posts/algorithm/output-list/</link>
+      <pubDate>Sat, 15 Jul 2017 14:20:41 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/algorithm/output-list/</guid>
+      <description>&lt;h2 id=&#34;题目&#34;&gt;题目 &lt;a href=&#34;#%e9%a2%98%e7%9b%ae&#34; class=&#34;anchor&#34;&gt;🔗&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;输入一个链表，从尾到头打印链表每个节点的值。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>centos6.8安装javajdk、tomcat、MySQL环境</title>
+      <link>https://haigeek.me/posts/linux/centos6-8-install-javajdk-tomcat-mysql-env/</link>
+      <pubDate>Sat, 15 Jul 2017 14:12:28 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/linux/centos6-8-install-javajdk-tomcat-mysql-env/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web程序运行机制与HTTP基础</title>
+      <link>https://haigeek.me/posts/frontend/http/web-http-basic/</link>
+      <pubDate>Wed, 08 Mar 2017 16:25:16 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/frontend/http/web-http-basic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>你是我听不尽的天籁</title>
+      <link>https://haigeek.me/posts/%E7%94%9F%E6%B4%BB/you-are-my-like-once/</link>
+      <pubDate>Fri, 02 Dec 2016 23:08:57 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/%E7%94%9F%E6%B4%BB/you-are-my-like-once/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PAT1011</title>
+      <link>https://haigeek.me/posts/algorithm/pat1011/</link>
+      <pubDate>Thu, 17 Nov 2016 22:26:23 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/algorithm/pat1011/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PAT1010</title>
+      <link>https://haigeek.me/posts/algorithm/pat1010/</link>
+      <pubDate>Thu, 17 Nov 2016 22:22:45 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/algorithm/pat1010/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PAT1009</title>
+      <link>https://haigeek.me/posts/algorithm/pat1009/</link>
+      <pubDate>Thu, 17 Nov 2016 22:19:52 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/algorithm/pat1009/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PAT1008</title>
+      <link>https://haigeek.me/posts/algorithm/pat1008/</link>
+      <pubDate>Thu, 17 Nov 2016 22:15:34 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/algorithm/pat1008/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PAT 1006</title>
+      <link>https://haigeek.me/posts/algorithm/pat-1006/</link>
+      <pubDate>Thu, 17 Nov 2016 21:57:27 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/algorithm/pat-1006/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

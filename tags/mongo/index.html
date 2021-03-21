@@ -1,0 +1,330 @@
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+             mongo  
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/mongo/">#mongo</a>
+
+
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">
+        
+    
+        December 28, 2017 | 21:48
+    
+      </h2>
+      <h1 class="title"><a href="https://example.com/note/database/mongodb/mongodb%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">mongodb基本操作</a></h1>
+      <div class="content">
+        mongodb基本操作 数据库与集合 数据库连接 在终端连接mongo
+mongo 192.168.1.110:27017 创建数据库  use DATABASE_NAME 创建数据库，如果数据已经存在，切换到对应的数据库 show dbs显示所有的数据库 db.DATABASE_NAME.insert({&quot;name&quot;:&quot;名称&quot;}) 插入数据，默认的数据库为test  删除数据库  db.dropDatebase() 在执行数据库删除的时候，需要先切换到对于的数据库  创建集合  db.createCollection(name, options) name表示要创建的集合的名称，options表示可选的参数 options参数主要有以下几个参数 capped 布尔型 如果为true，则创建固定集合，并必须制定size参数的大小，当集合达到最大值的时候，会自动覆盖之前的文档 autoIndexId 布尔型 可以自动在_id字段创建索引，默认为false size 数值型 为固定集合指定一个最大值（以字节计）。 max 数值型 指定固定集合中包含文档的最大数量。  删除集合  show collection 查看集合 db.collection.drop() 删除集合  文档操作 MongoDB里的文档数据结构和JSON基本一致，所有存储在集合中的数据称为BSON格式，BSON是一种类json的一种二进制形式的存储格式,简称Binary JSON。
+插入文档  db.COLLECTION_NAME.insert(document) 使用insert()或者save()方法进行插入,在进行插入的时候，假如集合不在数据库中，MongoDB 会自动创建该集合并插入文档。 可以将数据定义为一个变量，再执行插入操作，将该变量插入。  更新文档 update()来进行文档的更新，更新格式如下
+db.collection.update( &lt;query&gt;, &lt;update&gt;, { upsert: &lt;boolean&gt;, multi: &lt;boolean&gt;, writeConcern: &lt;document&gt; } ) 参数说明：
+        
+        <a class="button is-link" href="https://example.com/note/database/mongodb/mongodb%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/mongo/">#mongo</a>
+
+
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">
+        
+    
+        December 28, 2017 | 21:48
+    
+      </h2>
+      <h1 class="title"><a href="https://example.com/note/database/mongodb/mongodb%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/">mongoDB数据库备份与恢复</a></h1>
+      <div class="content">
+        mongoDB数据库备份与恢复 备份
+ mongodump -h 192.168.1.194:17017 -d ims_sheng --gzip --archive=/Users/haigeek/Downloads/test/ims_sheng.gz 恢复
+mongorestore -h 127.0.0.1:27017 --gzip --archive=/Users/haigeek/Downloads/test/ims_sheng.gz --nsFrom &quot;ims_sheng.*&quot; --nsTo &quot;ims_wh.*&quot; --nsInclude &quot;*&quot; 
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/mongo/">#mongo</a>
+
+
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">
+        
+    
+        December 28, 2017 | 21:48
+    
+      </h2>
+      <h1 class="title"><a href="https://example.com/note/database/mongodb/mongo%E5%B8%B8%E7%94%A8%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/">mongo常用增删改查</a></h1>
+      <div class="content">
+        常用操作对照 db.users.find() select * from users db.users.find({&#34;age&#34; : 27}) select * from users where age = 27 db.users.find({&#34;username&#34; : &#34;joe&#34;, &#34;age&#34; : 27}) select * from users where &#34;username&#34; = &#34;joe&#34; and age = 27 db.users.find({}, {&#34;username&#34; : 1, &#34;email&#34; : 1}) select username, email from users db.users.find({}, {&#34;username&#34; : 1, &#34;_id&#34; : 0}) // no case // 即时加上了列筛选，_id也会返回；必须显式的阻止_id返回 db.users.find({&#34;age&#34; : {&#34;$gte&#34; : 18, &#34;$lte&#34; : 30}}) select * from users where age &gt;=18 and age &lt;= 30 // $lt(&lt;) $lte(&lt;=) $gt(&gt;) $gte(&gt;=) db.
+        
+        <a class="button is-link" href="https://example.com/note/database/mongodb/mongo%E5%B8%B8%E7%94%A8%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/mongo/">#mongo</a>
+
+
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">
+        
+    
+        December 28, 2017 | 21:48
+    
+      </h2>
+      <h1 class="title"><a href="https://example.com/note/database/mongodb/mongo%E5%BC%80%E5%90%AF%E5%AE%89%E5%85%A8%E9%AA%8C%E8%AF%81/">mongo开启安全验证</a></h1>
+      <div class="content">
+        mongo开启安全验证 开启mongodb安全验证（参考https://docs.mongodb.com/guides/server/auth/）
+xxx代表要设置的密码
+windows   cmd中启动mongodb
+&quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&quot; --dbpath=&quot;C:\MongoDB\data&quot; --logpath=&quot;C:\MongoDB\logs\mongodb.log&quot;   登录客户端mongo.exe,设置用户密码
+  Switch to the admin Database
+use admin   Create the user administrator
+ db.createUser( { user: &quot;mySuperAdmin&quot;, pwd: &quot;xxx&quot;, roles: [ { role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; } ] } )   Create a user for reading and writing to your test database
+db.createUser( { user: &quot;userReadWrite&quot;, pwd: &quot;xxx&quot;, roles: [ { role: &quot;readWriteAnyDatabase&quot;, db: &quot;admin&quot; } ] } ) db.
+        
+        <a class="button is-link" href="https://example.com/note/database/mongodb/mongo%E5%BC%80%E5%90%AF%E5%AE%89%E5%85%A8%E9%AA%8C%E8%AF%81/" style="height:28px">
+          Read more
+        </a>
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/mongo/">#mongo</a>
+
+
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">
+        
+    
+        December 28, 2017 | 21:48
+    
+      </h2>
+      <h1 class="title"><a href="https://example.com/note/database/mongodb/mongo%E7%94%A8%E6%88%B7%E6%93%8D%E4%BD%9C/">mongo用户操作</a></h1>
+      <div class="content">
+        Mongo用户操作 新建管理员用户
+use admin db.createUser( { user: &quot;adminuser&quot;, pwd: &quot;passw0rd&quot;, roles: [ { role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; } ] } ) db.auth('adminuser','passw0rd')  新建普通用户
+db.createUser( { user: &quot;xxx&quot;, pwd: &quot;xxx&quot;, roles: [ { role: &quot;dbOwner&quot;, db: &quot;ims_jxsj&quot; } ] } ) 查看所有用户
+db.system.users.find().pretty() 删除用户
+ db.dropUser('userims_jxsj') 
+        
+      </div>
+    </article>
+    
+    <article>
+      <div class="subtitle tags is-6 is-pulled-right">
+        
+        
+<a class="subtitle is-6" href="/tags/mongo/">#mongo</a>
+
+
+
+
+        
+      </div>
+      <h2 class="subtitle is-6 date">
+        
+    
+        December 28, 2017 | 21:48
+    
+      </h2>
+      <h1 class="title"><a href="https://example.com/note/database/mongodb/mongo%E7%9A%84%E8%A7%86%E5%9B%BE/">mongo的视图操作</a></h1>
+      <div class="content">
+        在mongo中可以创建视图
+视图是只读的
+ db.createView(&quot;dus_apply_view&quot;,&quot;dus_apply&quot;, [	{ $lookup:{from:&quot;dus_proxy&quot;,localField:&quot;serviceId&quot;,foreignField:&quot;_id&quot;,as:&quot;embedProxy&quot;} }, { $project:{&quot;embedProxy._id&quot;:0} // 设置不需要哪些字段 }, { $addFields: { &quot;_id&quot;: { &quot;$toString&quot;: &quot;$_id&quot; } } }, { $lookup:{from:&quot;dus_apply_log&quot;,localField:&quot;_id&quot;,foreignField:&quot;applyId&quot;,as:&quot;embedApplyLog&quot;} }, { $project:{&quot;embedApplyLog._id&quot;:0} // 设置不需要哪些字段 } ] ) 参数说明：
+dus_apply_view：要创建的视图的名称
+        
+      </div>
+    </article>
+    
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <div class="level-item">
+          
+        </div>
+      </div>
+      <div class="level-right is-marginless">
+        <div class="level-item">
+          
+        </div>
+      </div>
+    </nav>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

@@ -1,0 +1,382 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+             hibernate的一级缓存与二级缓存  
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+        
+<a class="subtitle is-6" href="/tags/hibernate/">#hibernate</a>
+
+
+
+
+    
+</div>
+
+
+
+<h2 class="subtitle is-6">
+    
+    
+        August 1, 2018 | 22:21
+    
+</h2>
+
+
+
+<h1 class="title">hibernate的一级缓存与二级缓存</h1>
+
+<div class="content">
+
+    
+    <h1 id="hibernate的一级缓存与二级缓存">hibernate的一级缓存与二级缓存</h1>
+<h1 id="什么是缓存">什么是缓存</h1>
+<p>缓存是介于物理数据源与应用程序之间，是对数据库中的数据复制一份临时放在内存中的容器，其作用是为了减少应用程序对物理数据源访问的次数，从而提高了应用程序的运行性能。Hibernate 在进行读取数据的时候，根据缓存机制在相应的缓存中查询，如果在缓存中找到了需要的数据 (我们把这称做 “缓存命中 &ldquo;)，则就直接把命中的数据作为结果加以利用，避免了大量发送 SQL 语句到数据库查询的性能损耗。</p>
+<p>缓存策略提供商： 提供了 HashTable 缓存，EHCache，OSCache，SwarmCache，jBoss Cathe2，这些缓存机制，其中 EHCache，OSCache 是不能用于集群环境（Cluster Safe）的，而 SwarmCache，jBoss Cathe2 是可以的。HashTable 缓存主要是用来测试的，只能把对象放在内存中，EHCache，OSCache 可以把对象放在内存（memory）中，也可以把对象放在硬盘（disk）上（为什么放到硬盘上？上面解释了）。</p>
+<h1 id="一级缓存">一级缓存</h1>
+<h2 id="定义">定义</h2>
+<p>一级缓存是Session 缓存（又称作事务缓存）：Hibernate 内置的，不能卸除。</p>
+<p>缓存范围：缓存只能被当前 Session 对象访问。缓存的生命周期依赖于 Session 的生命周期，当 Session 被关闭后，缓存也就结束生命周期。</p>
+<h2 id="实例">实例</h2>
+<p>Hibernate 一些与一级缓存相关的操作（时间点）：</p>
+<p>数据放入缓存：</p>
+<p>1、save()。当 session 对象调用 save() 方法保存一个对象后，该对象会被放入到 session 的缓存中。</p>
+<p>2、get() 和 load()。当 session 对象调用 get() 或 load() 方法从数据库取出一个对象后，该对象也会被放入到 session 的缓存中。</p>
+<p>3、使用 HQL 和 QBC 等从数据库中查询数据。</p>
+<p>使用 get() 或 load() 证明缓存的存在：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Client</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+        Session session <span style="color:#f92672">=</span> HibernateUtil<span style="color:#f92672">.</span><span style="color:#a6e22e">getSessionFactory</span><span style="color:#f92672">().</span><span style="color:#a6e22e">openSession</span><span style="color:#f92672">();</span>
+
+        Transaction tx <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+
+            <span style="color:#75715e">/* 开启一个事务 */</span>
+
+            tx <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span><span style="color:#a6e22e">beginTransaction</span><span style="color:#f92672">();</span>
+
+            <span style="color:#75715e">/* 从数据库中获取 的 Customer 对象 */</span>
+
+            Customer customer1 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Customer<span style="color:#f92672">)</span> session<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>Customer<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;402881e534fa5a440134fa5a45340002&#34;</span><span style="color:#f92672">);</span>
+
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;customer.getUsername is&#34;</span> <span style="color:#f92672">+</span> customer1<span style="color:#f92672">.</span><span style="color:#a6e22e">getUsername</span><span style="color:#f92672">());</span>
+
+            <span style="color:#75715e">/* 事务提交 */</span>
+
+            tx<span style="color:#f92672">.</span><span style="color:#a6e22e">commit</span><span style="color:#f92672">();</span>
+
+
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-------------------------------------&#34;</span><span style="color:#f92672">);</span>
+
+
+            <span style="color:#75715e">/* 开启一个新事务 */</span>
+
+            tx <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span><span style="color:#a6e22e">beginTransaction</span><span style="color:#f92672">();</span>
+
+            <span style="color:#75715e">/* 从数据库中获取 的 Customer 对象 */</span>
+
+            Customer customer2 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Customer<span style="color:#f92672">)</span> session<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>Customer<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;402881e534fa5a440134fa5a45340002&#34;</span><span style="color:#f92672">);</span>
+
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;customer2.getUsername is&#34;</span> <span style="color:#f92672">+</span> customer2<span style="color:#f92672">.</span><span style="color:#a6e22e">getUsername</span><span style="color:#f92672">());</span>
+
+            <span style="color:#75715e">/* 事务提交 */</span>
+
+            tx<span style="color:#f92672">.</span><span style="color:#a6e22e">commit</span><span style="color:#f92672">();</span>
+
+
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;-------------------------------------&#34;</span><span style="color:#f92672">);</span>
+
+
+            <span style="color:#75715e">/* 比较两个 get() 方法获取的对象是否是同一个对象 */</span>
+
+            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;customer1 == customer2 result is&#34;</span> <span style="color:#f92672">+</span> <span style="color:#f92672">(</span>customer1 <span style="color:#f92672">==</span> customer2<span style="color:#f92672">));</span>
+
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>tx <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+
+                tx<span style="color:#f92672">.</span><span style="color:#a6e22e">rollback</span><span style="color:#f92672">();</span>
+
+            <span style="color:#f92672">}</span>
+
+        <span style="color:#f92672">}</span> <span style="color:#66d9ef">finally</span> <span style="color:#f92672">{</span>
+
+            session<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+
+        <span style="color:#f92672">}</span>
+
+    <span style="color:#f92672">}</span>
+
+<span style="color:#f92672">}</span>
+</code></pre></div><p>输出结果</p>
+<pre><code>Hibernate:
+
+    select
+
+        customer0_.id as id0_0_,
+
+        customer0_.username as username0_0_,
+
+        customer0_.balance as balance0_0_
+
+    from
+
+        customer customer0_
+
+    where
+
+        customer0_.id=?
+
+customer.getUsername islisi
+
+-------------------------------------
+
+customer2.getUsername islisi
+
+-------------------------------------
+
+customer1 == customer2 result is true
+</code></pre><blockquote>
+<p>数据从缓存中清除：</p>
+<ol>
+<li>
+<p>evit() 将指定的持久化对象从缓存中清除，释放对象所占用的内存资源，指定对象从持久化状态变为脱管状态，从而成为游离对象。</p>
+</li>
+<li>
+<p>clear() 将缓存中的所有持久化对象清除，释放其占用的内存资源。</p>
+</li>
+</ol>
+<p>其他缓存操作：</p>
+<ol>
+<li>
+<p>contains() 判断指定的对象是否存在于缓存中。</p>
+</li>
+<li>
+<p>flush() 刷新缓存区的内容，使之与数据库数据保持同步。</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="原理">原理</h2>
+<p>在同一个 Session 里面，第一次调用 get() 方法， Hibernate 先检索缓存中是否有该查找对象，发现没有，Hibernate 发送 SELECT 语句到数据库中取出相应的对象，然后将该对象放入缓存中，以便下次使用，第二次调用 get() 方法，Hibernate 先检索缓存中是否有该查找对象，发现正好有该查找对象，就从缓存中取出来，不再去数据库中检索，没有再次发送 select 语句。</p>
+<h1 id="二级缓存">二级缓存</h1>
+<h2 id="定义-1">定义</h2>
+<p>SessionFactory 缓存（又称作应用缓存）：可以跨越 Session 存在，可以被多个 Session 所共享。使用第三方插件，可插拔。</p>
+<p>缓存范围：缓存被应用范围内的所有 session 共享, 不同的 Session 可以共享。这些 session 有可能是并发访问缓存，因此必须对缓存进行更新。缓存的生命周期依赖于应用的生命周期，应用结束时，缓存也就结束了生命周期，二级缓存存在于应用程序范围。</p>
+<h2 id="为什么使用二级缓存">为什么使用二级缓存</h2>
+<p>当我们重启一个 Session，第二次调用 load 或者 get 方法检索同一个对象的时候会重新查找数据库，会发 select 语句信息。</p>
+<p>原因：一个 session 不能取另一个 session 中的缓存。</p>
+<p>性能上的问题：假如是多线程同时去取 Category 这个对象，load 一个对象，这个对像本来可以放到内存中的，可是由于是多线程，是分布在不同的 session 当中的，所以每次都要从数据库中取，这样会带来查询性能较低的问题。</p>
+<h3 id="适合使用二级缓存的场景">适合使用二级缓存的场景</h3>
+<p>（1）经常被访问</p>
+<p>（2）改动不大</p>
+<p>（3）数量有限</p>
+<p>（4）不是很重要的数据，允许出现偶尔并发的数据。</p>
+<p>例如：</p>
+<p>用户的权限：用户的数量不大，权限不多，不会经常被改动，经常被访问。</p>
+<p>组织机构。</p>
+<h2 id="原理-1">原理</h2>
+<p>Hibernate 如何将数据库中的数据放入到二级缓存中？注意，你可以把缓存看做是一个 Map 对象，它的 Key 用于存储对象 OID，Value 用于存储 POJO。首先，当我们使用 Hibernate 从数据库中查询出数据，获取检索的数据后，Hibernate 将检索出来的对象的 OID 放入缓存中 key 中，然后将具体的 POJO 放入 value 中，等待下一次再次向数据查询数据时，Hibernate 根据你提供的 OID 先检索一级缓存，若有且配置了二级缓存，则检索二级缓存，如果还没有则才向数据库发送 SQL 语句，然后将查询出来的对象放入缓存中。</p>
+<h2 id="实例-1">实例</h2>
+<p>为 Hibernate 配置二级缓存：</p>
+<p>1、在主配置文件中 hibernate.cfg.xml ：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;cache.use_second_level_cache&#34;</span><span style="color:#f92672">&gt;</span>true<span style="color:#f92672">&lt;/property&gt;</span>
+ <span style="color:#75715e">&lt;!-- 设置缓存的类型，设置缓存的提供商 --&gt;</span>
+<span style="color:#f92672">&lt;property</span>
+  <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;cache.provider_class&#34;</span><span style="color:#f92672">&gt;</span>org.hibernate.cache.EhCacheProvider
+<span style="color:#960050;background-color:#1e0010">&lt;</span>/property
+</code></pre></div><p>2、配置 ehcache.xml</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;ehcache&gt;</span>
+    <span style="color:#75715e">&lt;!--缓存到硬盘的路径--&gt;</span>
+    <span style="color:#f92672">&lt;diskStore</span> <span style="color:#a6e22e">path=</span><span style="color:#e6db74">&#34;d:/ehcache&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;defaultCache</span>
+        <span style="color:#a6e22e">maxElementsInMemory=</span><span style="color:#e6db74">&#34;200&#34;</span><span style="color:#960050;background-color:#1e0010">&lt;!--</span> <span style="color:#960050;background-color:#1e0010">最多缓存多少个对象</span> <span style="color:#960050;background-color:#1e0010">--</span><span style="color:#f92672">&gt;</span>
+        eternal=&#34;false&#34;<span style="color:#75715e">&lt;!-- 内存中的对象是否永远不变 --&gt;</span>
+        timeToIdleSeconds=&#34;50&#34;<span style="color:#75715e">&lt;!-- 发呆了多长时间，没有人访问它，这么长时间清除 --&gt;</span>
+        timeToLiveSeconds=&#34;60&#34;<span style="color:#75715e">&lt;!-- 活了多长时间，活了 1200 秒后就可以拿走，一般 Live 要比 Idle 设置的时间长 --&gt;</span>
+        overflowToDisk=&#34;true&#34;<span style="color:#75715e">&lt;!-- 内存中溢出就放到硬盘上 --&gt;</span>
+        /&gt;
+
+    <span style="color:#75715e">&lt;!--
+</span><span style="color:#75715e">        指定缓存的对象，缓存哪一个实体类
+</span><span style="color:#75715e">        下面出现的的属性覆盖上面出现的，没出现的继承上面的。
+</span><span style="color:#75715e">    --&gt;</span>
+    <span style="color:#f92672">&lt;cache</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;com.suxiaolei.hibernate.pojos.Order&#34;</span>
+        <span style="color:#a6e22e">maxElementsInMemory=</span><span style="color:#e6db74">&#34;200&#34;</span>
+        <span style="color:#a6e22e">eternal=</span><span style="color:#e6db74">&#34;true&#34;</span>
+        <span style="color:#a6e22e">timeToIdleSeconds=</span><span style="color:#e6db74">&#34;0&#34;</span>
+        <span style="color:#a6e22e">timeToLiveSeconds=</span><span style="color:#e6db74">&#34;0&#34;</span>
+        <span style="color:#a6e22e">overflowToDisk=</span><span style="color:#e6db74">&#34;false&#34;</span>
+        <span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/ehcache&gt;</span>
+</code></pre></div>
+
+    
+    
+        <div class="related">
+
+
+<h3>Similar articles</h3>
+
+<ul>
+	
+	<li><a href="/note/java/javaweb/hibernate/hibernate%E7%AC%94%E8%AE%B0/">Hibernate笔记</a></li>
+	
+	<li><a href="/note/java/javaweb/hibernate/hibernate%E5%9F%BA%E7%A1%80/">什么是hibernate</a></li>
+	
+</ul>
+
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

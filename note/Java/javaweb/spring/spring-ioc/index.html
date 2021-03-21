@@ -1,0 +1,486 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+               
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+</div>
+
+
+
+
+
+<h1 class="title"></h1>
+
+<div class="content">
+
+    
+    <h1 id="spring-ioc">Spring IOC</h1>
+<h2 id="什么是ioc与di">什么是Ioc与DI</h2>
+<p>IoC—Inversion of Control，即“控制反转”，是一种设计思想。在Java开发中，Ioc意味着将你设计好的对象交给容器控制，而不是传统的在你的对象内部直接控制；
+DI-Dependency Injection，即依赖注入，是组件之间的依赖关系由容器在运行期间决定，即由容器动态的将某个依赖关系注入到组件之中，依赖注入的目的并非为软件系统带来更多功能，而是为了提升组件重用的频率，并为系统搭建一个灵活、可扩展的平台。通过依赖注入机制，我们只需要通过简单的配置，而无需任何代码就可指定目标需要的资源，完成自身的业务逻辑，而不需要关心具体的资源来自何处，由谁实现。</p>
+<h3 id="关于di的理解">关于DI的理解：</h3>
+<ul>
+<li>谁依赖于谁：应用程序依赖于IoC容器</li>
+<li>为什么需要依赖：应用程序需要IoC程序来提供对象需要的外部资源</li>
+<li>谁注入了谁：IoC容器注入应用程序的某个对象，应用程序依赖的对象</li>
+<li>注入了什么：注入了某个对象需要的外部资源。相对IoC而言，依赖注入明确描述了被注入对象依赖IoC容器所配置的依赖对象。</li>
+</ul>
+<h3 id="ioc容器的概念">IoC容器的概念</h3>
+<p>IoC就是具有依赖注入功能的容器，IoC容器负责实例化、定位、配置应用程序中的对象及建立这些对象间的依赖，应用程序无需直接在代码中new相关的对象，应用程序由IoC容器进行组装，在Spring中BeanFactory是Ioc容器的实际代表者，Spring IoC容器通过读取配置文件中的配置元数据，通过元数据对应用中的各个对象进行实例化及装配。</p>
+<h2 id="bean的概念">bean的概念</h2>
+<p>由IoC容器管理的那些组成你应用程序的对象我们就叫它Bean， Bean就是由Spring容器初始化、装配及管理的对象</p>
+<h2 id="spring容器装配bean">Spring容器装配Bean</h2>
+<h3 id="xml方式">xml方式</h3>
+<p>示例xml</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!--声明accountDao对象，交给spring创建--&gt;</span>
+<span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;accountDao&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.dao.impl.AccountDaoImpl&#34;</span><span style="color:#f92672">/&gt;</span>
+<span style="color:#75715e">&lt;!--声明accountService对象，交给spring创建--&gt;</span>
+<span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;accountService&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.service.impl.AccountServiceImpl&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#75715e">&lt;!--注入accountDao对象，需要set方法--&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;accountDao&#34;</span> <span style="color:#a6e22e">ref=</span><span style="color:#e6db74">&#34;accountDao&#34;</span><span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/bean&gt;</span>
+</code></pre></div><p>xml配置文件的方式对bean进行声明和管理，每一个bean标签都代表着需要被创建的对象并通过property标签可以为该类注入其他依赖对象。通过ClassPathXmlApplicationContext去加载spring的配置文件，接着获取想要的实例bean并调用相应方法执行。对于ClassPathXmlApplicationContext默认加载classpath路径下的文件，只需指明对应文件的classpath路径即可。如果存在多个配置文件，则只需分别传递即可，ClassPathXmlApplicationContext是一个可以接收可变参数的构造函数。实际上ClassPathXmlApplicationContext还有一个孪生兄弟FileSystemXmlApplicationContext，它默认为项目工作路径 即项目的根目录。</p>
+<h4 id="setter注入方式">setter注入方式</h4>
+<p>Setter注入被注入的属性要有Set方法，通过调用Bean类的setter方法进行注入依赖，<!-- raw HTML omitted -->Setter注入是在bean实例创建完成后执行的<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->1. 通过set注入对象，对象注入使用ref<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!--声明accountDao对象，交给spring创建--&gt;</span>
+<span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;accountDao&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.dao.impl.AccountDaoImpl&#34;</span><span style="color:#f92672">/&gt;</span>
+<span style="color:#75715e">&lt;!--声明accountService对象，交给spring创建--&gt;</span>
+<span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;accountService&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.service.impl.AccountServiceImpl&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#75715e">&lt;!--注入accountDao对象，需要set方法--&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;accountDao&#34;</span> <span style="color:#a6e22e">ref=</span><span style="color:#e6db74">&#34;accountDao&#34;</span><span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/bean&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted -->2. 通过Set注入简单值和map、set、list、数组<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;account&#34;</span> <span style="color:#a6e22e">scope=</span><span style="color:#e6db74">&#34;prototype&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.pojo.Account&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;name&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;i am springIoc&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;pwd&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;123&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;books&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;map&gt;</span>
+            <span style="color:#f92672">&lt;entry</span> <span style="color:#a6e22e">key=</span><span style="color:#e6db74">&#34;10&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;java&#34;</span><span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;entry</span> <span style="color:#a6e22e">key=</span><span style="color:#e6db74">&#34;11&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;java1&#34;</span><span style="color:#f92672">/&gt;</span>
+            <span style="color:#f92672">&lt;entry</span> <span style="color:#a6e22e">key=</span><span style="color:#e6db74">&#34;12&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;java2&#34;</span><span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&lt;/map&gt;</span>
+    <span style="color:#f92672">&lt;/property&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;friends&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;set&gt;</span>
+            <span style="color:#f92672">&lt;value&gt;</span>tom<span style="color:#f92672">&lt;/value&gt;</span>
+            <span style="color:#f92672">&lt;value&gt;</span>jerry<span style="color:#f92672">&lt;/value&gt;</span>
+            <span style="color:#f92672">&lt;value&gt;</span>jack<span style="color:#f92672">&lt;/value&gt;</span>
+        <span style="color:#f92672">&lt;/set&gt;</span>
+    <span style="color:#f92672">&lt;/property&gt;</span>
+    <span style="color:#f92672">&lt;property</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;citys&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;list&gt;</span>
+            <span style="color:#f92672">&lt;value&gt;</span>shanghai<span style="color:#f92672">&lt;/value&gt;</span>
+            <span style="color:#f92672">&lt;value&gt;</span>zhengzhou<span style="color:#f92672">&lt;/value&gt;</span>
+            <span style="color:#f92672">&lt;value&gt;</span>kunming<span style="color:#f92672">&lt;/value&gt;</span>
+        <span style="color:#f92672">&lt;/list&gt;</span>
+    <span style="color:#f92672">&lt;/property&gt;</span>
+<span style="color:#f92672">&lt;/bean&gt;</span>
+</code></pre></div><h4 id="构造函数注入">构造函数注入</h4>
+<p><!-- raw HTML omitted -->构造注入也就是通过构造方法注入依赖，构造函数的参数一般情况下就是依赖项，spring容器会根据bean中指定的构造函数参数来决定调用那个构造函数<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccountServiceImpl</span> <span style="color:#66d9ef">implements</span> AccountService <span style="color:#f92672">{</span>
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 需要注入的对象
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">private</span> AccountDao accountDao<span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setAccountDao</span><span style="color:#f92672">(</span>AccountDao accountDao<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">accountDao</span> <span style="color:#f92672">=</span> accountDao<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#75715e">/**
+</span><span style="color:#75715e">     * 构造注入
+</span><span style="color:#75715e">     */</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">AccountServiceImpl</span><span style="color:#f92672">(</span>AccountDao accountDao<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">accountDao</span><span style="color:#f92672">=</span>accountDao<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+</code></pre></div><p>xml配置</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!--声明accountDao对象，交给spring创建--&gt;</span>
+<span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;accountDao&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.dao.impl.AccountDaoImpl&#34;</span><span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;accountService&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.service.impl.AccountServiceImpl&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#75715e">&lt;!--构造方法注入accountDao对象--&gt;</span>
+    <span style="color:#f92672">&lt;constructor-arg</span> <span style="color:#a6e22e">ref=</span><span style="color:#e6db74">&#34;accountDao&#34;</span><span style="color:#f92672">&gt;&lt;/constructor-arg&gt;</span>
+<span style="color:#f92672">&lt;/bean&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted -->和setter注入一样，构造注入也可传入简单值类型和集合类型，需要注意的是，当一个bean定义中有多个＜constructor-arg＞标签时，它们的放置顺序并不重要，因为Spring容器会通过传入的依赖参数与类中的构造函数的参数进行比较，尝试找到合适的构造函数<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->在某些情况下可能会出现问题，如下的User类，带有两个构造函数，参数类型和个数都是一样的，只是顺序不同，这在class的定义中是允许的，但对于Spring容器来说却是有问题的。<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">private</span> String name<span style="color:#f92672">;</span>
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">;</span>
+
+    <span style="color:#75715e">//第一个构造函数
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(</span>String name <span style="color:#f92672">,</span> <span style="color:#66d9ef">int</span> age<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">=</span>name<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span><span style="color:#f92672">=</span>age<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">//第二个构造函数
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">User</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> age<span style="color:#f92672">,</span>String name<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">name</span><span style="color:#f92672">=</span>name<span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">age</span><span style="color:#f92672">=</span>age<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>当程序运行时，Spring容器会尝试查找适合的User构造函数进而创建User对象，由于＜constructor-arg＞的注入顺序并不重要，从而导致不知该使用两种构造函数中的哪种，这时user实例将创建失败，Spring容器也将启动失败。想要解决这个问题，只要给Spring容器一点点提示，它便能成功找到适合的构造函数从而创建user实例，在＜constructor-arg＞标签中存在一个index的属性，通过index属性可以告诉spring容器传递的依赖参数的顺序，下面的配置将会令Spring容器成功找到第一个构造函数并调用创建user实例。
+<!-- raw HTML omitted -->根据参数索引注入<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;user&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.pojo.User&#34;</span> <span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;constructor-arg</span> <span style="color:#a6e22e">index=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;Jack&#34;</span><span style="color:#f92672">/&gt;</span>
+    <span style="color:#f92672">&lt;constructor-arg</span> <span style="color:#a6e22e">index=</span><span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#a6e22e">value=</span><span style="color:#e6db74">&#34;26&#34;</span><span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;/bean&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted -->除此之外，还有根据参数类型注入和参数名字注入<!-- raw HTML omitted --></p>
+<h4 id="循环依赖注入的情况">循环依赖注入的情况</h4>
+<p><!-- raw HTML omitted -->这是由于A被创建时，希望B被注入到自身，然而，此时B还有没有被创建，而且B也依赖于A，这样将导致Spring容器左右为难，无法满足两方需求，最后脑袋奔溃，抛出异常。解决这种困境的方式是使用Setter依赖，但还是会造成一些不必要的困扰，因此，不建议在配置文件中使用循环依赖。<!-- raw HTML omitted --></p>
+<h3 id="自动装配">自动装配</h3>
+<p><!-- raw HTML omitted -->除了上述手动注入的情况，Spring还非常智能地为我们提供自动向Bean注入依赖的功能，这个过程一般被称为自动装配（autowiring）。当注入的bean特别多时，它将极大地节省编写注入程序的时间，因此在开发中，非常常见。Spring的自动装配有三种模式：byTpye(根据类型)，byName(根据名称)、constructor(根据构造函数)。<!-- raw HTML omitted --></p>
+<h4 id="基于xml的自动装配">基于xml的自动装配</h4>
+<p><strong><!-- raw HTML omitted -->byTpye(根据类型)<!-- raw HTML omitted --></strong>
+<!-- raw HTML omitted -->在byTpye模式中，Spring容器会基于反射查看bean定义的类，然后找到与依赖类型相同的bean注入到另外的bean中，这个过程需要借助setter注入来完成，因此必须存在set方法，否则注入失败<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//dao层
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserDaoImpl</span> <span style="color:#66d9ef">implements</span> UserDao <span style="color:#f92672">{</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">done</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;UserDaoImpl.invoke......&#34;</span><span style="color:#f92672">);</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+<span style="color:#75715e">//service层
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserServiceImpl</span> <span style="color:#66d9ef">implements</span> UserService<span style="color:#f92672">{</span>
+    <span style="color:#75715e">//需要注入的依赖
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> UserDao userDao<span style="color:#f92672">;</span>
+    <span style="color:#75715e">//set方法
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUserDao</span><span style="color:#f92672">(</span>UserDao userDao<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userDao</span> <span style="color:#f92672">=</span> userDao<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">done</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        userDao<span style="color:#f92672">.</span><span style="color:#a6e22e">done</span><span style="color:#f92672">();</span>
+
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>xml配置</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;userDao&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.dao.impl.UserDaoImpl&#34;</span><span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;userService&#34;</span> <span style="color:#a6e22e">autowire=</span><span style="color:#e6db74">&#34;byType&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.service.impl.UserServiceImpl&#34;</span><span style="color:#f92672">/&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted -->事实上byType模式可能存一种注入失败的情况，由于是基于类型的注入，因此当xml文件中存在多个相同类型名称不同的实例Bean时，Spring容器依赖注入仍然会失败，因为存在多种适合的选项，Spring容器无法知道该注入那种，此时我们需要为Spring容器提供帮助，指定注入那个Bean实例。可以通过＜bean＞标签的autowire-candidate设置为false来过滤那些不需要注入的实例Bean<!-- raw HTML omitted -->
+<strong><!-- raw HTML omitted -->Byname模式<!-- raw HTML omitted --></strong>
+byName模式的自动装配，此时Spring只会尝试将属性名与bean名称进行匹配，如果找到则注入依赖bean。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;userDao&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.dao.impl.UserDaoImpl&#34;</span><span style="color:#f92672">/&gt;</span>
+<span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;userDao2&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.dao.impl.UserDaoImpl&#34;</span><span style="color:#f92672">/&gt;</span>
+<span style="color:#75715e">&lt;!--根据姓名装配，找到UserServiceImpl名为 userDao属性并注入--&gt;</span>
+<span style="color:#f92672">&lt;bean</span> <span style="color:#a6e22e">id=</span><span style="color:#e6db74">&#34;userService&#34;</span> <span style="color:#a6e22e">autowire=</span><span style="color:#e6db74">&#34;byName&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;com.springIoc.service.impl.UserServiceImpl&#34;</span><span style="color:#f92672">/&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted -->需要了解的是如果Spring容器中没有找到可以注入的实例bean时，将不会向依赖属性值注入任何bean，这时依赖bean的属性可能为null，因此我们需要小心处理这种情况，避免不必要的奔溃。<!-- raw HTML omitted -->
+<strong><!-- raw HTML omitted -->constructor模式<!-- raw HTML omitted --></strong>
+<!-- raw HTML omitted -->在该模式下Spring容器同样会尝试找到那些类型与构造函数相同匹配的bean然后注入<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserServiceImpl</span> <span style="color:#66d9ef">implements</span> UserService<span style="color:#f92672">{</span>
+    <span style="color:#75715e">//需要注入的依赖
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> UserDao userDao<span style="color:#f92672">;</span>
+    <span style="color:#75715e">//constructor模式
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">UserServiceImpl</span><span style="color:#f92672">(</span>UserDao userDao<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userDao</span><span style="color:#f92672">=</span>userDao<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">done</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        userDao<span style="color:#f92672">.</span><span style="color:#a6e22e">done</span><span style="color:#f92672">();</span>
+
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p>xml</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">&lt;bean id=&#34;userDao&#34; class=&#34;com.springIoc.dao.impl.UserDaoImpl&#34;/&gt;
+&lt;!--根据构造器装配，找到UserServiceImpl名为 userDao属性并注入--&gt;
+&lt;bean id=&#34;userService&#34; autowire=&#34;constructor&#34; class=&#34;com.springIoc.service.impl.UserServiceImpl&#34;/&gt;
+</code></pre></div><p><strong>注意：</strong><!-- raw HTML omitted -->在constructor模式下，存在单个实例则优先按类型进行参数匹配（无论名称是否匹配），当存在多个类型相同实例时，按名称优先匹配，如果没有找到对应名称，则注入失败，此时可以使用autowire-candidate=”false” 过滤来解决。<!-- raw HTML omitted --></p>
+<h4 id="基于注解的自动装配">基于注解的自动装配</h4>
+<p><strong>基于@Autowired的自动装配</strong>
+<!-- raw HTML omitted -->Spring 2.5 中引入了 @Autowired 注释，它可以对类成员变量、方法及构造函数进行标注，完成自动装配的工作。 通过@Autowired的使用标注到成员变量时不需要有set方法，@Autowired 默认按类型匹配的，使用注解前必须先注册注解驱动，这样注解才能被正确识别<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserServiceImpl</span> <span style="color:#66d9ef">implements</span> UserService<span style="color:#f92672">{</span>
+    <span style="color:#75715e">//需要注入的依赖
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Autowired</span>
+<span style="color:#75715e">//    标识成员变量
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> UserDao userDao<span style="color:#f92672">;</span>
+    <span style="color:#75715e">//constructor模式
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Autowired</span>
+    <span style="color:#75715e">//标识构造方法
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">UserServiceImpl</span><span style="color:#f92672">(</span>UserDao userDao<span style="color:#f92672">){</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userDao</span><span style="color:#f92672">=</span>userDao<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#75715e">//set方法
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Autowired</span>
+    <span style="color:#75715e">//标识set方法
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUserDao</span><span style="color:#f92672">(</span>UserDao userDao<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userDao</span> <span style="color:#f92672">=</span> userDao<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">done</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+        userDao<span style="color:#f92672">.</span><span style="color:#a6e22e">done</span><span style="color:#f92672">();</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><p><!-- raw HTML omitted -->上述代码我们通过3种方式注入userDao实例，xml配置文件只需声明bean的实例即可，在实际开发中，我们只需选择其中一种进行注入操作即可，建议使用成员变量注入，这样可以省略set方法和构造方法，相当简洁。<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->在@Autowired中还传递了一个required=false的属性，false指明当userDao实例存在就注入不存就忽略，如果为true，就必须注入，若userDao实例不存在，就抛出异常。由于默认情况下@Autowired是按类型匹配的(byType)，如果需要按名称(byName)匹配的话，可以使用@Qualifier注解与@Autowired结合<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserServiceImpl</span> <span style="color:#66d9ef">implements</span> UserService<span style="color:#f92672">{</span>
+    <span style="color:#75715e">//需要注入的依赖
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Autowired</span>
+    <span style="color:#a6e22e">@Qualifier</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;userDao1&#34;</span><span style="color:#f92672">)</span> 
+ <span style="color:#f92672">}</span>
+</code></pre></div><p><!-- raw HTML omitted -->与@Autowried具备相同功效的还有@Resource，默认按 byName模式 自动注入,由J2EE提供，需导入Package: javax.annotation.Resource，可以标注在成员变量和set方法上，但无法标注构造函数。@Resource有两个中重要的属性：name和type。Spring容器对于@Resource注解的name属性解析为bean的名字，type属性则解析为bean的类型。因此使用name属性，则按byName模式的自动注入策略，如果使用type属性则按 byType模式自动注入策略。倘若既不指定name也不指定type属性，Spring容器将通过反射技术默认按byName模式注入。<!-- raw HTML omitted --></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserServiceImpl</span> <span style="color:#66d9ef">implements</span> UserService<span style="color:#f92672">{</span>
+    <span style="color:#75715e">//需要注入的依赖
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Autowired</span>
+    <span style="color:#a6e22e">@Qualifier</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;userDao&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#75715e">//    标识成员变量
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//上述代码等价与@Resource
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Resource</span><span style="color:#f92672">(</span>name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;userDao&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#66d9ef">private</span> UserDao userDao<span style="color:#f92672">;</span>
+    <span style="color:#75715e">//set方法
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Autowired</span>
+    <span style="color:#75715e">//标识set方法
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">@Resource</span><span style="color:#f92672">(</span>name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;userDao&#34;</span><span style="color:#f92672">)</span>
+    <span style="color:#75715e">//也可以用于标识set方法
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setUserDao</span><span style="color:#f92672">(</span>UserDao userDao<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">userDao</span> <span style="color:#f92672">=</span> userDao<span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#960050;background-color:#1e0010">｝</span>
+</code></pre></div><p><strong>基于@Value注解的自动装配以及properties文件读取</strong>
+上述两种自动装配的依赖注入并不适合简单值类型，如int、boolean、long、String以及Enum等，对于这些类型，Spring容器也提供了@Value注入的方式，可以解决很多硬编码问题。@Value接收一个String的值，该值指定了将要被注入到内置的java类型属性值，大多数情况下Spring容器都会自动处理好类型转换。一般情况下@Value会与properties文件结合使用，也分两种情况一种是SpEL（有点类似于jsp的EL），另外一种是占位符方式，一个简单例子jdbc.properties文件如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">jdbc<span style="color:#f92672">.</span><span style="color:#a6e22e">driver</span><span style="color:#f92672">=</span>com<span style="color:#f92672">.</span><span style="color:#a6e22e">mysql</span><span style="color:#f92672">.</span><span style="color:#a6e22e">jdbc</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Driver</span>
+jdbc<span style="color:#f92672">.</span><span style="color:#a6e22e">url</span><span style="color:#f92672">=</span>jdbc<span style="color:#f92672">:</span>mysql<span style="color:#f92672">:</span><span style="color:#75715e">//127.0.0.1:3306/test?characterEncoding=UTF-8&amp;allowMultiQueries=true
+</span><span style="color:#75715e"></span>jdbc<span style="color:#f92672">.</span><span style="color:#a6e22e">username</span><span style="color:#f92672">=</span>root
+jdbc<span style="color:#f92672">.</span><span style="color:#a6e22e">password</span><span style="color:#f92672">=</span>root
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-plain" data-lang="plain">public class UserServiceImpl implements UserService {
+    //标注成员变量
+    @Autowired
+    @Qualifier(&#34;userDao&#34;)
+    private UserDao userDao;
+    //占位符方式
+    @Value(&#34;${jdbc.url}&#34;)
+    private String url;
+    //SpEL表达方式，其中代表xml配置文件中的id值configProperties
+    @Value(&#34;#{configProperties[&#39;jdbc.username&#39;]}&#34;)
+    private String userName;
+    @Override
+    public void done(){
+        System.out.println(&#34;url:&#34;+url);
+        System.out.println(&#34;username:&#34;+userName);
+        userDao.done();
+    }
+}
+
+</code></pre></div><h2 id="bean的命名">bean的命名</h2>
+<ol>
+<li>不指定id，只配置必须的全限定类名，由IoC容器为其生成一个标识，客户端必须通过接口“TgetBean(Class<!-- raw HTML omitted --> requiredType)”获取Bean；</li>
+<li>指定id，必须在Ioc容器中唯一</li>
+<li>指定name，这样name就是“标识符”，必须在Ioc容器中唯一</li>
+<li>指定id和name，id就是标识符，而name就是别名，必须在Ioc容器中唯一；</li>
+<li>指定多个name，多个name用“，”、“；”、“ ”分割，第一个被用作标识符，其他的（alias1、alias2、
+alias3）是别名，所有标识符也必须在Ioc容器中唯一</li>
+<li>使用<!-- raw HTML omitted -->标签指定别名，别名也必须在IoC容器中唯一</li>
+<li>显然如果我们想要配置的Bean对象已存在，并且希望向一些Bean赋予特别的名称，此时别名就相当有用了。上述的Bean对象声明使用都在xml内声明手动声明的方式，一旦Bean对象多起来，管理Bean可能会发生繁琐的情况，因此Spring提供了基于Java注解的配置方式：</li>
+</ol>
+<h4 id="基于注解的bean的配置方式">基于注解的bean的配置方式</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#75715e">//@Component 相同效果
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">@Service</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccountServiceImpl</span> <span style="color:#66d9ef">implements</span> AccountService <span style="color:#f92672">{</span>
+  <span style="color:#a6e22e">@Autowired</span>
+  <span style="color:#66d9ef">private</span> AccountDao accountDao<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#75715e">//@Component 相同效果
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">@Repository</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccountDaoImpl</span> <span style="color:#66d9ef">implements</span> AccountDao<span style="color:#f92672">{</span>
+<span style="color:#75715e">//......
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+
+</code></pre></div><p>以上的声明方式与之前在xml声明bean的效果相同。这里我们需要明白可以使用@Component注解达到与@Service和@Repository的效果，@Component与@Service的含义并无差异，只不过@Service更能让我们明白该类为业务类罢了。至于@Repository在表示数据访问层含义的同时还能够启用与Spring数据访问相关链的其他功能,同时还可给@Component、@Service和@Repository输入一个String值的名称，如果没有提供名称，那么默认情况下就是一个简单的类名(第一个字符小写)变成Bean名称。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Service</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;accountService&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccountServiceImpl</span> <span style="color:#66d9ef">implements</span> AccountService <span style="color:#f92672">{</span>
+  <span style="color:#a6e22e">@Autowired</span>
+  <span style="color:#66d9ef">private</span> AccountDao accountDao<span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span>
+
+<span style="color:#a6e22e">@Repository</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;accountDao&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AccountDaoImpl</span> <span style="color:#66d9ef">implements</span> AccountDao<span style="color:#f92672">{</span>
+<span style="color:#75715e">//......
+</span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</code></pre></div><p>Spring的框架中提供了与@Component注解等效的三个注解，@Repository 用于对DAO实现类进行标注，@Service用于对Service实现类进行标注</p>
+<h3 id="bean的实例化">bean的实例化</h3>
+<p>默认情况下Spring容器在启动阶段就会创建bean，这个过程被称为预先bean初始化，这样是有好处的，可尽可能早发现配置错误，如配置文件的出现错别字或者某些bean还没有被定义却被注入等。当然如存在大量bean需要初始化，这可能引起spring容器启动缓慢，一些特定的bean可能只是某些场合需要而没必要在spring容器启动阶段就创建，这样的bean可能是Mybatis的SessionFactory或者Hibernate SessionFactory等，延迟加载它们会让Spring容器启动更轻松些，从而也减少没必要的内存消耗。
+＜context:component-scan/＞与＜context:annotation-config/＞
+在基于主机方式配置Spring时,Spring配置文件applicationContext.xml,可见<a href="context:annotation-config/">context:annotation-config/</a>这样一条配置，它的作用是隐式的向Spring容器注册
+因此如果在Spring的配置文件中事先加上<a href="context:annotation-config/">context:annotation-config/</a>这样一条配置的话，那么所有注解的传统声明就可以被 忽略，即不用在写传统的声明，Spring会自动完成声明。
+<a href="context:component-scan/">context:component-scan/</a>的作用是让Bean定义注解工作起来,也就是上述传统声明方式。 它的base-package属性指定了需要扫描的类包，类包及其递归子包中所有的类都会被处理。
+当spring的xml配置文件出了＜context:component-scan/＞后，＜context:annotation-config/＞就可以不使用了，因为＜context:component-scan/＞已包含了＜context:annotation-config/＞的功能了。在大部分情况下，都会直接使用＜context:component-scan/＞进行注解驱动注册和包扫描功能。</p>
+<p><strong>Bean的作用域</strong>
+Bean的作用域是指spring容器创建Bean后的生存周期即由创建到销毁的整个过程。</p>
+<ol>
+<li>Singleton域</li>
+</ol>
+<p>之前我们所创建的所有Bean其作用域都是Singleton，这是Spring默认的，在这样的作用域下，每一个Bean的实例只会被创建一次，而且Spring容器在整个应用程序生存期中都可以使用该实例。因此之前的代码中spring容器创建Bean后，通过代码获取的bean，无论多少次，都是同一个Bean的实例。我们可使用＜bean＞标签的scope属性来指定一个Bean的作用域，如下：</p>
+<!-- raw HTML omitted -->
+<ol start="2">
+<li>Prototype域</li>
+</ol>
+<p>除了Singleton外还有另外一种比较常用的作用域，prototype，它代表每次获取Bean实例时都会新创建一个实例对象，类似new操作符。</p>
+<!-- raw HTML omitted -->
+<ol start="3">
+<li>request域</li>
+</ol>
+<p>request作用域：表示每个请求需要容器创建一个全新Bean。比如提交表单的数据必须是对每次请求新建一个Bean来保持这些表单数据，请求结束释放这些数据。</p>
+<ol start="4">
+<li>session域</li>
+</ol>
+<p>session作用域：表示每个会话需要容器创建一个全新Bean。比如对于每个用户一般会有一个会话，该用户的用户信息需要存储到会话中，此时可以将该Bean配置为web作用域。</p>
+<ol start="5">
+<li>globalSession域</li>
+</ol>
+<p>这种作用域类似于Session作用域，相当于全局变量，类似Servlet的Application，适用基于portlet的web应用程序，portlet在这指的是分布式开发，而不是portlet语言开发。
+<strong>Bean的延迟加载</strong></p>
+<p>在某些情况下，我们可能希望把bean的创建延迟到使用阶段，以免消耗不必要的内存，Spring也支持了延迟bean的初始化。因此可以在配置文件中定义bean的延迟加载，这样Spring容器将会延迟bean的创建直到真正需要时才创建。通常情况下，从一个已创建的bean引用另外一个bean，或者显示查找一个bean时会触发bean的创建即使配置了延迟属性，因此如果Spring容器在启动时创建了那些设为延长加载的bean实例，不必惊讶，可能那些延迟初始化的bean可能被注入到一个非延迟创建且作用域为singleton的bean。在xml文件中使用bean的lazy-init属性可以配置改bean是否延迟加载，如果需要配置整个xml文件的bean都延迟加载则使用defualt-lazy-init属性，但是lazy-init属性会覆盖defualt-lazy-init属性。</p>
+
+
+    
+    
+        <div class="related">
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

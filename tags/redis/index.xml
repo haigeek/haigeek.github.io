@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>redis on Kiss&#39;Em!</title>
+    <link>https://example.com/tags/redis/</link>
+    <description>Recent content in redis on Kiss&#39;Em!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 27 May 2018 22:03:05 +0800</lastBuildDate><atom:link href="https://example.com/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis的数据类型</title>
+      <link>https://example.com/note/database/redis/redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</link>
+      <pubDate>Sun, 27 May 2018 22:03:05 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/redis/redis%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</guid>
+      <description>Redis的数据类型 Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。
+String String是Redis最基本的类型，一个key对应一个value，String可以包含任何数据，例如jpg图片或者序列化的对象，string 类型可以存储最大的数据值是512MB
+127.0.0.1:6379&amp;gt; set name &amp;#34;hello&amp;#34; OK 127.0.0.1:6379&amp;gt; get name &amp;#34;hello&amp;#34; Hash Redis hash 是一个键值(key=&amp;gt;value)对集合，是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象。实例中我们使用了 Redis HMSET, HGET 命令，HMSET 设置了两个 field=&amp;gt;value 对, HGET 获取对应 field 对应的 value。 每个 hash 可以存储 2的32次方减1个键值对（40多亿）。
+127.0.0.1:6379&amp;gt; hmset myhash field1 &amp;#34;hello&amp;#34; field2 &amp;#34;world&amp;#34; OK 127.0.0.1:6379&amp;gt; hget myhash field1 &amp;#34;hello&amp;#34; 127.0.0.1:6379&amp;gt; hget myhash field2 &amp;#34;world&amp;#34; Set Redis的Set是string类型的无序集合。集合是通过哈希表实现的，所以添加，删除，查找的复杂度都是O(1)。 添加数据使用sadd 命令。添加一个 string 元素到 key 对应的 set 集合中，成功返回1，如果元素已经在集合中返回 0，如果 key 对应的 set 不存在则返回错误。</description>
+    </item>
+    
+    <item>
+      <title>redis的安装和配置</title>
+      <link>https://example.com/note/database/redis/redis%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Fri, 27 Apr 2018 22:03:05 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/redis/redis%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</guid>
+      <description>redis的安装和配置  参考 http://www.runoob.com/redis/redis-conf.html
+ 安装 使用homebrew安装
+brew install redis 安装完毕后提示
+To have launchd start redis now and restart at login: brew services start redis Or, if you don&amp;#39;t want/need a background service you can just run: redis-server /usr/local/etc/redis.conf 配置 启动服务端 redis-server 启动客户端 redis-cli 查看配置 # 查看某一项配置 CONFIG GET loglevel # 查看所有配置 CONFIG GET * 修改配置 可以通过修改conf文件或者使用命令进行配置的修改
+CONFIG SET CONFIG_SETTING_NAME NEW_CONFIG_VALUE 配置说明   Redis默认不是以守护进程的方式运行，可以通过该配置项修改，使用yes启用守护进程 daemonize no
+  当Redis以守护进程方式运行时，Redis默认会把pid写入/var/run/redis.pid文件，可以通过pidfile指定 pidfile /var/run/redis.</description>
+    </item>
+    
+    <item>
+      <title>redis-shell</title>
+      <link>https://example.com/note/database/redis/redis%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Wed, 11 Apr 2018 22:03:05 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/redis/redis%E6%8C%87%E4%BB%A4/</guid>
+      <description>redis 指令 启动 # 本地启动 redis-cli ## 远程启动 redis-cli -h host -p port -a password </description>
+    </item>
+    
+  </channel>
+</rss>

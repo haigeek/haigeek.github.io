@@ -1,0 +1,247 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+               
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+</div>
+
+
+
+
+
+<h1 class="title"></h1>
+
+<div class="content">
+
+    
+    <h1 id="jvm常用命令">JVM常用命令</h1>
+<p>jvm区域总体分两类，heap区和非heap区。heap区又分：Eden Space（伊甸园）、Survivor Space(幸存者区)、Tenured Gen（老年代-养老区）。 非heap区又分：Code Cache(代码缓存区)、Perm Gen（永久代）、Jvm Stack(java虚拟机栈)、Local Method Statck(本地方法栈)。</p>
+<ul>
+<li>
+<p>查看所有的的java程序</p>
+<p>jps</p>
+</li>
+<li>
+<p>查看java进程jvn的内存分布情况和占用情况</p>
+<p>jstat -gc pid</p>
+</li>
+</ul>
+<p>S0C: 第一个survivor区的容量（单位是KB）</p>
+<p>S1C：第二个survivor区的容量（单位是KB）</p>
+<p>S0U：第一个survivor区使用的空间（单位KB）</p>
+<p>S1U: 第二个survivor区使用的空间（单位KB）</p>
+<p>EC：年轻代中Eden区的容量（KB）</p>
+<p>EU：年轻代中Eden区使用的空间（单位KB）</p>
+<p>OC：Old代（年老代）的容量（单位KB）</p>
+<p>OU：Old代（年老代）使用的空间（单位KB）</p>
+<p>PC：Perm（持久代）的容量（KB）</p>
+<p>PU：Perm（持久代）使用的空间（KB）</p>
+<p>YGC： 从程序启动到采样时年轻代GC的次数（Young GC次数）</p>
+<p>YGCT：从程序启动到采样时年轻代GC所用的时间（单位s）</p>
+<p>FGC：从程序启动到采样时old代GC（FullGC）的次数，准确的说是产生非YGC产生的STW的次数。</p>
+<p>​     表示非YGC的GC时STW的次数，所以如果发生了CMS GC，这个值+2，如果是Parallel Old GC，则+1，如果是full gc，也是+1 ， 此参数的含义在CMS引入之后定义比较模糊。 FGC&gt;0不一定是产生了FullGC。有可能是CMS GC</p>
+<p>FGCT：从程序启动到采样时old代GC（FullGC）所用的时间（s）</p>
+<p>GCT：从程序启动到采样时GC所用的时间</p>
+<p><strong>jstat -gcutil <!-- raw HTML omitted --></strong></p>
+<p>GC情况统计，可以查看GC情况，最常用的一个功能</p>
+<p>jstat -gcutil <!-- raw HTML omitted --> 1000 10</p>
+<p>每1000ms打印一次 一共打印10次</p>
+<p>S0 年轻代中第一个survivor（幸存区）已使用的占当前容量百分比</p>
+<p>S1 年轻代中第二个survivor（幸存区）已使用的占当前容量百分比</p>
+<p>E 年轻代中Eden（伊甸园）已使用的占当前容量百分比</p>
+<p>O old代已使用的占当前容量百分比</p>
+<p>P perm代已使用的占当前容量百分比</p>
+<p>YGC 从应用程序启动到采样时年轻代中gc次数</p>
+<p>YGCT 从应用程序启动到采样时年轻代中gc所用时间(s)</p>
+<p>FGC 从应用程序启动到采样时old代(全gc)gc次数 （实际为非YGC产生的STW次数）</p>
+<p>FGCT 从应用程序启动到采样时old代(全gc)gc所用时间(s)</p>
+<p>GCT 从应用程序启动到采样时gc用的总时间(s)</p>
+<ul>
+<li>使用java自带的jconsole进行分析</li>
+</ul>
+<p>获取dump文件</p>
+<p>jmap -dump:format=b,file=path pid</p>
+<p>查看主线程下的子线程</p>
+<p>top -hd pid</p>
+<p>查看线程信息</p>
+<p>jsatck 1dc81</p>
+<h2 id="gc日志配置">gc日志配置</h2>
+<p>XX:+PrintGC 输出GC日志
+-XX:+PrintGCDetails 输出GC的详细日志
+-XX:+PrintGCTimeStamps 输出GC的时间戳（以基准时间的形式）
+-XX:+PrintGCDateStamps 输出GC的时间戳（以日期的形式，如 2013-05-04T21:53:59.234+0800）
+-XX:+PrintHeapAtGC 在进行GC的前后打印出堆的信息
+-Xloggc:../logs/gc.log 日志文件的输出路径</p>
+<p>jmap -histo:live</p>
+<p>-Xms：java Heap初始大小， 默认是物理内存的1/64。
+-Xmx：java Heap最大值，不可超过物理内存。
+-Xmn：young generation的heap大小，一般设置为Xmx的3、4分之一 。增大年轻代后，将会减小年老代大小，可以根据监控合理设置。
+-Xss：每个线程的Stack大小，而最佳值应该是128K,默认值好像是512k。
+-XX:PermSize：设定内存的永久保存区初始大小，缺省值为64M。
+-XX:MaxPermSize：设定内存的永久保存区最大大小，缺省值为64M。
+-XX:SurvivorRatio：Eden区与Survivor区的大小比值，设置为8，则两个Survivor区与一个Eden区的比值为2:8，一个Survivor区占整个年轻代的1/10。
+-XX:+UseParallelGC：F年轻代使用并发收集，而年老代仍旧使用串行收集。
+-XX:+UseParNewGC：设置年轻代为并行收集，JDK5.0以上，JVM会根据系统配置自行设置，所无需再设置此值。
+-XX:ParallelGCThreads：并行收集器的线程数，值最好配置与处理器数目相等 同样适用于CMS。
+-XX:+UseParallelOldGC：年老代垃圾收集方式为并行收集(Parallel Compacting)。
+-XX:MaxGCPauseMillis：每次年轻代垃圾回收的最长时间(最大暂停时间)，如果无法满足此时间，JVM会自动调整年轻代大小，以满足此值。
+-XX:+ScavengeBeforeFullGC：Full GC前调用YGC,默认是true。</p>
+<p>实例如：JAVA_OPTS=”-Xms4g -Xmx4g -Xmn1024m -XX:PermSize=320M -XX:MaxPermSize=320m -XX:SurvivorRatio=6″</p>
+
+
+    
+    
+        <div class="related">
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mongo on Kiss&#39;Em!</title>
+    <link>https://example.com/tags/mongo/</link>
+    <description>Recent content in mongo on Kiss&#39;Em!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 28 Dec 2017 21:48:16 +0800</lastBuildDate><atom:link href="https://example.com/tags/mongo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>mongodb基本操作</title>
+      <link>https://example.com/note/database/mongodb/mongodb%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Thu, 28 Dec 2017 21:48:16 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/mongodb/mongodb%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/</guid>
+      <description>mongodb基本操作 数据库与集合 数据库连接 在终端连接mongo
+mongo 192.168.1.110:27017 创建数据库  use DATABASE_NAME 创建数据库，如果数据已经存在，切换到对应的数据库 show dbs显示所有的数据库 db.DATABASE_NAME.insert({&amp;quot;name&amp;quot;:&amp;quot;名称&amp;quot;}) 插入数据，默认的数据库为test  删除数据库  db.dropDatebase() 在执行数据库删除的时候，需要先切换到对于的数据库  创建集合  db.createCollection(name, options) name表示要创建的集合的名称，options表示可选的参数 options参数主要有以下几个参数 capped 布尔型 如果为true，则创建固定集合，并必须制定size参数的大小，当集合达到最大值的时候，会自动覆盖之前的文档 autoIndexId 布尔型 可以自动在_id字段创建索引，默认为false size 数值型 为固定集合指定一个最大值（以字节计）。 max 数值型 指定固定集合中包含文档的最大数量。  删除集合  show collection 查看集合 db.collection.drop() 删除集合  文档操作 MongoDB里的文档数据结构和JSON基本一致，所有存储在集合中的数据称为BSON格式，BSON是一种类json的一种二进制形式的存储格式,简称Binary JSON。
+插入文档  db.COLLECTION_NAME.insert(document) 使用insert()或者save()方法进行插入,在进行插入的时候，假如集合不在数据库中，MongoDB 会自动创建该集合并插入文档。 可以将数据定义为一个变量，再执行插入操作，将该变量插入。  更新文档 update()来进行文档的更新，更新格式如下
+db.collection.update( &amp;lt;query&amp;gt;, &amp;lt;update&amp;gt;, { upsert: &amp;lt;boolean&amp;gt;, multi: &amp;lt;boolean&amp;gt;, writeConcern: &amp;lt;document&amp;gt; } ) 参数说明：</description>
+    </item>
+    
+    <item>
+      <title>mongoDB数据库备份与恢复</title>
+      <link>https://example.com/note/database/mongodb/mongodb%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</link>
+      <pubDate>Thu, 28 Dec 2017 21:48:16 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/mongodb/mongodb%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/</guid>
+      <description>mongoDB数据库备份与恢复 备份
+ mongodump -h 192.168.1.194:17017 -d ims_sheng --gzip --archive=/Users/haigeek/Downloads/test/ims_sheng.gz 恢复
+mongorestore -h 127.0.0.1:27017 --gzip --archive=/Users/haigeek/Downloads/test/ims_sheng.gz --nsFrom &amp;quot;ims_sheng.*&amp;quot; --nsTo &amp;quot;ims_wh.*&amp;quot; --nsInclude &amp;quot;*&amp;quot; </description>
+    </item>
+    
+    <item>
+      <title>mongo常用增删改查</title>
+      <link>https://example.com/note/database/mongodb/mongo%E5%B8%B8%E7%94%A8%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/</link>
+      <pubDate>Thu, 28 Dec 2017 21:48:16 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/mongodb/mongo%E5%B8%B8%E7%94%A8%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/</guid>
+      <description>常用操作对照 db.users.find() select * from users db.users.find({&amp;#34;age&amp;#34; : 27}) select * from users where age = 27 db.users.find({&amp;#34;username&amp;#34; : &amp;#34;joe&amp;#34;, &amp;#34;age&amp;#34; : 27}) select * from users where &amp;#34;username&amp;#34; = &amp;#34;joe&amp;#34; and age = 27 db.users.find({}, {&amp;#34;username&amp;#34; : 1, &amp;#34;email&amp;#34; : 1}) select username, email from users db.users.find({}, {&amp;#34;username&amp;#34; : 1, &amp;#34;_id&amp;#34; : 0}) // no case // 即时加上了列筛选，_id也会返回；必须显式的阻止_id返回 db.users.find({&amp;#34;age&amp;#34; : {&amp;#34;$gte&amp;#34; : 18, &amp;#34;$lte&amp;#34; : 30}}) select * from users where age &amp;gt;=18 and age &amp;lt;= 30 // $lt(&amp;lt;) $lte(&amp;lt;=) $gt(&amp;gt;) $gte(&amp;gt;=) db.</description>
+    </item>
+    
+    <item>
+      <title>mongo开启安全验证</title>
+      <link>https://example.com/note/database/mongodb/mongo%E5%BC%80%E5%90%AF%E5%AE%89%E5%85%A8%E9%AA%8C%E8%AF%81/</link>
+      <pubDate>Thu, 28 Dec 2017 21:48:16 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/mongodb/mongo%E5%BC%80%E5%90%AF%E5%AE%89%E5%85%A8%E9%AA%8C%E8%AF%81/</guid>
+      <description>mongo开启安全验证 开启mongodb安全验证（参考https://docs.mongodb.com/guides/server/auth/）
+xxx代表要设置的密码
+windows   cmd中启动mongodb
+&amp;quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&amp;quot; --dbpath=&amp;quot;C:\MongoDB\data&amp;quot; --logpath=&amp;quot;C:\MongoDB\logs\mongodb.log&amp;quot;   登录客户端mongo.exe,设置用户密码
+  Switch to the admin Database
+use admin   Create the user administrator
+ db.createUser( { user: &amp;quot;mySuperAdmin&amp;quot;, pwd: &amp;quot;xxx&amp;quot;, roles: [ { role: &amp;quot;userAdminAnyDatabase&amp;quot;, db: &amp;quot;admin&amp;quot; } ] } )   Create a user for reading and writing to your test database
+db.createUser( { user: &amp;quot;userReadWrite&amp;quot;, pwd: &amp;quot;xxx&amp;quot;, roles: [ { role: &amp;quot;readWriteAnyDatabase&amp;quot;, db: &amp;quot;admin&amp;quot; } ] } ) db.</description>
+    </item>
+    
+    <item>
+      <title>mongo用户操作</title>
+      <link>https://example.com/note/database/mongodb/mongo%E7%94%A8%E6%88%B7%E6%93%8D%E4%BD%9C/</link>
+      <pubDate>Thu, 28 Dec 2017 21:48:16 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/mongodb/mongo%E7%94%A8%E6%88%B7%E6%93%8D%E4%BD%9C/</guid>
+      <description>Mongo用户操作 新建管理员用户
+use admin db.createUser( { user: &amp;quot;adminuser&amp;quot;, pwd: &amp;quot;passw0rd&amp;quot;, roles: [ { role: &amp;quot;userAdminAnyDatabase&amp;quot;, db: &amp;quot;admin&amp;quot; } ] } ) db.auth(&#39;adminuser&#39;,&#39;passw0rd&#39;)  新建普通用户
+db.createUser( { user: &amp;quot;xxx&amp;quot;, pwd: &amp;quot;xxx&amp;quot;, roles: [ { role: &amp;quot;dbOwner&amp;quot;, db: &amp;quot;ims_jxsj&amp;quot; } ] } ) 查看所有用户
+db.system.users.find().pretty() 删除用户
+ db.dropUser(&#39;userims_jxsj&#39;) </description>
+    </item>
+    
+    <item>
+      <title>mongo的视图操作</title>
+      <link>https://example.com/note/database/mongodb/mongo%E7%9A%84%E8%A7%86%E5%9B%BE/</link>
+      <pubDate>Thu, 28 Dec 2017 21:48:16 +0800</pubDate>
+      
+      <guid>https://example.com/note/database/mongodb/mongo%E7%9A%84%E8%A7%86%E5%9B%BE/</guid>
+      <description>在mongo中可以创建视图
+视图是只读的
+ db.createView(&amp;quot;dus_apply_view&amp;quot;,&amp;quot;dus_apply&amp;quot;, [	{ $lookup:{from:&amp;quot;dus_proxy&amp;quot;,localField:&amp;quot;serviceId&amp;quot;,foreignField:&amp;quot;_id&amp;quot;,as:&amp;quot;embedProxy&amp;quot;} }, { $project:{&amp;quot;embedProxy._id&amp;quot;:0} // 设置不需要哪些字段 }, { $addFields: { &amp;quot;_id&amp;quot;: { &amp;quot;$toString&amp;quot;: &amp;quot;$_id&amp;quot; } } }, { $lookup:{from:&amp;quot;dus_apply_log&amp;quot;,localField:&amp;quot;_id&amp;quot;,foreignField:&amp;quot;applyId&amp;quot;,as:&amp;quot;embedApplyLog&amp;quot;} }, { $project:{&amp;quot;embedApplyLog._id&amp;quot;:0} // 设置不需要哪些字段 } ] ) 参数说明：
+dus_apply_view：要创建的视图的名称</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,254 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+               
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+</div>
+
+
+
+
+
+<h1 class="title"></h1>
+
+<div class="content">
+
+    
+    <h1 id="docker容器的操作">docker容器的操作</h1>
+<h2 id="启动">启动</h2>
+<p>启动容器有两种方式，一个是基于镜像新建一个容器启动，另外一个是将终止状态的容器重新启动</p>
+<h3 id="新建并启动">新建并启动</h3>
+<p>使用 docker run 命令来启动容器
+下面的代码是输出一个hello world然后终止容器</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#f92672">[</span>root@VM_13_213_centos ~<span style="color:#f92672">]</span><span style="color:#75715e"># docker run ubuntu:16.04 /bin/echo &#39;hello word&#39;</span>
+hello word
+</code></pre></div><p>下面的命令则是则启动一个 bash 终端，允许用户进行交互，就像打开了Ubuntu系统</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#f92672">[</span>root@VM_13_213_centos ~<span style="color:#f92672">]</span><span style="color:#75715e"># docker run -t -i ubuntu:16.04 /bin/bash</span>
+root@d2499c769aea:/# 
+</code></pre></div><p>其中， -t 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上， -i则让容器的标准输入保持打开。</p>
+<h4 id="命名">命名</h4>
+<p>&ndash;name  名称</p>
+<h4 id="端口映射">端口映射</h4>
+<p>当docker启动的时候，可以是使用-P和-p进行端口的映射，将内部的端口映射出来</p>
+<p>-P 随机映射</p>
+<p>-p 指定端口映射 宿主机：容器端口</p>
+<pre><code>docker run -d -p 8080:8080 c8d8d44b57ad ##将内部的8080映射为宿主机的8080
+</code></pre><h4 id="数据卷映射">数据卷映射</h4>
+<p>容器运行时应该尽量保持容器存储层不发生写操作。但是，有时候我们需要存储持久化的数据，比如数据库，你的数据都在容器中，肯定是不行的，因为一退出就没有了。</p>
+<p>这个时候需要用到数据卷。数据卷就是可以让你把主机上的数据以挂载的方式链接到容器中，这样不同的容器也能共享，而且数据也不会因为容器的退出而丢失。</p>
+<p>使用-v进行文件卷的映射</p>
+<pre><code>docker run -d -v  ~/www:/www -v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf -v $PWD/logs:/wwwlogs  -d nginx   #	将宿主机中当前目录下的www挂载到容器的/www、conf、wwwlogs类比
+</code></pre><h3 id="后台运行">后台运行</h3>
+<p>-d 参数可以使得docker在后台运行
+在不使用-d参数的时候，容器会将输出结果直接打印在宿主机上面
+使用-d 参数运行容器将不会将输出进行打印，而是需要用户使用 docker container logs[container id or names]来查看输出</p>
+<h3 id="启动已终止的容器">启动已终止的容器</h3>
+<p>当容器启动失败时候，会自动终止，但是这个容器依旧是成功创建的，这个时候我们只能使用start命令启动容器而不是run</p>
+<pre><code>docker start containerid
+</code></pre><h2 id="进入容器">进入容器</h2>
+<p>在需要进入容器进行操作的时候，可以使用 docker attach命令或者docker exec命令</p>
+<ul>
+<li>
+<p>attach
+Docker自带的命令，但是如果从这个 stdin 中 exit，会导致容器的停止。</p>
+<pre><code>docker attach [容器id]
+</code></pre></li>
+<li>
+<p>exec
+使用 -t -i 命令可以是我们看到熟悉的linux终端，一个是 -i ：交互式操作，一个是 -t 终端如果从这个 stdin 中 exit，不会导致容器的停止。</p>
+<pre><code>docker exec -it [容器id] bash
+</code></pre></li>
+</ul>
+<p><strong>注意只有在容器启动的时候才可以进入容器</strong></p>
+<h2 id="终止启动的容器">终止启动的容器</h2>
+<p>使用docker container stop来终止运行中的容器
+只启动了一个终端的容器，用户通过 exit 命令或 Ctrl+d 来退出终端时，所创建的容器立刻终止。
+处于终止状态的容器，可以通过 docker container start 命令来重新启动。
+此外， docker container restart 命令会将一个运行态的容器终止，然后再重新启动它。</p>
+<h3 id="显示已经停止的容器">显示已经停止的容器</h3>
+<pre><code>docker ps -a
+</code></pre><h2 id="查看容器的信息">查看容器的信息</h2>
+<p>查看容器的日志</p>
+<pre><code>docker logs [NAME]/[CONTAINER ID]
+</code></pre><p>查看容器的进程</p>
+<pre><code>docker top [NAME]/[CONTAINER ID]
+</code></pre><p>查看容器的信息</p>
+<pre><code>docker inspect [NAME]/[CONTAINER ID]
+</code></pre><p>-f或&ndash;format格式化标志，可以查看指定部分的信息。</p>
+<pre><code>docker inspect --format='{{.State.Running}}' [NAME]/[CONTAINER ID] #查看容器的运行状态
+docker inspect --format='{{.NetworkSettings.IPAddress}} [NAME]/[CONTAINER ID]' #查看容器的IP地址
+docker inspect --format '{{.Name}} {{.State.Running}}' [NAME]/[CONTAINER ID] #同时查看多个信息查看容器名和运行状态
+</code></pre><h2 id="删除容器">删除容器</h2>
+<p>删除一个处于终止状态的容器,如果要删除一个运行中的容器，可以添加 -f 参数。Docker 会发送 SIGKILL 信号给容器。</p>
+<pre><code>docker container rm [id] 
+</code></pre><p>用 docker container ls -a 命令可以查看所有已经创建的包括终止状态的容器，如果数量太多要一个个删除可能会很麻烦，用下面的命令可以清理掉所有处于终止状态的容器。</p>
+<pre><code>docker contain prune
+</code></pre><h2 id="容器的导入和导出">容器的导入和导出</h2>
+<p>如果要导出本地某个容器，可以使用 docker export 命令。</p>
+<pre><code>docker export [id] &gt; ubuntu.tar
+docker export [id] &gt; /usr/local/docker/ubuntu.tar
+</code></pre><p>可以使用 docker import 从容器快照文件中再导入为镜像,此外，也可以通过指定 URL 或者某个目录来导入</p>
+<pre><code>docker import -ubuntu.tar
+docker import -/usr/local/docker/ubuntu.tar
+</code></pre><p><strong>需要注意的是：导出的容器再次被导入时会变成镜像而不是容器</strong></p>
+<p>导出镜像与导出容器的区别在于：</p>
+<p>将一个镜像导出为文件，再使用docker load命令将文件导入为一个镜像，会保存该镜像的的所有历史记录。比docker export命令导出的文件大，很好理解，因为会保存镜像的所有历史记录。</p>
+<p>将一个容器导出为文件，再使用docker import命令将容器导入成为一个新的镜像，但是相比docker save命令，容器文件会丢失所有元数据和历史记录，仅保存容器当时的状态，相当于虚拟机快照。</p>
+
+
+    
+    
+        <div class="related">
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

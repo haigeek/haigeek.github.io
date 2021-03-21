@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>spring on haigeek-blog</title>
+    <link>https://haigeek.me/categories/spring/</link>
+    <description>Recent content in spring on haigeek-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 16 Oct 2019 23:26:39 +0000</lastBuildDate><atom:link href="https://haigeek.me/categories/spring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>并发登录下session的处理</title>
+      <link>https://haigeek.me/posts/java/spring/concurrent-login-session/</link>
+      <pubDate>Wed, 16 Oct 2019 23:26:39 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/java/spring/concurrent-login-session/</guid>
+      <description>&lt;p&gt;在进行性能测试的时候并发请求登录接口时候出现失败的情况，对排查记录做一下总结。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

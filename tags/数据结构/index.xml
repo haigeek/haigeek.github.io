@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据结构 on haigeek-blog</title>
+    <link>https://haigeek.me/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+    <description>Recent content in 数据结构 on haigeek-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 22 Jul 2017 21:19:54 +0000</lastBuildDate><atom:link href="https://haigeek.me/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>二叉树的遍历（递归，非递归）的实现</title>
+      <link>https://haigeek.me/posts/algorithm/traversing-the-binary-tree/</link>
+      <pubDate>Sat, 22 Jul 2017 21:19:54 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/algorithm/traversing-the-binary-tree/</guid>
+      <description>&lt;p&gt;二叉树的遍历（前序，中序，后序）的递归与非递归遍历&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>从后往前输出链表</title>
+      <link>https://haigeek.me/posts/algorithm/output-list/</link>
+      <pubDate>Sat, 15 Jul 2017 14:20:41 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/algorithm/output-list/</guid>
+      <description>&lt;h2 id=&#34;题目&#34;&gt;题目 &lt;a href=&#34;#%e9%a2%98%e7%9b%ae&#34; class=&#34;anchor&#34;&gt;🔗&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;输入一个链表，从尾到头打印链表每个节点的值。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

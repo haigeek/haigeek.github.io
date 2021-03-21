@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>winestory中struts2的使用 | haigeek-blog</title>
+
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
+<meta name="viewport" content="width=device-width,minimum-scale=1">
+<meta name="description" content="我是谁 🔗 爱折腾，伪文青，斯人已去，勿念，现在学习编程。(2016-2018） haigeek是我在网络上常用的昵称，因为他的谐音和我们真实名字">
+<meta name="generator" content="Hugo 0.76.5" />
+
+
+  <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+
+ 
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'your-google-analytics-id', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+    <nav class="navigation">
+	
+		<a href="/"> <span class="arrow">←</span>Home</a>
+	
+	<a href="/posts">Archive</a>
+	<a href="/tags">Tags</a>
+	<a href="/about">About</a>
+
+	
+		<a href="https://wiki.haigeek.me">WIKI</a>
+	
+
+	
+	  <a href="https://haigeek.me/index.xml">RSS</a>
+	
+</nav>
+
+
+    <main class="main">
+      
+
+<section id="single">
+    <h1 class="title">winestory中struts2的使用</h1>
+
+    <div class="tip">
+        <span>
+          Jul 22, 2017 20:27
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          
+            6804 words
+          
+        </span>
+        <span class="split">
+          ·
+        </span>
+        <span>
+          14 minute read
+        </span>
+    </div>
+
+    <div class="content">
+      <p>使用ssh框架做的一个小论坛是我的第一个项目，ssh框架在现在早已经过时，但是当初学习和解决问题的精神却是最重要的，因此我将相关的博文进行归档，记录并缅怀初学编程时的历程。这一篇是struts2框架相关内容。</p>
+<h1 id="winestory中struts2的使用">winestory中struts2的使用 <a href="#winestory%e4%b8%adstruts2%e7%9a%84%e4%bd%bf%e7%94%a8" class="anchor">🔗</a></h1><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="什么是struts">什么是Struts <a href="#%e4%bb%80%e4%b9%88%e6%98%afstruts" class="anchor">🔗</a></h1><p>Struts直译过来就是支柱，枝干的意思，它实现了基于javaweb应用的Model-View——Controller设计模式的应用框架</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="struts的体系结构">Struts的体系结构 <a href="#struts%e7%9a%84%e4%bd%93%e7%b3%bb%e7%bb%93%e6%9e%84" class="anchor">🔗</a></h2><p>一个请求在Struts2框架中的处理大概会经过以下结构步骤</p>
+<ol>
+<li>客户端发出一个指向Servlet容器（例如Tomcat）的请求</li>
+<li>这个请求会经过结构过滤器Filter(ActionContextCleanUP可选过滤器，其他web过滤器如SiteMesh等)，最后到达FilterDispatcher过滤器</li>
+<li>接着FilterDispatcher（过滤调度器）过滤器被调用，FilterDispatcher询问ActionMapper来决定这个请是否需要调用某个Action</li>
+<li>如果ActionMapper决定需要调用某个Action，FilterDispatcher把请求的处理交给Action对象的代理（ActionProxy）</li>
+<li>ActionProxy通过配置管理器（Configuration Manager）读取框架的相关的配置文件（Struts.xml以及它包含的*.xml配置文件）找到需要调用的Action类</li>
+<li>找到需要调用的Action类之后，ActionProxy会创建一个ActionInvocation（动作调用)的实例</li>
+<li>ActionInvocation在调用Action的过程之前，会先依次调用相关配置拦截器（Intercepter）执行结果返回结果字符串</li>
+<li>ActionInvocation负责查找结果字符串对应的Result。然后再执行这个Result，再返回对应的结果视图（如JSP）来呈现界面</li>
+<li>再次调用所用的配置拦截器（调用顺序与第7步相反），然后响应（HttpServletResponse)被返回给浏览器</li>
+</ol>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="struts2的优点">Struts2的优点 <a href="#struts2%e7%9a%84%e4%bc%98%e7%82%b9" class="anchor">🔗</a></h2><ul>
+<li>Struts2是非侵入式设计，即不依赖与Servlet API和StrutsAPI</li>
+<li>Strtus2提供了强大的拦截器，利用拦截器可进行AOP编程（面向切面的编程），实现权限的拦截等功能</li>
+<li>Strtus2提供了类型转换器，可以很方便地进行类型转换，例如将特殊的的请求参数转换成需要的类型</li>
+<li>Struts2支持多种表现层技术，如JSP、FreeMarker、Vectocity</li>
+<li>Struts2的输入验证可以对指定的方法进行验证<!-- raw HTML omitted -->笔记来源：<a 
+    href="https://www.shiyanlou.com/"
+    
+    
+     
+      target="_blank" 
+      rel="noopener"
+    
+>
+    实验楼
+</a></li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="struts2核心配置文件strutsxml详解">struts2核心配置文件struts.xml详解 <a href="#struts2%e6%a0%b8%e5%bf%83%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6strutsxml%e8%af%a6%e8%a7%a3" class="anchor">🔗</a></h1><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="strutsxml文件示例">struts.xml文件示例 <a href="#strutsxml%e6%96%87%e4%bb%b6%e7%a4%ba%e4%be%8b" class="anchor">🔗</a></h2><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#080">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; ?&gt;</span>
+<span style="color:#080">&lt;!DOCTYPE struts PUBLIC
+</span><span style="color:#080">    &#34;-//Apache Software Foundation//DTD Struts Configuration 2.3//EN&#34;
+</span><span style="color:#080">    &#34;http://struts.apache.org/dtds/struts-2.3.dtd&#34;&gt;</span>
+<span style="color:#008000;font-weight:bold">&lt;struts&gt;</span>
+    <span style="color:#008000;font-weight:bold">&lt;constant</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;struts.enable.DynamicMethodInvocation&#34;</span> <span style="color:#b44">value=</span><span style="color:#b44">&#34;false&#34;</span> <span style="color:#008000;font-weight:bold">/&gt;</span>
+    <span style="color:#008000;font-weight:bold">&lt;constant</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;struts.devMode&#34;</span> <span style="color:#b44">value=</span><span style="color:#b44">&#34;true&#34;</span> <span style="color:#008000;font-weight:bold">/&gt;</span>
+    <span style="color:#008000;font-weight:bold">&lt;package</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;default&#34;</span> <span style="color:#b44">namespace=</span><span style="color:#b44">&#34;/&#34;</span> <span style="color:#b44">extends=</span><span style="color:#b44">&#34;struts-default&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;default-action-ref</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;index&#34;</span> <span style="color:#008000;font-weight:bold">/&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;global-results&gt;</span>
+            <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;error&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>/WEB-INF/jsp/error.jsp<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;/global-results&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;global-exception-mappings&gt;</span>
+            <span style="color:#008000;font-weight:bold">&lt;exception-mapping</span> <span style="color:#b44">exception=</span><span style="color:#b44">&#34;java.lang.Exception&#34;</span> <span style="color:#b44">result=</span><span style="color:#b44">&#34;error&#34;</span><span style="color:#008000;font-weight:bold">/&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;/global-exception-mappings&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;action</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;index&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
+            <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">type=</span><span style="color:#b44">&#34;redirectAction&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
+                <span style="color:#008000;font-weight:bold">&lt;param</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;actionName&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>HelloWorld<span style="color:#008000;font-weight:bold">&lt;/param&gt;</span>
+                <span style="color:#008000;font-weight:bold">&lt;param</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;namespace&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>/example<span style="color:#008000;font-weight:bold">&lt;/param&gt;</span>
+            <span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;/action&gt;</span>
+    <span style="color:#008000;font-weight:bold">&lt;/package&gt;</span>
+    <span style="color:#008000;font-weight:bold">&lt;include</span> <span style="color:#b44">file=</span><span style="color:#b44">&#34;example.xml&#34;</span><span style="color:#008000;font-weight:bold">/&gt;</span>
+<span style="color:#008000;font-weight:bold">&lt;/struts&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="constant">constant <a href="#constant" class="anchor">🔗</a></h2><p>包含一些属性设置，他可以改变struts框架的一些行为。例如示例中的 struts.enable.DynamicMethodInvocation 设为true，表示设置动态方法调用为真，而 struts.devMode 表示是否启用开发者模式。</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="package">package <a href="#package" class="anchor">🔗</a></h2><p>在struts中，package用来管理action、result、interceptor、interceptor-stack等配置信息</p>
+<ul>
+<li>name：必须唯一，这样其他package如果引用本package的话，才能找得到。</li>
+<li>extends：当本package继承其他package的时候，会继承父package的所有配置属性（例如action、result等等）；由于package的信息获取是按照struts.xml文件中的先后顺序进行的，因此父package必须在子package之前先定义。通常情况下，继承一个“struts-default.xml”的package，这是 Struts2 默认的package。<!-- raw HTML omitted -->namespace：namespace的配置会改变项目的url访问地址，主要是针对比较大型的项目以方便管理action，因为不同namespace中的action可以同名，从而解决action重名的问题。如果没有指定namespace，则默认为“”。</li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="action">action <a href="#action" class="anchor">🔗</a></h2><ul>
+<li>name：action的名称</li>
+<li>class：action对应的java类</li>
+<li>method：在该class中对应执行Action的函数方法，默认是execute()。</li>
+<li>converter：类型转换器</li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="result">result <a href="#result" class="anchor">🔗</a></h2><ul>
+<li>name：具体来说，就是根据某个返回结果，指定响应逻辑，默认是success。</li>
+<li>type：返回结果的类型，默认为dispatcher。</li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="default-action-ref">default-action-ref <a href="#default-action-ref" class="anchor">🔗</a></h2><p>如果找不到项目请求的action，就会报出404错误，而且这种错误不可避免，所以我们可以使用 default-action-ref 来指定一个默认的action，如果系统出现找不到action的情况，就会来调用这个默认的action。</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="global-results">global-results <a href="#global-results" class="anchor">🔗</a></h2><p>设置package范围内的全局响应结果。在多个action都返回同一个逻辑视图（通常为某个jsp页面）的情况下，可以通过该标签来统一配置。</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="global-exception-mapping">global-exception-mapping <a href="#global-exception-mapping" class="anchor">🔗</a></h2><p>配置发生异常时的视图信息。exception-mapping是控制action范围内的，而global-exception-mapp是控制package范围内的。两个都配置时，exception-mapping的优先级更高。</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="include">include <a href="#include" class="anchor">🔗</a></h2><p>使用include引入外部配置文件，直接给出url即可</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;include file=&#34;**/**/***.xml&#34; /&gt;
+</code></pre></div><p>使用 include 的好处在于，例如当我们开发一个比较大型的项目的时候，配置文件肯定会写一大堆。如果写在一个配置文件里就不好查看和修改，不便于维护；所以使用 include 后可以根据模块、也可以根据功能来划分，这样就比较清晰，方便管理和维护。<!-- raw HTML omitted -->其他较为常用的还有 拦截器等等。<!-- raw HTML omitted -->来源：实验楼 <a 
+    href="https://www.shiyanlou.com/courses/32/labs/920/document"
+    
+    
+     
+      target="_blank" 
+      rel="noopener"
+    
+>
+    https://www.shiyanlou.com/courses/32/labs/920/document
+</a></p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="struts2中action接收参数的三种方法">struts2中action接收参数的三种方法 <a href="#struts2%e4%b8%adaction%e6%8e%a5%e6%94%b6%e5%8f%82%e6%95%b0%e7%9a%84%e4%b8%89%e7%a7%8d%e6%96%b9%e6%b3%95" class="anchor">🔗</a></h1><p>struts2中action接收参数的方法主要有一下三种</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="1使用action-中的属性接收参数">1.使用action 中的属性接收参数 <a href="#1%e4%bd%bf%e7%94%a8action-%e4%b8%ad%e7%9a%84%e5%b1%9e%e6%80%a7%e6%8e%a5%e6%94%b6%e5%8f%82%e6%95%b0" class="anchor">🔗</a></h2><ul>
+<li>定义：在action类中定义属性，创建get和set方法</li>
+<li>接收：通过属性接收参数，如userId；</li>
+<li>发送：通过属性名传递参数，如：user_usershow?userId=1;</li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="2使用domainmodel接收参数">2.使用DomainModel接收参数： <a href="#2%e4%bd%bf%e7%94%a8domainmodel%e6%8e%a5%e6%94%b6%e5%8f%82%e6%95%b0" class="anchor">🔗</a></h2><ul>
+<li>定义：定义Model类，在action中定义Model类的对象（不需要new），创建该对象的get和set方法</li>
+<li>接收：通过对象的属性接收参数，如user.getUserName();</li>
+<li>发送：使用对象的属相传递参数，如user_usershow?user.user.userName=xxx;</li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="3使用modeldriven接收参数">3使用ModelDriven接收参数 <a href="#3%e4%bd%bf%e7%94%a8modeldriven%e6%8e%a5%e6%94%b6%e5%8f%82%e6%95%b0" class="anchor">🔗</a></h2><ul>
+<li>定义：action实现ModelDriven泛型接口，定义Model类的对象（必须new），通过getModel方法返回该对象；</li>
+<li>接收：通过对象的属性接收参数，如：user.getUserName()；</li>
+<li>发送：直接使用属性名传递参数，如：user_usershow?userName=xxx
+<!-- raw HTML omitted --><!-- raw HTML omitted --></li>
+</ul>
+<h1 id="action获取表单提交数据">Action获取表单提交数据 <a href="#action%e8%8e%b7%e5%8f%96%e8%a1%a8%e5%8d%95%e6%8f%90%e4%ba%a4%e6%95%b0%e6%8d%ae" class="anchor">🔗</a></h1><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="获取表单提交数据的三种主要方式">获取表单提交数据的三种主要方式 <a href="#%e8%8e%b7%e5%8f%96%e8%a1%a8%e5%8d%95%e6%8f%90%e4%ba%a4%e6%95%b0%e6%8d%ae%e7%9a%84%e4%b8%89%e7%a7%8d%e4%b8%bb%e8%a6%81%e6%96%b9%e5%bc%8f" class="anchor">🔗</a></h2><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="1使用actioncontext">1.使用ActionContext <a href="#1%e4%bd%bf%e7%94%a8actioncontext" class="anchor">🔗</a></h3><p>Map&lt;String,Object&gt;getParameters() 返回一个包含所有HttpServletRequest参数信息</p>
+<ol>
+<li>因为方法不是静态的方法，需要创建ActionContext类的对象</li>
+<li>ActionContext对象不是new出来的 static ActionContext getContext() 获取当前线程的ActionContext对象</li>
+<li>实例</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f;font-weight:bold">public</span> String <span style="color:#00a000">execute</span><span style="color:#666">()</span> <span style="color:#a2f;font-weight:bold">throws</span> Exception <span style="color:#666">{</span>
+        <span style="color:#080;font-style:italic">//第一种方式：使用ActionContext类获取
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#080;font-style:italic">//获取ActionContext对象
+</span><span style="color:#080;font-style:italic"></span>        ActionContext context<span style="color:#666">=</span>ActionContext<span style="color:#666">.</span><span style="color:#b44">getContext</span><span style="color:#666">();</span>
+        <span style="color:#080;font-style:italic">//调用方法得到表单数据
+</span><span style="color:#080;font-style:italic"></span>        Map<span style="color:#666">&lt;</span>String<span style="color:#666">,</span> Object<span style="color:#666">&gt;</span> map <span style="color:#666">=</span> context<span style="color:#666">.</span><span style="color:#b44">getParameters</span><span style="color:#666">();</span>
+        Set<span style="color:#666">&lt;</span>String<span style="color:#666">&gt;</span> keys<span style="color:#666">=</span>map<span style="color:#666">.</span><span style="color:#b44">keySet</span><span style="color:#666">();</span>
+        <span style="color:#080;font-style:italic">//根据key得到vaule，使用数组形式是因为输入项可能有复选框
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#a2f;font-weight:bold">for</span><span style="color:#666">(</span>String key<span style="color:#666">:</span>keys<span style="color:#666">){</span>
+            Object<span style="color:#666">[]</span> obj<span style="color:#666">=(</span>Object<span style="color:#666">[])</span> map<span style="color:#666">.</span><span style="color:#b44">get</span><span style="color:#666">(</span>key<span style="color:#666">);</span>
+            System<span style="color:#666">.</span><span style="color:#b44">out</span><span style="color:#666">.</span><span style="color:#b44">println</span><span style="color:#666">(</span>Arrays<span style="color:#666">.</span><span style="color:#b44">toString</span><span style="color:#666">(</span>obj<span style="color:#666">));</span>
+        <span style="color:#666">}</span>
+        <span style="color:#a2f;font-weight:bold">return</span> NONE<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="2使用servletactioncontext类">2.使用ServletActionContext类 <a href="#2%e4%bd%bf%e7%94%a8servletactioncontext%e7%b1%bb" class="anchor">🔗</a></h3><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f;font-weight:bold">public</span> String <span style="color:#00a000">execute</span><span style="color:#666">()</span> <span style="color:#a2f;font-weight:bold">throws</span> Exception <span style="color:#666">{</span>
+        <span style="color:#080;font-style:italic">//使用ServletActionContext获取request对象
+</span><span style="color:#080;font-style:italic"></span>        HttpServletRequest request<span style="color:#666">=</span>ServletActionContext<span style="color:#666">.</span><span style="color:#b44">getRequest</span><span style="color:#666">();</span>
+        <span style="color:#080;font-style:italic">//调用request里面的方法得到结果
+</span><span style="color:#080;font-style:italic"></span>        String username<span style="color:#666">=</span>request<span style="color:#666">.</span><span style="color:#b44">getParameter</span><span style="color:#666">(</span><span style="color:#b44">&#34;username&#34;</span><span style="color:#666">);</span>
+        String password<span style="color:#666">=</span>request<span style="color:#666">.</span><span style="color:#b44">getParameter</span><span style="color:#666">(</span><span style="color:#b44">&#34;password&#34;</span><span style="color:#666">);</span>
+        String address<span style="color:#666">=</span>request<span style="color:#666">.</span><span style="color:#b44">getParameter</span><span style="color:#666">(</span><span style="color:#b44">&#34;address&#34;</span><span style="color:#666">);</span>
+        System<span style="color:#666">.</span><span style="color:#b44">out</span><span style="color:#666">.</span><span style="color:#b44">println</span><span style="color:#666">(</span>username<span style="color:#666">+</span><span style="color:#b44">&#34; &#34;</span><span style="color:#666">+</span>password<span style="color:#666">+</span><span style="color:#b44">&#34; &#34;</span><span style="color:#666">+</span>address<span style="color:#666">);</span>
+        <span style="color:#a2f;font-weight:bold">return</span> NONE<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="3使用接口注入方式">3.使用接口注入方式 <a href="#3%e4%bd%bf%e7%94%a8%e6%8e%a5%e5%8f%a3%e6%b3%a8%e5%85%a5%e6%96%b9%e5%bc%8f" class="anchor">🔗</a></h3><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="在action操作域对象">在action操作域对象 <a href="#%e5%9c%a8action%e6%93%8d%e4%bd%9c%e5%9f%9f%e5%af%b9%e8%b1%a1" class="anchor">🔗</a></h2><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#080;font-style:italic">//操作三个域对象
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#080;font-style:italic">//1.request域
+</span><span style="color:#080;font-style:italic"></span>        HttpServletRequest request<span style="color:#666">=</span>ServletActionContext<span style="color:#666">.</span><span style="color:#b44">getRequest</span><span style="color:#666">();</span>
+        request<span style="color:#666">.</span><span style="color:#b44">setAttribute</span><span style="color:#666">(</span><span style="color:#b44">&#34;req&#34;</span><span style="color:#666">,</span><span style="color:#b44">&#34;reqvalue&#34;</span> <span style="color:#666">);</span>
+        <span style="color:#080;font-style:italic">//2.session域
+</span><span style="color:#080;font-style:italic"></span>        HttpSession session<span style="color:#666">=</span>request<span style="color:#666">.</span><span style="color:#b44">getSession</span><span style="color:#666">();</span>
+        session<span style="color:#666">.</span><span style="color:#b44">setAttribute</span><span style="color:#666">(</span><span style="color:#b44">&#34;sess&#34;</span><span style="color:#666">,</span> <span style="color:#b44">&#34;sessValue&#34;</span><span style="color:#666">);</span>
+        <span style="color:#080;font-style:italic">//3ServletContext域
+</span><span style="color:#080;font-style:italic"></span>        ServletContext context<span style="color:#666">=</span>ServletActionContext<span style="color:#666">.</span><span style="color:#b44">getServletContext</span><span style="color:#666">();</span>
+        context<span style="color:#666">.</span><span style="color:#b44">setAttribute</span><span style="color:#666">(</span><span style="color:#b44">&#34;contextname&#34;</span><span style="color:#666">,</span> <span style="color:#b44">&#34;contextValue&#34;</span><span style="color:#666">);</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="struts2提供获取表单数据方式">struts2提供获取表单数据方式 <a href="#struts2%e6%8f%90%e4%be%9b%e8%8e%b7%e5%8f%96%e8%a1%a8%e5%8d%95%e6%95%b0%e6%8d%ae%e6%96%b9%e5%bc%8f" class="anchor">🔗</a></h2><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="1原始方式获取表单封装到实体类对象">1.原始方式获取表单封装到实体类对象 <a href="#1%e5%8e%9f%e5%a7%8b%e6%96%b9%e5%bc%8f%e8%8e%b7%e5%8f%96%e8%a1%a8%e5%8d%95%e5%b0%81%e8%a3%85%e5%88%b0%e5%ae%9e%e4%bd%93%e7%b1%bb%e5%af%b9%e8%b1%a1" class="anchor">🔗</a></h3><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f;font-weight:bold">public</span> String <span style="color:#00a000">execute</span><span style="color:#666">()</span> <span style="color:#a2f;font-weight:bold">throws</span> Exception <span style="color:#666">{</span>
+        HttpServletRequest request<span style="color:#666">=</span>ServletActionContext<span style="color:#666">.</span><span style="color:#b44">getRequest</span><span style="color:#666">();</span>
+        String username<span style="color:#666">=</span>request<span style="color:#666">.</span><span style="color:#b44">getParameter</span><span style="color:#666">(</span><span style="color:#b44">&#34;username&#34;</span><span style="color:#666">);</span>
+        String password<span style="color:#666">=</span>request<span style="color:#666">.</span><span style="color:#b44">getParameter</span><span style="color:#666">(</span><span style="color:#b44">&#34;password&#34;</span><span style="color:#666">);</span>
+        String address<span style="color:#666">=</span>request<span style="color:#666">.</span><span style="color:#b44">getParameter</span><span style="color:#666">(</span><span style="color:#b44">&#34;address&#34;</span><span style="color:#666">);</span>
+        <span style="color:#080;font-style:italic">//封装到实体类
+</span><span style="color:#080;font-style:italic"></span>        User user<span style="color:#666">=</span><span style="color:#a2f;font-weight:bold">new</span> User<span style="color:#666">();</span>
+        user<span style="color:#666">.</span><span style="color:#b44">setUsername</span><span style="color:#666">(</span>username<span style="color:#666">);</span>
+        user<span style="color:#666">.</span><span style="color:#b44">setPassword</span><span style="color:#666">(</span>password<span style="color:#666">);</span>
+        user<span style="color:#666">.</span><span style="color:#b44">setAddress</span><span style="color:#666">(</span>address<span style="color:#666">);</span>
+        System<span style="color:#666">.</span><span style="color:#b44">out</span><span style="color:#666">.</span><span style="color:#b44">println</span><span style="color:#666">(</span>user<span style="color:#666">);</span>
+        <span style="color:#a2f;font-weight:bold">return</span> NONE<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="2属性封装">2.属性封装 <a href="#2%e5%b1%9e%e6%80%a7%e5%b0%81%e8%a3%85" class="anchor">🔗</a></h3><ol>
+<li>直接把表单提交属性封装到action属性中</li>
+<li>实现步骤</li>
+<li>在action成员变量位置定义变量，变量名称和表单输入项的name属性值一样</li>
+<li>生成变量的get和set方法</li>
+<li>使用属性封装获取表单数据到属性里面，不能直接把数据封装到实体类对象里面</li>
+<li>实例</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f;font-weight:bold">public</span> <span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">sysAction</span> <span style="color:#a2f;font-weight:bold">extends</span> ActionSupport<span style="color:#666">{</span>    
+    <span style="color:#a2f;font-weight:bold">private</span> String username<span style="color:#666">;</span>    
+   
+    <span style="color:#a2f;font-weight:bold">public</span> String <span style="color:#00a000">login</span><span style="color:#666">()</span> <span style="color:#a2f;font-weight:bold">throws</span> Exception <span style="color:#666">{</span>    
+        System<span style="color:#666">.</span><span style="color:#b44">out</span><span style="color:#666">.</span><span style="color:#b44">println</span><span style="color:#666">(</span>username<span style="color:#666">);</span>    
+        <span style="color:#a2f;font-weight:bold">return</span> SUCCESS<span style="color:#666">;</span>    
+    <span style="color:#666">}</span>    
+   
+    <span style="color:#a2f;font-weight:bold">public</span> String <span style="color:#00a000">getUsername</span><span style="color:#666">()</span> <span style="color:#666">{</span>    
+        <span style="color:#a2f;font-weight:bold">return</span> username<span style="color:#666">;</span>    
+    <span style="color:#666">}</span>    
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setUsername</span><span style="color:#666">(</span>String username<span style="color:#666">)</span> <span style="color:#666">{</span>    
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">username</span><span style="color:#666">=</span> username<span style="color:#666">;</span>    
+    <span style="color:#666">}</span>    
+<span style="color:#666">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="3模型驱动封装对于要传入多个model第二种方式不方便">3.模型驱动封装，对于要传入多个model，第二种方式不方便 <a href="#3%e6%a8%a1%e5%9e%8b%e9%a9%b1%e5%8a%a8%e5%b0%81%e8%a3%85%e5%af%b9%e4%ba%8e%e8%a6%81%e4%bc%a0%e5%85%a5%e5%a4%9a%e4%b8%aamodel%e7%ac%ac%e4%ba%8c%e7%a7%8d%e6%96%b9%e5%bc%8f%e4%b8%8d%e6%96%b9%e4%be%bf" class="anchor">🔗</a></h3><ol>
+<li>可以直接把表单数据封装到实体类对象</li>
+<li>实现步骤</li>
+<li>action实现接口ModelDriven</li>
+<li>实现接口里面的方法getModel方法</li>
+<li>在action里面创建实体类对象</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f;font-weight:bold">public</span> <span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">DataDemo2Action</span> <span style="color:#a2f;font-weight:bold">extends</span> ActionSupport <span style="color:#a2f;font-weight:bold">implements</span> ModelDriven<span style="color:#666">&lt;</span>User<span style="color:#666">&gt;{</span>
+    <span style="color:#080;font-style:italic">//创建对象
+</span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">private</span> User user<span style="color:#666">=</span><span style="color:#a2f;font-weight:bold">new</span> User<span style="color:#666">();</span>
+    <span style="color:#a2f;font-weight:bold">public</span> User <span style="color:#00a000">getModel</span><span style="color:#666">()</span> <span style="color:#666">{</span>
+        <span style="color:#080;font-style:italic">// 返回创建的对象
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#a2f;font-weight:bold">return</span> user<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+    <span style="color:#a2f;font-weight:bold">public</span> String <span style="color:#00a000">execute</span><span style="color:#666">()</span> <span style="color:#a2f;font-weight:bold">throws</span> Exception <span style="color:#666">{</span>
+        
+        <span style="color:#a2f;font-weight:bold">return</span> NONE<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+<span style="color:#666">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="4可以使用多个module实体对象的封装">4.可以使用多个module实体对象的封装 <a href="#4%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8%e5%a4%9a%e4%b8%aamodule%e5%ae%9e%e4%bd%93%e5%af%b9%e8%b1%a1%e7%9a%84%e5%b0%81%e8%a3%85" class="anchor">🔗</a></h3><p>此种封装方法，变量名称和表单输入项的name属性值不一样，变单输入项样式为</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#008000;font-weight:bold">form</span> <span style="color:#b44">action</span><span style="color:#666">=</span><span style="color:#b44">&#34;sys/login.action&#34;</span> <span style="color:#b44">method</span><span style="color:#666">=</span><span style="color:#b44">&#34;post&#34;</span>&gt;    
+    &lt;<span style="color:#008000;font-weight:bold">input</span> <span style="color:#b44">type</span><span style="color:#666">=</span><span style="color:#b44">&#34;text&#34;</span> <span style="color:#b44">name</span><span style="color:#666">=</span><span style="color:#b44">&#34;user.username&#34;</span>&gt;    
+    &lt;<span style="color:#008000;font-weight:bold">input</span> <span style="color:#b44">type</span><span style="color:#666">=</span><span style="color:#b44">&#34;text&#34;</span> <span style="color:#b44">name</span><span style="color:#666">=</span><span style="color:#b44">&#34;teacher.level&#34;</span>&gt;    
+    &lt;<span style="color:#008000;font-weight:bold">input</span> <span style="color:#b44">type</span><span style="color:#666">=</span><span style="color:#b44">&#34;submit&#34;</span> <span style="color:#b44">value</span><span style="color:#666">=</span><span style="color:#b44">&#34;submit&#34;</span>&gt;    
+&lt;/<span style="color:#008000;font-weight:bold">form</span>&gt;
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f;font-weight:bold">public</span> <span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">sysAction</span> <span style="color:#a2f;font-weight:bold">extends</span> ActionSupport<span style="color:#666">{</span>    
+    <span style="color:#a2f;font-weight:bold">private</span> User user<span style="color:#666">;</span>    
+    <span style="color:#a2f;font-weight:bold">private</span> Teacher teacher<span style="color:#666">;</span>    
+   
+    <span style="color:#a2f;font-weight:bold">public</span> String <span style="color:#00a000">login</span><span style="color:#666">()</span> <span style="color:#a2f;font-weight:bold">throws</span> Exception <span style="color:#666">{</span>    
+        System<span style="color:#666">.</span><span style="color:#b44">out</span><span style="color:#666">.</span><span style="color:#b44">println</span><span style="color:#666">(</span>user<span style="color:#666">.</span><span style="color:#b44">getUsername</span><span style="color:#666">());</span>    
+        System<span style="color:#666">.</span><span style="color:#b44">out</span><span style="color:#666">.</span><span style="color:#b44">println</span><span style="color:#666">(</span>teacher<span style="color:#666">.</span><span style="color:#b44">getLevel</span><span style="color:#666">());</span>    
+        <span style="color:#a2f;font-weight:bold">return</span> SUCCESS<span style="color:#666">;</span>    
+    <span style="color:#666">}</span>    
+   
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setUser</span><span style="color:#666">(</span>User user<span style="color:#666">)</span> <span style="color:#666">{</span>    
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">user</span> <span style="color:#666">=</span> user<span style="color:#666">;</span>    
+    <span style="color:#666">}</span>    
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setTeacher</span><span style="color:#666">(</span>Teacher teacher<span style="color:#666">)</span> <span style="color:#666">{</span>    
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">teacher</span> <span style="color:#666">=</span> teacher<span style="color:#666">;</span>    
+    <span style="color:#666">}</span>    
+<span style="color:#666">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="封装数据到集合">封装数据到集合 <a href="#%e5%b0%81%e8%a3%85%e6%95%b0%e6%8d%ae%e5%88%b0%e9%9b%86%e5%90%88" class="anchor">🔗</a></h2><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="封装数据到list集合">封装数据到list集合 <a href="#%e5%b0%81%e8%a3%85%e6%95%b0%e6%8d%ae%e5%88%b0list%e9%9b%86%e5%90%88" class="anchor">🔗</a></h3><ol>
+<li>在action声明List</li>
+<li>生成list变量的get和set方法</li>
+<li>在表单输入项写表达式</li>
+</ol>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="封装数据到map集合">封装数据到map集合 <a href="#%e5%b0%81%e8%a3%85%e6%95%b0%e6%8d%ae%e5%88%b0map%e9%9b%86%e5%90%88" class="anchor">🔗</a></h3><ol>
+<li>在action声明map集合</li>
+<li>生成list变量的get和set方法</li>
+<li>在表单输入项写表达式</li>
+</ol>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="struts2结果页面配置">struts2结果页面配置 <a href="#struts2%e7%bb%93%e6%9e%9c%e9%a1%b5%e9%9d%a2%e9%85%8d%e7%bd%ae" class="anchor">🔗</a></h1><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="action的访问">action的访问 <a href="#action%e7%9a%84%e8%ae%bf%e9%97%ae" class="anchor">🔗</a></h2><ul>
+<li>使用method方法</li>
+<li>使用通配符实现<!-- raw HTML omitted -->
+在action标签里面name属性，name属性值写符号 * ，表示匹配任何内容</li>
+<li>动态访问</li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="结果页面配置">结果页面配置 <a href="#%e7%bb%93%e6%9e%9c%e9%a1%b5%e9%9d%a2%e9%85%8d%e7%bd%ae" class="anchor">🔗</a></h2><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="全局结果页面">全局结果页面 <a href="#%e5%85%a8%e5%b1%80%e7%bb%93%e6%9e%9c%e9%a1%b5%e9%9d%a2" class="anchor">🔗</a></h3><ol>
+<li>如果多个action，方法里面返回相同值的时候，可以使用全局结果界面配置</li>
+</ol>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="局部结果页面配置">局部结果页面配置 <a href="#%e5%b1%80%e9%83%a8%e7%bb%93%e6%9e%9c%e9%a1%b5%e9%9d%a2%e9%85%8d%e7%bd%ae" class="anchor">🔗</a></h3><ol>
+<li>当存在全局结果页面配置时，依旧以局部结果页面配置为准</li>
+</ol>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="result便签的type属性">result便签的type属性 <a href="#result%e4%be%bf%e7%ad%be%e7%9a%84type%e5%b1%9e%e6%80%a7" class="anchor">🔗</a></h3><ol>
+<li>type属性：如何到路径里</li>
+<li>type属性值：</li>
+</ol>
+<ul>
+<li>默认值：转发操作，值是dispatcher</li>
+<li>重定向：redirect</li>
+<li>chain：转发到action</li>
+<li>redirectAction：重定向到action</li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h3 id="实例">实例 <a href="#%e5%ae%9e%e4%be%8b" class="anchor">🔗</a></h3><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#080">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span>
+<span style="color:#080">&lt;!DOCTYPE struts PUBLIC
+</span><span style="color:#080">        &#34;-//Apache Software Foundation//DTD Struts Configuration 2.3//EN&#34;
+</span><span style="color:#080">        &#34;http://struts.apache.org/dtds/struts-2.3.dtd&#34;&gt;</span>
+<span style="color:#008000;font-weight:bold">&lt;struts&gt;</span>
+    <span style="color:#008000;font-weight:bold">&lt;package</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;demo1&#34;</span> <span style="color:#b44">extends=</span><span style="color:#b44">&#34;struts-default&#34;</span> <span style="color:#b44">namespace=</span><span style="color:#b44">&#34;/&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
+    <span style="color:#008000;font-weight:bold">&lt;action</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;user_*&#34;</span> <span style="color:#b44">class=</span><span style="color:#b44">&#34;userAction&#34;</span> <span style="color:#b44">method=</span><span style="color:#b44">&#34;{1}&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
+        <span style="color:#080;font-style:italic">&lt;!-- &lt;result name=&#34;loginsuccess&#34;&gt;/index.jsp&lt;/result&gt; --&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;loginsuccess&#34;</span> <span style="color:#b44">type=</span><span style="color:#b44">&#34;redirectAction&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>story_indexlist<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;login&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>/login.jsp<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+         <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;logout&#34;</span> <span style="color:#b44">type=</span><span style="color:#b44">&#34;redirectAction&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>story_indexlist<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;registersuccess&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>/login.jsp<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;usershow&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>/myinfo.jsp<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;showUserinfo&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>/myinfoedit.jsp<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;update&#34;</span> <span style="color:#b44">type=</span><span style="color:#b44">&#34;redirectAction&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>story_indexlist<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+    <span style="color:#008000;font-weight:bold">&lt;/action&gt;</span>
+    <span style="color:#008000;font-weight:bold">&lt;action</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;story_*&#34;</span> <span style="color:#b44">class=</span><span style="color:#b44">&#34;storyAction&#34;</span> <span style="color:#b44">method=</span><span style="color:#b44">&#34;{1}&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;toAddPage&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>/newstory.jsp<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;add&#34;</span> <span style="color:#b44">type=</span><span style="color:#b44">&#34;redirectAction&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>story_indexlist<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;indexlist&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>/index.jsp<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;storyshow&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>/storyshow.jsp<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;getAllStory&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>/showbypage.jsp<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;addComment&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>/showbypage.jsp<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+    <span style="color:#008000;font-weight:bold">&lt;/action&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;action</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;comment_*&#34;</span> <span style="color:#b44">class=</span><span style="color:#b44">&#34;commentAction&#34;</span> <span style="color:#b44">method=</span><span style="color:#b44">&#34;{1}&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
+            <span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;add&#34;</span> <span style="color:#b44">type=</span><span style="color:#b44">&#34;redirectAction&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>story_show?story_id=${comment.story.story_id}<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+        <span style="color:#008000;font-weight:bold">&lt;/action&gt;</span>
+    <span style="color:#008000;font-weight:bold">&lt;/package&gt;</span>
+<span style="color:#008000;font-weight:bold">&lt;/struts&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="struts2中的重定向问题">struts2中的重定向问题 <a href="#struts2%e4%b8%ad%e7%9a%84%e9%87%8d%e5%ae%9a%e5%90%91%e9%97%ae%e9%a2%98" class="anchor">🔗</a></h1><p>在处理ssh框架的小论坛项目的时候，遇到一个问题，在一个帖子下需要进行评论，但是在点击评论按钮的时候，后台做出这几个动作：</p>
+<ol>
+<li>存储评论信息到数据库，也就是comment实体；</li>
+<li>重新加载帖子详情和评论详情<!-- raw HTML omitted -->
+要实现以上需求，可以通过struts的重定向功能来实现</li>
+</ol>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="struts重定向的几种方式">struts重定向的几种方式 <a href="#struts%e9%87%8d%e5%ae%9a%e5%90%91%e7%9a%84%e5%87%a0%e7%a7%8d%e6%96%b9%e5%bc%8f" class="anchor">🔗</a></h2><ul>
+<li>dispatcher —— 请求转发到一个页面 （默认）,不可以用这种方式转发到一个action</li>
+<li>chain —— 一个action请求转发至另一个 action</li>
+<li>redirect —— 响应重定向到一个页面，也可以实现响应重定向到action</li>
+<li>redirectAction —— 一个action响应重定向至另一个 action</li>
+</ul>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="struts重定向的实例">struts重定向的实例 <a href="#struts%e9%87%8d%e5%ae%9a%e5%90%91%e7%9a%84%e5%ae%9e%e4%be%8b" class="anchor">🔗</a></h2><ul>
+<li>redirectAction —— 一个action响应重定向至另一个 action，这种是不带参数的</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;loginsuccess&#34;</span> <span style="color:#b44">type=</span><span style="color:#b44">&#34;redirectAction&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>story_indexlist<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+</code></pre></div><ul>
+<li>带参数的redirectAction</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">type=</span><span style="color:#b44">&#34;redirect&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>successAction?name=${name}<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="我的问题解决">我的问题解决 <a href="#%e6%88%91%e7%9a%84%e9%97%ae%e9%a2%98%e8%a7%a3%e5%86%b3" class="anchor">🔗</a></h2><p>我的项目的重定向就需要参数，在重现加载帖子和评论的时候需要知道帖子的id，具体的解决方案如下</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#008000;font-weight:bold">&lt;result</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;add&#34;</span> <span style="color:#b44">type=</span><span style="color:#b44">&#34;redirectAction&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>story_show?story_id=${comment.story.story_id}<span style="color:#008000;font-weight:bold">&lt;/result&gt;</span>
+</code></pre></div><p>在comment的action中，重定向，并获取参数，这里可能有问题的就是参数的获取，这个参数的获取和action方法中的属性获取有关系，可能有以下的集中情况</p>
+<ul>
+<li>根据你的action获取表单数据方式的不同，${}里面的参数书写方式也不同，如果是属性，并有getter和setter方法，那么可以直接写属性值，如果是其他的方式获取，则要根据你的情况来设置</li>
+<li>如果这个参数是实体内的实体对象，比如我需要的storyId，则是comment实体内的一个story对象，在这个story对象里具有storyId这个值，那么就需要使用上面的方式<code>${comment.story.story_id}</code>如果使用<code>${comment.story_id}</code>是会报错<!-- raw HTML omitted -->
+我的comment Action如下</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f;font-weight:bold">package</span> <span style="color:#00f;font-weight:bold">cn.haigeek.action</span><span style="color:#666">;</span>
+<span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">cn.haigeek.entity.Comment</span><span style="color:#666">;</span>
+<span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">cn.haigeek.service.CommentService</span><span style="color:#666">;</span>
+<span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">com.opensymphony.xwork2.ActionSupport</span><span style="color:#666">;</span>
+<span style="color:#a2f;font-weight:bold">import</span> <span style="color:#00f;font-weight:bold">java.util.Date</span><span style="color:#666">;</span>
+<span style="color:#080;font-style:italic">/**
+</span><span style="color:#080;font-style:italic"> * Created by haigeek on 2017/7/22.
+</span><span style="color:#080;font-style:italic"> */</span>
+<span style="color:#a2f;font-weight:bold">public</span> <span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">CommentAction</span> <span style="color:#a2f;font-weight:bold">extends</span> ActionSupport  <span style="color:#666">{</span>
+    Date date <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">new</span> Date<span style="color:#666">();</span>
+    <span style="color:#a2f;font-weight:bold">private</span> Comment comment<span style="color:#666">;</span>
+    <span style="color:#a2f;font-weight:bold">private</span> CommentService commentService<span style="color:#666">;</span>
+    <span style="color:#080;font-style:italic">//private Integer storyId;
+</span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setCommentService</span><span style="color:#666">(</span>CommentService commentService<span style="color:#666">)</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">commentService</span> <span style="color:#666">=</span> commentService<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+    <span style="color:#a2f;font-weight:bold">public</span> Comment <span style="color:#00a000">getComment</span><span style="color:#666">()</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">return</span> comment<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setComment</span><span style="color:#666">(</span>Comment comment<span style="color:#666">)</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">comment</span> <span style="color:#666">=</span> comment<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+    <span style="color:#a2f;font-weight:bold">public</span> String <span style="color:#00a000">add</span><span style="color:#666">(){</span>
+        comment<span style="color:#666">.</span><span style="color:#b44">setCommentDate</span><span style="color:#666">(</span>date<span style="color:#666">);</span>
+        commentService<span style="color:#666">.</span><span style="color:#b44">add</span><span style="color:#666">(</span>comment<span style="color:#666">);</span>
+        <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#b44">&#34;add&#34;</span><span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+<span style="color:#666">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h1 id="struts2文件上传以上传头像为例">struts2文件上传（以上传头像为例） <a href="#struts2%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e4%bb%a5%e4%b8%8a%e4%bc%a0%e5%a4%b4%e5%83%8f%e4%b8%ba%e4%be%8b" class="anchor">🔗</a></h1><p>在java的ssh项目中，需要为注册的用户设置一个头像，具体解决方案如下</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="jsp视图层">jsp视图层 <a href="#jsp%e8%a7%86%e5%9b%be%e5%b1%82" class="anchor">🔗</a></h2><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#666">&lt;</span>form action<span style="color:#666">=</span><span style="color:#b44">&#34;${pageContext.request.contextPath }/user_updateavatar.action?user.usid=${user.uid}&#34;</span>
+        method<span style="color:#666">=</span>post enctype<span style="color:#666">=</span><span style="color:#b44">&#34;multipart/form-data&#34;</span><span style="color:#666">&gt;</span>
+    <span style="color:#666">&lt;</span>input type<span style="color:#666">=</span><span style="color:#b44">&#34;hidden&#34;</span> name<span style="color:#666">=</span><span style="color:#b44">&#34;user.uid&#34;</span> value<span style="color:#666">=</span><span style="color:#b44">&#34;${user.uid }&#34;</span><span style="color:#666">/&gt;</span>
+    <span style="color:#666">&lt;</span>div class<span style="color:#666">=</span><span style="color:#b44">&#34;panel panel-default&#34;</span><span style="color:#666">&gt;</span>
+        <span style="color:#666">&lt;</span>div class<span style="color:#666">=</span><span style="color:#b44">&#34;panel-body&#34;</span><span style="color:#666">&gt;</span>
+            <span style="color:#666">&lt;</span>br<span style="color:#666">&gt;</span>
+            <span style="color:#666">&lt;</span>div class<span style="color:#666">=</span><span style="color:#b44">&#34;mdui-card-header-title&#34;</span><span style="color:#666">&gt;</span>头像上传<span style="color:#666">&lt;/</span>div<span style="color:#666">&gt;</span>
+            <span style="color:#666">&lt;</span>div class<span style="color:#666">=</span><span style="color:#b44">&#34;mdui-container&#34;</span><span style="color:#666">&gt;</span>
+                <span style="color:#666">&lt;</span>input type<span style="color:#666">=</span><span style="color:#b44">&#34;file&#34;</span> name<span style="color:#666">=</span><span style="color:#b44">&#34;avatar&#34;</span><span style="color:#666">&gt;</span>
+                <span style="color:#666">&lt;</span>button class<span style="color:#666">=</span><span style="color:#b44">&#34;mdui-btn mdui-btn-dense mdui-color-blue mdui-float-right mdui-m-a-2&#34;</span><span style="color:#666">&gt;</span>
+                    保存
+                <span style="color:#666">&lt;/</span>button<span style="color:#666">&gt;</span>
+            <span style="color:#666">&lt;/</span>div<span style="color:#666">&gt;</span>
+        <span style="color:#666">&lt;/</span>div<span style="color:#666">&gt;</span>
+    <span style="color:#666">&lt;/</span>div<span style="color:#666">&gt;</span>
+<span style="color:#666">&lt;/</span>form<span style="color:#666">&gt;</span>
+</code></pre></div><p>input类型要设置为type为File类型，name需要对应action中的命名</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="action层">action层 <a href="#action%e5%b1%82" class="anchor">🔗</a></h2><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f;font-weight:bold">private</span> File avatar<span style="color:#666">;</span><span style="color:#080;font-style:italic">//上传文件域
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f;font-weight:bold">private</span> String avatatFileType<span style="color:#666">;</span><span style="color:#080;font-style:italic">//上传文件类型
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f;font-weight:bold">private</span> String avatarFileName<span style="color:#666">;</span><span style="color:#080;font-style:italic">//上传文件名字
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f;font-weight:bold">private</span> String savePathAvatar<span style="color:#666">;</span><span style="color:#080;font-style:italic">//文件存储位置，在struts2中配置
+</span><span style="color:#080;font-style:italic">//对应的get和set方法
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f;font-weight:bold">public</span> String <span style="color:#00a000">updateavatar</span><span style="color:#666">(){</span>
+  <span style="color:#080;font-style:italic">//文件在本地的具体存储位置
+</span><span style="color:#080;font-style:italic"></span>        String path<span style="color:#666">=</span>ServletActionContext<span style="color:#666">.</span><span style="color:#b44">getServletContext</span><span style="color:#666">().</span><span style="color:#b44">getRealPath</span><span style="color:#666">(</span><span style="color:#b44">&#34;/&#34;</span><span style="color:#666">)+</span>getSavePathAvatar<span style="color:#666">()+</span><span style="color:#b44">&#34;\\&#34;</span><span style="color:#666">+</span>getAvatarFileName<span style="color:#666">();</span>
+  <span style="color:#080;font-style:italic">//文件存储到数据库的路径（根据实际情况来设置）
+</span><span style="color:#080;font-style:italic"></span>        String path2<span style="color:#666">=</span>getSavePathAvatar<span style="color:#666">()+</span><span style="color:#b44">&#34;/&#34;</span><span style="color:#666">+</span>getAvatarFileName<span style="color:#666">();</span>
+        <span style="color:#a2f;font-weight:bold">try</span><span style="color:#666">{</span>
+            FileOutputStream fos<span style="color:#666">=</span><span style="color:#a2f;font-weight:bold">new</span> FileOutputStream<span style="color:#666">(</span>path<span style="color:#666">);</span>
+            FileInputStream fis<span style="color:#666">=</span><span style="color:#a2f;font-weight:bold">new</span> FileInputStream<span style="color:#666">(</span>getAvatar<span style="color:#666">());</span>
+            <span style="color:#0b0;font-weight:bold">byte</span><span style="color:#666">[]</span>buffer<span style="color:#666">=</span><span style="color:#a2f;font-weight:bold">new</span> <span style="color:#0b0;font-weight:bold">byte</span><span style="color:#666">[</span>1024<span style="color:#666">];</span>
+            <span style="color:#0b0;font-weight:bold">int</span> len<span style="color:#666">=</span>0<span style="color:#666">;</span>
+            <span style="color:#a2f;font-weight:bold">try</span> <span style="color:#666">{</span>
+                <span style="color:#a2f;font-weight:bold">while</span> <span style="color:#666">((</span>len<span style="color:#666">=</span>fis<span style="color:#666">.</span><span style="color:#b44">read</span><span style="color:#666">(</span>buffer<span style="color:#666">))&gt;</span>0<span style="color:#666">){</span>
+                    fos<span style="color:#666">.</span><span style="color:#b44">write</span><span style="color:#666">(</span>buffer<span style="color:#666">,</span>0<span style="color:#666">,</span>len<span style="color:#666">);</span>
+                <span style="color:#666">}</span>
+            <span style="color:#666">}</span> <span style="color:#a2f;font-weight:bold">catch</span> <span style="color:#666">(</span>IOException e<span style="color:#666">)</span> <span style="color:#666">{</span>
+                e<span style="color:#666">.</span><span style="color:#b44">printStackTrace</span><span style="color:#666">();</span>
+            <span style="color:#666">}</span>
+        <span style="color:#666">}</span> <span style="color:#a2f;font-weight:bold">catch</span> <span style="color:#666">(</span>FileNotFoundException e<span style="color:#666">)</span> <span style="color:#666">{</span>
+            e<span style="color:#666">.</span><span style="color:#b44">printStackTrace</span><span style="color:#666">();</span>
+        <span style="color:#666">}</span>
+  <span style="color:#080;font-style:italic">//接受页面传过来的用户id
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#0b0;font-weight:bold">int</span> uid<span style="color:#666">=</span>user<span style="color:#666">.</span><span style="color:#b44">getUid</span><span style="color:#666">();</span>
+        User user4<span style="color:#666">=</span>userService<span style="color:#666">.</span><span style="color:#b44">findOne</span><span style="color:#666">(</span>uid<span style="color:#666">);</span>
+        user4<span style="color:#666">.</span><span style="color:#b44">setAvatar</span><span style="color:#666">(</span>path2<span style="color:#666">);</span>
+  <span style="color:#080;font-style:italic">//调用service进行路径的存储
+</span><span style="color:#080;font-style:italic"></span>        userService<span style="color:#666">.</span><span style="color:#b44">update</span><span style="color:#666">(</span>user4<span style="color:#666">);</span>
+        <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#b44">&#34;update&#34;</span><span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="strutsxml的配置">Struts.xml的配置 <a href="#strutsxml%e7%9a%84%e9%85%8d%e7%bd%ae" class="anchor">🔗</a></h2><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#008000;font-weight:bold">&lt;action</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;user_*&#34;</span> <span style="color:#b44">class=</span><span style="color:#b44">&#34;userAction&#34;</span> <span style="color:#b44">method=</span><span style="color:#b44">&#34;{1}&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>
+  <span style="color:#080;font-style:italic">&lt;!-- 动态设置存储位置的值 --&gt;</span>  
+<span style="color:#008000;font-weight:bold">&lt;param</span> <span style="color:#b44">name=</span><span style="color:#b44">&#34;savePathAvatar&#34;</span><span style="color:#008000;font-weight:bold">&gt;</span>/upload/avatar<span style="color:#008000;font-weight:bold">&lt;/param&gt;</span>
+<span style="color:#008000;font-weight:bold">&lt;/action&gt;</span>
+</code></pre></div><p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+<h2 id="显示">显示 <a href="#%e6%98%be%e7%a4%ba" class="anchor">🔗</a></h2><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#008000;font-weight:bold">&lt;img</span> <span style="color:#b44">src=</span><span style="color:#b44">&#34;${story.user.avatar}&#34;</span><span style="color:#008000;font-weight:bold">/&gt;&lt;/div&gt;</span>
+</code></pre></div><p>我的项目是显示这个story对应的用户的头像</p>
+<h1 id="ssh框架实现分页显示">ssh框架实现分页显示 <a href="#ssh%e6%a1%86%e6%9e%b6%e5%ae%9e%e7%8e%b0%e5%88%86%e9%a1%b5%e6%98%be%e7%a4%ba" class="anchor">🔗</a></h1><h2 id="目的">目的 <a href="#%e7%9b%ae%e7%9a%84" class="anchor">🔗</a></h2><p>最近在写的一个java小论坛的首页想要实现首页帖子列表的分页显示</p>
+<h2 id="实现">实现 <a href="#%e5%ae%9e%e7%8e%b0" class="anchor">🔗</a></h2><h3 id="分页类">分页类 <a href="#%e5%88%86%e9%a1%b5%e7%b1%bb" class="anchor">🔗</a></h3><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f;font-weight:bold">package</span> <span style="color:#00f;font-weight:bold">cn.haigeek.entity</span><span style="color:#666">;</span>
+
+<span style="color:#080;font-style:italic">/**
+</span><span style="color:#080;font-style:italic"> * Created by haigeek on 2017/7/16.
+</span><span style="color:#080;font-style:italic"> */</span>
+<span style="color:#a2f;font-weight:bold">public</span> <span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">pageShow</span> <span style="color:#666">{</span>
+    <span style="color:#080;font-style:italic">//此类用于分页
+</span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">private</span> <span style="color:#0b0;font-weight:bold">int</span> pageNow<span style="color:#666">;</span><span style="color:#080;font-style:italic">//当前页
+</span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">private</span> <span style="color:#0b0;font-weight:bold">int</span> totalSize<span style="color:#666">;</span><span style="color:#080;font-style:italic">//总条数
+</span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">private</span> <span style="color:#0b0;font-weight:bold">int</span> totalPage<span style="color:#666">;</span><span style="color:#080;font-style:italic">//总页数
+</span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">private</span> <span style="color:#0b0;font-weight:bold">int</span> pageSize <span style="color:#666">=</span> 10<span style="color:#666">;</span><span style="color:#080;font-style:italic">//每页显示条数
+</span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">private</span> <span style="color:#0b0;font-weight:bold">boolean</span> hasPre<span style="color:#666">;</span><span style="color:#080;font-style:italic">//是否有上一页
+</span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">private</span> <span style="color:#0b0;font-weight:bold">boolean</span> hasNext<span style="color:#666">;</span><span style="color:#080;font-style:italic">//是否有下一页
+</span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">private</span> <span style="color:#0b0;font-weight:bold">boolean</span> hasFirst<span style="color:#666">;</span><span style="color:#080;font-style:italic">//是否有首页
+</span><span style="color:#080;font-style:italic"></span>    <span style="color:#a2f;font-weight:bold">private</span> <span style="color:#0b0;font-weight:bold">boolean</span> hasLast<span style="color:#666">;</span><span style="color:#080;font-style:italic">//是否有尾页
+</span><span style="color:#080;font-style:italic"></span>
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#00a000">pageShow</span><span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">int</span> pageNow<span style="color:#666">,</span> <span style="color:#0b0;font-weight:bold">int</span> totalSize<span style="color:#666">)</span> <span style="color:#666">{</span>
+        <span style="color:#080;font-style:italic">//构造方法
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">setPageNow</span><span style="color:#666">(</span>pageNow<span style="color:#666">);</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">setTotalSize</span><span style="color:#666">(</span>totalSize<span style="color:#666">);</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#00a000">pageShow</span><span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">int</span> pageNow<span style="color:#666">,</span> <span style="color:#0b0;font-weight:bold">int</span> totalSize<span style="color:#666">,</span> <span style="color:#0b0;font-weight:bold">int</span> pageSize<span style="color:#666">)</span> <span style="color:#666">{</span><span style="color:#080;font-style:italic">//可动态改变每页条数
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#080;font-style:italic">//构造方法
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">setPageNow</span><span style="color:#666">(</span>pageNow<span style="color:#666">);</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">setTotalSize</span><span style="color:#666">(</span>totalSize<span style="color:#666">);</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">pageSize</span> <span style="color:#666">=</span> pageSize<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setPageNow</span><span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">int</span> pageNow<span style="color:#666">)</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">pageNow</span> <span style="color:#666">=</span> pageNow<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">getPageNow</span><span style="color:#666">()</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">return</span> pageNow<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setTotalSize</span><span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">int</span> totalSize<span style="color:#666">)</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">totalSize</span> <span style="color:#666">=</span> totalSize<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">getTotalSize</span><span style="color:#666">()</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">return</span> totalSize<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setPageSize</span><span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">int</span> pageSize<span style="color:#666">)</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">pageSize</span> <span style="color:#666">=</span> pageSize<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">getPageSize</span><span style="color:#666">()</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">return</span> pageSize<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">getTotalPage</span><span style="color:#666">()</span> <span style="color:#666">{</span><span style="color:#080;font-style:italic">//总页数 = 总条数/每页显示条数
+</span><span style="color:#080;font-style:italic"></span>        totalPage <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">getTotalSize</span><span style="color:#666">()</span> <span style="color:#666">/</span> <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">getPageSize</span><span style="color:#666">();</span>
+        <span style="color:#a2f;font-weight:bold">if</span> <span style="color:#666">(</span><span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">getTotalSize</span><span style="color:#666">()</span> <span style="color:#666">%</span> <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">getPageSize</span><span style="color:#666">()</span> <span style="color:#666">!=</span> 0<span style="color:#666">)</span> <span style="color:#666">{</span>
+            totalPage<span style="color:#666">++;</span> <span style="color:#080;font-style:italic">//若余数为不0 则要多加一页
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#666">}</span>
+        <span style="color:#a2f;font-weight:bold">return</span> totalPage<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setTotalPage</span><span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">int</span> totalPage<span style="color:#666">)</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">totalPage</span> <span style="color:#666">=</span> totalPage<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">boolean</span> <span style="color:#00a000">isHasPre</span><span style="color:#666">()</span> <span style="color:#666">{</span><span style="color:#080;font-style:italic">//是否有上一页   除第一页以外都有上一页  说明有首页的就有上一页
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#a2f;font-weight:bold">if</span> <span style="color:#666">(</span><span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">isHasFirst</span><span style="color:#666">())</span> <span style="color:#666">{</span>
+            <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">true</span><span style="color:#666">;</span>
+        <span style="color:#666">}</span> <span style="color:#a2f;font-weight:bold">else</span> <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">false</span><span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setHasPre</span><span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">boolean</span> hasPre<span style="color:#666">)</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">hasPre</span> <span style="color:#666">=</span> hasPre<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">boolean</span> <span style="color:#00a000">isHasNext</span><span style="color:#666">()</span> <span style="color:#666">{</span><span style="color:#080;font-style:italic">//是否有下一页   除最后一页以外都有下一页  说明有尾页的就有下一页
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#a2f;font-weight:bold">if</span> <span style="color:#666">(</span><span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">isHasLast</span><span style="color:#666">())</span> <span style="color:#666">{</span>
+            <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">true</span><span style="color:#666">;</span>
+        <span style="color:#666">}</span> <span style="color:#a2f;font-weight:bold">else</span> <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">false</span><span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setHasNext</span><span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">boolean</span> hasNext<span style="color:#666">)</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">hasNext</span> <span style="color:#666">=</span> hasNext<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">boolean</span> <span style="color:#00a000">isHasFirst</span><span style="color:#666">()</span> <span style="color:#666">{</span><span style="color:#080;font-style:italic">//是否有首页 除第一页以外都有首页
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#a2f;font-weight:bold">if</span> <span style="color:#666">(</span><span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">pageNow</span> <span style="color:#666">==</span> 1<span style="color:#666">)</span><span style="color:#080;font-style:italic">//是第一页就没有首页
+</span><span style="color:#080;font-style:italic"></span>            <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">false</span><span style="color:#666">;</span>
+        <span style="color:#a2f;font-weight:bold">else</span>
+            <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">true</span><span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setHasFirst</span><span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">boolean</span> hasFirst<span style="color:#666">)</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">hasFirst</span> <span style="color:#666">=</span> hasFirst<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">boolean</span> <span style="color:#00a000">isHasLast</span><span style="color:#666">()</span> <span style="color:#666">{</span><span style="color:#080;font-style:italic">//是否有尾页  除最后一页以外都有尾页
+</span><span style="color:#080;font-style:italic"></span>        <span style="color:#a2f;font-weight:bold">if</span> <span style="color:#666">(</span>pageNow <span style="color:#666">==</span> <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">getTotalPage</span><span style="color:#666">())</span> <span style="color:#666">{</span><span style="color:#080;font-style:italic">//最后一页
+</span><span style="color:#080;font-style:italic"></span>            <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">false</span><span style="color:#666">;</span>
+        <span style="color:#666">}</span> <span style="color:#a2f;font-weight:bold">else</span> <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">true</span><span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+
+    <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">setHasLast</span><span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">boolean</span> hasLast<span style="color:#666">)</span> <span style="color:#666">{</span>
+        <span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">hasLast</span> <span style="color:#666">=</span> hasLast<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+<span style="color:#666">}</span>
+</code></pre></div><h3 id="编写action">编写action <a href="#%e7%bc%96%e5%86%99action" class="anchor">🔗</a></h3><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f;font-weight:bold">public</span> String <span style="color:#00a000">getAllStory</span><span style="color:#666">(){</span>
+		List <span style="color:#666">&lt;</span>Story<span style="color:#666">&gt;</span>StoryList<span style="color:#666">=</span>storyService<span style="color:#666">.</span><span style="color:#b44">getAllStory</span><span style="color:#666">(</span>pageNow<span style="color:#666">,</span>pageSize<span style="color:#666">);</span>
+  			<span style="color:#080;font-style:italic">//放进域对象
+</span><span style="color:#080;font-style:italic"></span>			ServletActionContext<span style="color:#666">.</span><span style="color:#b44">getRequest</span><span style="color:#666">().</span><span style="color:#b44">setAttribute</span><span style="color:#666">(</span><span style="color:#b44">&#34;StoryList&#34;</span><span style="color:#666">,</span> StoryList<span style="color:#666">);</span>
+  			<span style="color:#080;font-style:italic">//放入request对象
+</span><span style="color:#080;font-style:italic"></span>			Map request<span style="color:#666">=</span> <span style="color:#666">(</span>Map<span style="color:#666">)</span> ActionContext<span style="color:#666">.</span><span style="color:#b44">getContext</span><span style="color:#666">().</span><span style="color:#b44">get</span><span style="color:#666">(</span><span style="color:#b44">&#34;request&#34;</span><span style="color:#666">);</span>
+			pageShow page<span style="color:#666">=</span><span style="color:#a2f;font-weight:bold">new</span> pageShow<span style="color:#666">(</span>pageNow<span style="color:#666">,</span>storyService<span style="color:#666">.</span><span style="color:#b44">findStorySize</span><span style="color:#666">(),</span>pageSize<span style="color:#666">);</span>
+			request<span style="color:#666">.</span><span style="color:#b44">put</span><span style="color:#666">(</span><span style="color:#b44">&#34;page&#34;</span><span style="color:#666">,</span>page<span style="color:#666">);</span>
+			<span style="color:#a2f;font-weight:bold">return</span> <span style="color:#b44">&#34;getAllStory&#34;</span><span style="color:#666">;</span>
+		<span style="color:#666">}</span>
+</code></pre></div><h3 id="编写service层">编写service层 <a href="#%e7%bc%96%e5%86%99service%e5%b1%82" class="anchor">🔗</a></h3><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">	<span style="color:#080;font-style:italic">//service层
+</span><span style="color:#080;font-style:italic"></span><span style="color:#a2f;font-weight:bold">public</span> List <span style="color:#666">&lt;</span>Story<span style="color:#666">&gt;</span>getAllStory<span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">int</span> page<span style="color:#666">,</span><span style="color:#0b0;font-weight:bold">int</span> pageSize<span style="color:#666">){</span>
+        <span style="color:#a2f;font-weight:bold">return</span> storyDao<span style="color:#666">.</span><span style="color:#b44">getAllStory</span><span style="color:#666">(</span>page<span style="color:#666">,</span>pageSize<span style="color:#666">);</span>
+    <span style="color:#666">}</span>
+    <span style="color:#080;font-style:italic">//获取帖子数目
+</span><span style="color:#080;font-style:italic"></span> <span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">findStorySize</span><span style="color:#666">(){</span>
+        <span style="color:#a2f;font-weight:bold">return</span> storyDao<span style="color:#666">.</span><span style="color:#b44">findStorySize</span><span style="color:#666">();</span>
+  	<span style="color:#666">}</span>
+</code></pre></div><h3 id="dao接口层">Dao接口层 <a href="#dao%e6%8e%a5%e5%8f%a3%e5%b1%82" class="anchor">🔗</a></h3><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">    <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">findStorySize</span><span style="color:#666">();</span>
+
+    List <span style="color:#666">&lt;</span>Story<span style="color:#666">&gt;</span>getAllStory<span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">int</span> page<span style="color:#666">,</span> <span style="color:#0b0;font-weight:bold">int</span> pageSize<span style="color:#666">);</span>
+</code></pre></div><h3 id="dao层的实现层">Dao层的实现层 <a href="#dao%e5%b1%82%e7%9a%84%e5%ae%9e%e7%8e%b0%e5%b1%82" class="anchor">🔗</a></h3><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f;font-weight:bold">public</span> <span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">StoryDaoImpl</span> <span style="color:#a2f;font-weight:bold">extends</span> HibernateDaoSupport <span style="color:#a2f;font-weight:bold">implements</span> StoryDao <span style="color:#666">{</span>
+<span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">int</span> <span style="color:#00a000">findStorySize</span><span style="color:#666">()</span> <span style="color:#666">{</span>
+        Session session<span style="color:#666">=</span>getSessionFactory<span style="color:#666">().</span><span style="color:#b44">openSession</span><span style="color:#666">();</span>
+        String hql <span style="color:#666">=</span> <span style="color:#b44">&#34;from Story &#34;</span><span style="color:#666">;</span>
+        <span style="color:#0b0;font-weight:bold">int</span> size <span style="color:#666">=</span> session<span style="color:#666">.</span><span style="color:#b44">createQuery</span><span style="color:#666">(</span>hql<span style="color:#666">).</span><span style="color:#b44">list</span><span style="color:#666">().</span><span style="color:#b44">size</span><span style="color:#666">();</span>
+        session<span style="color:#666">.</span><span style="color:#b44">close</span><span style="color:#666">();</span>
+        <span style="color:#a2f;font-weight:bold">return</span> size<span style="color:#666">;</span>
+    <span style="color:#666">}</span>
+    <span style="color:#a2f;font-weight:bold">public</span> List<span style="color:#666">&lt;</span>Story<span style="color:#666">&gt;</span> <span style="color:#00a000">getAllStory</span><span style="color:#666">(</span><span style="color:#0b0;font-weight:bold">int</span> pageNow<span style="color:#666">,</span> <span style="color:#0b0;font-weight:bold">int</span> pageSize<span style="color:#666">)</span> <span style="color:#666">{</span>
+    <span style="color:#080;font-style:italic">//获取session的方式很重要，这里的dao层是继承了HibernateDaoSupport来实现dao接口
+</span><span style="color:#080;font-style:italic"></span>        Session session<span style="color:#666">=</span><span style="color:#a2f;font-weight:bold">this</span><span style="color:#666">.</span><span style="color:#b44">getHibernateTemplate</span><span style="color:#666">().</span><span style="color:#b44">getSessionFactory</span><span style="color:#666">().</span><span style="color:#b44">getCurrentSession</span><span style="color:#666">();</span>
+        String hql<span style="color:#666">=</span><span style="color:#b44">&#34;from Story order by story_id desc &#34;</span><span style="color:#666">;</span>
+        Query query <span style="color:#666">=</span> session<span style="color:#666">.</span><span style="color:#b44">createQuery</span><span style="color:#666">(</span>hql<span style="color:#666">);</span><span style="color:#080;font-style:italic">//执行查询操作
+</span><span style="color:#080;font-style:italic"></span>        query<span style="color:#666">.</span><span style="color:#b44">setFirstResult</span><span style="color:#666">((</span>pageNow <span style="color:#666">-</span> 1<span style="color:#666">)</span> <span style="color:#666">*</span> pageSize<span style="color:#666">);</span>
+        query<span style="color:#666">.</span><span style="color:#b44">setMaxResults</span><span style="color:#666">(</span>pageSize<span style="color:#666">);</span>
+        List <span style="color:#666">&lt;</span>Story<span style="color:#666">&gt;</span> StoryList <span style="color:#666">=</span> query<span style="color:#666">.</span><span style="color:#b44">list</span><span style="color:#666">();</span>
+        <span style="color:#a2f;font-weight:bold">return</span> StoryList<span style="color:#666">;</span>
+
+    <span style="color:#666">}</span>
+ <span style="color:#666">}</span>
+</code></pre></div><h3 id="视图层">视图层 <a href="#%e8%a7%86%e5%9b%be%e5%b1%82" class="anchor">🔗</a></h3><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;div class=&#34;panel-body&#34;&gt;
+    &lt;c:forEach items=&#34;${StoryList }&#34; var=&#34;story&#34;&gt;
+        &lt;ul class=&#34;mdui-list&#34;&gt;
+            &lt;a href=&#34;${pageContext.request.contextPath }/story_show.action?story_id=${story.story_id}&#34;&gt;
+                &lt;li class=&#34;mdui-list-item mdui-ripple&#34;&gt;
+                    &lt;div class=&#34;mdui-list-item-avatar&#34;&gt;&lt;img src=&#34;avatar1.jpg&#34;/&gt;&lt;/div&gt;
+                    &lt;div class=&#34;mdui-list-item-content&#34;&gt;
+                        &lt;div class=&#34;mdui-list-item-title mdui-list-item-two-line&#34;&gt;${story.story_title}&lt;/div&gt;
+                        &lt;div class=&#34;mdui-list-item-text mdui-list-item-one-line&#34;&gt; ${story.user.username}发表在说天谈地
+                            最后回复：haigeek 2017.06.07
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/li&gt;
+            &lt;/a&gt;
+        &lt;/ul&gt;
+    &lt;/c:forEach&gt;
+    &lt;s:set name=&#34;page&#34; value=&#34;#request.page&#34;&gt;&lt;/s:set&gt;
+    &lt;nav aria-label=&#34;Page navigation&#34;&gt;
+        &lt;ul class=&#34;pagination center-block&#34;&gt;
+            &lt;s:if test=&#34;#page.hasPre&#34;&gt;
+            &lt;li&gt;
+                &lt;a href=story_getAllStory?pageNow=&lt;s:property value=&#34;#page.pageNow-1&#34;/&gt;
+                aria-label=&#34;Previous&#34;&gt;
+                &lt;span aria-hidden=&#34;true&#34;&gt;&amp;laquo;&lt;/span&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;/s:if&gt;
+                &lt;s:if test=&#34;#page.hasFirst&#34;&gt;
+                &lt;li&gt;
+                    &lt;a href=&#34;story_getAllStory?pageNow=1&#34;
+                        aria-label=&#34;Previous&#34;&gt;
+                        &lt;span aria-hidden=&#34;true&#34;&gt;首页&lt;/span&gt;
+                    &lt;/a&gt;
+                &lt;/li&gt;
+                &lt;/s:if&gt;
+
+            &lt;li&gt;&lt;a href=&#34;story_getAllStory?pageNow=1&#34;&gt;1&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;story_getAllStory?pageNow=2&#34;&gt;2&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;story_getAllStory?pageNow=3&#34;&gt;3&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;story_getAllStory?pageNow=4&#34;&gt;4&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&#34;story_getAllStory?pageNow=5&#34;&gt;5&lt;/a&gt;&lt;/li&gt;
+            &lt;s:if test=&#34;#page.hasLast&#34;&gt;
+            &lt;li&gt;
+                &lt;a href=story_getAllStory?pageNow=&lt;s:property value=&#34;#page.totalPage&#34;/&gt;
+                    aria-label=&#34;Previous&#34;&gt;
+                    &lt;span aria-hidden=&#34;true&#34;&gt;尾页&lt;/span&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;/s:if&gt;
+            &lt;s:if test=&#34;#page.hasNext&#34;&gt;
+            &lt;li&gt;
+                &lt;a href=&#34;story_getAllStory?pageNow=&lt;s:property value=&#34;#page.pageNow+1&#34; /&gt; &#34;
+                    aria-label=&#34;Next&#34;&gt;
+                    &lt;span aria-hidden=&#34;true&#34;&gt;&amp;raquo;&lt;/span&gt;
+                &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;/s:if&gt;
+        &lt;/ul&gt;
+
+    &lt;/nav&gt;
+&lt;/div&gt;
+</code></pre></div><p>视图使用了一些样式（bootstrap等），主要是标签的使用，需要加入</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">&lt;%@ taglib prefix=&#34;c&#34; uri=&#34;http://java.sun.com/jsp/jstl/core&#34; %&gt;
+&lt;%@ taglib uri=&#34;/struts-tags&#34; prefix=&#34;s&#34; %&gt;
+</code></pre></div><h3 id="配置文件">配置文件 <a href="#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" class="anchor">🔗</a></h3><p>配置struts.xml和spring配置文件即可，我的项目主要是添加功能，配置文件已经配置好，只贴了核心的代码，最后在struts.xml添加一项配置即可</p>
+    </div>
+
+    
+        <div class="tags">
+            
+                <a href="https://haigeek.me/tags/struts2">struts2</a>
+            
+                <a href="https://haigeek.me/tags/java-web">java web</a>
+            
+        </div>
+    
+    
+     
+  <div id="comment">
+    
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "your-disqus-shortname" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  </div>
+
+
+</section>
+
+
+    </main>
+    
+    <footer id="footer">
+    
+        <div id="social">
+
+
+    <a class="symbol" href="https://github.com/haigeek" target="_blank">
+        
+        <svg fill="#bbbbbb" width="28" height="28"  viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <title>Github</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Social-Icons---Rounded-Black" transform="translate(-264.000000, -939.000000)">
+            <g id="Github" transform="translate(264.000000, 939.000000)">
+                <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z" id="Rounded" fill="#bbbbbb"></path>
+                <path d="M35.9985,13 C22.746,13 12,23.7870921 12,37.096644 C12,47.7406712 18.876,56.7718301 28.4145,59.9584121 C29.6145,60.1797862 30.0525,59.4358488 30.0525,58.7973276 C30.0525,58.2250681 30.0315,56.7100863 30.0195,54.6996482 C23.343,56.1558981 21.9345,51.4693938 21.9345,51.4693938 C20.844,48.6864054 19.2705,47.9454799 19.2705,47.9454799 C17.091,46.4500754 19.4355,46.4801943 19.4355,46.4801943 C21.843,46.6503662 23.1105,48.9634994 23.1105,48.9634994 C25.2525,52.6455377 28.728,51.5823398 30.096,50.9649018 C30.3135,49.4077535 30.9345,48.3460615 31.62,47.7436831 C26.2905,47.1352808 20.688,45.0691228 20.688,35.8361671 C20.688,33.2052792 21.6225,31.0547881 23.1585,29.3696344 C22.911,28.7597262 22.0875,26.3110578 23.3925,22.9934585 C23.3925,22.9934585 25.4085,22.3459017 29.9925,25.4632101 C31.908,24.9285993 33.96,24.6620468 36.0015,24.6515052 C38.04,24.6620468 40.0935,24.9285993 42.0105,25.4632101 C46.5915,22.3459017 48.603,22.9934585 48.603,22.9934585 C49.9125,26.3110578 49.089,28.7597262 48.8415,29.3696344 C50.3805,31.0547881 51.309,33.2052792 51.309,35.8361671 C51.309,45.0917119 45.6975,47.1292571 40.3515,47.7256117 C41.2125,48.4695491 41.9805,49.9393525 41.9805,52.1877301 C41.9805,55.4089489 41.9505,58.0067059 41.9505,58.7973276 C41.9505,59.4418726 42.3825,60.1918338 43.6005,59.9554002 C53.13,56.7627944 60,47.7376593 60,37.096644 C60,23.7870921 49.254,13 35.9985,13" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+    </a>
+
+
+</div>
+
+    
+
+    <p class="copyright">
+    
+       © Copyright 
+       2021 
+       <span class="split">
+        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
+  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
+</svg>
+       </span>
+       haigeek
+    
+    </p>
+    <p class="powerby">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+  </body>
+</html>

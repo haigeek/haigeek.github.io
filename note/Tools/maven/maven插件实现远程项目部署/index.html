@@ -1,0 +1,307 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+               
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+</div>
+
+
+
+
+
+<h1 class="title"></h1>
+
+<div class="content">
+
+    
+    <h1 id="maven插件实现远程服务器部署">Maven插件实现远程服务器部署</h1>
+<h2 id="背景">背景</h2>
+<p>通过 tomcat7-maven-plugin 插件将项目自动部署到本地服务器或远程服务器。tomcat7和8均可通过该插件远程部署项目。</p>
+<h2 id="准备">准备</h2>
+<ol>
+<li>
+<p>在tomcat-users.xml 文件配置用户权限</p>
+</li>
+<li>
+<p>webapps文件下存放manager文件（tomcat一般自带这个文件）</p>
+</li>
+<li>
+<p>如果是远程服务器，还需要设置下manager的content.xml文件，不然会出现IP被限制问题。</p>
+</li>
+<li>
+<p>启动 tomcat</p>
+</li>
+<li>
+<p>提供者自动销毁实例代码，因为Dubbo项目在重新部署的时候，会出现服务被占用的情况。解决办法在提供者util包下新增DubboServerListener类，并在web.xml配置文件中引用它。</p>
+<pre><code>package com.dist.util;
+   
+   
+/**
+ * @author 常志
+ * @create 2019-03-5
+ **/
+import com.alibaba.dubbo.registry.dubbo.DubboRegistryFactory;
+import com.alibaba.dubbo.rpc.protocol.dubbo.DubboProtocol;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+   
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+   
+public class DubboServerListener implements ServletContextListener{
+    /** 日志记录 */
+    private Logger logger = LoggerFactory.getLogger(DubboServerListener.class);
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        System.out.println(&quot;初始化&quot;);
+    }
+   
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+        logger.info(&quot;销毁dubbo实例中....&quot;);
+        DubboRegistryFactory.destroyAll();
+        DubboProtocol.getDubboProtocol().destroy();
+        logger.info(&quot;销毁dubbo服务完成！&quot;);
+    }
+}
+</code></pre><pre><code>&lt;listener&gt;
+   &lt;listener-class&gt;com.dist.util.DubboServerListener&lt;/listener-class&gt;
+&lt;/listener&gt;
+</code></pre></li>
+</ol>
+<h3 id="具体使用">具体使用</h3>
+<hr>
+<ol>
+<li>
+<p>在提供者和消费者pom文件处添加以下代码</p>
+<pre><code>&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.tomcat.maven&lt;/groupId&gt;
+    &lt;!-- 引入tomcat插件 --&gt;
+    &lt;artifactId&gt;tomcat7-maven-plugin&lt;/artifactId&gt;
+    &lt;configuration&gt;
+        &lt;url&gt;http://127.0.0.1:8080/manager/text&lt;/url&gt;
+        &lt;username&gt;admin&lt;/username&gt;
+        &lt;password&gt;admin&lt;/password&gt;
+        &lt;path&gt;/dgp-server-service&lt;/path&gt;
+    &lt;/configuration&gt;
+    &lt;version&gt;2.2&lt;/version&gt;
+&lt;/plugin&gt;
+</code></pre></li>
+<li>
+<p>url 本地或远程服务器tomcat地址</p>
+</li>
+<li>
+<p>username 和 password 是tomcat配置的用户和密码</p>
+</li>
+<li>
+<p>path 是打包后的名称，tomcat7-maven-plugin 会自动帮你打包</p>
+</li>
+<li>
+<p>运行命令 mvn tomcat7:deploy 部署项目</p>
+</li>
+</ol>
+<h3 id="可能会遇到的问题">可能会遇到的问题</h3>
+<hr>
+<ol>
+<li>
+<p>用户权限问题，解决办法：</p>
+<pre><code>&lt;role rolename=&quot;admin-gui&quot;/&gt;
+ &lt;role rolename=&quot;admin-script&quot;/&gt;
+ &lt;role rolename=&quot;manager-gui&quot;/&gt;
+ &lt;role rolename=&quot;manager-script&quot;/&gt;
+ &lt;role rolename=&quot;manager-jmx&quot;/&gt;
+ &lt;role rolename=&quot;manager-status&quot;/&gt;
+ &lt;user username=&quot;admin&quot; password=&quot;admin&quot; roles=&quot;manager-gui,manager-script,manager-jmx,manager-status,admin-gui,admin-script &quot;/&gt;
+</code></pre></li>
+<li>
+<p>远程tomcat IP限制问题，解决办法tomcat-manager-META-INF-context.xml 将 Context下面的内容注释掉</p>
+</li>
+<li>
+<p>多次重复部署，提供者报错问题，解决办法参考 **准备 **第四步。</p>
+</li>
+<li>
+<p>单独对提供者或消费者上传打包的时候，dgp-server-api 或 dgp-server-base 会提示找不到，解决办法 dgp-server-root 执行 install 命令，原因 将api和base包保存到本地，在进行上传的时候会从本地获取api和base包。</p>
+</li>
+<li>
+<p>tomcat开启状态，url连接不上</p>
+<ol>
+<li>
+<p>先检查地址和端口号</p>
+</li>
+<li>
+<p>检查tomcat是否启动</p>
+</li>
+<li>
+<p>进入tomcat管理页面，并尝试登陆。如：http://localhost:8080/</p>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="总结">总结</h3>
+<hr>
+<p>优点</p>
+<ol>
+<li>可以节省切换服务器和部署时间，并且操作简单。</li>
+<li>再次部署不需要重启tomcat，可以节省部分时间，并且不影响其他项目使用。</li>
+</ol>
+<p>缺点</p>
+<pre><code>1. tomcat必须是启动状态。
+2. 无法支持单文件更新，一般是提供者或者消费者单独重新部署。</code></pre>
+
+
+    
+    
+        <div class="related">
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

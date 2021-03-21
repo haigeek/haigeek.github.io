@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rbac on haigeek-blog</title>
+    <link>https://haigeek.me/tags/rbac/</link>
+    <description>Recent content in rbac on haigeek-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 Dec 2019 21:48:16 +0800</lastBuildDate><atom:link href="https://haigeek.me/tags/rbac/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>位运算在权限管理中的应用</title>
+      <link>https://haigeek.me/posts/computerscience/bit-in-rbac/</link>
+      <pubDate>Sat, 28 Dec 2019 21:48:16 +0800</pubDate>
+      
+      <guid>https://haigeek.me/posts/computerscience/bit-in-rbac/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

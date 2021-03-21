@@ -1,0 +1,237 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+               
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+</div>
+
+
+
+
+
+<h1 class="title"></h1>
+
+<div class="content">
+
+    
+    <h1 id="tomcat7-vs-tomcat8">Tomcat7 VS Tomcat8</h1>
+<h2 id="协议的不同">协议的不同</h2>
+<p>​	在servlet3.1中实现了非阻塞式的I/O通信</p>
+<p>Tomcat7：org.apache.coyote.http11.Http11Protocol</p>
+<p>Tomcat8：org.apache.coyote.http11.Http11NioProtocol</p>
+<p>Bio：一个线程处理一个请求。缺点：并发量高时，线程数较多，浪费资源。</p>
+<p>Nio：利用Java的异步IO处理，可以通过少量的线程处理大量的请求。</p>
+<h2 id="websocket">WebSocket</h2>
+<p>tomcat8正式支持WebSocket 1.0这个标准的API。</p>
+<p>tomcat7中支持不够好。</p>
+<h2 id="uriencoding">URIEncoding</h2>
+<p>Tomcat7：默认编码是ISO-8859-1 （URIEncoding）</p>
+<p>Tomcat8：默认编码是UTF-8 （uriCharset）</p>
+<h3 id="部署方式">部署方式</h3>
+<p>部署方式一致</p>
+<h2 id="推荐的tomcat配置">推荐的Tomcat配置</h2>
+<p>1、Server 端口修改</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;Server</span> <span style="color:#a6e22e">port=</span><span style="color:#e6db74">&#34;8005&#34;</span> <span style="color:#a6e22e">shutdown=</span><span style="color:#e6db74">&#34;SHUTDOWN&#34;</span><span style="color:#f92672">&gt;&lt;/Server&gt;</span>
+<span style="color:#75715e">&lt;!-- port改成 -1 --&gt;</span>
+<span style="color:#f92672">&lt;Server</span> <span style="color:#a6e22e">port=</span><span style="color:#e6db74">&#34;-1&#34;</span> <span style="color:#a6e22e">shutdown=</span><span style="color:#e6db74">&#34;SHUTDOWN&#34;</span><span style="color:#f92672">&gt;&lt;/Server&gt;</span>
+</code></pre></div><p>2、打开连接池配置</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!-- 默认被注释
+</span><span style="color:#75715e">    &lt;Executor name=&#34;tomcatThreadPool&#34; namePrefix=&#34;catalina-exec-&#34;
+</span><span style="color:#75715e">        maxThreads=&#34;150&#34; minSpareThreads=&#34;4&#34;/&gt;
+</span><span style="color:#75715e">--&gt;</span>
+ <span style="color:#f92672">&lt;Executor</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;tomcatThreadPool&#34;</span> <span style="color:#a6e22e">namePrefix=</span><span style="color:#e6db74">&#34;catalina-exec-&#34;</span>
+           <span style="color:#a6e22e">maxThreads=</span><span style="color:#e6db74">&#34;300&#34;</span> <span style="color:#a6e22e">minSpareThreads=</span><span style="color:#e6db74">&#34;20&#34;</span> 
+           <span style="color:#a6e22e">prestartminSpareThreads=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#a6e22e">maxQueueSize=</span><span style="color:#e6db74">&#34;100&#34;</span><span style="color:#f92672">/&gt;</span> 
+</code></pre></div><ul>
+<li>name: 线程名称</li>
+<li>namePrefix: 线程前缀</li>
+<li>maxThreads : 最大并发连接数</li>
+<li>minSpareThreads：Tomcat启动初始化的线程数</li>
+<li>prestartminSpareThreads：在tomcat初始化的时候就初始化minSpareThreads的值</li>
+<li>maxQueueSize: 最大的等待队列数，超过则拒绝请求</li>
+</ul>
+<p>3、Connector配置</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;Connector</span> <span style="color:#a6e22e">port=</span><span style="color:#e6db74">&#34;8080&#34;</span> <span style="color:#a6e22e">protocol=</span><span style="color:#e6db74">&#34;HTTP/1.1&#34;</span>
+               <span style="color:#a6e22e">connectionTimeout=</span><span style="color:#e6db74">&#34;20000&#34;</span>
+               <span style="color:#a6e22e">redirectPort=</span><span style="color:#e6db74">&#34;8443&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#75715e">&lt;!-- 修改为 --&gt;</span>
+<span style="color:#f92672">&lt;Connector</span> <span style="color:#a6e22e">port=</span><span style="color:#e6db74">&#34;8080&#34;</span> <span style="color:#a6e22e">protocol=</span><span style="color:#e6db74">&#34;org.apache.coyote.http11.Http11Nio2Protocol&#34;</span>
+        <span style="color:#a6e22e">connectionTimeout=</span><span style="color:#e6db74">&#34;20000&#34;</span>
+        <span style="color:#a6e22e">redirectPort=</span><span style="color:#e6db74">&#34;8443&#34;</span> 
+        <span style="color:#a6e22e">executor=</span><span style="color:#e6db74">&#34;tomcatThreadPool&#34;</span>
+        <span style="color:#a6e22e">enableLookups=</span><span style="color:#e6db74">&#34;false&#34;</span> 
+        <span style="color:#a6e22e">compression=</span><span style="color:#e6db74">&#34;on&#34;</span> 
+        <span style="color:#a6e22e">compressionMinSize=</span><span style="color:#e6db74">&#34;2048&#34;</span> 
+        <span style="color:#a6e22e">noCompressionUserAgents=</span><span style="color:#e6db74">&#34;gozilla, traviata&#34;</span> 
+        <span style="color:#a6e22e">compressableMimeType=</span><span style="color:#e6db74">&#34;text/html,text/xml,text/plain,
+</span><span style="color:#e6db74">                      text/css,text/javascript,application/javascript&#34;</span> 
+<span style="color:#f92672">/&gt;</span>
+</code></pre></div><ul>
+<li>connectionTimeout：连接超时时间</li>
+<li>enableLookups：表示支持域名解析,可以把IP地址解析为主机名。</li>
+<li>compression：on，表示开启 gzip压缩功能</li>
+<li>compressionMinSize：2048：大于2k的数据压缩</li>
+<li>noCompressionUserAgents：浏览器不启用 gzip 功能</li>
+<li>compressableMimeType：压缩文件类型</li>
+</ul>
+<p>4、禁用AJP协议的Connector</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;Connector</span> <span style="color:#a6e22e">port=</span><span style="color:#e6db74">&#34;8009&#34;</span> <span style="color:#a6e22e">protocol=</span><span style="color:#e6db74">&#34;AJP/1.3&#34;</span> <span style="color:#a6e22e">redirectPort=</span><span style="color:#e6db74">&#34;8443&#34;</span> <span style="color:#f92672">/&gt;</span>
+<span style="color:#75715e">&lt;!-- 可注释掉 --&gt;</span>
+</code></pre></div>
+
+    
+    
+        <div class="related">
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

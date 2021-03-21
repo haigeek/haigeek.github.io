@@ -1,0 +1,309 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+               
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+</div>
+
+
+
+
+
+<h1 class="title"></h1>
+
+<div class="content">
+
+    
+    <h1 id="springmvc4x常用注解">SpringMvc4.x常用注解</h1>
+<ul>
+<li>controller</li>
+</ul>
+<p>Controller控制器是通过服务接口定义的提供访问应用程序的一种行为，他解释用户的输入，将其转换为一个模型然后将视图献给用户，使用@Controller定义控制器，Spring使用扫描机制来找到应用程序中所有基于注解的控制器类，需要在SpringMVC的配置文件声明spring-context如下：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;</span><span style="color:#f92672">&lt;beans</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://www.springframework.org/schema/beans&#34;</span>
+    <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span>
+    <span style="color:#a6e22e">xmlns:p=</span><span style="color:#e6db74">&#34;http://www.springframework.org/schema/p&#34;</span>
+    <span style="color:#a6e22e">xmlns:context=</span><span style="color:#e6db74">&#34;http://www.springframework.org/schema/context&#34;</span>
+    <span style="color:#a6e22e">xsi:schemaLocation=</span><span style="color:#e6db74">&#34;
+</span><span style="color:#e6db74">        http://www.springframework.org/schema/beans
+</span><span style="color:#e6db74">        http://www.springframework.org/schema/beans/spring-beans.xsd
+</span><span style="color:#e6db74">        http://www.springframework.org/schema/context
+</span><span style="color:#e6db74">        http://www.springframework.org/schema/context/spring-context.xsd&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;context:component-scan</span> <span style="color:#a6e22e">base-package=</span><span style="color:#e6db74">&#34;org.springframework.samples.petclinic.web&#34;</span><span style="color:#f92672">/&gt;</span>
+ 
+    <span style="color:#75715e">&lt;!-- ... --&gt;</span><span style="color:#f92672">&lt;/beans&gt;</span>
+</code></pre></div><ul>
+<li>
+<p>@Autowired</p>
+<p>将依赖注入到SpringMVC最简单的方法是通过注解@Autowired到字段或者方法</p>
+</li>
+<li>
+<p>RequestMapping</p>
+</li>
+</ul>
+<p>将@RequestMapping注解类似将/favsoft这样的URL映射到整个类或特定的处理方法上，类级别的注解映射到特定的请求路径到表单控制器上，而方法级别的注解只是映射一个特定的http方法请求或者http请求参数；</p>
+<pre><code>@Controller
+@RequestMapping(&quot;/favsoft&quot;)
+public class AnnotationController {
+    @RequestMapping(method=RequestMethod.GET)
+    public String get(){
+        return &quot;&quot;;
+    }
+    @RequestMapping(value=&quot;/getName&quot;, method = RequestMethod.GET)
+    public String getName(String userName) {
+        return userName;
+    }
+    @RequestMapping(value=&quot;/{day}&quot;, method=RequestMethod.GET)
+    public String getDay(Date day){
+        DateFormat df = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+        return df.format(day);
+    }
+    @RequestMapping(value=&quot;/addUser&quot;, method=RequestMethod.GET)
+    public String addFavUser(@Validated FavUser favUser,BindingResult result){
+        if(result.hasErrors()){
+            return &quot;favUser&quot;;
+        }
+        //favUserService.addFavUser(favUser);
+        return &quot;redirect:/favlist&quot;;
+    }
+
+    @RequestMapping(&quot;/test&quot;)
+    @ResponseBody
+    public String test(){
+        return &quot;aa&quot;;
+    }
+}
+</code></pre><p>@RequestMapping可以使用@validated与BindingResult联合验证输入的参数，在验证通过和失败的情况下，分别返回不同的视图</p>
+<p>@RequestMapping支持使用URI模板访问URL。URI模板像是URL模样的字符串，由一个或多个变量名字组成，当这些变量有值的时候，它就变成了URI</p>
+<p>除了在请求路径中使用URI 模板，定义变量之外，@RequestMapping 中还支持通配符“* ”</p>
+<ul>
+<li>pathVariable</li>
+</ul>
+<p>使用@pathVariable注解方法参数并将其绑定到URI模版变量的值上，表示该参数的值将使用URI 模板中对应的变量的值来赋值。</p>
+<pre><code>@Controller
+@RequestMapping ( &quot;/test/{variable1}&quot; )
+public class MyController {
+ 
+    @RequestMapping ( &quot;/showView/{variable2}&quot; )
+    public ModelAndView showView( @PathVariable String variable1, @PathVariable ( &quot;variable2&quot; ) int variable2) {
+       ModelAndView modelAndView = new ModelAndView();
+       modelAndView.setViewName( &quot;viewName&quot; );
+       modelAndView.addObject( &quot; 需要放到 model 中的属性名称 &quot; , &quot; 对应的属性值，它是一个对象 &quot; );
+       return modelAndView;
+    }
+}
+</code></pre><ul>
+<li>RequestParam</li>
+</ul>
+<p>@RequestParam将请求的参数绑定到方法中的参数上</p>
+<pre><code>  @RequestMapping ( &quot;requestParam&quot; )
+   public String testRequestParam( @RequestParam(required=false) String name, @RequestParam ( &quot;age&quot; ) int age) {
+       return &quot;requestParam&quot; ;
+    }
+</code></pre><ul>
+<li>
+<p>RequestBody</p>
+<p>@RequestBody是指方法参数应该被绑定到HTTP请求Body上。</p>
+</li>
+</ul>
+<pre><code>@RequestMapping(value = &quot;/something&quot;, method = RequestMethod.PUT)
+public void handle(@RequestBody String body, Writer writer) throws IOException {
+    writer.write(body);
+}
+</code></pre><ul>
+<li>ResponseBody</li>
+</ul>
+<p>​    @ResponseBody与@RequestBody类似，它的作用是将返回类型直接输入到HTTP response body中。@ResponseBody在输出JSON格式的数据时，会经常用到</p>
+<pre><code>@RequestMapping(value = &quot;/something&quot;, method = RequestMethod.PUT)
+@ResponseBody
+public String helloWorld() {    
+return &quot;Hello World&quot;;
+}
+</code></pre><ul>
+<li>RestController</li>
+</ul>
+<p>一些控制器实现了REST的API，只为服务于JSON，XML或其它自定义的类型内容，@RestController用来创建REST类型的控制器，与@Controller类型。@RestController就是这样一种类型，它避免了你重复的写@RequestMapping与@ResponseBody。</p>
+<pre><code>@RestController
+public class FavRestfulController {
+
+	@RequestMapping(value=&quot;/getUserName&quot;,method=RequestMethod.POST)
+	public String getUserName(@RequestParam(value=&quot;name&quot;) String name){
+		return name;
+	}
+}
+</code></pre><ul>
+<li>
+<p>HttpEntity</p>
+<p>HttpEntity除了能获得request请求和response响应之外，它还能访问请求和响应头，如下所示</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@RequestMapping</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/something&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">public</span> ResponseEntity<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">handle</span><span style="color:#f92672">(</span>HttpEntity<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[]&gt;</span> requestEntity<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> UnsupportedEncodingException <span style="color:#f92672">{</span>
+    String requestHeader <span style="color:#f92672">=</span> requestEntity<span style="color:#f92672">.</span><span style="color:#a6e22e">getHeaders</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getFirst</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MyRequestHeader&#34;</span><span style="color:#f92672">));</span>    <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> requestBody <span style="color:#f92672">=</span> requestEntity<span style="color:#f92672">.</span><span style="color:#a6e22e">getBody</span><span style="color:#f92672">();</span>    <span style="color:#75715e">// do something with request header and body
+</span><span style="color:#75715e"></span>    HttpHeaders responseHeaders <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HttpHeaders<span style="color:#f92672">();</span>
+    responseHeaders<span style="color:#f92672">.</span><span style="color:#a6e22e">set</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;MyResponseHeader&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;MyValue&#34;</span><span style="color:#f92672">);</span>    
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> ResponseEntity<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;(</span><span style="color:#e6db74">&#34;Hello World&#34;</span><span style="color:#f92672">,</span> responseHeaders<span style="color:#f92672">,</span> HttpStatus<span style="color:#f92672">.</span><span style="color:#a6e22e">CREATED</span><span style="color:#f92672">);</span>
+<span style="color:#f92672">}</span>
+</code></pre></div></li>
+<li>
+<p>@ModelAttribute与@SessionAttributes</p>
+<p>SpringMVC 支持使用 @ModelAttribute 和 @SessionAttributes 在不同的模型和控制器之间共享数据。</p>
+<p>@ModelAttribute 主要有两种使用方式，一种是标注在方法上，一种是标注在 Controller 方法参数上。</p>
+<p>当 @ModelAttribute 标记在方法上的时候，该方法将在处理器方法执行之前执行，然后把返回的对象存放在 session 或模型属性中，属性名称可以使用 @ModelAttribute(“attributeName”) 在标记方法的时候指定，若未指定，则使用返回类型的类名称（首字母小写）作为属性名称。关于 @ModelAttribute 标记在方法上时对应的属性是存放在 session 中还是存放在模型中，我们来做一个实验，看下面一段代码。</p>
+</li>
+</ul>
+
+
+    
+    
+        <div class="related">
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

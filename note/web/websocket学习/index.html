@@ -1,0 +1,356 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+               
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+</div>
+
+
+
+
+
+<h1 class="title"></h1>
+
+<div class="content">
+
+    
+    <h1 id="websocet学习">websocet学习</h1>
+<h2 id="什么是websocket">什么是websocket</h2>
+<p>WebSocket是HTML5新增的协议，它的目的是在浏览器和服务器之间建立一个不受限的双向通信的通道，比如说，服务器可以在任意时刻发送消息给浏览器。传统的http下需要客户端进行请求然后服务端再给客户端发送数据。传统的http协议也可以实现近似即时获取服务端的信息，采用轮询的方式，但是这种方式有两种弊端，一种是消息获取不够及时，另外就是频繁的请求给服务器造成较大的压力，因此，html5推出了WebSocket标准，让浏览器和服务器之间可以建立无限制的全双工通信，任何一方都可以主动发消息给对方。</p>
+<h2 id="webscoket协议">webscoket协议</h2>
+<h3 id="原理">原理</h3>
+<p>websocket实际基于tcp协议，websocket的连接需要浏览器发起，因为请求是一个标准的http请求
+请求头</p>
+<pre><code>GET ws://localhost:3000/test HTTP/1.1
+Host: localhost:3000
+Connection: Upgrade
+Upgrade: websocket
+Origin: http://localhost:3000
+Sec-WebSocket-Version: 13
+Sec-WebSocket-Key: BQd6Enl4SAdoXWEtrEaq2g==
+Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+</code></pre><p>该请求和普通的http请求有几点不同</p>
+<ol>
+<li>GET请求的地址不是类似/path/，而是以ws://开头的地址；</li>
+<li>请求头Upgrade: websocket和Connection: Upgrade表示这个连接将要被转换为WebSocket连接；</li>
+<li>Sec-WebSocket-Key是用于标识这个连接，并非用于加密数据；</li>
+<li>Sec-WebSocket-Version指定了WebSocket的协议版本。
+响应头</li>
+</ol>
+<pre><code>HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: NARaYzkyb+yRTBQNm/xBtlvB8sQ=
+</code></pre><p>该响应代码101表示本次连接的HTTP协议即将被更改，更改后的协议就是Upgrade: websocket指定的WebSocket协议。</p>
+<h3 id="浏览器">浏览器</h3>
+<p>要支持websocket，浏览器需要支持这个协议，这样才能发出ws://xxx的请求，安全的WebSocket连接机制和HTTPS类似。首先，浏览器用wss://xxx创建WebSocket连接时，会先通过HTTPS创建安全的连接，然后，该HTTPS连接升级为WebSocket连接，底层通信走的仍然是安全的SSL/TLS协议。</p>
+<h3 id="服务器">服务器</h3>
+<p>由于WebSocket是一个协议，服务器具体怎么实现，取决于所用编程语言和框架本身</p>
+<h2 id="客户端api">客户端api</h2>
+<h3 id="websocket构造函数">websocket构造函数</h3>
+<p>websocket对象作为一个构造函数，用于新建websocket实例</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ws</span><span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>(<span style="color:#e6db74">&#39;ws://localhost:8080&#39;</span>);
+</code></pre></div><h3 id="websocket属性">websocket属性</h3>
+<p>webSocket.readyState:
+readyState属性返回实例对象的当前状态，共有四种</p>
+<ul>
+<li>CONNECTING：值为0，表示正在连接。</li>
+<li>OPEN：值为1，表示连接成功，可以通信了。</li>
+<li>CLOSING：值为2，表示连接正在关闭。</li>
+<li>CLOSED：值为3，表示连接已经关闭，或者打开连接失败。</li>
+</ul>
+<p>webSocket.bufferedAmount:
+实例对象的bufferedAmount属性，表示还有多少字节的二进制数据没有发送出去。它可以用来判断发送是否结束。</p>
+<h3 id="websocket事件">websocket事件</h3>
+<ol>
+<li>webSocket.onopen:实例对象的onopen属性，用于指定连接成功后的回调函数。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">open</span><span style="color:#f92672">=</span><span style="color:#66d9ef">function</span> () {
+    <span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;hello server&#39;</span>)
+}
+</code></pre></div><p>如果要指定多个回调函数，可以使用addEventListener方法。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;open&#39;</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">event</span>) {
+  <span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Hello Server!&#39;</span>);
+});
+</code></pre></div><ol start="2">
+<li>webSocket.onclose
+实例对象的onclose属性，用于指定连接关闭后的回调函数。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">onclose</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">code</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">code</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reason</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">reason</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wasClean</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">wasClean</span>;
+  <span style="color:#75715e">// handle close event
+</span><span style="color:#75715e"></span>};
+
+<span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;close&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">code</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">code</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">reason</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">reason</span>;
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wasClean</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">wasClean</span>;
+  <span style="color:#75715e">// handle close event
+</span><span style="color:#75715e"></span>});
+</code></pre></div><ol start="3">
+<li>webSocket.onmessage
+实例对象的onmessage属性，用于指定收到服务器数据后的回调函数。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span>;
+  <span style="color:#75715e">// 处理数据
+</span><span style="color:#75715e"></span>};
+
+<span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;message&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">data</span>;
+  <span style="color:#75715e">// 处理数据
+</span><span style="color:#75715e"></span>});
+</code></pre></div><p>服务器数据可能是文本，也可能是二进制数据（blob对象或Arraybuffer对象）。
+4. webSocket.onerror
+实例对象的onerror属性，用于指定报错时的回调函数。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">onerror</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+  <span style="color:#75715e">// handle error event
+</span><span style="color:#75715e"></span>};
+
+<span style="color:#a6e22e">socket</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#34;error&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>) {
+  <span style="color:#75715e">// handle error event
+</span><span style="color:#75715e"></span>});
+</code></pre></div><h3 id="websocket方法">websocket方法</h3>
+<ol>
+<li>webSocket.send()
+实例对象的send()方法用于向服务器发送数据。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;your message&#39;</span>);
+<span style="color:#75715e">//发送Blob对象
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">file</span> <span style="color:#f92672">=</span> document
+  .<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;input[type=&#34;file&#34;]&#39;</span>)
+  .<span style="color:#a6e22e">files</span>[<span style="color:#ae81ff">0</span>];
+<span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">file</span>);
+<span style="color:#75715e">//发送ArrayBuffer对象
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">img</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">canvas_context</span>.<span style="color:#a6e22e">getImageData</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">400</span>, <span style="color:#ae81ff">320</span>);
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">binary</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Uint8Array</span>(<span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">length</span>);
+<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+  <span style="color:#a6e22e">binary</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">img</span>.<span style="color:#a6e22e">data</span>[<span style="color:#a6e22e">i</span>];
+}
+<span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">send</span>(<span style="color:#a6e22e">binary</span>.<span style="color:#a6e22e">buffer</span>);
+</code></pre></div><ol start="2">
+<li>webSocket.close()
+关闭连接</li>
+</ol>
+<h2 id="服务端">服务端</h2>
+<p>websocet的服务端实现，常用的有使用node.js实现的</p>
+<ul>
+<li>µWebSockets</li>
+<li>Socket.IO</li>
+<li>websocket-Node
+以及其他支持websocket的服务器
+完整实例</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-HTML" data-lang="HTML"><span style="color:#75715e">&lt;!DOCTYPE HTML&gt;</span>
+&lt;<span style="color:#f92672">html</span>&gt;
+   &lt;<span style="color:#f92672">head</span>&gt;
+   &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;
+   &lt;<span style="color:#f92672">title</span>&gt;websocket测试&lt;/<span style="color:#f92672">title</span>&gt;
+    
+      &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>&gt;
+         <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">WebSocketTest</span>()
+         {
+            <span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#34;WebSocket&#34;</span> <span style="color:#66d9ef">in</span> window)
+            {
+               <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;您的浏览器支持 WebSocket!&#34;</span>);
+               
+               <span style="color:#75715e">// 打开一个 web socket
+</span><span style="color:#75715e"></span>               <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">ws</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">WebSocket</span>(<span style="color:#e6db74">&#34;wss://echo.websocket.org&#34;</span>);
+                
+               <span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">onopen</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>()
+               {
+                  <span style="color:#75715e">// Web Socket 已连接上，使用 send() 方法发送数据
+</span><span style="color:#75715e"></span>                  <span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#34;发送数据&#34;</span>);
+                  <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;数据发送中...&#34;</span>);
+               };
+                
+               <span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">onmessage</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">evt</span>) 
+               { 
+                  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">received_msg</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">evt</span>.<span style="color:#a6e22e">data</span>;
+                  <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;数据已接收...&#34;</span>);
+               };
+                
+               <span style="color:#a6e22e">ws</span>.<span style="color:#a6e22e">onclose</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>()
+               { 
+                  <span style="color:#75715e">// 关闭 websocket
+</span><span style="color:#75715e"></span>                  <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;连接已关闭...&#34;</span>); 
+               };
+            }
+            
+            <span style="color:#66d9ef">else</span>
+            {
+               <span style="color:#75715e">// 浏览器不支持 WebSocket
+</span><span style="color:#75715e"></span>               <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;您的浏览器不支持 WebSocket!&#34;</span>);
+            }
+         }
+      &lt;/<span style="color:#f92672">script</span>&gt;
+        
+   &lt;/<span style="color:#f92672">head</span>&gt;
+   &lt;<span style="color:#f92672">body</span>&gt;
+   
+      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sse&#34;</span>&gt;
+         &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;javascript:WebSocketTest()&#34;</span>&gt;运行 WebSocket&lt;/<span style="color:#f92672">a</span>&gt;
+      &lt;/<span style="color:#f92672">div</span>&gt;
+      
+   &lt;/<span style="color:#f92672">body</span>&gt;
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div>
+
+    
+    
+        <div class="related">
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

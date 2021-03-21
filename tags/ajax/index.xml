@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ajax on Kiss&#39;Em!</title>
+    <link>https://example.com/tags/ajax/</link>
+    <description>Recent content in Ajax on Kiss&#39;Em!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 16 Jan 2019 23:26:39 +0000</lastBuildDate><atom:link href="https://example.com/tags/ajax/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ajax基础知识</title>
+      <link>https://example.com/note/web/ajax-base/</link>
+      <pubDate>Wed, 16 Jan 2019 23:26:39 +0000</pubDate>
+      
+      <guid>https://example.com/note/web/ajax-base/</guid>
+      <description>AJAX 什么是ajax Asynchronous JavaScript and XML，用JavaScript执行异步网络请求。传统的http是一个请求对应一个http页面，为了使得用户可以留在当前页面，同时发出新的http 请求，就必须用JavaScript发送这个新请求，接收到数据后，再用JavaScript更新页面。
+AJAX是异步进行执行的，所以需要回调函数获取响应。
+在现代浏览器上写AJAX主要依靠XMLHttpRequest对象：
+function success(text) { var textarea = document.getElementById(&amp;#39;test-response-text&amp;#39;); textarea.value = text; } function fail(code) { var textarea = document.getElementById(&amp;#39;test-response-text&amp;#39;); textarea.value = &amp;#39;Error code: &amp;#39; + code; } var request = new XMLHttpRequest(); // 新建XMLHttpRequest对象  request.onreadystatechange = function () { // 状态发生变化时，函数被回调  if (request.readyState = 4) { // 成功完成  // 判断响应结果:  if (request.status = 200) { // 成功，通过responseText拿到响应的文本:  return success(request.</description>
+    </item>
+    
+  </channel>
+</rss>

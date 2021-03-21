@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jenkins on haigeek-blog</title>
+    <link>https://haigeek.me/tags/jenkins/</link>
+    <description>Recent content in jenkins on haigeek-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Jan 2019 22:54:58 +0000</lastBuildDate><atom:link href="https://haigeek.me/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jenkins快速复制已经存在的项目</title>
+      <link>https://haigeek.me/posts/backend/devops/jenkins/jenkins-clone-project/</link>
+      <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/devops/jenkins/jenkins-clone-project/</guid>
+      <description>jenkins的pipeline的灵活之处在于对于已经存在的项目，可以快速复制出来，创建新的任务。 Jenkins快速复制已经存在的项目 🔗针对</description>
+    </item>
+    
+    <item>
+      <title>Jenkins部署项目到远程windows</title>
+      <link>https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/</link>
+      <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/</guid>
+      <description>&lt;p&gt;核心是使用ssh进行jenkins主节点与目标部署服务器进行通信,文件传输走scp协议,执行执行使用ssh命令远程到目标主机进行执行.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

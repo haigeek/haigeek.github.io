@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>java web on haigeek-blog</title>
+    <link>https://haigeek.me/tags/java-web/</link>
+    <description>Recent content in java web on haigeek-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 22 Jul 2017 20:27:55 +0000</lastBuildDate><atom:link href="https://haigeek.me/tags/java-web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>winestory中struts2的使用</title>
+      <link>https://haigeek.me/posts/project/winestory-struts2/</link>
+      <pubDate>Sat, 22 Jul 2017 20:27:55 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/project/winestory-struts2/</guid>
+      <description>&lt;p&gt;使用ssh框架做的一个小论坛是我的第一个项目，ssh框架在现在早已经过时，但是当初学习和解决问题的精神却是最重要的，因此我将相关的博文进行归档，记录并缅怀初学编程时的历程。这一篇是struts2框架相关内容。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

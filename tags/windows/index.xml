@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>windows on Kiss&#39;Em!</title>
+    <link>https://example.com/tags/windows/</link>
+    <description>Recent content in windows on Kiss&#39;Em!</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 28 Nov 2020 21:48:16 +0800</lastBuildDate><atom:link href="https://example.com/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Windows-kill-port</title>
+      <link>https://example.com/note/computerscience/windows%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4/</link>
+      <pubDate>Sat, 28 Nov 2020 21:48:16 +0800</pubDate>
+      
+      <guid>https://example.com/note/computerscience/windows%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4/</guid>
+      <description>windows根据端口杀死进程
+# 列出进程极其占用的端口，且包含 80 netstat -ano | findstr 80 # 根据pid查进程 tasklist | findstr 2000 # 杀死进程 taskkill -PID &amp;lt;进程号&amp;gt; -F </description>
+    </item>
+    
+  </channel>
+</rss>

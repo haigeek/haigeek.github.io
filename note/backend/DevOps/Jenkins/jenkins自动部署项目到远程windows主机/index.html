@@ -1,0 +1,319 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+               
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+</div>
+
+
+
+
+
+<h1 class="title"></h1>
+
+<div class="content">
+
+    
+    <h1 id="jenkins部署项目到远程windows">Jenkins部署项目到远程windows</h1>
+<p>使用ssh进行jenkins主节点与目标部署服务器进行通信,文件传输走scp协议,执行执行使用ssh命令远程到目标主机进行执行.</p>
+<h2 id="ssh调用命令脚本">ssh调用命令脚本</h2>
+<p>使用ssh命令远程服务器进行脚本调用的时候的流程是:</p>
+<ol>
+<li>在本级ssh到目标主机</li>
+<li>调用目标主机的脚本启动tomcat,假如我们调用的是bin目录下startup.bat</li>
+<li>本机的终端窗口有输出,远程主机的tomcat启动成功</li>
+<li>关闭本级的ssh终端</li>
+<li>远程的tomcat随之关闭</li>
+</ol>
+<h2 id="要解决的问题">要解决的问题</h2>
+<h3 id="ssh调用的进程的生命周期问题"><strong>ssh调用的进程的生命周期问题</strong></h3>
+<p>查阅资料发现</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1733731-aa585ea95a561b0b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image-20190704223510253.png"></p>
+<p>针对上述情况在linux下的解决方案很多,这里描述下winsows的解决方案.</p>
+<p>在这个<a href="https://stackoverflow.com/questions/3382082/whats-the-nohup-on-windows">回答</a>下,采取了将tomcat做成Windows服务的方式,问题得到解决,具体的配置方式如下:</p>
+<h4 id="设置tomcat的环境变量">设置tomcat的环境变量</h4>
+<p>下载安装版的Windows版tomcat,在bin目录下分别为server.bat、startup.bat、shutdown.bat设置环境变量,如下所示</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1733731-1aac18f3c403301f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image-20190704224910131.png"></p>
+<h4 id="将tomcat注册为服务">将tomcat注册为服务</h4>
+<p>进入bin文件夹下执行</p>
+<p>service install 服务名称</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1733731-5e564c4a8e10d8f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="[图片上传中&hellip;(image-20190704230244896.png-4869a1-1562942345129-0)]"></p>
+<h4 id="服务的启动与停止">服务的启动与停止</h4>
+<pre><code>net stop server-name
+net start server-name
+</code></pre><p><img src="https://upload-images.jianshu.io/upload_images/1733731-564212ba1822ae49.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image-20190704230244896.png"></p>
+<p>将这两条指令做成bat脚本,放在bin目录下,供之后jenkins直接调用.</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1733731-260aae46452dae4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image-20190704230544740.png"></p>
+<h3 id="jenkins的终端输出乱码">jenkins的终端输出乱码</h3>
+<p>在linux下远程调用Windows的终端的时候,在jenksin的控制台总是乱码.查阅资料多数是说设置Jenkins的编码为U8,但是我安装的jenkins本身设置就是U8,后来发现在远程调用的bat脚本第一行设置为</p>
+<pre><code>chcp 65001
+</code></pre><p>表示切换到utf-8模式即可,之后输出默认为英文且不会再乱码.</p>
+<h3 id="是否有必要每次重启tomcat">是否有必要每次重启Tomcat</h3>
+<h4 id="场景">场景</h4>
+<p>在实际使用的过程中,每次部署假如都需要重启tomcat的话使得整个系统变得不稳定,那么是否每次更新都要重启tomcat呢?</p>
+<p>首先我描述一下我遇到的一个问题,在jenkins中设置了一个重启tomcat的脚本,脚本如下:</p>
+<pre><code>pipeline {
+    environment {
+        // 部署远程主机ip地址,需要通过密钥的方式设置免密登录
+        remoteIp = &quot;127.0.0.1&quot;
+        remotePort='22'
+        // 失败通知Email
+        email = &quot;test@haigeek.cn&quot;
+        // 远程tomcat位置(windows要使用/来表示路径)
+        tomcatPath = &quot;E:/tomcat/apache-tomcat-8.5&quot;
+        tomcatPathDisk = &quot;E:&quot;
+    }
+    agent any
+    tools {
+        maven 'maven-3.6.1'
+    }
+    stages {
+        stage('Deploy') {
+            steps {
+                withEnv(['JENKINS_NODE_COOKIE=dontKillMe']) {
+                    sh '''
+                        export BUILD_ID=dontKillMe
+                        echo &quot;开始使用scp传输文件&quot;
+                        echo &quot;开始调用远程tomcat进行重启&quot;
+                        ssh  -p ${remotePort} administrator@${remoteIp} &quot;cd ${tomcatPath}/bin &amp;&amp; ${tomcatPathDisk} &amp;&amp; restart&quot;
+                    '''
+                }
+            }
+        }
+    }
+}
+</code></pre><p>上面的脚本核心功能就是调用远程tomca下的restart脚本来重启动tomcat,因为使用net stop tomcat 来关闭tomcat需要比较长时间,加上我们tomcat上运行的是dubbo项目,因此我直接使用taskkill的方式,根据dubbo端口来杀进程,结论是每次都可以成功杀死进程并重启tomcat,如下图,kill的脚本如下:</p>
+<pre><code>@echo off
+chcp 65001
+REM 设置dubbo端口号
+ set port=30109
+ for /f &quot;tokens=5&quot; %%i in ('netstat -aon ^| findstr &quot;:%port%&quot;') do (
+    set n=%%i
+ )
+ taskkill /pid %n% -F
+</code></pre><p>jenkins的输出如下:</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1733731-4041949c46e645d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image-20190712221521459.png"></p>
+<p>但是当我将这个脚本集成在完整的pipeline中,会出现taskkill失败的情况,报错为<strong>PIDxxx为系统进程,无法杀死</strong>.</p>
+<h4 id="分析">分析</h4>
+<p>分析了一下,唯一不同的是我在杀死tomcat之前将最新打包出的war包移动到了tomcat下,此时tomcat开始自动解压并重新部署,注意<strong>此时进程已经不是tomcat的进程id,而是切换为系统的进程</strong>.</p>
+<p>在后期的测试中发现war包可以自动帮助我们热更新,这个功能可以大大减少我们更新的速度.</p>
+<h4 id="解决">解决</h4>
+<p>解决方法很简单,将kill tomcat的指令放在移动war包之前,不再报错.</p>
+<h2 id="完整pipeline">完整Pipeline</h2>
+<pre><code>// 持续集成脚本，勿动
+
+pipeline {
+    environment {
+        // 部署远程主机ip地址,需要通过密钥的方式设置免密登录
+        remoteIp = &quot;127.0.0.1&quot;
+        remoteName = &quot;administrator&quot;
+        remotePort='22'
+        // 远程tomcat位置(使用/来表示路径)
+        tomcatPath = &quot;C:/tomcat/apache-tomcat-8&quot;
+        tomcatPathDisk = &quot;C:&quot;
+    }
+    agent any
+    tools {
+        maven 'maven-3.6.1'
+    }
+    stages {
+         stage('pullcode'){
+            steps{
+                git branch: 'dev', credentialsId: 'xxx', url: 'http://xxx.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh '''
+                    echo &quot;开始编译打包过程&quot;
+                    echo &quot;PATH = ${PATH}&quot;
+                    echo &quot;M2_HOME = ${M2_HOME}&quot;
+                    mvn clean &amp;&amp; mvn package -DskipTests=true
+                '''
+            }
+        }
+          stage('Test'){
+            steps {
+                sh 'echo &quot;Test stage&quot;'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                withEnv(['JENKINS_NODE_COOKIE=dontKillMe']) {
+                    sh '''
+                        export BUILD_ID=dontKillMe
+                        echo &quot;关闭tomcat,此步非必须,可使用war进行热部署&quot;
+                        ssh  -p ${remotePort} administrator@${remoteIp} &quot;cd ${tomcatPath}/bin &amp;&amp; ${tomcatPathDisk} &amp;&amp; dubbokill&quot;
+                        echo &quot;开始使用scp传输文件&quot;
+                        warfile1=$(ls 项目名称/target/*.war)
+                        scp -P ${remotePort} &quot;${warfile1}&quot;  ${remoteName}@${remoteIp}:${tomcatPath}/webapps
+                        warfile2=$(ls 项目名称/target/*.war)
+                        scp -P ${remotePort} &quot;${warfile2}&quot;  ${remoteName}@${remoteIp}:${tomcatPath}/webapps
+                        echo &quot;开始调用远程tomcat进行重启,此步骤非必须&quot;
+                        ssh  -p ${remotePort} administrator@${remoteIp} &quot;cd ${tomcatPath}/bin &amp;&amp; ${tomcatPathDisk} &amp;&amp; servicestart&quot;
+                    '''
+                }
+            }
+        }
+    }
+}
+</code></pre>
+
+    
+    
+        <div class="related">
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SpringBoot on haigeek-blog</title>
+    <link>https://haigeek.me/tags/springboot/</link>
+    <description>Recent content in SpringBoot on haigeek-blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Jan 2019 23:05:54 +0000</lastBuildDate><atom:link href="https://haigeek.me/tags/springboot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>springboot全局跨域与过滤器跨域</title>
+      <link>https://haigeek.me/posts/java/springboot/springboot-filter-cros/</link>
+      <pubDate>Sun, 06 Jan 2019 23:05:54 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/java/springboot/springboot-filter-cros/</guid>
+      <description>&lt;p&gt;当项目中使用了过滤器的时候,使用springboot全局跨域设置有时候并不能满足我们的需求,具体表现为明明设置了全局允许跨域,前端同学依旧说我们的接口不允许跨域。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Maven Profile和Spring Profile进行多环境配置</title>
+      <link>https://haigeek.me/posts/java/springboot/springboot-maven-profile/</link>
+      <pubDate>Sun, 06 Jan 2019 23:05:54 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/java/springboot/springboot-maven-profile/</guid>
+      <description>&lt;p&gt;Springboot使用Maven Profile和Spring Profile进行多环境配置&lt;/p&gt;
+&lt;p&gt;在实际的项目上，一般会分三种环境dev、test、prod来方便我们的开发和部署，要求我们在开发的时候可以方便地进行环境的切换，又要满足在发布版本的时候可以尽可能减少测试人员的配置。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

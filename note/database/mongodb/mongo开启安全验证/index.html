@@ -1,0 +1,472 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+             mongo开启安全验证  
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+        
+<a class="subtitle is-6" href="/tags/mongo/">#mongo</a>
+
+
+
+
+    
+</div>
+
+
+
+<h2 class="subtitle is-6">
+    
+    
+        December 28, 2017 | 21:48
+    
+</h2>
+
+
+
+<h1 class="title">mongo开启安全验证</h1>
+
+<div class="content">
+
+    
+    <h1 id="mongo开启安全验证">mongo开启安全验证</h1>
+<p>开启mongodb安全验证（参考https://docs.mongodb.com/guides/server/auth/）</p>
+<p>xxx代表要设置的密码</p>
+<h2 id="windows">windows</h2>
+<ol>
+<li>
+<p>cmd中启动mongodb</p>
+<pre><code>&quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&quot; --dbpath=&quot;C:\MongoDB\data&quot; --logpath=&quot;C:\MongoDB\logs\mongodb.log&quot;
+</code></pre></li>
+<li>
+<p>登录客户端mongo.exe,设置用户密码</p>
+<ol>
+<li>
+<p>Switch to the admin Database</p>
+<pre><code>use admin
+</code></pre></li>
+<li>
+<p>Create the user administrator</p>
+<pre><code>  db.createUser(
+    {
+      user: &quot;mySuperAdmin&quot;,
+      pwd: &quot;xxx&quot;,
+      roles: [ { role: &quot;userAdminAnyDatabase&quot;, db: &quot;admin&quot; } ]
+    }
+  )
+</code></pre></li>
+<li>
+<p>Create a user for reading and writing to your test database</p>
+<pre><code>db.createUser(
+    {
+      user: &quot;userReadWrite&quot;,
+      pwd: &quot;xxx&quot;,
+      roles: [ { role: &quot;readWriteAnyDatabase&quot;, db: &quot;admin&quot; } ]
+    }
+  )
+  db.createUser(
+    {
+      user: &quot;userfzbz&quot;,
+      pwd: &quot;xxx&quot;,
+      roles: [ { role: &quot;dbOwner&quot;, db: &quot;fzbz_pdf&quot; } ]
+    }
+  )
+</code></pre></li>
+</ol>
+</li>
+<li>
+<p>cmd中重启mongodb</p>
+<pre><code>&quot;C:\Program Files\MongoDB\Server\3.4\bin\mongod.exe&quot; --dbpath=&quot;C:\MongoDB\data&quot; --logpath=&quot;C:\MongoDB\logs\mongodb.log&quot; --auth
+</code></pre></li>
+<li>
+<p>登录客户端mongo.exe</p>
+<ol>
+<li>use admin</li>
+<li>db.auth(&lsquo;userfzbz&rsquo;,&lsquo;xxx&rsquo;)</li>
+</ol>
+</li>
+</ol>
+<h1 id="补充">补充</h1>
+<p>测试版本：3.4.7  ，4.0.6</p>
+<h2 id="测试是否启动安全认证">测试是否启动安全认证</h2>
+<ul>
+<li>
+<p>打开mongo shell ：（可将mongo的bin目录配置到环境变量中的path中直接启动mongo）</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\x</span>iaohao&gt;mongo
+MongoDB shell version v3.4.7
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.4.7
+Server has startup warnings:
+2019-08-29T10:56:07.116+0800 I CONTROL  <span style="color:#f92672">[</span>initandlisten<span style="color:#f92672">]</span>
+2019-08-29T10:56:07.116+0800 I CONTROL  <span style="color:#f92672">[</span>initandlisten<span style="color:#f92672">]</span> ** WARNING: Access control is not enabled <span style="color:#66d9ef">for</span> the database.
+2019-08-29T10:56:07.117+0800 I CONTROL  <span style="color:#f92672">[</span>initandlisten<span style="color:#f92672">]</span> **          Read and write access to data and configuration is unrestricted.
+2019-08-29T10:56:07.117+0800 I CONTROL  <span style="color:#f92672">[</span>initandlisten<span style="color:#f92672">]</span>
+&gt;
+</code></pre></div><ul>
+<li>如果未启动安全认证会出现warnings（4.0.6版本未启动安全认证前shell会显示更多的warnings信息）
+<ul>
+<li>WARNING: Access control is not enabled for the database.</li>
+<li>Read and write access to data and configuration is unrestricted.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="开启安全认证二选一">开启安全认证（二选一）</h2>
+<blockquote>
+<p>推荐使用配置文件方式，易排查，有配置记录，利于后期维护</p>
+</blockquote>
+<h3 id="首先创建管理用户">首先创建管理用户</h3>
+<ul>
+<li>首先打开mongo shell，进入admin数据库，创建一个管理员用户</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">use admin
+switched to db admin
+&gt; db.createUser<span style="color:#f92672">(</span>
+  <span style="color:#f92672">{</span>
+  user: <span style="color:#e6db74">&#34;myUserAdmin&#34;</span>,
+  pwd: <span style="color:#e6db74">&#34;dist2019&#34;</span>,
+  roles: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;userAdminAnyDatabase&#34;</span><span style="color:#f92672">]</span>
+  <span style="color:#f92672">}</span>
+<span style="color:#f92672">)</span>
+
+Successfully added user: <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;user&#34;</span> : <span style="color:#e6db74">&#34;myUserAdmin&#34;</span>, <span style="color:#e6db74">&#34;roles&#34;</span> : <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;userAdminAnyDatabase&#34;</span> <span style="color:#f92672">]</span> <span style="color:#f92672">}</span>
+<span style="color:#75715e">##登录测试</span>
+&gt; db.auth<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;myUserAdmin&#34;</span>,<span style="color:#e6db74">&#34;passwd&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#ae81ff">1</span>
+<span style="color:#75715e">##失败返回0</span>
+</code></pre></div><h3 id="方式一命令方式开启">方式一：命令方式开启</h3>
+<ul>
+<li>
+<p>以<strong>管理员方式</strong>启动cmd</p>
+</li>
+<li>
+<p>删除以前的MongoDB服务</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sc delete MongoDB
+</code></pre></div></li>
+<li>
+<p>打开计算机的服务管理界面，右键停止，刷新，就会发现该服务已经没了，关闭该界面。</p>
+</li>
+<li>
+<p>创建带有安全认证的MongoDB服务</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sc create MongoDB binpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;E:\Mongo4.0\bin\mongod.exe --dbpath E:\Mongo4.0\data --logpath E:\Mongo4.0\log\mongodb.log  --logappend --service&#34;</span>
+</code></pre></div><ul>
+<li>注意修改路径，bin目录下的mongod.exe，数据库目录，日志目录</li>
+</ul>
+</li>
+<li>
+<p>启动服务</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">net start mongodb
+</code></pre></div></li>
+</ul>
+<h3 id="方式二配置文件方式开启">方式二：配置文件方式开启</h3>
+<ul>
+<li>
+<p>以<strong>管理员方式</strong>启动cmd</p>
+</li>
+<li>
+<p>删除以前的MongoDB服务</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sc delete MongoDB
+</code></pre></div></li>
+<li>
+<p>打开计算机的服务管理界面，右键停止，刷新，就会发现该服务已经没了，关闭该界面</p>
+</li>
+<li>
+<p>在安装目录上添加配置文件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">systemLog:
+    destination: file
+    path: E:<span style="color:#ae81ff">\M</span>ongo4.0<span style="color:#ae81ff">\l</span>og<span style="color:#ae81ff">\m</span>ongodb.log
+storage:
+    dbPath: E:<span style="color:#ae81ff">\M</span>ongo4.0<span style="color:#ae81ff">\d</span>ata
+    engine: wiredTiger
+    wiredTiger: 
+        engineConfig: 
+            cacheSizeGB: <span style="color:#ae81ff">5</span>    
+net:
+    bindIp: 127.0.0.1
+    port: <span style="color:#ae81ff">27017</span>
+security:
+    authorization: enabled
+</code></pre></div><ul>
+<li>配置文件信息里子配置前面是四个空格，不能用tab键代替。不然报错</li>
+</ul>
+</li>
+<li>
+<p>根据配置文件启动mongo</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">E:<span style="color:#ae81ff">\M</span>ongo4.0<span style="color:#ae81ff">\b</span>in<span style="color:#ae81ff">\m</span>ongod.exe --config <span style="color:#e6db74">&#34;E:\Mongo4.0\mongod.cfg&#34;</span> --install  --serviceName <span style="color:#e6db74">&#34;MongoDB&#34;</span>
+</code></pre></div><ul>
+<li>注意bin路径和配置文件的路径</li>
+</ul>
+</li>
+<li>
+<p>启动mongoDB服务</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">net start mongodb
+</code></pre></div></li>
+</ul>
+<h2 id="安全认证测试">安全认证测试</h2>
+<ul>
+<li>
+<p>启动安全认证之后无登录进行连接：发现无权限查看数据库</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\x</span>iaohao&gt;mongo
+MongoDB shell version v3.4.7
+connecting to: mongodb://127.0.0.1:27017
+MongoDB server version: 3.4.7
+<span style="color:#75715e">###无权限查看数据库</span>
+&gt; show dbs
+2019-08-29T12:21:17.295+0800 E QUERY    <span style="color:#f92672">[</span>thread1<span style="color:#f92672">]</span> Error: listDatabases failed:<span style="color:#f92672">{</span>
+        <span style="color:#e6db74">&#34;ok&#34;</span> : 0,
+        <span style="color:#e6db74">&#34;errmsg&#34;</span> : <span style="color:#e6db74">&#34;not authorized on admin to execute command { listDatabases: 1.0 }&#34;</span>,
+        <span style="color:#e6db74">&#34;code&#34;</span> : 13,
+        <span style="color:#e6db74">&#34;codeName&#34;</span> : <span style="color:#e6db74">&#34;Unauthorized&#34;</span>
+<span style="color:#f92672">}</span> :
+_getErrorWithCode@src/mongo/shell/utils.js:25:13
+Mongo.prototype.getDBs@src/mongo/shell/mongo.js:62:1
+shellHelper.show@src/mongo/shell/utils.js:769:19
+shellHelper@src/mongo/shell/utils.js:659:15
+@<span style="color:#f92672">(</span>shellhelp2<span style="color:#f92672">)</span>:1:1
+</code></pre></div><ul>
+<li>在4.0.6版本启动安全认证无登录查看数据库的时候不会报错，但不显示数据</li>
+</ul>
+</li>
+<li>
+<p>退出shell进行用户登录：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">mongo -u myUserAdmin -p passwd localhost:27017/admin
+</code></pre></div></li>
+<li>
+<p>登录成功返回信息，并能进行数据的操作</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">C:<span style="color:#ae81ff">\U</span>sers<span style="color:#ae81ff">\x</span>iaohao&gt;&gt;mongo -u myUserAdmin -p passwd localhost:27017/admin
+MongoDB shell version v3.4.7
+connecting to: mongodb://localhost:27017/admin
+MongoDB server version: 3.4.7
+<span style="color:#75715e">###测试是否有权限查看数据库</span>
+&gt; show dbs
+admin        0.000GB
+local        0.000GB
+test         0.000GB
+</code></pre></div></li>
+<li>
+<p>开启安全认证之后，数据库连接工具要输入用户名和密码</p>
+</li>
+</ul>
+<h2 id="相关bug">相关bug</h2>
+<h3 id="net-start-mongodb报错服务无法启动">net start MongoDB报错（服务无法启动）</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">C:<span style="color:#ae81ff">\W</span>INDOWS<span style="color:#ae81ff">\s</span>ystem32&gt;net start MongoDB
+MongoDB 服务正在启动 .
+MongoDB 服务无法启动。
+
+发生服务特定错误:100
+请键入 NET HELPMSG <span style="color:#ae81ff">3547</span> 以获取更多的帮助
+</code></pre></div><ul>
+<li>直接进入db文件夹，先删除 mongod.lock 文件，然后重新启动服务即可；
+要是还不行，就继续删 storage.bson文件，然后问题就解决了~</li>
+</ul>
+<h3 id="net-start-mongodb报错服务没有响应控制功能">net start mongodb报错（服务没有响应控制功能）</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">C:<span style="color:#ae81ff">\W</span>INDOWS<span style="color:#ae81ff">\s</span>ystem32&gt;net start mongodb
+服务没有响应控制功能。
+
+请键入 NET HELPMSG <span style="color:#ae81ff">2186</span> 以获得更多的帮助。
+</code></pre></div><ul>
+<li>
+<p>出现这个问题一般是路径有问题。</p>
+<p>1）请注意你所有的路径没有错，包括mongod所在路径，日志所在路径等；</p>
+<p>2）不要加入多余的“\”，如“D:\MongoDB\Data”这个，千万不要写成“D:\MongoDB\Data\”。</p>
+<ol start="3">
+<li>卸载重新安装服务</li>
+</ol>
+</li>
+</ul>
+<h3 id="net-start-mongodb报错发生系统错误-1058无法启动服务">net start mongodb报错（发生系统错误 1058，无法启动服务）</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">C:<span style="color:#ae81ff">\W</span>INDOWS<span style="color:#ae81ff">\s</span>ystem32&gt;net start mongodb
+发生系统错误 1058。
+
+无法启动服务，原因可能是已被禁用或与其相关联的设备没有启动。
+</code></pre></div><ul>
+<li>打开计算机的服务管理界面，找到mongodb服务，右键停止，刷新，就会发现该服务已经没了，关闭该界面，并重新创建服务。</li>
+</ul>
+<h3 id="在删除服务或者启动服务时显示指定服务已删除">在删除服务或者启动服务时，显示指定服务已删除</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">C:<span style="color:#ae81ff">\W</span>INDOWS<span style="color:#ae81ff">\s</span>ystem32&gt;sc delete MongoDB
+<span style="color:#f92672">[</span>SC<span style="color:#f92672">]</span> DeleteService 失败 1072：
+指定的服务已标记为删除
+
+
+C:<span style="color:#ae81ff">\W</span>INDOWS<span style="color:#ae81ff">\s</span>ystem32&gt;sc create MongoDB binpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;E:\MongoDB\bin\mongod.exe --dbpath E:\MongoDB\data --logpath E:\MongoDB\logs\mongodb.log  --logappend --auth --service&#34;</span>
+<span style="color:#f92672">[</span>SC<span style="color:#f92672">]</span> DeleteService 失败 1072：
+指定的服务已标记为删除
+</code></pre></div><ul>
+<li>关闭此电脑的服务管理界面，重新打开服务管理界面刷新服务。</li>
+</ul>
+
+
+    
+    
+        <div class="related">
+
+
+<h3>Similar articles</h3>
+
+<ul>
+	
+	<li><a href="/note/database/mongodb/mongodb%E6%95%B0%E6%8D%AE%E5%BA%93%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D/">mongoDB数据库备份与恢复</a></li>
+	
+	<li><a href="/note/database/mongodb/mongodb%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">mongodb基本操作</a></li>
+	
+	<li><a href="/note/database/mongodb/mongo%E5%B8%B8%E7%94%A8%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/">mongo常用增删改查</a></li>
+	
+	<li><a href="/note/database/mongodb/mongo%E7%94%A8%E6%88%B7%E6%93%8D%E4%BD%9C/">mongo用户操作</a></li>
+	
+	<li><a href="/note/database/mongodb/mongo%E7%9A%84%E8%A7%86%E5%9B%BE/">mongo的视图操作</a></li>
+	
+</ul>
+
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

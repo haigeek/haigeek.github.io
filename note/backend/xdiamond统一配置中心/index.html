@@ -1,0 +1,794 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+               
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+</div>
+
+
+
+
+
+<h1 class="title"></h1>
+
+<div class="content">
+
+    
+    <h2 id="xdiamond-统一配置中心">xdiamond 统一配置中心</h2>
+<h4 id="1-部署并启动-xdiamond">1. 部署并启动 xdiamond</h4>
+<h5 id="1-下载-xdiamond-源码httpsgithubcomhengyunabcxdiamondtdsourcetags_pcqq_aiomsg-或者-xdiamond-包httpelb-zentao-361931552cn-northwest-1elbamazonawscomcn5336artifactorywebappsearchquickeyjzzwfyy2gioijxdwljayisinf1zxj5ijoiegrpyw1vbmqifq下载包可忽略下面操作直接引用或启动">(1) 下载 <a href="https://github.com/hengyunabc/xdiamond?tdsourcetag=s_pcqq_aiomsg">xdiamond 源码</a> 或者 <a href="http://elb-zentao-361931552.cn-northwest-1.elb.amazonaws.com.cn:5336/artifactory/webapp/#/search/quick/eyJzZWFyY2giOiJxdWljayIsInF1ZXJ5IjoieGRpYW1vbmQifQ==">xdiamond 包</a>(下载包可忽略下面操作，直接引用或启动)</h5>
+<h5 id="2-修改-xdiamond-的-jdk-版本为-18使用-tomcat8-服务器">(2) 修改 xdiamond 的 jdk 版本为 1.8，使用 tomcat8 服务器</h5>
+<blockquote>
+<p>此处升级 jdk 版本与 tomcat 版本主要是为了更好集成高配置环境项目用，无特殊要求可不进行升级</p>
+</blockquote>
+<ul>
+<li><strong>升级 xdiamond-rootpom 的 pom.xml 配置文件中的 maven-compiler-plugin 插件的 jdk 配置为1.8</strong></li>
+</ul>
+<pre><code>    &lt;plugin&gt;
+    	&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    	&lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+    	&lt;version&gt;3.0&lt;/version&gt;
+    	&lt;configuration&gt;
+    	    &lt;source&gt;1.8&lt;/source&gt;
+    		&lt;target&gt;1.8&lt;/target&gt;
+    		&lt;encoding&gt;${project.build.sourceEncoding}&lt;/encoding&gt;
+    	&lt;/configuration&gt;
+    &lt;/plugin&gt;
+</code></pre><ul>
+<li><strong>升级 xdiamond-client-example 的 pom.xml 配置文件的 maven.compiler.target 和 maven.compiler.source 参数为 1.8</strong></li>
+</ul>
+<pre><code>    &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
+	&lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
+</code></pre><h5 id="3-修改项目配置">(3) 修改项目配置</h5>
+<ul>
+<li><strong>xdiamond-rootpom 的 pom.xml 配置文件中的 maven-javadoc-plugin 插件不接受 <!-- raw HTML omitted -->-Xdoclint:none<!-- raw HTML omitted -->，修改为 <!-- raw HTML omitted -->none<!-- raw HTML omitted --></strong></li>
+</ul>
+<pre><code>    &lt;plugin&gt;
+		&lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+		&lt;artifactId&gt;maven-javadoc-plugin&lt;/artifactId&gt;
+		&lt;executions&gt;
+			&lt;execution&gt;
+				&lt;id&gt;attach-javadocs&lt;/id&gt;
+				&lt;goals&gt;
+					&lt;goal&gt;jar&lt;/goal&gt;
+				&lt;/goals&gt;
+				&lt;configuration&gt;
+					&lt;!-- add this to disable checking --&gt;
+	    			&lt;!--&lt;additionalparam&gt;-Xdoclint:none&lt;/additionalparam&gt;--&gt;
+                    &lt;doclint&gt;none&lt;/doclint&gt;
+				&lt;/configuration&gt;
+			&lt;/execution&gt;
+		&lt;/executions&gt;
+	&lt;/plugin&gt;
+</code></pre><ul>
+<li><strong>因为 netty 的依赖版本较低，将 xdiamond-common 中 pom.xml 配置文件的 netty-transport、netty-codec 依赖，xdiamond-server 中 pom.xml 配置文件的 netty-codec、netty-handler 依赖，xdiamond-client 中 pom.xml 配置文件的 netty-handler 依赖的版本都升级到 4.1.16.Final</strong></li>
+</ul>
+<pre><code>    &lt;dependency&gt;
+		&lt;groupId&gt;io.netty&lt;/groupId&gt;
+		&lt;artifactId&gt;netty-transport&lt;/artifactId&gt;
+		&lt;version&gt;4.1.16.Final&lt;/version&gt;
+	&lt;/dependency&gt;
+	&lt;dependency&gt;
+	    &lt;groupId&gt;io.netty&lt;/groupId&gt;
+		&lt;artifactId&gt;netty-codec&lt;/artifactId&gt;
+		&lt;version&gt;4.1.16.Final&lt;/version&gt;
+	&lt;/dependency&gt;
+	&lt;dependency&gt;
+		&lt;groupId&gt;io.netty&lt;/groupId&gt;
+		&lt;artifactId&gt;netty-handler&lt;/artifactId&gt;
+		&lt;version&gt;4.1.16.Final&lt;/version&gt;
+	&lt;/dependency&gt;
+</code></pre><h5 id="4-通过-tomcat-启动-xdiamond-server-模块">(4) 通过 tomcat 启动 xdiamond-server 模块</h5>
+<h5 id="5-通过-main-启动-xdiamond-client-example">(5) 通过 Main 启动 xdiamond-client-example</h5>
+<hr>
+<h4 id="2-xdiamond-配置中心简介">2. xDiamond 配置中心简介</h4>
+<p><img src="https://note.youdao.com/yws/api/personal/file/B947851B19134C4DA0C3FF354D812176?method=download&amp;shareKey=15af24db4b6cfdee2128c31cb8c6c714" alt="image"><br>
+    (1) ==<strong>Home</strong>==：xDiamond配置中心的首页<br>
+    (2) ==<strong>项目管理</strong>==：可增删改查项目及依赖子项目的信息，增删改查项目下的配置文件以及配置文件下的配置信息，管理着 xdiamond 中客户端与服务器的连接以及配置的获取<br>
+    (3) ==<strong>UserProfile</strong>==：查看当前用户所在的组、拥有角色以及拥有的页面操作权限的基本信息<br>
+    (4) ==<strong>用户管理</strong>==：可增删改查用户的信息<br>
+    (5) ==<strong>组管理</strong>==：可增删改查组的信息，以及增删改查组下的用户的信息<br>
+    (6) ==<strong>角色管理</strong>==：可增删查角色信息，增加删除角色关联的权限、用户、组信息<br>
+    (7) ==<strong>权限管理</strong>==：可增删查权限信息，拥有的权限指定用户可以进行的页面操作；<br>
+    (8) ==<strong>全部 Config</strong>==：查看存放在数据库表 config 中的配置信息<br>
+    (9) ==<strong>依赖图</strong>==：以依赖图的形式描述项目之间的依赖关系<br>
+    (10) ==<strong>Metrics</strong>==：查看 JVM 的使用情况、HTTP 的请求情况、服务 service 和 缓存 Ehcache 的统计情况<br>
+    (11) ==<strong>ThreadDump</strong>==：查看并分析线程的情况<br>
+    (12) ==<strong>SystemProperties</strong>==：查看 xDiamond-server 项目所在系统的系统属性<br>
+    (13) ==<strong>WebConsole</strong>==：输入&quot;help&quot;命令查看可操作命令以及命令的作用<br>
+    (14) ==<strong>DruidStat</strong>==：使用 Druid Monitor 监控工具来监控数据源、慢查询、Web应用、URI监控、Session监控、Spring监控<br>
+    (15) ==<strong>Health</strong>==：查看 xDiamond-server 项目的应用环境总体健康情况<br>
+    (16) ==<strong>Logger</strong>==：查看 xDiamond-server 项目中所有的 Logger 以及对应的等级 Logger Level<br>
+    (17) ==<strong>Apidoc</strong>==：使用 swagger 展示并且操作 xDiamond-server 项目中的接口方法<br>
+    (18) ==<strong>Connections</strong>==：查看连接到 xDiamond-server 服务器项目中的客户端项目的基本信息<br>
+    (19) ==<strong>LDAP</strong>==：同步 LDAP 的组和用户的信息到数据库中</p>
+<hr>
+<h4 id="3-xdiamond-中的项目管理操作确保拥有足够的权限否则某些操作可能无法实现">3. xdiamond 中的项目管理操作(确保拥有足够的权限，否则某些操作可能无法实现)</h4>
+<h5 id="1-在项目管理首页中列出了-xdiamond-服务器中所有的项目基本信息在这里可以新建修改查找项目">(1) 在项目管理首页中列出了 xdiamond 服务器中所有的项目基本信息，在这里可以新建、修改、查找项目；</h5>
+<p><img src="https://note.youdao.com/yws/api/personal/file/7D8D109361B44794B5E2B31862E5E91B?method=download&amp;shareKey=bc106728b4c473715d670e56ba586d5d" alt="image"></p>
+<h5 id="2-点击查看profile进入项目-profile-环境界面此处列出了项目中的所有环境例如图中的-basedevtestproduct-四种环境在这里可以添加修改删除-profile-环境">(2) 点击&quot;查看profile&quot;，进入项目 profile 环境界面，此处列出了项目中的所有环境，例如图中的 base、dev、test、product 四种环境，在这里可以添加、修改、删除 profile 环境；</h5>
+<p><img src="https://note.youdao.com/yws/api/personal/file/C269C2CCFABD4FA9AE283AF4CAA3C067?method=download&amp;shareKey=9f826f4c88ecbc1dff57b6ee783b99a1" alt="image"></p>
+<h5 id="3-点击查看config进入项目环境中的-config-配置界面此处列出了项目环境中的所有配置信息xdiamond-客户端获取的配置值就是此处的-config-配置在这里可以增加修改删除查看-config-配置信息其中继承过来的配置需要到配置的来源进行修改或删除操作">(3) 点击&quot;查看Config&quot;，进入项目环境中的 config 配置界面，此处列出了项目环境中的所有配置信息，xdiamond 客户端获取的配置值就是此处的 config 配置，在这里可以增加、修改、删除、查看 config 配置信息，其中继承过来的配置需要到配置的来源进行修改或删除操作；</h5>
+<p><img src="https://note.youdao.com/yws/api/personal/file/C5381395287242E2A08729A71A44431E?method=download&amp;shareKey=ef74c90bf8a4b830c4dd5d46724fe739" alt="image"></p>
+<hr>
+<h4 id="4-将连接的数据库从-mysql-修改为-oracle">4. 将连接的数据库从 Mysql 修改为 Oracle</h4>
+<h5 id="1-仿照-schema-devsql-和-data-devsql-文件内容在-oracle-数据库中建表和添加数据">(1) 仿照 ==schema-dev.sql== 和 ==data-dev.sql== 文件内容在 oracle 数据库中建表和添加数据</h5>
+<h5 id="2-配置-xdiamond-server-的-jvm-的启动参数指明-spring-profile-为-product">(2) 配置 xdiamond-server 的 jvm 的启动参数，指明 spring profile 为 product</h5>
+<p>      xdiamond-server 默认的spring profile 是 dev，数据库内容是放在内存中，每次重启都会丢失，所以注意要将 spring profile 改为 product</p>
+<blockquote>
+<p>==<strong>方法一：在 tomcat 中添加启动参数</strong>==<br>
+      <strong>JAVA_OPTS=&quot;$JAVA_OPTS  -Dspring.profiles.active=product&quot;</strong>   (Linux)<br>
+      <strong>set JAVA_OPTS=%JAVA_OPTS% -Dspring.profiles.active=product</strong>   (Windos)</p>
+</blockquote>
+<blockquote>
+<p>==<strong>方法二：修改 web.xml 配置文件中的 spring.profiles.default 参数值</strong>==</p>
+</blockquote>
+<pre><code>    &lt;context-param&gt;
+		&lt;param-name&gt;spring.profiles.default&lt;/param-name&gt;
+		&lt;param-value&gt;product&lt;/param-value&gt;
+	&lt;/context-param&gt;
+</code></pre><h5 id="3-修改数据库的连接配置">(3) 修改数据库的连接配置</h5>
+<pre><code>    jdbc.driver=oracle.jdbc.driver.OracleDriver
+    jdbc.url=jdbc:oracle:thin:@127.0.0.1/ORCL
+    jdbc.username=root
+    jdbc.password=12345
+    druid.initial-size=20
+    druid.max-active=200
+    druid.min-idle=10
+    druid.max-wait=10000
+</code></pre><h5 id="4-修改-datasource-配置">(4) 修改 dataSource 配置</h5>
+<pre><code>    &lt;bean id=&quot;dataSource&quot; class=&quot;com.alibaba.druid.pool.DruidDataSource&quot;&gt;
+		&lt;property name=&quot;driverClassName&quot; value=&quot;${jdbc.driver}&quot;/&gt;
+		&lt;property name=&quot;url&quot; value=&quot;${jdbc.url}&quot;/&gt;
+		&lt;property name=&quot;username&quot; value=&quot;${jdbc.username}&quot;/&gt;
+		&lt;property name=&quot;password&quot; value=&quot;${jdbc.password}&quot;/&gt;
+		&lt;property name=&quot;initialSize&quot; value=&quot;${druid.initial-size}&quot;/&gt;
+		&lt;property name=&quot;maxActive&quot; value=&quot;${druid.max-active}&quot;/&gt;
+		&lt;property name=&quot;minIdle&quot; value=&quot;${druid.min-idle}&quot;/&gt;
+		&lt;property name=&quot;maxWait&quot; value=&quot;${druid.max-wait}&quot;/&gt;
+	&lt;/bean&gt;
+</code></pre><h5 id="5-将-mapperxml-和-examplejava-两类文件中的-mysql-语法与特殊符号修改为-oracle-的">(5) 将 ==*Mapper.xml== 和 ==*Example.java== 两类文件中的 Mysql 语法与特殊符号修改为 oracle 的</h5>
+<p>例如：</p>
+<blockquote>
+<p>       在 UserExample.java 类文件中为属性字段添加双引号<br>
+<img src="https://note.youdao.com/yws/api/personal/file/9491045F2A5C4511A981D7F44C2630F6?method=download&amp;shareKey=0d79e4f55c21b2b695f70711043d763c" alt="image"></p>
+</blockquote>
+<blockquote>
+<p>       在 UserMapper.xml 配置文件中为属性字段添加双引号，创建相应的数据库表序列并且以序列的 nextval 值代替 LAST_INSERT_ID()，将 selectKey 中 order 的值改为 BEFORE<br>
+<img src="https://note.youdao.com/yws/api/personal/file/3C35EAA1D207488B83AF0C141B88E1DE?method=download&amp;shareKey=a75477c35b414a8d6ef33dd3d896d81a" alt="image"></p>
+</blockquote>
+<h5 id="6-在-mybatis-目录下新建-mybatis-configxml-配置文件来输出-sql-日志">(6) 在 mybatis 目录下新建 mybatis-config.xml 配置文件来输出 sql 日志</h5>
+<pre><code>    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    &lt;!DOCTYPE configuration
+            PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
+            &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+    &lt;configuration&gt;
+        &lt;settings&gt;
+            &lt;!-- 打印查询语句 --&gt;
+            &lt;setting name=&quot;logImpl&quot; value=&quot;STDOUT_LOGGING&quot; /&gt;
+        &lt;/settings&gt;
+    &lt;/configuration&gt;
+</code></pre><hr>
+<h4 id="5-客户端获取-xdiamond-配置中心的配置信息">5. 客户端获取 xDiamond 配置中心的配置信息</h4>
+<h5 id="1-将-xdiamond-client-模块打成-jar-包并且在客户端中引入-xdiamond-client-的-jar-包">(1) 将 xdiamond-client 模块打成 jar 包并且在客户端中引入 xdiamond-client 的 jar 包</h5>
+<pre><code>    &lt;dependency&gt;
+		&lt;groupId&gt;io.github.hengyunabc.xdiamond&lt;/groupId&gt;
+		&lt;artifactId&gt;xdiamond-client&lt;/artifactId&gt;
+		&lt;version&gt;1.0.4&lt;/version&gt;
+	&lt;/dependency&gt;
+</code></pre><h5 id="2-创建-spring-配置文来中添加-xdiamond-配置">(2) 创建 spring 配置文来中添加 xdiamond 配置</h5>
+<pre><code>    &lt;!-- 通过 XDiamondConfigFactoryBean 初始化一个 XDiamondConfig，指定要连接的 xdiamond 项目及环境 --&gt;
+    &lt;bean id=&quot;xDiamondConfig&quot;
+		class=&quot;io.github.xdiamond.client.spring.XDiamondConfigFactoryBean&quot;&gt;
+		&lt;property name=&quot;serverHost&quot; value=&quot;${xdiamond.server.host:localhost}&quot; /&gt;
+		&lt;property name=&quot;serverPort&quot; value=&quot;5678&quot; /&gt;
+		&lt;property name=&quot;groupId&quot; value=&quot;io.github.xdiamond&quot; /&gt;
+		&lt;property name=&quot;artifactId&quot; value=&quot;xdiamond-client-example&quot; /&gt;
+		&lt;property name=&quot;version&quot; value=&quot;0.0.1-SNAPSHOT&quot; /&gt;
+		&lt;property name=&quot;profile&quot; value=&quot;${xdiamond.project.profile:dev}&quot; /&gt;
+		&lt;property name=&quot;secretKey&quot; value=&quot;${xdiamond.project.secretkey:123456}&quot;&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+</code></pre><h5 id="3-获取-xdiamond-配置中心中的配置值">(3) 获取 xDiamond 配置中心中的配置值</h5>
+<blockquote>
+<p>==<strong>方法一：将配置值注入到类 bean 的参数中</strong>==<br>
+       在 xdiamond 配置文件中通过 PropertyPlaceholderConfigurer 使用 XDiamondConfig 获取配置，使用 ${} 表达式把配置值注入到类 bean 中，即可通过在类方法中注入该 bean 获取 bean 中的配置值</p>
+</blockquote>
+<pre><code>    &lt;!-- 获取 xdiamond 配置 --&gt;
+    &lt;bean class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;
+        &lt;property name=&quot;properties&quot;&gt;
+            &lt;bean class=&quot;java.util.Properties&quot;
+                factory-bean=&quot;xDiamondConfig&quot; factory-method=&quot;getProperties&quot;&gt;
+            &lt;/bean&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+
+    &lt;!-- 把配置注入到 bean 的参数中 --&gt;
+    &lt;bean id=&quot;clientExampleConfig&quot; class=&quot;io.github.xdiamond.example.ClientExampleConfig&quot;&gt;
+		&lt;property name=&quot;memcachedAddress&quot; value=&quot;${memcached.serverlist}&quot;&gt;&lt;/property&gt;
+		&lt;property name=&quot;zookeeperAddress&quot; value=&quot;${zookeeper.address}&quot;&gt;&lt;/property&gt;
+	&lt;/bean&gt;
+	
+	// 自定义类来保存配置值
+	public class ClientExampleConfig {
+      String memcachedAddress;
+      String zookeeperAddress;
+      public String getMemcachedAddress() {
+        return memcachedAddress;
+      }
+      public void setMemcachedAddress(String memcachedAddress) {
+        this.memcachedAddress = memcachedAddress;
+      }
+      public String getZookeeperAddress() {
+        return zookeeperAddress;
+      }
+      public void setZookeeperAddress(String zookeeperAddress) {
+        this.zookeeperAddress = zookeeperAddress;
+      }
+      @Override
+      public String toString() {
+        return &quot;ClientExampleConfig{&quot; +
+                &quot;memcachedAddress='&quot; + memcachedAddress + '\'' +
+                &quot;, zookeeperAddress='&quot; + zookeeperAddress + '\'' +
+                '}';
+      }
+    }
+    
+    // 注入 bean 获取 bean 中保存的配置值
+    @Autowired
+    ClientExampleConfig clientExampleConfig;
+</code></pre><blockquote>
+<p>==<strong>方法二：基于前缀注入配置值</strong>==<br>
+       如果项目整合了Spring Boot 框架，在 xdiamond 配置文件中通过 PropertySourcesAdderBean 使用 XDiamondConfig 获取配置，在类中通过 @ConfigurationProperties 注解基于前缀注入配置值</p>
+</blockquote>
+<pre><code>    &lt;!-- 获取 xdiamond 配置 --&gt;
+    &lt;bean class=&quot;io.github.xdiamond.client.spring.PropertySourcesAdderBean&quot;&gt;
+		&lt;property name=&quot;properties&quot;&gt;
+			&lt;bean class=&quot;java.util.Properties&quot; factory-bean=&quot;xDiamondConfig&quot;
+				factory-method=&quot;getProperties&quot;&gt;
+			&lt;/bean&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+	
+	// 自定义类来保存以 memcached 为前缀的 xdiamond 配置信息
+	@Configuration
+    @ConfigurationProperties(prefix = &quot;memcached&quot;)  // 获取前缀为 memcached 的 xdiamond 配置
+    @EnableConfigurationProperties
+    public class PrefixExampleConfig {
+        private String serverlist;
+    
+        public String getServerlist() {
+            return serverlist;
+        }
+    
+        public void setServerlist(String serverlist) {
+            this.serverlist = serverlist;
+        }
+    
+        @Override
+        public String toString() {
+            return &quot;PrefixExampleConfig{&quot; +
+                    &quot;serverlist='&quot; + serverlist + '\'' +
+                    '}';
+        }
+    }
+    
+    // 同样注入 bean 获取 bean 中保存的配置值
+    @Autowired
+    PrefixExampleConfig prefixExampleConfig;
+</code></pre><blockquote>
+<p>==<strong>方法三：基于注解直接注入配置值</strong>==<br>
+       在 xdiamond 配置文件中通过 PropertyPlaceholderConfigurer 使用 XDiamondConfig 获取配置，然后通过 @Value 注解将配置值直接注入类中</p>
+</blockquote>
+<pre><code>    &lt;!-- 获取 xdiamond 配置 --&gt;
+    &lt;bean class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;
+        &lt;property name=&quot;properties&quot;&gt;
+            &lt;bean class=&quot;java.util.Properties&quot;
+                factory-bean=&quot;xDiamondConfig&quot; factory-method=&quot;getProperties&quot;&gt;
+            &lt;/bean&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;
+    
+    // 将获取到的 xdiamond 配置值直接注入到 AnnotationExampleConfig 类中
+    @Configuration
+    public class AnnotationExampleConfig {
+        @Value(&quot;${memcached.serverlist}&quot;)
+        String memcachedAddress;
+    
+        @Value(&quot;${zookeeper.address}&quot;)
+        String zookeeperAddress;
+    
+        @Override
+        public String toString() {
+            return &quot;AnnotationConfigExampleConfig{&quot; +
+                    &quot;memcachedAddress='&quot; + memcachedAddress + '\'' +
+                    &quot;, zookeeperAddress='&quot; + zookeeperAddress + '\'' +
+                    '}';
+        }
+    }
+    
+    // 同样注入 bean 获取 bean 中保存的配置值
+    @Autowired
+    AnnotationExampleConfig annotationExampleConfig;
+</code></pre><hr>
+<h4 id="6-客户端临时修改本地配置">6. 客户端临时修改本地配置</h4>
+<blockquote>
+<p>==<strong>方法一：使用 <a href="util:properties">util:properties</a> 标签</strong>== <br>
+       在 xdiamond 配置文件的获取 xiamond 配置中，将 property 的 name 修改为 propertiesArray 并且 添加 <a href="util:properties">util:properties</a> 标签来临时修改配置信息</p>
+</blockquote>
+<pre><code>    &lt;!-- 获取 xdiamond 配置 --&gt;
+	&lt;bean class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;
+	    &lt;!-- 设置为 propertiesArray --&gt;
+		&lt;property name=&quot;propertiesArray&quot;&gt;
+			&lt;util:list&gt;
+				&lt;bean id=&quot;xDiamondProperties&quot; class=&quot;java.util.Properties&quot;
+					  factory-bean=&quot;xDiamondConfig&quot; factory-method=&quot;getProperties&quot;&gt;
+				&lt;/bean&gt;
+				&lt;!-- 通过 &lt;util:properties&gt; 临时修改本地配置 --&gt;
+				&lt;util:properties&gt;
+					&lt;!-- 将获取到 xdiamond 的 memcached.serverlist 配置值修改为 localhost:8888 --&gt;
+					&lt;prop key=&quot;memcached.serverlist&quot;&gt;localhost:8888&lt;/prop&gt;
+				&lt;/util:properties&gt;
+			&lt;/util:list&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+</code></pre><blockquote>
+<p>==<strong>方法二：localtion 指向临时修改配置文件</strong>==<br>
+       将需要临时修改的配置信息添加到配置文件中，在 xdiamond 配置文件的获取 xiamond 配置中，名称为 location 的 property 标签指向该配置文件，从而临时修改配置信息</p>
+</blockquote>
+<pre><code>    &lt;!-- 获取 xdiamond 配置 --&gt;
+	&lt;bean class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;
+		&lt;!-- 将需要临时修改的配置信息添加到一个配置文件中，location 指向该配置文件 --&gt;
+	 	&lt;property name=&quot;location&quot; value=&quot;classpath:local.properties&quot; /&gt;
+		&lt;property name=&quot;properties&quot;&gt;
+			&lt;bean id=&quot;xDiamondProperties&quot; class=&quot;java.util.Properties&quot;
+				factory-bean=&quot;xDiamondConfig&quot; factory-method=&quot;getProperties&quot;&gt;
+			&lt;/bean&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+	
+	# 在 local.properties 配置文件中 指定 memcached.serverlist 的配置值为 localhost:8000
+    memcached.serverlist=localhost:8000
+</code></pre><hr>
+<h4 id="7-将-xdiamond-配置值同步到客户端系统配置中">7. 将 xdiamond 配置值同步到客户端系统配置中</h4>
+<blockquote>
+<p>       在 xdiamond 配置文件的 xDiamondConfig bean 中设置 bSyncToSystemProperties 参数为 true，可实现在 properties 配置文件中通过 ${} 表达式引用 xdiamond 的配置</p>
+</blockquote>
+<pre><code>    # 在 system.properties 配置文件中引用 xdiamond 的 memcached.serverlist 的配置信息
+    system.test=aaa${memcached.serverlist}bbb
+
+    &lt;bean id=&quot;xDiamondConfig&quot;
+		...
+		&lt;!-- 设置将配置同步到 System Properties 里，默认为 false --&gt;
+		&lt;property name=&quot;bSyncToSystemProperties&quot; value=&quot;true&quot; /&gt;
+	&lt;/bean&gt;
+    
+    &lt;!-- 获取 xdiamond 配置 --&gt;
+	&lt;bean class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;
+		&lt;property name=&quot;properties&quot;&gt;
+			&lt;bean id=&quot;xDiamondProperties&quot; class=&quot;java.util.Properties&quot;
+				factory-bean=&quot;xDiamondConfig&quot; factory-method=&quot;getProperties&quot;&gt;
+			&lt;/bean&gt;
+		&lt;/property&gt;
+	&lt;/bean&gt;
+	
+	@RunWith(SpringJUnit4ClassRunner.class)
+    @ContextConfiguration(&quot;/spring-context-test.xml&quot;)
+    @PropertySource(&quot;classpath:system.properties&quot;)  // 引入 system.properties 配置文件
+    public class ClientExampleTest {
+      // 使用 @Value 注解注入 system.test 配置信息
+      @Value(&quot;${system.test}&quot;)
+      String systemTest;
+
+      @Test
+      public void test() {
+        System.err.println(systemTest);
+      }
+    }
+</code></pre><hr>
+<h4 id="8-xdiamond客户端多环境配置参数选择">8. xdiamond客户端多环境配置参数选择</h4>
+<blockquote>
+<p>       在 xdiamond 配置文件中设置各种环境的 xdiamond 连接配置，就可以根据变化的项目环境配置来选择相对应的 xdiamond 连接配置</p>
+</blockquote>
+<pre><code>    &lt;!-- 多环境配置参数选择——product 环境 --&gt;
+	&lt;beans profile=&quot;product&quot;&gt;
+		&lt;bean id=&quot;projectProfile&quot; class=&quot;java.lang.String&quot;&gt;
+			&lt;constructor-arg value=&quot;product&quot; /&gt;
+		&lt;/bean&gt;
+		&lt;bean id=&quot;projectSecretKey&quot; class=&quot;java.lang.String&quot;&gt;
+			&lt;constructor-arg value=&quot;b8ylj4r0OcBMgdNA&quot; /&gt;
+		&lt;/bean&gt;
+	&lt;/beans&gt;
+
+	&lt;beans&gt;
+		&lt;bean id=&quot;xDiamondConfig&quot; class=&quot;io.github.xdiamond.client.spring.XDiamondConfigFactoryBean&quot;&gt;
+			...
+			&lt;!-- 关联到指定 bean --&gt;
+			&lt;property name=&quot;profile&quot; ref=&quot;projectProfile&quot; /&gt;
+			&lt;property name=&quot;secretKey&quot; ref=&quot;projectSecretKey&quot; /&gt;
+		&lt;/bean&gt;
+
+		&lt;!-- 获取 xdiamond 配置 --&gt;
+		&lt;bean class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;
+			&lt;property name=&quot;properties&quot;&gt;
+				&lt;bean id=&quot;xDiamondProperties&quot; class=&quot;java.util.Properties&quot;
+					  factory-bean=&quot;xDiamondConfig&quot; factory-method=&quot;getProperties&quot;&gt;
+				&lt;/bean&gt;
+			&lt;/property&gt;
+		&lt;/bean&gt;
+
+        &lt;!-- 扫描项目包 --&gt;
+		&lt;context:component-scan base-package=&quot;io.github.xdiamond.example.test&quot;&gt;
+		&lt;/context:component-scan&gt;
+	&lt;/beans&gt;
+</code></pre><hr>
+<h4 id="9-客户端配置-listener-监听配置修改">9. 客户端配置 Listener 监听配置修改</h4>
+<blockquote>
+<p>==<strong>方法一：spring 配置文件注入 Listener</strong>==<br>
+       在 spring 配置文件中注入 bean，在 bean 中通过 @OneKeyListener 和 @AllKeyListener 注解来获取到最新的 ConfigEvent 配置值。在 ConfigEvent 中，描述了修改配置值的 key(关键字)、oldValue(旧值)、value(新值)、eventType(修改类型：ADD/UPDATE/DELETE)；</p>
+</blockquote>
+<pre><code>    &lt;!-- 注入 Listener --&gt;
+    &lt;bean class=&quot;io.github.xdiamond.example.listener.ListenerXmlBean&quot;&gt;&lt;/bean&gt;
+    
+    public class ListenerXmlBean {
+        // 监听名为 testOneKeyListener 的 key 的修改
+        @OneKeyListener(key = &quot;testOneKeyListener&quot;)
+        public void testOneKeyListener(ConfigEvent event) {
+            System.err.println(&quot;ListenerXmlBean, testOneKeyListener, event :&quot; + event);
+        }
+        // 监听所有 key 的修改
+        @AllKeyListener
+        public void testAllKeyListener(ConfigEvent event) {
+            System.err.println(&quot;ListenerXmlBean, testAllKeyListener, event :&quot; + event);
+        }
+    }
+</code></pre><blockquote>
+<p>==<strong>方法二：扫描 @Service 或 @Component 注解</strong>==<br>
+       扫描以 @Service 或 @Component 注解的 bean，在 bean 中通过 @OneKeyListener 和 @AllKeyListener 注解来获取到最新的 ConfigEvent 配置值；</p>
+</blockquote>
+<pre><code>    // 通过 @ComponentScan 注解扫描包
+    @ComponentScan(basePackages = {&quot;io.github.xdiamond.example&quot;})
+    
+    // 以 @Service 或 @Component 注解 bean
+    //@Component
+    @Service
+    public class ListenerExampleService {
+        // 监听名为 testOneKeyListener 的 key 的修改
+        @OneKeyListener(key = &quot;testOneKeyListener&quot;)
+        public void testOneKeyListener(ConfigEvent event) {
+            System.err.println(&quot;ListenerExampleService, testOneKeyListener, event :&quot; + event);
+        }
+        // 监听所有 key 的修改
+        @AllKeyListener
+        public void testAllKeyListener(ConfigEvent event) {
+            System.err.println(&quot;ListenerExampleService, testAllKeyListener, event :&quot; + event);
+        }
+    }
+</code></pre><hr>
+<h4 id="10-客户端本地缓存">10. 客户端本地缓存</h4>
+<blockquote>
+<p>       xdiamond client 客户端会把最后拉取的配置缓存到本地的 ${usr.home}/.xdiamond 目录下。如果应用在启动时，连接 xdiamond server 失败，那么也会先到这个目录下加载最后缓存的配置。<br>
+<img src="https://note.youdao.com/yws/api/personal/file/3C72E41709854840AA16D7760BA74334?method=download&amp;shareKey=90c489947ac048bcacf2ca4b624e3e99" alt="image"><br>
+<img src="https://note.youdao.com/yws/api/personal/file/DE16A61D30EE42C79CBF462582CB6B0C?method=download&amp;shareKey=87088b8fc0dd0bc865fe9536e8bf08c2" alt="image"></p>
+</blockquote>
+<hr>
+<h4 id="11-ldap-服务器的安装与连接">11. LDAP 服务器的安装与连接</h4>
+<blockquote>
+<p>(1) <a href="https://blog.csdn.net/chenxuejiakaren/article/details/7367572#">Windows 下 OpenLDAP 的安装及使用</a></p>
+</blockquote>
+<blockquote>
+<p>(2) OpenLDAP 的 ldif 文件中条目设置举例（实际使用时&quot;#&ldquo;井号的注释语句要删除）：</p>
+</blockquote>
+<pre><code>dn: dc=mycompany,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: domain
+dc: mycompany
+
+dn: ou=roles,dc=mycompany,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: roles
+
+dn: ou=people,dc=mycompany,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: cn=Test Users,ou=roles,dc=mycompany,dc=com
+# 当 xdiamond 获取 LDAP 数据时，默认获取 objectClass: groupOfUniqueNames 所在条目的数据
+objectClass: groupOfUniqueNames
+# cn: Test Users 表示组名为 Test Users
+cn: Test Users
+# uniqueMember 表示用户信息，cn=jbloggs 表示用户名为 jbloggs
+uniqueMember: cn=jbloggs,ou=people,dc=mycompany,dc=com
+
+dn: uid=jbloggs,ou=people,dc=mycompany,dc=com
+objectClass: person
+objectClass: inetOrgPerson
+# 在 xdiamond 中登录时匹配用户名为 jbloggs
+cn: jbloggs
+sn: Bloggs
+uid: jbloggs
+# 在 xdiamond 中登录时匹配密码为 123456
+userPassword: 123456
+</code></pre><blockquote>
+<p>(3) xdiamond-server 配置连接 LDAP 服务器</p>
+</blockquote>
+<pre><code>    # 连接 LDAP 服务器的 url 地址
+    xdiamond.ldap.url=ldap://127.0.0.1:389
+    # slapd.conf 配置文件中的 rootdn 配置值
+    xdiamond.ldap.userDn=cn=Manager,dc=mycompany,dc=com
+    # slapd.conf 配置文件中的 rootpw 配置值（不加密的密码）
+    xdiamond.ldap.password=123456
+    # slapd.conf 配置文件中的 suffix 配置值
+    xdiamond.ldap.base=dc=mycompany,dc=com
+</code></pre><hr>
+<h4 id="12-xdiamond-小心得">12. xdiamond 小心得</h4>
+<blockquote>
+<p>(1) xdiamond 使用 shiro 做权限控制，当用户登陆成功后，用户拥有的页面操作权限添加到 SimpleAuthorizationInfo 类的 stringPermissions 属性中；<br>
+(2) 拥有不同的权限表示该用户可以进行不同的页面操作，当前用户的具体页面操作权限在 UserProfile 的 Permissions 中有详细描述；<br>
+(3) 新建用户操作在底层的业务逻辑：新建以用户名为名称的组 -&gt; 新建用户 -&gt; 通过新建的组Id 和 用户Id 新建用户与组的联系；<br>
+(4) base profile 里放公共的配置，比如某个服务的端口号，所有的非 base profile 都会继承 base profile 里的配置信息；<br>
+(5) 在数据库中，用户-角色、用户-组、角色-组、角色-权限间存在联系，也是这些联系，使用户、角色、组、权限在业务逻辑上也相互关联；</p>
+</blockquote>
+<h4 id="13-xdiamond-集成到-bs-运维项目以-dgp-dubbo-server-web-模块为例">13. xdiamond 集成到 BS 运维项目（以 dgp-dubbo-server-web 模块为例）</h4>
+<h5 id="1-在-pomxml-配置文件中加入-xdiamond-client-依赖">(1) 在 pom.xml 配置文件中加入 xdiamond-client 依赖</h5>
+<pre><code>    &lt;!-- 集成 xdiamond-client --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;io.github.hengyunabc.xdiamond&lt;/groupId&gt;
+           &lt;artifactId&gt;xdiamond-client&lt;/artifactId&gt;
+        &lt;version&gt;1.0.4&lt;/version&gt;
+    &lt;/dependency&gt;
+</code></pre><h5 id="2-创建-spring-配置文件在该配置文件中加入-xdiamond-配置">(2) 创建 spring 配置文件，在该配置文件中加入 xdiamond 配置</h5>
+<pre><code>    &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+    &lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+           xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+           xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+           xmlns:util=&quot;http://www.springframework.org/schema/util&quot;
+           xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+    		http://www.springframework.org/schema/beans/spring-beans.xsd
+    		http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd&quot;&gt;
+    
+        &lt;!-- 多环境配置参数选择——dev环境 --&gt;
+        &lt;beans profile=&quot;dev&quot;&gt;
+            &lt;bean id=&quot;xdiamondServerHost&quot; class=&quot;java.lang.String&quot;&gt;
+                &lt;constructor-arg value=&quot;localhost&quot; /&gt;
+            &lt;/bean&gt;
+            &lt;bean id=&quot;xdiamondServerPort&quot; class=&quot;java.lang.String&quot;&gt;
+                &lt;constructor-arg value=&quot;5678&quot; /&gt;
+            &lt;/bean&gt;
+            &lt;bean id=&quot;projectGroupId&quot; class=&quot;java.lang.String&quot;&gt;
+                &lt;constructor-arg value=&quot;io.github.xdiamond&quot; /&gt;
+            &lt;/bean&gt;
+            &lt;bean id=&quot;projectArtifactId&quot; class=&quot;java.lang.String&quot;&gt;
+                &lt;constructor-arg value=&quot;xdiamond-jdbc-oracle&quot; /&gt;
+            &lt;/bean&gt;
+            &lt;bean id=&quot;projectVersion&quot; class=&quot;java.lang.String&quot;&gt;
+                &lt;constructor-arg value=&quot;0.0.1&quot; /&gt;
+            &lt;/bean&gt;
+            &lt;bean id=&quot;projectProfile&quot; class=&quot;java.lang.String&quot;&gt;
+                &lt;constructor-arg value=&quot;product&quot; /&gt;
+            &lt;/bean&gt;
+            &lt;bean id=&quot;projectSecretKey&quot; class=&quot;java.lang.String&quot;&gt;
+                &lt;constructor-arg value=&quot;iVXiDPdxipmCfSQ0&quot; /&gt;
+            &lt;/bean&gt;
+            &lt;bean id=&quot;xdiamondBSyncToSystemProperties&quot; class=&quot;java.lang.String&quot;&gt;
+                &lt;constructor-arg value=&quot;true&quot; /&gt;
+            &lt;/bean&gt;
+        &lt;/beans&gt;
+    
+        &lt;beans&gt;
+            &lt;!-- 通过 XDiamondConfigFactoryBean 初始化一个 XDiamondConfig --&gt;
+            &lt;bean id=&quot;xDiamondConfig&quot;
+                  class=&quot;io.github.xdiamond.client.spring.XDiamondConfigFactoryBean&quot;&gt;
+                &lt;property name=&quot;serverHost&quot; ref=&quot;xdiamondServerHost&quot; /&gt;
+                &lt;property name=&quot;serverPort&quot; ref=&quot;xdiamondServerPort&quot; /&gt;
+                &lt;property name=&quot;groupId&quot; ref=&quot;projectGroupId&quot; /&gt;
+                &lt;property name=&quot;artifactId&quot; ref=&quot;projectArtifactId&quot; /&gt;
+                &lt;property name=&quot;version&quot; ref=&quot;projectVersion&quot; /&gt;
+                &lt;property name=&quot;profile&quot; ref=&quot;projectProfile&quot; /&gt;
+                &lt;property name=&quot;secretKey&quot; ref=&quot;projectSecretKey&quot; /&gt;
+                &lt;!-- 是否将 xdiamond 配置值同步到客户端系统配置中 --&gt;
+                &lt;property name=&quot;bSyncToSystemProperties&quot; ref=&quot;xdiamondBSyncToSystemProperties&quot;/&gt;
+            &lt;/bean&gt;
+    
+            &lt;!-- 获取 xdiamond 配置 --&gt;
+            &lt;bean class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;
+                &lt;property name=&quot;properties&quot;&gt;
+                    &lt;bean class=&quot;java.util.Properties&quot;
+                          factory-bean=&quot;xDiamondConfig&quot; factory-method=&quot;getProperties&quot;&gt;
+                    &lt;/bean&gt;
+                &lt;/property&gt;
+            &lt;/bean&gt;
+        &lt;/beans&gt;
+    &lt;/beans&gt;
+</code></pre><h5 id="3-将-xdiamond-配置值注入到-applicationyml-配置中">(3) 将 xdiamond 配置值注入到 application.yml 配置中</h5>
+<pre><code>    testXdiamond: aaa-${jdbc.driver}-bbb
+</code></pre><h5 id="4-基于注解直接注入-xdiamond-中要获取的配置值到类中">(4) 基于注解直接注入 xdiamond 中要获取的配置值到类中</h5>
+<pre><code>    @Configuration
+    public class XdiamondConfig {
+        @Value(&quot;${jdbc.driver}&quot;)
+        String jdbcDriver;
+    
+        @Value(&quot;${jdbc.url}&quot;)
+        String jdbcUrl;
+    
+        @Override
+        public String toString() {
+            return &quot;XdiamondConfig{&quot; +
+                    &quot;jdbcDriver='&quot; + jdbcDriver + '\'' +
+                    &quot;, jdbcUrl='&quot; + jdbcUrl + '\'' +
+                    '}';
+        }
+    }
+</code></pre><h5 id="5-获取并使用-xdiamond-的配置值">(5) 获取并使用 xdiamond 的配置值</h5>
+<pre><code>    // 直接通过 @Value 获取 jdbc.driver 配置值
+    @Value(&quot;${jdbc.driver}&quot;)
+    private String jdbcDriver;
+    
+    // 获取 application.yml 配置文件中的 testXdiamond 配置值
+    @Value(&quot;${testXdiamond}&quot;)
+    private String testXdiamond;
+    
+    // 注入 XdiamondConfig 类
+    @Autowired
+    private XdiamondConfig xdiamondConfig;
+</code></pre>
+
+    
+    
+        <div class="related">
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+

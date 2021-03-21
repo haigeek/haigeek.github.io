@@ -1,0 +1,460 @@
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"  lang="en">
+
+    <head>
+
+        
+        <meta charset="UTF-8" />
+
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+                
+        <title> 
+               
+        </title>
+        
+        
+            <link href="https://example.com/index.xml" rel="alternate" type="application/rss+xml" title="Kiss&#39;Em!" />
+        
+
+        
+        <link rel="stylesheet" href="/css/style.css"/>
+
+        
+        
+            <link rel='stylesheet' href='https://example.com/css/custom.css'>
+        
+        
+    </head>
+
+    <body>
+
+
+
+<section class="section">
+  <div class="container">
+    <nav id="nav-main" class="nav">
+      <div id="nav-name" class="nav-left">
+        <a id="nav-anchor" class="nav-item" href="https://example.com">
+          <h1 id="nav-heading" class="title is-4">Kiss&#39;Em!</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        
+        
+        <nav id="nav-items" class="nav-item level is-mobile">
+          <a class="level-item" aria-label="about" href='/about'
+           rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="email" href='mailto:info@pavel-pi.de'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+    <polyline points="22,6 12,13 2,6"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="github" href='https://github.com/pavel-pi'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="twitter" href='https://twitter.com/@_pavel_pi_'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
+    
+  </svg></i>
+            </span>
+          </a>
+          <a class="level-item" aria-label="rss" href='/index.xml'
+           target='_blank'  rel='noopener'>
+            <span class="icon">
+              <i class>
+
+<svg viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+    
+    <path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>
+    
+  </svg></i>
+            </span>
+          </a></nav>
+        
+      
+      </div>
+    </nav>
+
+    <nav class="nav">
+      
+
+      
+    </nav>
+
+  </div>
+</section>
+
+<section class="section">
+    
+    <div class="container">
+    
+        
+            
+<div class="subtitle tags is-6 is-pulled-right">
+    
+</div>
+
+
+
+
+
+<h1 class="title"></h1>
+
+<div class="content">
+
+    
+    <h1 id="c-委托与事件">c# 委托与事件</h1>
+<h2 id="委托的定义">委托的定义</h2>
+<p>委托是一种引用类型，表示对具有特定参数列表和返回类型的方法的引用。 在实例化委托时，可以将其实例与任何具有兼容签名和返回类型的方法相关联。 可以通过委托实例调用方法，委托用于将方法作为参传递给其他方法，这种将方法动态地赋给参数的做法，可以避免在程序中大量使用If-Else(Switch)语句，同时使得程序具有更好的可扩展性。事件处理程序，就是通过委托调用的方法，如我们可以创建一个自定义方法，当发生特定事件时，某个类（如 Windows 控件）就可以调用你的方法。 下面的示例演示了一个委托声明：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">int</span> DoEventHandler();
+</code></pre></div><p>delegate是关键词，而一般的方法是下面的这个样子</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Do()
+{
+    <span style="color:#960050;background-color:#1e0010">方法体</span>
+}
+</code></pre></div><p>区别主要在于，委托是一个命令，真正执行的是别的方法</p>
+<h3 id="使用委托">使用委托</h3>
+<p>以一个具体的情境为例：GreetingPeople
+定义委托</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">void</span> GreetingDelegate(<span style="color:#66d9ef">string</span> name);
+</code></pre></div><p>定义GreetPeople方法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> GreetPeople(<span style="color:#66d9ef">string</span> name, GreetingDelegate MakeGreeting){
+    MakeGreeting(name);
+}
+</code></pre></div><p>完整代码</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">void</span> GreetingDelegate(<span style="color:#66d9ef">string</span> name);
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Program</span> {
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> EnglishGreeting(<span style="color:#66d9ef">string</span> name) {
+        Console.WriteLine(<span style="color:#e6db74">&#34;Morning, &#34;</span> + name);
+    }
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> ChineseGreeting(<span style="color:#66d9ef">string</span> name) {
+        Console.WriteLine(<span style="color:#e6db74">&#34;早上好, &#34;</span> + name);
+    }
+    <span style="color:#75715e">//此方法接受一个GreetingDelegate类型的方法作为参数
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> GreetPeople(<span style="color:#66d9ef">string</span> name, GreetingDelegate MakeGreeting) {
+        MakeGreeting(name);
+    }
+
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main(<span style="color:#66d9ef">string</span>[] args) {
+        GreetPeople(<span style="color:#e6db74">&#34;Jimmy Zhang&#34;</span>, EnglishGreeting);
+        GreetPeople(<span style="color:#e6db74">&#34;张子阳&#34;</span>, ChineseGreeting);
+        Console.ReadKey();
+    }
+}
+</code></pre></div><p>输出结果：</p>
+<pre><code>Morning, Jimmy Zhang
+早上好, 张子阳
+</code></pre><h3 id="将方法绑定到委托">将方法绑定到委托</h3>
+<p>可以将多个方法赋给同一个委托，或者叫将多个方法绑定到同一个委托，当调用这个委托的时候，将依次调用其所绑定的方法
+举例说明：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main(<span style="color:#66d9ef">string</span>[] args) {
+    GreetingDelegate delegate1;
+    delegate1 = EnglishGreeting; <span style="color:#75715e">// 先给委托类型的变量赋值
+</span><span style="color:#75715e"></span>    delegate1 += ChineseGreeting;   <span style="color:#75715e">// 给此委托变量再绑定一个方法
+</span><span style="color:#75715e"></span>
+     <span style="color:#75715e">// 将先后调用 EnglishGreeting 与 ChineseGreeting 方法
+</span><span style="color:#75715e"></span>    GreetPeople(<span style="color:#e6db74">&#34;Jimmy Zhang&#34;</span>, delegate1);  
+    Console.ReadKey();
+}
+</code></pre></div><p>输出结果：</p>
+<pre><code>Morning, Jimmy Zhang
+早上好, 张子阳
+</code></pre><p>注意这里，第一次用的“=”，是赋值的语法；第二次，用的是“+=”，是绑定的语法。如果第一次就使用“+=”，将出现“使用了未赋值的局部变量”的编译错误。
+也可以使用如下的代码简化这个过程</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#">GreetingDelegate delegate1=<span style="color:#66d9ef">new</span> GreetingDelegate(EnglishGreeting)
+delegate1+=ChineseGreeting;<span style="color:#75715e">//给此委托变量再绑定一个方法
+</span></code></pre></div><p>委托可以绑定一个方法，也有办法取消对方法的绑定，使用语法“-=”：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main(<span style="color:#66d9ef">string</span>[] args) {
+    GreetingDelegate delegate1 = <span style="color:#66d9ef">new</span> GreetingDelegate(EnglishGreeting);
+    delegate1 += ChineseGreeting;   <span style="color:#75715e">// 给此委托变量再绑定一个方法
+</span><span style="color:#75715e"></span>
+    <span style="color:#75715e">// 将先后调用 EnglishGreeting 与 ChineseGreeting 方法
+</span><span style="color:#75715e"></span>    GreetPeople(<span style="color:#e6db74">&#34;Jimmy Zhang&#34;</span>, delegate1);  
+    Console.WriteLine();
+
+    delegate1 -= EnglishGreeting; <span style="color:#75715e">//取消对EnglishGreeting方法的绑定
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 将仅调用 ChineseGreeting 
+</span><span style="color:#75715e"></span>    GreetPeople(<span style="color:#e6db74">&#34;张子阳&#34;</span>, delegate1); 
+    Console.ReadKey();
+}
+</code></pre></div><h2 id="事件">事件</h2>
+<h3 id="事件的定义">事件的定义</h3>
+<p>类或对象可以通过事件向其他类或对象通知发生的相关事情</p>
+<ul>
+<li>发行器(publisher)：发送或者引发事件的类，包含事件和委托定义的对象。事件和委托之间的联系也定义在这个对象中。这个类或对象会自行维护本身的状态信息，当本身状态信息变动时，便触发一个事件，并通知所有的事件订阅者。</li>
+<li>订阅器(subscriber): 接受或者处理事件的类，在发布器（publisher）类中的委托调用订阅器（subscriber）类中的方法（事件处理程序）。简单理解：对事件感兴趣的对象，可以注册感兴趣的事件，在事件发行者触发一个事件后，会自动执行这段代码。</li>
+</ul>
+<h3 id="事件的实例">事件的实例</h3>
+<ol>
+<li>基本的事件实例</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#66d9ef">using</span> System;
+<span style="color:#66d9ef">namespace</span> SimpleEvent
+{
+    <span style="color:#66d9ef">using</span> System;
+    <span style="color:#75715e">/****发布器类*****/</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EvenTest</span>
+    {
+        <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> <span style="color:#66d9ef">value</span>;
+        <span style="color:#75715e">//声明该事件的委托类型
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">void</span> NumManipulationHandler();
+        <span style="color:#75715e">//基于上面的委托定义事件
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">event</span> NumManipulationHandler ChangeNum;
+        <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> OnNumChanged()
+        {
+            <span style="color:#66d9ef">if</span>(ChangeNum!=<span style="color:#66d9ef">null</span>)
+            {
+                ChangeNum;<span style="color:#75715e">//事件被触发
+</span><span style="color:#75715e"></span>            }
+            <span style="color:#66d9ef">else</span>{
+                Console.WriteLine( <span style="color:#e6db74">&#34;event not fire&#34;</span> );
+                Console.ReadKey(); <span style="color:#75715e">/* 回车继续 */</span>
+            }
+        }
+        <span style="color:#66d9ef">public</span> EvenTest()
+        {
+            <span style="color:#66d9ef">int</span> n=<span style="color:#ae81ff">5</span>;
+            SetValue(n);
+        }
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> SetValue(<span style="color:#66d9ef">int</span> n)
+        {
+            <span style="color:#66d9ef">if</span>(<span style="color:#66d9ef">value</span>!=n)
+            {
+                <span style="color:#66d9ef">value</span>=n;
+                OnNumChanged();
+            }
+        }
+    }
+    <span style="color:#75715e">/****订阅器类*****/</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">subscribEvent</span>
+    {
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> printf()
+        {
+        Console.WriteLine( <span style="color:#e6db74">&#34;event fire&#34;</span> );
+        Console.ReadKey(); <span style="color:#75715e">/* 回车继续 */</span>
+        }
+    }
+    <span style="color:#75715e">/****触发*****/</span>
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainClass</span>
+    {
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main()
+        {
+            <span style="color:#75715e">//实例化发布者对象，第一次没有触发事件
+</span><span style="color:#75715e"></span>            EvenTest e=<span style="color:#66d9ef">new</span> EvenTest();
+            <span style="color:#75715e">//实例化订阅者对象
+</span><span style="color:#75715e"></span>            subscribEvent v=<span style="color:#66d9ef">new</span> subscribEvent();
+            <span style="color:#75715e">//给这个数字变动的事件注册订阅者
+</span><span style="color:#75715e"></span>            e.ChangeNum+=<span style="color:#66d9ef">new</span> EvenTest.NumManipulationHandler(v.printf);
+            <span style="color:#75715e">//发布者触发事件变动
+</span><span style="color:#75715e"></span>            e.SetValue( <span style="color:#ae81ff">7</span> );
+            e.SetValue( <span style="color:#ae81ff">11</span> );
+        }
+    }
+}
+</code></pre></div><p>在使用事件的时候，必须要使用对应的委托</p>
+<ol start="2">
+<li>热水器烧水的实例（以Observer设计模式实现</li>
+</ol>
+<blockquote>
+<p>Observer设计模式是为了定义对象间的一种一对多的依赖关系，以便于当一个对象的状态改变时，其他依赖于它的对象会被自动告知并更新。Observer模式是一种松耦合的设计模式。
+在本例中，事情发生的顺序应该是这样的</p>
+</blockquote>
+<ol>
+<li>警报器和显示器告诉热水器，它对热水器的温度感兴趣（注册）</li>
+<li>热水器知道后保留对警报器和显示器的引用。</li>
+<li>热水器进行烧水这一动作，当水温超过95度时，通过对警报器和显示器的引用，自动调用警报器的MakeAlert()方法、显示器的ShowMsg()方法。</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#75715e">//热水器
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Heater</span>
+{
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> temperature;
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">void</span> BoilHander(<span style="color:#66d9ef">int</span> param);<span style="color:#75715e">//声明委托
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">event</span> BoilHander BoilEvent;<span style="color:#75715e">//声明事件
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//烧水
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> BoilWater(){
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i=<span style="color:#ae81ff">0</span>;i&lt;<span style="color:#ae81ff">100</span>;i++){
+            temperature=i;
+            <span style="color:#66d9ef">if</span>(temperature&gt;<span style="color:#ae81ff">95</span>){
+                <span style="color:#66d9ef">if</span>(BoilEvent!=<span style="color:#66d9ef">null</span>){<span style="color:#75715e">//如果有对象注册
+</span><span style="color:#75715e"></span>                    BoilEvent(temperature);<span style="color:#75715e">//调用所有注册对象的方法
+</span><span style="color:#75715e"></span>                }
+            }
+        }
+    }
+}
+<span style="color:#75715e">//警报器
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Alarm</span> {
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> MakeAlert(<span style="color:#66d9ef">int</span> param) {
+        Console.WriteLine(<span style="color:#e6db74">&#34;Alarm：嘀嘀嘀，水已经 {0} 度了：&#34;</span>, param);
+    }
+}
+<span style="color:#75715e">//显示器
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Display</span>{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> ShowMsg(<span style="color:#66d9ef">int</span> param){
+        Console.WriteLine(<span style="color:#e6db74">&#34;Display:水快烧开了，当前温度:{0}度&#34;</span>,param);
+    }
+}
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Program</span>{
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main(){
+        Heater heater=<span style="color:#66d9ef">new</span> Heater();
+        Alarm alarm=<span style="color:#66d9ef">new</span> Alarm();
+        heater.BoilEvent+=alarm.MakeAlert;<span style="color:#75715e">//注册方法
+</span><span style="color:#75715e"></span>        heater.BoilEvent+=(<span style="color:#66d9ef">new</span> Alarm()).MakeAlert;<span style="color:#75715e">//给匿名对象注册方法
+</span><span style="color:#75715e"></span>        heater.BoilEvent+=Display.ShowMsg;<span style="color:#75715e">//注册静态方法
+</span><span style="color:#75715e"></span>        heater.BoilWater();<span style="color:#75715e">//烧水，会自动调用注册过对象的方法
+</span><span style="color:#75715e"></span>    }
+}
+</code></pre></div><p>输出结果：</p>
+<pre><code>Alarm：嘀嘀嘀，水已经 96 度了：
+Alarm：嘀嘀嘀，水已经 96 度了：
+Display：水快烧开了，当前温度：96度。
+// 省略...
+</code></pre><h3 id="net-framework中的委托与事件">.Net Framework中的委托与事件</h3>
+<p>.Net Framework的编码规范：</p>
+<ul>
+<li>委托类型的名称都应该以EventHandler结束</li>
+<li>委托的原型定义：有一个void返回值，并结束两个输入参数：一个Object类型，一个EventArgs类型（或继承自EventArgs）</li>
+<li>事件的命名为委托去掉 EventHandler之后剩余的部分。</li>
+<li>继承自EventArgs的类型应该以EventArgs结尾。
+改写热水器例子，使之符合.Net Framework的编码规范</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c#" data-lang="c#"><span style="color:#75715e">//热水器
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Heater</span>{
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> temperature;
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> type = <span style="color:#e6db74">&#34;RealFire 001&#34;</span>;       <span style="color:#75715e">// 添加型号作为演示
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> area = <span style="color:#e6db74">&#34;China Xian&#34;</span>;         <span style="color:#75715e">// 添加产地作为演示
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">//声明委托
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">delegate</span> <span style="color:#66d9ef">void</span> BoiledEventHandler(Object sender,BoiledEventArgs e);
+    <span style="color:#75715e">//声明事件
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">event</span> BoiledEventHandler Boiled;
+    <span style="color:#75715e">//定义BoiledEventArgs类，传递给Observer感兴趣的信息
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BoiledEventArgs</span>:EventArgs{
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">readonly</span> <span style="color:#66d9ef">int</span> temperature;
+        <span style="color:#66d9ef">public</span> BoiledEventArgs(<span style="color:#66d9ef">int</span> temperature){
+            <span style="color:#66d9ef">this</span>.temperature=temperature;
+        }
+    }
+    <span style="color:#75715e">//可以供继承自Heater的类的重写，以便继承类拒绝其他对象对他的监视
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> OnBoiled(BoiledEventArgs e){
+        <span style="color:#66d9ef">if</span>(Boiled!=<span style="color:#66d9ef">null</span>){<span style="color:#75715e">//如果有对象注册
+</span><span style="color:#75715e"></span>            Boiled(<span style="color:#66d9ef">this</span>,e);<span style="color:#75715e">//调用所有注册对象的方法
+</span><span style="color:#75715e"></span>        }
+    }
+    <span style="color:#75715e">//烧水，事件需要在方法里触发
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> BoilWater(){
+        <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i=<span style="color:#ae81ff">0</span>;i&lt;<span style="color:#ae81ff">100</span>;i++){
+            temperature=i;
+            <span style="color:#66d9ef">if</span>(temperature&gt;<span style="color:#ae81ff">95</span>){
+            <span style="color:#75715e">//建立BoiledEvevtArgs对象
+</span><span style="color:#75715e"></span>            BoiledEventArgs e= <span style="color:#66d9ef">new</span> BoiledEventArgs(temperature);
+            OnBoiled(e);<span style="color:#75715e">//调用OnBolied方法
+</span><span style="color:#75715e"></span>            }
+        }
+    }
+}
+<span style="color:#75715e">//警报器，对温度感兴趣
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Alarm</span>{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> MakeAlert (Object sender,Heater.BoiledEventArgs e){
+        Heater heater=(Heater) sender;
+        <span style="color:#75715e">//访问sender中的公共字段
+</span><span style="color:#75715e"></span>        Console.WriteLine(<span style="color:#e6db74">&#34;Alarm：{0} - {1}: &#34;</span>, heater.area, heater.type);
+        Console.WriteLine(<span style="color:#e6db74">&#34;Alarm: 嘀嘀嘀，水已经 {0} 度了：&#34;</span>, e.temperature);
+        Console.WriteLine();
+    }
+}
+<span style="color:#75715e">//显示器，对温度感兴趣
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Display</span>{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> ShowMsg(Object sender,Heater.BoiledEventArgs e){
+        Heater heater=(Heater)sender;
+        Console.WriteLine(<span style="color:#e6db74">&#34;Display：{0} - {1}: &#34;</span>, heater.area, heater.type);
+        Console.WriteLine(<span style="color:#e6db74">&#34;Display：水快烧开了，当前温度：{0}度。&#34;</span>, e.temperature);
+        Console.WriteLine();
+    }
+}
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Program</span>{
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> main(){
+        Heater heater=<span style="color:#66d9ef">new</span> Heater();
+        Alarm alarm=<span style="color:#66d9ef">new</span> Alarm();
+        heater.Boiled+=alarm.MakeAlert;<span style="color:#75715e">//注册方法
+</span><span style="color:#75715e"></span>        heater.Boiled+=(<span style="color:#66d9ef">new</span> Alarm().MakeAlert;<span style="color:#75715e">//注册匿名方法
+</span><span style="color:#75715e"></span>        heater.Boiled+=<span style="color:#66d9ef">new</span> Heater.BoiledEventHandler(alarm.MakeAlert);<span style="color:#75715e">//也可以这么注册
+</span><span style="color:#75715e"></span>        heater.Boiled+=Display.ShowMsg;<span style="color:#75715e">//注册静态方法
+</span><span style="color:#75715e"></span>        heater.BoilWater();<span style="color:#75715e">//烧水，会自动调用注册过对象的方法
+</span><span style="color:#75715e"></span>    }
+}
+
+</code></pre></div><blockquote>
+<p>参考：http://www.cnblogs.com/wudiwushen/archive/2010/04/20/1703763.html
+<a href="http://www.cnblogs.com/JimmyZhang/archive/2007/09/23/903360.html">http://www.cnblogs.com/JimmyZhang/archive/2007/09/23/903360.html</a></p>
+</blockquote>
+
+
+    
+    
+        <div class="related">
+
+</div>
+    
+
+</div>
+
+
+        
+
+    </div>
+
+</section>
+
+
+
+<section class="section">
+  <div class="container has-text-centered">
+    <p>© <a href="https://github.com/pavel-pi">Pavel Pi</a> 2020</p>
+    
+      <p>Powered by <a href="https://gohugo.io/">Hugo</a> &amp; <a href="https://github.com/pavel-pi/kiss-em">Kiss'Em</a>.</p>
+    
+  </div>
+</section>
+
+</body>
+</html>
+
