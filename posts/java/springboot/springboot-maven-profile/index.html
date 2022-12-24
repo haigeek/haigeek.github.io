@@ -1,284 +1,401 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <title>使用Maven Profile和Spring Profile进行多环境配置 | haigeek</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="使用Maven Profile和Spring Profile进行多环境配置" />
+<meta property="og:description" content="Springboot使用Maven Profile和Spring Profile进行多环境配置
+在实际的项目上，一般会分三种环境dev、test、prod来方便我们的开发和部署，要求我们在开发的时候可以方便地进行环境的切换，又要满足在发布版本的时候可以尽可能减少测试人员的配置。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://haigeek.me/posts/java/springboot/springboot-maven-profile/" />
+<meta property="article:published_time" content="2019-01-06T23:05:54+00:00" />
+<meta property="article:modified_time" content="2019-01-06T23:05:54+00:00" />
 
-    <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
-<meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="我是谁 🔗 爱折腾，伪文青，斯人已去，勿念，现在学习编程。(2016-2018） haigeek是我在网络上常用的昵称，因为他的谐音和我们真实名字">
-<meta name="generator" content="Hugo 0.76.5" />
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用Maven Profile和Spring Profile进行多环境配置"/>
+<meta name="twitter:description" content="Springboot使用Maven Profile和Spring Profile进行多环境配置
+在实际的项目上，一般会分三种环境dev、test、prod来方便我们的开发和部署，要求我们在开发的时候可以方便地进行环境的切换，又要满足在发布版本的时候可以尽可能减少测试人员的配置。"/>
 
-
-  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
-
-
-<link rel="stylesheet" href="/css/style.css">
-<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
-
-
-
-
-
+  
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#262d33">
+  <title>
+    
+    haigeek blog - 使用Maven Profile和Spring Profile进行多环境配置
+    
+  </title>
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  
+  
+  
+  <link rel="stylesheet" href="/minima.1671899191.css">
+  
+  
+  <script defer type="text/javascript" src="/minima.1671899191.js"></script>
+  
+</head>
 <script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?2917929c3741b51731d979e597a2be52";
-    var s = document.getElementsByTagName("script")[0]; 
-    s.parentNode.insertBefore(hm, s);
-  })();
+  
+  let default_theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+  try {
+    const local = localStorage.getItem('theme')
+    if (local) {
+      default_theme = local
+    }
+    localStorage.setItem('theme', default_theme);
+    window.minima_theme = default_theme;
+    document.querySelector('html').classList.add(default_theme);
+  } catch (e) {
+    console.error(e);
+  }
 </script>
 
 
 
-  </head>
+<body>
+  <header class="mt-3 mb-6">
+  <div class="container mx-auto">
+    <nav class="flex justify-between items-center">
+      <div class="flex items-center">
+        
+        <div id="theme-switch" class="text-3xl cursor-pointer">☼</div>
+      </div>
+      <ul class="flex items-center font-medium
+        whitespace-nowrap overflow-x-auto overflow-y-hidden">
+        
+        <li class="ml-1 mr-1"><a href="/">首页</a></li>
+        
+        <li class="ml-1 mr-1"><a href="/categories">分类</a></li>
+        
+        <li class="ml-1 mr-1"><a href="/tags">标签</a></li>
+        
+        <li class="ml-1 mr-1"><a href="/about">关于</a></li>
+        
+        <li class="ml-1 mr-1"><a href="https://wiki.haigeek.me">Wiki</a></li>
+        
+      </ul>
+      <ul class="flex item-center text-sm font-bold">
+        
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <body>
-    <nav class="navigation">
-	
-		<a href="/"> <span class="arrow">←</span>首页</a>
-	
-	<a href="/posts">归档</a>
-	<a href="/tags">标签</a>
-	<a href="/about">关于</a>
-
-	
-		<a href="https://wiki.haigeek.me">WIKI</a>
-	
-
-	
-	  <a href="https://haigeek.me/index.xml">订阅</a>
-	
-</nav>
-
-
-    <main class="main">
+  
+<div class="container mx-auto">
+  <h1 class="text-4xl font-extrabold mt-6 mb-6">使用Maven Profile和Spring Profile进行多环境配置</h1>
+  <div class="mb-3 text-sm flex justify-between ">
+    <div>
       
-
-<section id="single">
-    <h1 class="title">使用Maven Profile和Spring Profile进行多环境配置</h1>
-
-    <div class="tip">
-        <span>
-          Jan 6, 2019 23:05
-        </span>
-        <span class="split">
-          ·
-        </span>
-        <span>
-          
-            1736 words
-          
-        </span>
-        <span class="split">
-          ·
-        </span>
-        <span>
-          4 minute read
-        </span>
+      发布于 &mdash; 2019 年 1 月 6 日
+      
+      
     </div>
-
-    <div class="content">
+    
+    <div>
+      
+      
+      <a class="ml-1" href="/tags/SpringBoot">#SpringBoot</a>
+      
+    </div>
+    
+  </div>
+  <main class="mb-8">
+    <p></p>
+    <article class="md">
       <p>Springboot使用Maven Profile和Spring Profile进行多环境配置</p>
 <p>在实际的项目上，一般会分三种环境dev、test、prod来方便我们的开发和部署，要求我们在开发的时候可以方便地进行环境的切换，又要满足在发布版本的时候可以尽可能减少测试人员的配置。</p>
-<h1 id="springboot使用maven-profile和spring-profile进行多环境配置">Springboot使用Maven Profile和Spring Profile进行多环境配置 <a href="#springboot%e4%bd%bf%e7%94%a8maven-profile%e5%92%8cspring-profile%e8%bf%9b%e8%a1%8c%e5%a4%9a%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae" class="anchor">🔗</a></h1><h2 id="目的">目的 <a href="#%e7%9b%ae%e7%9a%84" class="anchor">🔗</a></h2><p>在实际的项目上，一般会分三种环境dev、test、prod来方便我们的开发和部署，要求我们在开发的时候可以方便地进行环境的切换，又要满足在发布版本的时候可以尽可能减少测试人员的配置。</p>
-<h2 id="spring-profile">Spring Profile <a href="#spring-profile" class="anchor">🔗</a></h2><h3 id="多环境">多环境 <a href="#%e5%a4%9a%e7%8e%af%e5%a2%83" class="anchor">🔗</a></h3><p>为了实现多环境配置，我们可以在本地开发的时候在Resource文件夹下新建不同环境的配置文件，如下图所示：</p>
-<p><p class="markdown-image">
-  <img src="https://ws1.sinaimg.cn/large/006tNc79gy1fz7mro00dyj30g404at95.jpg" alt=""  />
-</p></p>
+<h1 id="springboot使用maven-profile和spring-profile进行多环境配置">Springboot使用Maven Profile和Spring Profile进行多环境配置</h1>
+<h2 id="目的">目的</h2>
+<p>在实际的项目上，一般会分三种环境dev、test、prod来方便我们的开发和部署，要求我们在开发的时候可以方便地进行环境的切换，又要满足在发布版本的时候可以尽可能减少测试人员的配置。</p>
+<h2 id="spring-profile">Spring Profile</h2>
+<h3 id="多环境">多环境</h3>
+<p>为了实现多环境配置，我们可以在本地开发的时候在Resource文件夹下新建不同环境的配置文件，如下图所示：</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79gy1fz7mro00dyj30g404at95.jpg" alt=""></p>
 <p>这时候我们只需要在主配置文件application.yml文件使用spring.profiles.active = dev/test/prod来进行不同环境的切换</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">spring:
+<pre><code>spring:
   profiles:
     active: dev #加载dev配置文件
-</code></pre></div><p>经过上述步骤，我们即可在本地开发时根据不同的环境进行测试。</p>
-<h3 id="主配置文件与不同环境的配置文件">主配置文件与不同环境的配置文件 <a href="#%e4%b8%bb%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e4%b8%8e%e4%b8%8d%e5%90%8c%e7%8e%af%e5%a2%83%e7%9a%84%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" class="anchor">🔗</a></h3><p>Spring Profile有一个特性即可以在application.yml配置通用的内容，在application-dev.yml文件中配置不同文件的差异化配置，这样可以精简我们的配置文件。配置如下：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#080;font-style:italic"># 主配置文件主要用来存放公共设置，不受环境配置影响</span><span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#008000;font-weight:bold">server</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">8082</span><span style="color:#bbb"> </span><span style="color:#080;font-style:italic"># 指定端口号</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">context-path</span>:<span style="color:#bbb"> </span>/server<span style="color:#bbb"> </span><span style="color:#080;font-style:italic"># 指定访问资源的根路径</span><span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#008000;font-weight:bold">spring</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">profiles</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">active</span>:<span style="color:#bbb"> </span>dev <span style="color:#bbb">
-</span></code></pre></div><p>dev配置文件</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#080;font-style:italic"># 主要用来存放不同环境差异化配置，包括ftp地址、数据库连接等</span><span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#008000;font-weight:bold">spring</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">datasource</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">username</span>:<span style="color:#bbb"> </span>xxx<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">password</span>:<span style="color:#bbb"> </span>xxx<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">url</span>:<span style="color:#bbb"> </span>xxx<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">driver-class-name</span>:<span style="color:#bbb"> </span>oracle.jdbc.driver.OracleDriver<span style="color:#bbb">
-</span></code></pre></div><p>上述解决方案虽然可以解决我们的环境问题，但是不够优雅，还有一些值得优化的地方，比如打包出的配置文件有四个、每次需要手动修改主配置文件的环境信息等。</p>
-<h2 id="maven-profile">Maven Profile <a href="#maven-profile" class="anchor">🔗</a></h2><h3 id="profile配置">Profile配置 <a href="#profile%e9%85%8d%e7%bd%ae" class="anchor">🔗</a></h3><p>Maven 也提供了 Profile 支持，它允许我们在 <code>pom.xml</code> 中定义多个 Profile ，每个 profile 可以指定自己的一些配置、依赖、触发条件等。例如：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#008000;font-weight:bold">&lt;profiles&gt;</span>
-    <span style="color:#008000;font-weight:bold">&lt;profile&gt;</span>
-        <span style="color:#008000;font-weight:bold">&lt;id&gt;</span>dev<span style="color:#008000;font-weight:bold">&lt;/id&gt;</span>
-        <span style="color:#008000;font-weight:bold">&lt;activation&gt;</span>
-            <span style="color:#008000;font-weight:bold">&lt;activeByDefault&gt;</span>true<span style="color:#008000;font-weight:bold">&lt;/activeByDefault&gt;</span>
-        <span style="color:#008000;font-weight:bold">&lt;/activation&gt;</span>
-        <span style="color:#008000;font-weight:bold">&lt;properties&gt;</span>
-            <span style="color:#008000;font-weight:bold">&lt;profile.active&gt;</span>dev<span style="color:#008000;font-weight:bold">&lt;/profile.active&gt;</span>
-        <span style="color:#008000;font-weight:bold">&lt;/properties&gt;</span>
-    <span style="color:#008000;font-weight:bold">&lt;/profile&gt;</span>
-    <span style="color:#008000;font-weight:bold">&lt;profile&gt;</span>
-        <span style="color:#008000;font-weight:bold">&lt;id&gt;</span>prod<span style="color:#008000;font-weight:bold">&lt;/id&gt;</span>
-        <span style="color:#008000;font-weight:bold">&lt;properties&gt;</span>
-            <span style="color:#008000;font-weight:bold">&lt;profile.active&gt;</span>prod<span style="color:#008000;font-weight:bold">&lt;/profile.active&gt;</span>
-        <span style="color:#008000;font-weight:bold">&lt;/properties&gt;</span>
-    <span style="color:#008000;font-weight:bold">&lt;/profile&gt;</span>
-<span style="color:#008000;font-weight:bold">&lt;/profiles&gt;</span>
-</code></pre></div><p>按照上述的配置，我们配置了dev/test/prod三种配置并默认选择dev环境。</p>
-<h3 id="资源过滤">资源过滤 <a href="#%e8%b5%84%e6%ba%90%e8%bf%87%e6%bb%a4" class="anchor">🔗</a></h3><p>在进行打包的时候，我们并不需要把dev或者test等配置文件打包进行，所有我们在打包的时候进行如下配置</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#008000;font-weight:bold">&lt;build&gt;</span>
-        <span style="color:#008000;font-weight:bold">&lt;resources&gt;</span>
-            <span style="color:#008000;font-weight:bold">&lt;resource&gt;</span>
-                <span style="color:#008000;font-weight:bold">&lt;directory&gt;</span>src/main/resources<span style="color:#008000;font-weight:bold">&lt;/directory&gt;</span>
-                <span style="color:#080;font-style:italic">&lt;!--先排除所有的配置文件--&gt;</span>
-                <span style="color:#008000;font-weight:bold">&lt;excludes&gt;</span>
-                    <span style="color:#008000;font-weight:bold">&lt;exclude&gt;</span>application*.yml<span style="color:#008000;font-weight:bold">&lt;/exclude&gt;</span>
-                <span style="color:#008000;font-weight:bold">&lt;/excludes&gt;</span>
-            <span style="color:#008000;font-weight:bold">&lt;/resource&gt;</span>
-            <span style="color:#008000;font-weight:bold">&lt;resource&gt;</span>
-                <span style="color:#008000;font-weight:bold">&lt;directory&gt;</span>src/main/resources<span style="color:#008000;font-weight:bold">&lt;/directory&gt;</span>
-                <span style="color:#080;font-style:italic">&lt;!--引入所需环境的配置文件--&gt;</span>
-                <span style="color:#008000;font-weight:bold">&lt;filtering&gt;</span>true<span style="color:#008000;font-weight:bold">&lt;/filtering&gt;</span>
-                <span style="color:#008000;font-weight:bold">&lt;includes&gt;</span>
-                    <span style="color:#008000;font-weight:bold">&lt;include&gt;</span>application.yml<span style="color:#008000;font-weight:bold">&lt;/include&gt;</span>
-                    <span style="color:#008000;font-weight:bold">&lt;include&gt;</span>application-${profile.active}.yml<span style="color:#008000;font-weight:bold">&lt;/include&gt;</span>
-                <span style="color:#008000;font-weight:bold">&lt;/includes&gt;</span>
-            <span style="color:#008000;font-weight:bold">&lt;/resource&gt;</span>
-        <span style="color:#008000;font-weight:bold">&lt;/resources&gt;</span>
-        <span style="color:#008000;font-weight:bold">&lt;plugins&gt;</span>
-            <span style="color:#008000;font-weight:bold">&lt;plugin&gt;</span>
-                <span style="color:#008000;font-weight:bold">&lt;groupId&gt;</span>org.springframework.boot<span style="color:#008000;font-weight:bold">&lt;/groupId&gt;</span>
-                <span style="color:#008000;font-weight:bold">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span style="color:#008000;font-weight:bold">&lt;/artifactId&gt;</span>
-                <span style="color:#008000;font-weight:bold">&lt;configuration&gt;</span>
-                    <span style="color:#008000;font-weight:bold">&lt;classifier&gt;</span>exec<span style="color:#008000;font-weight:bold">&lt;/classifier&gt;</span>
-                <span style="color:#008000;font-weight:bold">&lt;/configuration&gt;</span>
-            <span style="color:#008000;font-weight:bold">&lt;/plugin&gt;</span>
-        <span style="color:#008000;font-weight:bold">&lt;/plugins&gt;</span>
-    <span style="color:#008000;font-weight:bold">&lt;/build&gt;</span>
-</code></pre></div><p>主要是分为两个步骤：</p>
+</code></pre><p>经过上述步骤，我们即可在本地开发时根据不同的环境进行测试。</p>
+<h3 id="主配置文件与不同环境的配置文件">主配置文件与不同环境的配置文件</h3>
+<p>Spring Profile有一个特性即可以在application.yml配置通用的内容，在application-dev.yml文件中配置不同文件的差异化配置，这样可以精简我们的配置文件。配置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># 主配置文件主要用来存放公共设置，不受环境配置影响</span><span class="w">
+</span><span class="w"></span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8082</span><span class="w"> </span><span class="c"># 指定端口号</span><span class="w">
+</span><span class="w">  </span><span class="nt">context-path</span><span class="p">:</span><span class="w"> </span><span class="l">/server</span><span class="w"> </span><span class="c"># 指定访问资源的根路径</span><span class="w">
+</span><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span><span class="l">dev </span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>dev配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># 主要用来存放不同环境差异化配置，包括ftp地址、数据库连接等</span><span class="w">
+</span><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">datasource</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">xxx</span><span class="w">
+</span><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">xxx</span><span class="w">
+</span><span class="w">    </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">xxx</span><span class="w">
+</span><span class="w">    </span><span class="nt">driver-class-name</span><span class="p">:</span><span class="w"> </span><span class="l">oracle.jdbc.driver.OracleDriver</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>上述解决方案虽然可以解决我们的环境问题，但是不够优雅，还有一些值得优化的地方，比如打包出的配置文件有四个、每次需要手动修改主配置文件的环境信息等。</p>
+<h2 id="maven-profile">Maven Profile</h2>
+<h3 id="profile配置">Profile配置</h3>
+<p>Maven 也提供了 Profile 支持，它允许我们在 <code>pom.xml</code> 中定义多个 Profile ，每个 profile 可以指定自己的一些配置、依赖、触发条件等。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;profiles&gt;</span>
+    <span class="nt">&lt;profile&gt;</span>
+        <span class="nt">&lt;id&gt;</span>dev<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;activation&gt;</span>
+            <span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
+        <span class="nt">&lt;/activation&gt;</span>
+        <span class="nt">&lt;properties&gt;</span>
+            <span class="nt">&lt;profile.active&gt;</span>dev<span class="nt">&lt;/profile.active&gt;</span>
+        <span class="nt">&lt;/properties&gt;</span>
+    <span class="nt">&lt;/profile&gt;</span>
+    <span class="nt">&lt;profile&gt;</span>
+        <span class="nt">&lt;id&gt;</span>prod<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;properties&gt;</span>
+            <span class="nt">&lt;profile.active&gt;</span>prod<span class="nt">&lt;/profile.active&gt;</span>
+        <span class="nt">&lt;/properties&gt;</span>
+    <span class="nt">&lt;/profile&gt;</span>
+<span class="nt">&lt;/profiles&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>按照上述的配置，我们配置了dev/test/prod三种配置并默认选择dev环境。</p>
+<h3 id="资源过滤">资源过滤</h3>
+<p>在进行打包的时候，我们并不需要把dev或者test等配置文件打包进行，所有我们在打包的时候进行如下配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;build&gt;</span>
+        <span class="nt">&lt;resources&gt;</span>
+            <span class="nt">&lt;resource&gt;</span>
+                <span class="nt">&lt;directory&gt;</span>src/main/resources<span class="nt">&lt;/directory&gt;</span>
+                <span class="c">&lt;!--先排除所有的配置文件--&gt;</span>
+                <span class="nt">&lt;excludes&gt;</span>
+                    <span class="nt">&lt;exclude&gt;</span>application*.yml<span class="nt">&lt;/exclude&gt;</span>
+                <span class="nt">&lt;/excludes&gt;</span>
+            <span class="nt">&lt;/resource&gt;</span>
+            <span class="nt">&lt;resource&gt;</span>
+                <span class="nt">&lt;directory&gt;</span>src/main/resources<span class="nt">&lt;/directory&gt;</span>
+                <span class="c">&lt;!--引入所需环境的配置文件--&gt;</span>
+                <span class="nt">&lt;filtering&gt;</span>true<span class="nt">&lt;/filtering&gt;</span>
+                <span class="nt">&lt;includes&gt;</span>
+                    <span class="nt">&lt;include&gt;</span>application.yml<span class="nt">&lt;/include&gt;</span>
+                    <span class="nt">&lt;include&gt;</span>application-${profile.active}.yml<span class="nt">&lt;/include&gt;</span>
+                <span class="nt">&lt;/includes&gt;</span>
+            <span class="nt">&lt;/resource&gt;</span>
+        <span class="nt">&lt;/resources&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.springframework.boot<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>spring-boot-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;configuration&gt;</span>
+                    <span class="nt">&lt;classifier&gt;</span>exec<span class="nt">&lt;/classifier&gt;</span>
+                <span class="nt">&lt;/configuration&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>主要是分为两个步骤：</p>
 <ol>
 <li>先排除所有的配置文件</li>
 <li>引入我们所需要的配置文件，根据${profile.active}来动态指定</li>
 </ol>
 <p>熟悉idea的同学都知道，这里的${profile.active}我们在idea的maven的配置处进行快速的切换。</p>
-<p><p class="markdown-image">
-  <img src="https://ws3.sinaimg.cn/large/006tNc79gy1fz7n4eweklj30gc08w0ta.jpg" alt=""  />
-</p></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fz7n4eweklj30gc08w0ta.jpg" alt=""></p>
 <p>从上面的配置文件可以看出，我们引入了两个配置文件(application.yml)，一个是主配置文件，一个是实际环境(application-dev.yml)的配置文件,但是到这里还没有结束。我们知道主配置文件的dev/test/prod在没有使用Maven Profile的时候，我们是需要手动修改的，但是使用Maven Profile之后，我们可以把这个工作交给maven去做。</p>
 <p>在application.yml进行下面的修改：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#008000;font-weight:bold">spring</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">profiles</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">active</span>:<span style="color:#bbb"> </span>@profile.active@<span style="color:#bbb"> </span><span style="color:#080;font-style:italic">#此处由maven的环境选择决定</span><span style="color:#bbb">
-</span></code></pre></div><p>这样我们就可以完全把配置文件的指定和生成交给maven。</p>
-<h3 id="spring-profile与maven-profile具体使用">Spring Profile与Maven Profile具体使用 <a href="#spring-profile%e4%b8%8emaven-profile%e5%85%b7%e4%bd%93%e4%bd%bf%e7%94%a8" class="anchor">🔗</a></h3><p>配置如下：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yml" data-lang="yml"><span style="color:#080;font-style:italic"># 主配置文件主要用来存放公共设置，不受环境配置影响</span><span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#008000;font-weight:bold">server</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#666">8082</span><span style="color:#bbb"> </span><span style="color:#080;font-style:italic"># 指定端口号</span><span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">context-path</span>:<span style="color:#bbb"> </span>/server<span style="color:#bbb"> </span><span style="color:#080;font-style:italic"># 指定访问资源的根路径</span><span style="color:#bbb">
-</span><span style="color:#bbb"></span><span style="color:#008000;font-weight:bold">spring</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">  </span><span style="color:#008000;font-weight:bold">profiles</span>:<span style="color:#bbb">
-</span><span style="color:#bbb">    </span><span style="color:#008000;font-weight:bold">active</span>:<span style="color:#bbb"> </span>@profile.active@<span style="color:#bbb"> </span><span style="color:#080;font-style:italic">#此处由maven的环境选择决定</span><span style="color:#bbb">
-</span></code></pre></div><blockquote>
-<p>参考：<a 
-    href="https://lotabout.me/2018/Maven-Profile-and-Spring-Profile/"
-    
-    
-     
-      target="_blank" 
-      rel="noopener"
-    
->
-    Maven Profile 与 Spring Profile 管理多环境打包
-</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span>@<span class="l">profile.active@</span><span class="w"> </span><span class="c">#此处由maven的环境选择决定</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这样我们就可以完全把配置文件的指定和生成交给maven。</p>
+<h3 id="spring-profile与maven-profile具体使用">Spring Profile与Maven Profile具体使用</h3>
+<p>配置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># 主配置文件主要用来存放公共设置，不受环境配置影响</span><span class="w">
+</span><span class="w"></span><span class="nt">server</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8082</span><span class="w"> </span><span class="c"># 指定端口号</span><span class="w">
+</span><span class="w">  </span><span class="nt">context-path</span><span class="p">:</span><span class="w"> </span><span class="l">/server</span><span class="w"> </span><span class="c"># 指定访问资源的根路径</span><span class="w">
+</span><span class="w"></span><span class="nt">spring</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">profiles</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">active</span><span class="p">:</span><span class="w"> </span>@<span class="l">profile.active@</span><span class="w"> </span><span class="c">#此处由maven的环境选择决定</span><span class="w">
+</span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>参考：<a href="https://lotabout.me/2018/Maven-Profile-and-Spring-Profile/">Maven Profile 与 Spring Profile 管理多环境打包</a></p>
 </blockquote>
-    </div>
+    </article>
+  </main>
+  
 
-    
-        <div class="tags">
-            
-                <a href="https://haigeek.me/tags/springboot">SpringBoot</a>
-            
-        </div>
-    
-    
-     
-  <div id="comment">
-    
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "your-disqus-shortname" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+
+
+
+
+<div id="comment"></div>
+
+
+
+
+<script>
+    const s = document.createElement("script")
+    s.src = "https://giscus.app/client.js"
+    s.crossOrigin = "anonymous"
+    s.async = true
+    s.setAttribute("data-repo", "haigeek\/blog-comment-bygiscus")
+    s.setAttribute("data-repo-id", "R_kgDOIq0W4w")
+    s.setAttribute("data-category", "Announcements")
+    s.setAttribute("data-category-id", "DIC_kwDOIq0W484CTPda")
+    s.setAttribute("data-mapping", "pathname")
+    s.setAttribute("data-strict", "0")
+    s.setAttribute("data-reactions-enabled", "1")
+    s.setAttribute("data-emit-metadata", "0")
+    s.setAttribute("data-input-position", "buttom")
+    s.setAttribute("data-theme", window.minima_theme + "_protanopia")
+    s.setAttribute("data-lang", "en")
+    s.setAttribute("data-loading", "lazy")
+    document.getElementById("comment").appendChild(s)
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-  </div>
 
 
-</section>
 
 
-    </main>
-    
-    <footer id="footer">
-    
-        <div id="social">
 
 
-    <a class="symbol" href="https://github.com/haigeek" target="_blank">
-        
-        <svg fill="#bbbbbb" width="28" height="28"  viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    
-    <title>Github</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Social-Icons---Rounded-Black" transform="translate(-264.000000, -939.000000)">
-            <g id="Github" transform="translate(264.000000, 939.000000)">
-                <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z" id="Rounded" fill="#bbbbbb"></path>
-                <path d="M35.9985,13 C22.746,13 12,23.7870921 12,37.096644 C12,47.7406712 18.876,56.7718301 28.4145,59.9584121 C29.6145,60.1797862 30.0525,59.4358488 30.0525,58.7973276 C30.0525,58.2250681 30.0315,56.7100863 30.0195,54.6996482 C23.343,56.1558981 21.9345,51.4693938 21.9345,51.4693938 C20.844,48.6864054 19.2705,47.9454799 19.2705,47.9454799 C17.091,46.4500754 19.4355,46.4801943 19.4355,46.4801943 C21.843,46.6503662 23.1105,48.9634994 23.1105,48.9634994 C25.2525,52.6455377 28.728,51.5823398 30.096,50.9649018 C30.3135,49.4077535 30.9345,48.3460615 31.62,47.7436831 C26.2905,47.1352808 20.688,45.0691228 20.688,35.8361671 C20.688,33.2052792 21.6225,31.0547881 23.1585,29.3696344 C22.911,28.7597262 22.0875,26.3110578 23.3925,22.9934585 C23.3925,22.9934585 25.4085,22.3459017 29.9925,25.4632101 C31.908,24.9285993 33.96,24.6620468 36.0015,24.6515052 C38.04,24.6620468 40.0935,24.9285993 42.0105,25.4632101 C46.5915,22.3459017 48.603,22.9934585 48.603,22.9934585 C49.9125,26.3110578 49.089,28.7597262 48.8415,29.3696344 C50.3805,31.0547881 51.309,33.2052792 51.309,35.8361671 C51.309,45.0917119 45.6975,47.1292571 40.3515,47.7256117 C41.2125,48.4695491 41.9805,49.9393525 41.9805,52.1877301 C41.9805,55.4089489 41.9505,58.0067059 41.9505,58.7973276 C41.9505,59.4418726 42.3825,60.1918338 43.6005,59.9554002 C53.13,56.7627944 60,47.7376593 60,37.096644 C60,23.7870921 49.254,13 35.9985,13" fill="#FFFFFF"></path>
-            </g>
-        </g>
-    </g>
-</svg>
-    </a>
+
 
 
 </div>
 
-    
 
-    <p class="copyright">
-    
-       © Copyright 
-       2021 
-       <span class="split">
-        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
-  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
-</svg>
-       </span>
-       haigeek
-    
-    </p>
-    <p class="powerby">
-        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
-    </p>
+  <footer class="mt-8 mb-8">
+  <div class="container mx-auto">
+    <div class="mt-8 flex justify-between items-center">
+      <p class="mt-0 text-sm">
+        © 2022 haigeek |
+        <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> on
+        <a href="https://github.com/mivinci/hugo-theme-minima" target="_blank" rel="noopener noreferrer">Minima</a>
+      </p>
+      <p class="flex items-center mt-0">
+        
+          <a class="icon ml-1 mr-1" href="mailto:haigeek@qq.com" title="email">
+          
+            <svg fill="#63636f" width="22" height="22" viewBox="0 0 24 24"><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm9.06 8.683L5.648 6.238L4.353 7.762l7.72 6.555l7.581-6.56l-1.308-1.513l-6.285 5.439z"/></svg>
+          
+          </a>
+        
+          <a class="icon ml-1 mr-1" href="https://github.com/haigeek" title="github">
+          
+            <svg fill="#63636f" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          
+          </a>
+        
+          <a class="icon ml-1 mr-1" href="/index.xml" title="rss">
+          
+            <svg fill="#63636f" t="1626591563876" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1984" width="18" height="16"><path d="M128 768a128 128 0 1 0 0 256 128 128 0 0 0 0-256zM0 368v176c265.104 0 480 214.912 480 480h176c0-362.32-293.696-656-656-656zM0 0v176c468.336 0 848 379.664 848 848h176C1024 458.464 565.536 0 0 0z" p-id="1985"></path></svg>
+          
+          </a>
+        
+      </p>
+    </div>
+  </div>
 </footer>
+</body>
 
-  </body>
 </html>

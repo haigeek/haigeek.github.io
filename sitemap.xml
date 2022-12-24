@@ -68,16 +68,6 @@
   </url>
   
   <url>
-    <loc>https://haigeek.me/tags/rbac/</loc>
-    <lastmod>2019-12-28T21:48:16+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/computerscience/bit-in-rbac/</loc>
-    <lastmod>2019-12-28T21:48:16+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://haigeek.me/tags/session/</loc>
     <lastmod>2019-10-16T23:26:39+00:00</lastmod>
   </url>
@@ -115,36 +105,6 @@
   <url>
     <loc>https://haigeek.me/about/</loc>
     <lastmod>2019-05-07T12:18:37+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/tags/docker/</loc>
-    <lastmod>2019-02-20T23:26:39+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/categories/docker/</loc>
-    <lastmod>2019-02-20T23:26:39+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/backend/docker/docker-image-basic/</loc>
-    <lastmod>2019-02-20T23:26:39+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/tags/linux/</loc>
-    <lastmod>2019-02-20T23:26:39+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/backend/docker/docker-container-basic/</loc>
-    <lastmod>2019-02-17T23:26:39+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/backend/docker/docker-basic-install/</loc>
-    <lastmod>2019-02-16T23:26:39+00:00</lastmod>
   </url>
   
   <url>
@@ -193,28 +153,13 @@
   </url>
   
   <url>
-    <loc>https://haigeek.me/categories/linux/</loc>
+    <loc>https://haigeek.me/tags/linux/</loc>
     <lastmod>2017-09-06T20:46:37+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://haigeek.me/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/</loc>
-    <lastmod>2017-07-22T21:19:54+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/algorithm/traversing-the-binary-tree/</loc>
-    <lastmod>2017-07-22T21:19:54+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2017-07-22T21:19:54+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2017-07-22T21:19:54+00:00</lastmod>
+    <loc>https://haigeek.me/categories/linux/</loc>
+    <lastmod>2017-09-06T20:46:37+00:00</lastmod>
   </url>
   
   <url>
@@ -230,16 +175,6 @@
   <url>
     <loc>https://haigeek.me/posts/project/winestory-struts2/</loc>
     <lastmod>2017-07-22T20:27:55+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/algorithm/output-list/</loc>
-    <lastmod>2017-07-15T14:20:41+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/tags/%E5%89%91%E6%8C%87offer/</loc>
-    <lastmod>2017-07-15T14:20:41+00:00</lastmod>
   </url>
   
   <url>
@@ -288,33 +223,7 @@
   </url>
   
   <url>
-    <loc>https://haigeek.me/posts/algorithm/pat1011/</loc>
-    <lastmod>2016-11-17T22:26:23+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/tags/pat%E4%B9%99%E7%BA%A7/</loc>
-    <lastmod>2016-11-17T22:26:23+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/algorithm/pat1010/</loc>
-    <lastmod>2016-11-17T22:22:45+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/algorithm/pat1009/</loc>
-    <lastmod>2016-11-17T22:19:52+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/algorithm/pat1008/</loc>
-    <lastmod>2016-11-17T22:15:34+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/algorithm/pat-1006/</loc>
-    <lastmod>2016-11-17T21:57:27+00:00</lastmod>
+    <loc>https://haigeek.me/series/</loc>
   </url>
   
 </urlset>

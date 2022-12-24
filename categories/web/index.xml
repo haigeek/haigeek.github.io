@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>web on haigeek</title>
+    <title>web on haigeek blog</title>
     <link>https://haigeek.me/categories/web/</link>
-    <description>Recent content in web on haigeek</description>
+    <description>Recent content in web on haigeek blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>© 2022 haigeek</copyright>
     <lastBuildDate>Wed, 08 Mar 2017 16:25:16 +0000</lastBuildDate><atom:link href="https://haigeek.me/categories/web/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>web程序运行机制与HTTP基础</title>

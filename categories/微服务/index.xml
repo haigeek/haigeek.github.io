@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>微服务 on haigeek</title>
+    <title>微服务 on haigeek blog</title>
     <link>https://haigeek.me/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
-    <description>Recent content in 微服务 on haigeek</description>
+    <description>Recent content in 微服务 on haigeek blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>© 2022 haigeek</copyright>
     <lastBuildDate>Wed, 08 Jan 2020 22:31:21 +0000</lastBuildDate><atom:link href="https://haigeek.me/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>nacos作为配置中心的使用</title>

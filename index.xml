@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>haigeek</title>
+    <title>haigeek blog</title>
     <link>https://haigeek.me/</link>
-    <description>Recent content on haigeek</description>
+    <description>Recent content on haigeek blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>© 2022 haigeek</copyright>
     <lastBuildDate>Sun, 27 Dec 2020 00:34:27 +0800</lastBuildDate><atom:link href="https://haigeek.me/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DubboRpc的ExceptionFilter过滤器</title>
@@ -17,7 +18,7 @@
     </item>
     
     <item>
-      <title>dubbo使用随机端口</title>
+      <title>Dubbo Rpc 使用随机端口</title>
       <link>https://haigeek.me/posts/backend/dubbo/dubbo-random-port/</link>
       <pubDate>Wed, 01 Apr 2020 23:17:02 +0000</pubDate>
       
@@ -44,15 +45,6 @@
     </item>
     
     <item>
-      <title>位运算在权限管理中的应用</title>
-      <link>https://haigeek.me/posts/computerscience/bit-in-rbac/</link>
-      <pubDate>Sat, 28 Dec 2019 21:48:16 +0800</pubDate>
-      
-      <guid>https://haigeek.me/posts/computerscience/bit-in-rbac/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>并发登录下session的处理</title>
       <link>https://haigeek.me/posts/java/spring/concurrent-login-session/</link>
       <pubDate>Wed, 16 Oct 2019 23:26:39 +0000</pubDate>
@@ -62,7 +54,7 @@
     </item>
     
     <item>
-      <title>Tcp-socker-No-buffer-space-available</title>
+      <title>一次Tcp端口耗尽引发的思考</title>
       <link>https://haigeek.me/posts/computerscience/tcp-socker-no-buffer-space-available/</link>
       <pubDate>Wed, 08 May 2019 22:38:38 +0000</pubDate>
       
@@ -76,34 +68,20 @@
       <pubDate>Tue, 07 May 2019 12:18:37 +0000</pubDate>
       
       <guid>https://haigeek.me/about/</guid>
-      <description>我是谁 🔗 爱折腾，伪文青，斯人已去，勿念，现在学习编程。(2016-2018） haigeek是我在网络上常用的昵称，因为他的谐音和我们真实名字</description>
-    </item>
-    
-    <item>
-      <title>docker镜像的基本操作</title>
-      <link>https://haigeek.me/posts/backend/docker/docker-image-basic/</link>
-      <pubDate>Wed, 20 Feb 2019 23:26:39 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/backend/docker/docker-image-basic/</guid>
-      <description>&lt;p&gt;镜像是docker的一个核心组成部分&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>docker容器的操作</title>
-      <link>https://haigeek.me/posts/backend/docker/docker-container-basic/</link>
-      <pubDate>Sun, 17 Feb 2019 23:26:39 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/backend/docker/docker-container-basic/</guid>
-      <description>&lt;p&gt;容器是docker的一个核心组成部分，和镜像的运行有直接关系。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Docker简介与安装</title>
-      <link>https://haigeek.me/posts/backend/docker/docker-basic-install/</link>
-      <pubDate>Sat, 16 Feb 2019 23:26:39 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/backend/docker/docker-basic-install/</guid>
-      <description>&lt;p&gt;Docker是一个开源的应用容器引擎；是一个轻量级容器技术&lt;/p&gt;</description>
+      <description>我是谁  爱折腾，伪文青，斯人已去，勿念，现在学习编程。(2016-2018）
+ haigeek是我在网络上常用的昵称，因为他的谐音和我们真实名字很像，当然里面还包含了geek这个单词，这个名字是在大二在一节无聊的数学课上起的，当然我并不认为是我是一个真正的极客，但是可以来代表一直偏执的精神。
+我这人也是这样的，没有一个真是符合自己的定义，我也没办法完全认清自己，我在努力做好一些维持生活的事情，比如赚钱工作可以让自己在世界存活下去。温饱之余，总是想去尝试一些没做过的事情，很多时候都是半吊子的选手，这些个过程中我觉得是和自己的一次对话。
+我有几个和我一起度过大学时光的朋友，每次和他们深层次聊天的时候，我发现会有了一些新的经历，有了一些新的想法，也许是和以前相悖的，为此我并不为之感到奇怪。
+虽然这世界有太多让人类觉得不可思议或者叹为观止的事情，我始终相信在有限的生命里要做自己想做的事情，难免会犯错，但是年轻的时候是不是要多试错呢？
+我的经历 这里记录了我的一些我觉得重要的经历
+我的折腾 编程 关于编程我一直也路上，也许有一天我会发现我不适合从事程序开发，但是我觉得就算我不能把这件事做的很好，我依旧要认真对待，人之所以是高级动物是因为他有思考的能力和追求成果的信念，这个准则在任何领域应该都是适用的。
+ java 是我现在吃饭的语言，但是我也只是停留在很浅的一个层面 大学的时候学了c++、c#但是本质上我并不能说我会这两门语言 python是我毕设使用的语言，这是一门开箱即用并具有魔力的语言  数码 初二的时候开始折腾手机，也就是nokia5230，也是因为这个我妈第一次和我生气，到现在也只有那一次。上大学的时候我喜欢折腾各种电子产品，当然单片机树莓派不在我折腾的范畴哈哈，做兼职的钱很多都花在这上面。以下是大学写博客的时候写下的描述，曾经在zealer上写过一篇晒桌面的帖子还被推到了首页，当然现在zealer已经半死不活，把我的文章也404了。
+  爱小小折腾下爪机，nokia5230——&amp;gt;nokia N72——&amp;gt;国产山寨安卓机——&amp;gt;ip4s——&amp;gt;htc one m7——&amp;gt;nexus 5——&amp;gt;魅蓝note3——&amp;gt;ip5s，享受刷机过后的喜悦和折腾后的成就。 耳机轻度发烧友，akg k420，森海px80，森海hd201，铁三角es-55 鼠标键盘关注者，poker用户，赛睿ravil100。   生活方式 21世纪互联网已经改变了我们的生活方式，可以轻易获取的信息和提升效率的生成力工具有很多,在生活方式上的折腾是值得的。
+伪文青 我并不是一个真正意义的文艺青年，我也不清楚文艺青年是不是一个伪命题。 我只知道我更喜欢中文的电影和音乐，可以把自己的心情和想法用文字来完整的表法出来。 音乐、文字、阅读、摄影是我很向往的事物
+聊音乐 你知道李志吗 喜欢民谣，听一些摇滚乐，最欣赏李志 最喜欢的歌手也已经在这个时代404，但我相信这个世界会好的。
+看点书 这里是我的书单
+心愿单 这里我的心愿单以及他们的一些入手体验
+友链  SHAWNSKY www.xtlog.com  愿景 hai want to be a geek 愿我们可以念着心中的远方，和这个有趣的世界好好相处。</description>
     </item>
     
     <item>
@@ -140,7 +118,20 @@
       <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
       
       <guid>https://haigeek.me/posts/backend/devops/jenkins/jenkins-clone-project/</guid>
-      <description>jenkins的pipeline的灵活之处在于对于已经存在的项目，可以快速复制出来，创建新的任务。 Jenkins快速复制已经存在的项目 🔗针对</description>
+      <description>jenkins的pipeline的灵活之处在于对于已经存在的项目，可以快速复制出来，创建新的任务。
+Jenkins快速复制已经存在的项目 针对已经存在的项目，可以快速复制出来，创建新的任务
+前提是需要200.39服务器可以访问目标部署服务器，假如不支持访问，需要先配置目标服务器，后续写配置方式（熟练的话5分钟可配置完成）。
+具体步骤 1、创建任务 2、配置流水线 需要准备的数据有：
+ 服务器ip tomcat文件夹 gitlab仓库地址（明确分支）  修改描述
+修改流水线脚本，注意不要直接复制我的下面样例流水线配置，直接从复制出来的修改即可。
+主要做以下操作
+1、修改ip地址和tomcat的webapps地址，这里有个需要有注意的地方，假如tomcat的地址不存在空格的话，可以直接修改相关配置即可。具体看注释1、2、3、4、5
+2、假如tomcat存在空格（不存在的话忽略此条），处理相对麻烦（暂时未攻克），直接参考注释6（相当于直接拼接出scp命令），另外配置了这种方式，步骤1可以不配置
+3、设置gitlab地址和分支（拉代码需要有凭证，可以在jenkins添加，添加后才有访问仓库权限，目前凭证：zhaohj也就是赵海杰可以访问仓库的才能正常拉），修改位置在注释7
+4、设置打包命令和打包环境（如果复制的项目属于同类，基本不用改，确认下即可），修改在注释8，否则重新写打包命令。此处一定要明确部署采用什么环境，推荐先去服务器复制已经有的配置，然后修改代码的test配置，走test环境部署。
+5、确认要发送的war包，同上（如果复制的项目属于同类，基本不用改，确认下即可），否则就修改为target要发送的war包，修改地方在注释9
+6、全部修改完build测试，后续可以稳定使用
+ pipeline { environment { // 部署远程主机ip地址,需要通过密钥的方式设置免密登录 //注释1 服务器ip remoteIp = &amp;quot;192.168.1.196&amp;quot; //注释2 服务器登录用户 remoteName = &amp;quot;administrator&amp;quot; //注释3 服务器ssh端口 remotePort=&#39;22&#39; // 远程tomcat位置(使用/来表示路径) //注释4 tomcat安装位置 tomcatPath = &amp;quot;D:/GT/Tomcat_zj&amp;quot; //注释5 tomcat所在磁盘 tomcatPathDisk = &amp;quot;D:&amp;quot; } agent any tools { maven &#39;maven-3.6.1&#39; } stages { stage(&#39;pullcode&#39;){ steps{ //注释7 git branch: &#39;dev&#39;, credentialsId: &#39;zhaohjgitlab&#39;, url: &#39;http://elb-791125809.</description>
     </item>
     
     <item>
@@ -162,30 +153,12 @@
     </item>
     
     <item>
-      <title>二叉树的遍历（递归，非递归）的实现</title>
-      <link>https://haigeek.me/posts/algorithm/traversing-the-binary-tree/</link>
-      <pubDate>Sat, 22 Jul 2017 21:19:54 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/algorithm/traversing-the-binary-tree/</guid>
-      <description>&lt;p&gt;二叉树的遍历（前序，中序，后序）的递归与非递归遍历&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>winestory中struts2的使用</title>
       <link>https://haigeek.me/posts/project/winestory-struts2/</link>
       <pubDate>Sat, 22 Jul 2017 20:27:55 +0000</pubDate>
       
       <guid>https://haigeek.me/posts/project/winestory-struts2/</guid>
       <description>&lt;p&gt;使用ssh框架做的一个小论坛是我的第一个项目，ssh框架在现在早已经过时，但是当初学习和解决问题的精神却是最重要的，因此我将相关的博文进行归档，记录并缅怀初学编程时的历程。这一篇是struts2框架相关内容。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>从后往前输出链表</title>
-      <link>https://haigeek.me/posts/algorithm/output-list/</link>
-      <pubDate>Sat, 15 Jul 2017 14:20:41 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/algorithm/output-list/</guid>
-      <description>&lt;h2 id=&#34;题目&#34;&gt;题目 &lt;a href=&#34;#%e9%a2%98%e7%9b%ae&#34; class=&#34;anchor&#34;&gt;🔗&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;输入一个链表，从尾到头打印链表每个节点的值。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -212,51 +185,6 @@
       <pubDate>Fri, 02 Dec 2016 23:08:57 +0000</pubDate>
       
       <guid>https://haigeek.me/posts/%E7%94%9F%E6%B4%BB/you-are-my-like-once/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PAT1011</title>
-      <link>https://haigeek.me/posts/algorithm/pat1011/</link>
-      <pubDate>Thu, 17 Nov 2016 22:26:23 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/algorithm/pat1011/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PAT1010</title>
-      <link>https://haigeek.me/posts/algorithm/pat1010/</link>
-      <pubDate>Thu, 17 Nov 2016 22:22:45 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/algorithm/pat1010/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PAT1009</title>
-      <link>https://haigeek.me/posts/algorithm/pat1009/</link>
-      <pubDate>Thu, 17 Nov 2016 22:19:52 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/algorithm/pat1009/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PAT1008</title>
-      <link>https://haigeek.me/posts/algorithm/pat1008/</link>
-      <pubDate>Thu, 17 Nov 2016 22:15:34 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/algorithm/pat1008/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PAT 1006</title>
-      <link>https://haigeek.me/posts/algorithm/pat-1006/</link>
-      <pubDate>Thu, 17 Nov 2016 21:57:27 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/algorithm/pat-1006/</guid>
       <description></description>
     </item>
     

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on haigeek</title>
+    <title>Tags on haigeek blog</title>
     <link>https://haigeek.me/tags/</link>
-    <description>Recent content in Tags on haigeek</description>
+    <description>Recent content in Tags on haigeek blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>© 2022 haigeek</copyright>
     <lastBuildDate>Sun, 27 Dec 2020 00:34:27 +0800</lastBuildDate><atom:link href="https://haigeek.me/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>dubbo</title>
@@ -31,15 +32,6 @@
       <pubDate>Sun, 29 Dec 2019 22:34:23 +0000</pubDate>
       
       <guid>https://haigeek.me/tags/%E7%94%9F%E6%B4%BB/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>rbac</title>
-      <link>https://haigeek.me/tags/rbac/</link>
-      <pubDate>Sat, 28 Dec 2019 21:48:16 +0800</pubDate>
-      
-      <guid>https://haigeek.me/tags/rbac/</guid>
       <description></description>
     </item>
     
@@ -80,24 +72,6 @@
     </item>
     
     <item>
-      <title>Docker</title>
-      <link>https://haigeek.me/tags/docker/</link>
-      <pubDate>Wed, 20 Feb 2019 23:26:39 +0000</pubDate>
-      
-      <guid>https://haigeek.me/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://haigeek.me/tags/linux/</link>
-      <pubDate>Wed, 20 Feb 2019 23:26:39 +0000</pubDate>
-      
-      <guid>https://haigeek.me/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>SpringBoot</title>
       <link>https://haigeek.me/tags/springboot/</link>
       <pubDate>Sun, 06 Jan 2019 23:05:54 +0000</pubDate>
@@ -116,20 +90,11 @@
     </item>
     
     <item>
-      <title>二叉树</title>
-      <link>https://haigeek.me/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/</link>
-      <pubDate>Sat, 22 Jul 2017 21:19:54 +0000</pubDate>
+      <title>Linux</title>
+      <link>https://haigeek.me/tags/linux/</link>
+      <pubDate>Wed, 06 Sep 2017 20:46:37 +0000</pubDate>
       
-      <guid>https://haigeek.me/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>数据结构</title>
-      <link>https://haigeek.me/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
-      <pubDate>Sat, 22 Jul 2017 21:19:54 +0000</pubDate>
-      
-      <guid>https://haigeek.me/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <guid>https://haigeek.me/tags/linux/</guid>
       <description></description>
     </item>
     
@@ -148,15 +113,6 @@
       <pubDate>Sat, 22 Jul 2017 20:27:55 +0000</pubDate>
       
       <guid>https://haigeek.me/tags/struts2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>剑指offer</title>
-      <link>https://haigeek.me/tags/%E5%89%91%E6%8C%87offer/</link>
-      <pubDate>Sat, 15 Jul 2017 14:20:41 +0000</pubDate>
-      
-      <guid>https://haigeek.me/tags/%E5%89%91%E6%8C%87offer/</guid>
       <description></description>
     </item>
     
@@ -193,15 +149,6 @@
       <pubDate>Wed, 08 Mar 2017 16:25:16 +0000</pubDate>
       
       <guid>https://haigeek.me/tags/http/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PAT乙级</title>
-      <link>https://haigeek.me/tags/pat%E4%B9%99%E7%BA%A7/</link>
-      <pubDate>Thu, 17 Nov 2016 22:26:23 +0000</pubDate>
-      
-      <guid>https://haigeek.me/tags/pat%E4%B9%99%E7%BA%A7/</guid>
       <description></description>
     </item>
     

@@ -1,237 +1,309 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <title>springboot全局跨域与过滤器跨域 | haigeek</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="springboot全局跨域与过滤器跨域" />
+<meta property="og:description" content="当项目中使用了过滤器的时候,使用springboot全局跨域设置有时候并不能满足我们的需求,具体表现为明明设置了全局允许跨域,前端同学依旧说我们的接口不允许跨域。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://haigeek.me/posts/java/springboot/springboot-filter-cros/" />
+<meta property="article:published_time" content="2019-01-06T23:05:54+00:00" />
+<meta property="article:modified_time" content="2019-01-06T23:05:54+00:00" />
 
-    <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
-<meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="我是谁 🔗 爱折腾，伪文青，斯人已去，勿念，现在学习编程。(2016-2018） haigeek是我在网络上常用的昵称，因为他的谐音和我们真实名字">
-<meta name="generator" content="Hugo 0.76.5" />
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="springboot全局跨域与过滤器跨域"/>
+<meta name="twitter:description" content="当项目中使用了过滤器的时候,使用springboot全局跨域设置有时候并不能满足我们的需求,具体表现为明明设置了全局允许跨域,前端同学依旧说我们的接口不允许跨域。"/>
+
+  
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#262d33">
+  <title>
+    
+    haigeek blog - springboot全局跨域与过滤器跨域
+    
+  </title>
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  
+  
+  
+  <link rel="stylesheet" href="/minima.1671899191.css">
+  
+  
+  <script defer type="text/javascript" src="/minima.1671899191.js"></script>
+  
+</head>
+<script>
+  
+  let default_theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+  try {
+    const local = localStorage.getItem('theme')
+    if (local) {
+      default_theme = local
+    }
+    localStorage.setItem('theme', default_theme);
+    window.minima_theme = default_theme;
+    document.querySelector('html').classList.add(default_theme);
+  } catch (e) {
+    console.error(e);
+  }
+</script>
 
 
-  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+
+<body>
+  <header class="mt-3 mb-6">
+  <div class="container mx-auto">
+    <nav class="flex justify-between items-center">
+      <div class="flex items-center">
+        
+        <div id="theme-switch" class="text-3xl cursor-pointer">☼</div>
+      </div>
+      <ul class="flex items-center font-medium
+        whitespace-nowrap overflow-x-auto overflow-y-hidden">
+        
+        <li class="ml-1 mr-1"><a href="/">首页</a></li>
+        
+        <li class="ml-1 mr-1"><a href="/categories">分类</a></li>
+        
+        <li class="ml-1 mr-1"><a href="/tags">标签</a></li>
+        
+        <li class="ml-1 mr-1"><a href="/about">关于</a></li>
+        
+        <li class="ml-1 mr-1"><a href="https://wiki.haigeek.me">Wiki</a></li>
+        
+      </ul>
+      <ul class="flex item-center text-sm font-bold">
+        
+      </ul>
+    </nav>
+  </div>
+</header>
+
+  
+<div class="container mx-auto">
+  <h1 class="text-4xl font-extrabold mt-6 mb-6">springboot全局跨域与过滤器跨域</h1>
+  <div class="mb-3 text-sm flex justify-between ">
+    <div>
+      
+      发布于 &mdash; 2019 年 1 月 6 日
+      
+      
+    </div>
+    
+    <div>
+      
+      
+      <a class="ml-1" href="/tags/SpringBoot">#SpringBoot</a>
+      
+    </div>
+    
+  </div>
+  <main class="mb-8">
+    <p></p>
+    <article class="md">
+      <p>当项目中使用了过滤器的时候,使用springboot全局跨域设置有时候并不能满足我们的需求,具体表现为明明设置了全局允许跨域,前端同学依旧说我们的接口不允许跨域。</p>
+<h2 id="跨域请求">跨域请求</h2>
+<p>浏览器具有同源限制，即完全一致的意思是，域名要相同（<code>www.example.com</code>和<code>example.com</code>不同），协议要相同（<code>http</code>和<code>https</code>不同），端口号要相同（默认是<code>:80</code>端口，它和<code>:8080</code>就不同）</p>
+<h2 id="使用cros处理跨域">使用CROS处理跨域</h2>
+<p>Origin表示本域，也就是浏览器当前页面的域。当JavaScript向外域（如sina.com）发起请求后，浏览器收到响应后，首先检查<code>Access-Control-Allow-Origin</code>是否包含本域，如果是，则此次跨域请求成功，如果不是，则请求失败，JavaScript将无法获取到响应的任何数据。</p>
+<p>跨域能否成功，取决于对方服务器是否愿意给你设置一个正确的<code>Access-Control-Allow-Origin</code>，决定权始终在对方手中。</p>
+<h5 id="简单跨域请求">简单跨域请求</h5>
+<p>上面这种跨域请求，称之为“简单请求”。简单请求包括GET、HEAD和POST（POST的Content-Type类型
+仅限<code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>和<code>text/plain</code>），并且不能出现任何自定义头（例如，<code>X-Custom: 12345</code>），通常能满足90%的需求。</p>
+<h5 id="其他类型的请求">其他类型的请求</h5>
+<p>对于PUT、DELETE以及其他类型如<code>application/json</code>的POST请求，在发送AJAX请求之前，浏览器会先发送一个<code>OPTIONS</code>请求（称为preflighted请求）到这个URL上，询问目标服务器是否接受：</p>
+<pre><code>OPTIONS /path/to/resource HTTP/1.1
+Host: bar.com
+Origin: http://my.com
+Access-Control-Request-Method: POST
+</code></pre><p>服务器必须响应并明确指出允许的Method：</p>
+<pre><code>HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://my.com
+Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS
+Access-Control-Max-Age: 86400
+Access-Control-Allow-Credentials: true | false // 是否允许携带 Cookie
+</code></pre><p><strong>带cookie的跨域请求</strong></p>
+<p><code>Access-Control-Allow-Credentials</code> 响应头会使浏览器允许在 Ajax 访问时携带 Cookie，但我们仍然需要对 XMLHttpRequest 设置其 <code>withCredentials</code> 参数，才能实现携带 Cookie 的目标。</p>
+<p>为了安全，标准里不允许 <code>Access-Control-Allow-Origin: *</code>，必须指定明确的、与请求网页一致的域名。同时，Cookie 依然遵循“同源策略”，只有用目标服务器域名设置的 Cookie 才会上传，而且使用 <code>document.cookie</code> 也无法读取目标服务器域名下的 Cookie。</p>
+<h2 id="springboot设置跨域">Springboot设置跨域</h2>
+<p>可以在服务端设置允许跨域访问，设置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CorsConfig</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">CorsFilter</span> <span class="nf">corsFilter</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//1.添加CORS配置信息
+</span><span class="c1"></span>        <span class="n">CorsConfiguration</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="n">CorsConfiguration</span><span class="o">();</span>
+        <span class="c1">//放行哪些原始域
+</span><span class="c1"></span>        <span class="n">config</span><span class="o">.</span><span class="na">addAllowedOrigin</span><span class="o">(</span><span class="s">&#34;*&#34;</span><span class="o">);</span>
+        <span class="c1">//是否发送Cookie信息
+</span><span class="c1"></span>        <span class="n">config</span><span class="o">.</span><span class="na">setAllowCredentials</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="c1">//放行哪些原始域(请求方式)
+</span><span class="c1"></span>        <span class="n">config</span><span class="o">.</span><span class="na">addAllowedMethod</span><span class="o">(</span><span class="s">&#34;*&#34;</span><span class="o">);</span>
+        <span class="c1">//放行哪些原始域(头部信息)
+</span><span class="c1"></span>        <span class="n">config</span><span class="o">.</span><span class="na">addAllowedHeader</span><span class="o">(</span><span class="s">&#34;*&#34;</span><span class="o">);</span>
+
+        <span class="c1">//2.添加映射路径
+</span><span class="c1"></span>        <span class="n">UrlBasedCorsConfigurationSource</span> <span class="n">configSource</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UrlBasedCorsConfigurationSource</span><span class="o">();</span>
+        <span class="n">configSource</span><span class="o">.</span><span class="na">registerCorsConfiguration</span><span class="o">(</span><span class="s">&#34;/**&#34;</span><span class="o">,</span> <span class="n">config</span><span class="o">);</span>
+
+        <span class="c1">//3.返回新的CorsFilter.
+</span><span class="c1"></span>        <span class="k">return</span> <span class="k">new</span> <span class="n">CorsFilter</span><span class="o">(</span><span class="n">configSource</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在实际的实践中发现，上述处理方式可以解决大多数情况下的跨域问题，但是当客户端的请求带有cookies时，我们就不能使用简单的通配符*来处理跨域问题，会发现上述的springboot跨域设置失效，针对这个问题，可以使用过滤器将请求的url进行拦截，重新设置响应头，就可以完成带cookie请求跨域的处理。</p>
+<h2 id="拦截器处理跨域问题">拦截器处理跨域问题</h2>
+<p>用filter拦截每次请求，如果携带身份信息(Credential)时，获取到具体的域响应给请求。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kt">void</span> <span class="nf">doFilter</span><span class="o">(</span><span class="n">ServletRequest</span> <span class="n">servletRequest</span><span class="o">,</span>
+                         <span class="n">ServletResponse</span> <span class="n">servletResponse</span><span class="o">,</span>
+                         <span class="n">FilterChain</span> <span class="n">filterChain</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">,</span> <span class="n">ServletException</span> <span class="o">{</span>
+        <span class="n">HttpServletRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpServletRequest</span><span class="o">)</span> <span class="n">servletRequest</span><span class="o">;</span>
+        <span class="n">HttpServletResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="o">(</span><span class="n">HttpServletResponse</span><span class="o">)</span> <span class="n">servletResponse</span><span class="o">;</span>
+        <span class="c1">//根据请求头设置响应头
+</span><span class="c1"></span>        <span class="n">String</span> <span class="n">allowOrigin</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getHeader</span><span class="o">(</span><span class="s">&#34;Origin&#34;</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">allowHeader</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="na">getHeader</span><span class="o">(</span><span class="s">&#34;Access-Control-Request-Headers&#34;</span><span class="o">);</span>
+        <span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&#34;Access-Control-Allow-Origin&#34;</span><span class="o">,</span> <span class="n">allowOrigin</span><span class="o">);</span>
+        <span class="c1">//设置允许带cookie的请求
+</span><span class="c1"></span>        <span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&#34;Access-Control-Allow-Credentials&#34;</span><span class="o">,</span> <span class="s">&#34;true&#34;</span><span class="o">);</span>
+        <span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&#34;Access-Control-Allow-Methods&#34;</span><span class="o">,</span> <span class="s">&#34;OPTIONS, POST, PUT, GET, OPTIONS, DELETE&#34;</span><span class="o">);</span>
+        <span class="n">response</span><span class="o">.</span><span class="na">setHeader</span><span class="o">(</span><span class="s">&#34;Access-Control-Allow-Headers&#34;</span><span class="o">,</span> <span class="n">allowHeader</span><span class="o">);</span>
+        <span class="n">filterChain</span><span class="o">.</span><span class="na">doFilter</span><span class="o">(</span><span class="n">servletRequest</span><span class="o">,</span> <span class="n">servletResponse</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>在实际的项目中，全局的跨域设置处理与拦截器可以同时设置，针对带有cookie的请求，我们可以设置拦截器来进行处理，就可以很好的处理跨域问题。</p>
+<blockquote>
+<p>参考自：https://blog.csdn.net/u014029255/article/details/56842509</p>
+</blockquote>
+    </article>
+  </main>
+  
 
 
-<link rel="stylesheet" href="/css/style.css">
-<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
 
+
+
+<div id="comment"></div>
 
 
 
 
 <script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?2917929c3741b51731d979e597a2be52";
-    var s = document.getElementsByTagName("script")[0]; 
-    s.parentNode.insertBefore(hm, s);
-  })();
+    const s = document.createElement("script")
+    s.src = "https://giscus.app/client.js"
+    s.crossOrigin = "anonymous"
+    s.async = true
+    s.setAttribute("data-repo", "haigeek\/blog-comment-bygiscus")
+    s.setAttribute("data-repo-id", "R_kgDOIq0W4w")
+    s.setAttribute("data-category", "Announcements")
+    s.setAttribute("data-category-id", "DIC_kwDOIq0W484CTPda")
+    s.setAttribute("data-mapping", "pathname")
+    s.setAttribute("data-strict", "0")
+    s.setAttribute("data-reactions-enabled", "1")
+    s.setAttribute("data-emit-metadata", "0")
+    s.setAttribute("data-input-position", "buttom")
+    s.setAttribute("data-theme", window.minima_theme + "_protanopia")
+    s.setAttribute("data-lang", "en")
+    s.setAttribute("data-loading", "lazy")
+    document.getElementById("comment").appendChild(s)
 </script>
 
 
 
-  </head>
-
-  <body>
-    <nav class="navigation">
-	
-		<a href="/"> <span class="arrow">←</span>首页</a>
-	
-	<a href="/posts">归档</a>
-	<a href="/tags">标签</a>
-	<a href="/about">关于</a>
-
-	
-		<a href="https://wiki.haigeek.me">WIKI</a>
-	
-
-	
-	  <a href="https://haigeek.me/index.xml">订阅</a>
-	
-</nav>
 
 
-    <main class="main">
-      
-
-<section id="single">
-    <h1 class="title">springboot全局跨域与过滤器跨域</h1>
-
-    <div class="tip">
-        <span>
-          Jan 6, 2019 23:05
-        </span>
-        <span class="split">
-          ·
-        </span>
-        <span>
-          
-            1509 words
-          
-        </span>
-        <span class="split">
-          ·
-        </span>
-        <span>
-          4 minute read
-        </span>
-    </div>
-
-    <div class="content">
-      <p>当项目中使用了过滤器的时候,使用springboot全局跨域设置有时候并不能满足我们的需求,具体表现为明明设置了全局允许跨域,前端同学依旧说我们的接口不允许跨域。</p>
-<h2 id="跨域请求">跨域请求 <a href="#%e8%b7%a8%e5%9f%9f%e8%af%b7%e6%b1%82" class="anchor">🔗</a></h2><p>浏览器具有同源限制，即完全一致的意思是，域名要相同（<code>www.example.com</code>和<code>example.com</code>不同），协议要相同（<code>http</code>和<code>https</code>不同），端口号要相同（默认是<code>:80</code>端口，它和<code>:8080</code>就不同）</p>
-<h2 id="使用cros处理跨域">使用CROS处理跨域 <a href="#%e4%bd%bf%e7%94%a8cros%e5%a4%84%e7%90%86%e8%b7%a8%e5%9f%9f" class="anchor">🔗</a></h2><p>Origin表示本域，也就是浏览器当前页面的域。当JavaScript向外域（如sina.com）发起请求后，浏览器收到响应后，首先检查<code>Access-Control-Allow-Origin</code>是否包含本域，如果是，则此次跨域请求成功，如果不是，则请求失败，JavaScript将无法获取到响应的任何数据。</p>
-<p>跨域能否成功，取决于对方服务器是否愿意给你设置一个正确的<code>Access-Control-Allow-Origin</code>，决定权始终在对方手中。</p>
-<h5 id="简单跨域请求">简单跨域请求 <a href="#%e7%ae%80%e5%8d%95%e8%b7%a8%e5%9f%9f%e8%af%b7%e6%b1%82" class="anchor">🔗</a></h5><p>上面这种跨域请求，称之为“简单请求”。简单请求包括GET、HEAD和POST（POST的Content-Type类型
-仅限<code>application/x-www-form-urlencoded</code>、<code>multipart/form-data</code>和<code>text/plain</code>），并且不能出现任何自定义头（例如，<code>X-Custom: 12345</code>），通常能满足90%的需求。</p>
-<h5 id="其他类型的请求">其他类型的请求 <a href="#%e5%85%b6%e4%bb%96%e7%b1%bb%e5%9e%8b%e7%9a%84%e8%af%b7%e6%b1%82" class="anchor">🔗</a></h5><p>对于PUT、DELETE以及其他类型如<code>application/json</code>的POST请求，在发送AJAX请求之前，浏览器会先发送一个<code>OPTIONS</code>请求（称为preflighted请求）到这个URL上，询问目标服务器是否接受：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">OPTIONS /path/to/resource HTTP/1.1
-Host: bar.com
-Origin: http://my.com
-Access-Control-Request-Method: POST
-</code></pre></div><p>服务器必须响应并明确指出允许的Method：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://my.com
-Access-Control-Allow-Methods: POST, GET, PUT, OPTIONS
-Access-Control-Max-Age: 86400
-Access-Control-Allow-Credentials: true | false // 是否允许携带 Cookie
-</code></pre></div><p><strong>带cookie的跨域请求</strong></p>
-<p><code>Access-Control-Allow-Credentials</code> 响应头会使浏览器允许在 Ajax 访问时携带 Cookie，但我们仍然需要对 XMLHttpRequest 设置其 <code>withCredentials</code> 参数，才能实现携带 Cookie 的目标。</p>
-<p>为了安全，标准里不允许 <code>Access-Control-Allow-Origin: *</code>，必须指定明确的、与请求网页一致的域名。同时，Cookie 依然遵循“同源策略”，只有用目标服务器域名设置的 Cookie 才会上传，而且使用 <code>document.cookie</code> 也无法读取目标服务器域名下的 Cookie。</p>
-<h2 id="springboot设置跨域">Springboot设置跨域 <a href="#springboot%e8%ae%be%e7%bd%ae%e8%b7%a8%e5%9f%9f" class="anchor">🔗</a></h2><p>可以在服务端设置允许跨域访问，设置如下：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f">@Configuration</span>
-<span style="color:#a2f;font-weight:bold">public</span> <span style="color:#a2f;font-weight:bold">class</span> <span style="color:#00f">CorsConfig</span> <span style="color:#666">{</span>
-    <span style="color:#a2f">@Bean</span>
-    <span style="color:#a2f;font-weight:bold">public</span> CorsFilter <span style="color:#00a000">corsFilter</span><span style="color:#666">()</span> <span style="color:#666">{</span>
-        <span style="color:#080;font-style:italic">//1.添加CORS配置信息
-</span><span style="color:#080;font-style:italic"></span>        CorsConfiguration config <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">new</span> CorsConfiguration<span style="color:#666">();</span>
-        <span style="color:#080;font-style:italic">//放行哪些原始域
-</span><span style="color:#080;font-style:italic"></span>        config<span style="color:#666">.</span><span style="color:#b44">addAllowedOrigin</span><span style="color:#666">(</span><span style="color:#b44">&#34;*&#34;</span><span style="color:#666">);</span>
-        <span style="color:#080;font-style:italic">//是否发送Cookie信息
-</span><span style="color:#080;font-style:italic"></span>        config<span style="color:#666">.</span><span style="color:#b44">setAllowCredentials</span><span style="color:#666">(</span><span style="color:#a2f;font-weight:bold">true</span><span style="color:#666">);</span>
-        <span style="color:#080;font-style:italic">//放行哪些原始域(请求方式)
-</span><span style="color:#080;font-style:italic"></span>        config<span style="color:#666">.</span><span style="color:#b44">addAllowedMethod</span><span style="color:#666">(</span><span style="color:#b44">&#34;*&#34;</span><span style="color:#666">);</span>
-        <span style="color:#080;font-style:italic">//放行哪些原始域(头部信息)
-</span><span style="color:#080;font-style:italic"></span>        config<span style="color:#666">.</span><span style="color:#b44">addAllowedHeader</span><span style="color:#666">(</span><span style="color:#b44">&#34;*&#34;</span><span style="color:#666">);</span>
-
-        <span style="color:#080;font-style:italic">//2.添加映射路径
-</span><span style="color:#080;font-style:italic"></span>        UrlBasedCorsConfigurationSource configSource <span style="color:#666">=</span> <span style="color:#a2f;font-weight:bold">new</span> UrlBasedCorsConfigurationSource<span style="color:#666">();</span>
-        configSource<span style="color:#666">.</span><span style="color:#b44">registerCorsConfiguration</span><span style="color:#666">(</span><span style="color:#b44">&#34;/**&#34;</span><span style="color:#666">,</span> config<span style="color:#666">);</span>
-
-        <span style="color:#080;font-style:italic">//3.返回新的CorsFilter.
-</span><span style="color:#080;font-style:italic"></span>        <span style="color:#a2f;font-weight:bold">return</span> <span style="color:#a2f;font-weight:bold">new</span> CorsFilter<span style="color:#666">(</span>configSource<span style="color:#666">);</span>
-    <span style="color:#666">}</span>
-<span style="color:#666">}</span>
-</code></pre></div><p>在实际的实践中发现，上述处理方式可以解决大多数情况下的跨域问题，但是当客户端的请求带有cookies时，我们就不能使用简单的通配符*来处理跨域问题，会发现上述的springboot跨域设置失效，针对这个问题，可以使用过滤器将请求的url进行拦截，重新设置响应头，就可以完成带cookie请求跨域的处理。</p>
-<h2 id="拦截器处理跨域问题">拦截器处理跨域问题 <a href="#%e6%8b%a6%e6%88%aa%e5%99%a8%e5%a4%84%e7%90%86%e8%b7%a8%e5%9f%9f%e9%97%ae%e9%a2%98" class="anchor">🔗</a></h2><p>用filter拦截每次请求，如果携带身份信息(Credential)时，获取到具体的域响应给请求。</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a2f;font-weight:bold">public</span> <span style="color:#0b0;font-weight:bold">void</span> <span style="color:#00a000">doFilter</span><span style="color:#666">(</span>ServletRequest servletRequest<span style="color:#666">,</span>
-                         ServletResponse servletResponse<span style="color:#666">,</span>
-                         FilterChain filterChain<span style="color:#666">)</span> <span style="color:#a2f;font-weight:bold">throws</span> IOException<span style="color:#666">,</span> ServletException <span style="color:#666">{</span>
-        HttpServletRequest request <span style="color:#666">=</span> <span style="color:#666">(</span>HttpServletRequest<span style="color:#666">)</span> servletRequest<span style="color:#666">;</span>
-        HttpServletResponse response <span style="color:#666">=</span> <span style="color:#666">(</span>HttpServletResponse<span style="color:#666">)</span> servletResponse<span style="color:#666">;</span>
-        <span style="color:#080;font-style:italic">//根据请求头设置响应头
-</span><span style="color:#080;font-style:italic"></span>        String allowOrigin <span style="color:#666">=</span> request<span style="color:#666">.</span><span style="color:#b44">getHeader</span><span style="color:#666">(</span><span style="color:#b44">&#34;Origin&#34;</span><span style="color:#666">);</span>
-        String allowHeader <span style="color:#666">=</span> request<span style="color:#666">.</span><span style="color:#b44">getHeader</span><span style="color:#666">(</span><span style="color:#b44">&#34;Access-Control-Request-Headers&#34;</span><span style="color:#666">);</span>
-        response<span style="color:#666">.</span><span style="color:#b44">setHeader</span><span style="color:#666">(</span><span style="color:#b44">&#34;Access-Control-Allow-Origin&#34;</span><span style="color:#666">,</span> allowOrigin<span style="color:#666">);</span>
-        <span style="color:#080;font-style:italic">//设置允许带cookie的请求
-</span><span style="color:#080;font-style:italic"></span>        response<span style="color:#666">.</span><span style="color:#b44">setHeader</span><span style="color:#666">(</span><span style="color:#b44">&#34;Access-Control-Allow-Credentials&#34;</span><span style="color:#666">,</span> <span style="color:#b44">&#34;true&#34;</span><span style="color:#666">);</span>
-        response<span style="color:#666">.</span><span style="color:#b44">setHeader</span><span style="color:#666">(</span><span style="color:#b44">&#34;Access-Control-Allow-Methods&#34;</span><span style="color:#666">,</span> <span style="color:#b44">&#34;OPTIONS, POST, PUT, GET, OPTIONS, DELETE&#34;</span><span style="color:#666">);</span>
-        response<span style="color:#666">.</span><span style="color:#b44">setHeader</span><span style="color:#666">(</span><span style="color:#b44">&#34;Access-Control-Allow-Headers&#34;</span><span style="color:#666">,</span> allowHeader<span style="color:#666">);</span>
-        filterChain<span style="color:#666">.</span><span style="color:#b44">doFilter</span><span style="color:#666">(</span>servletRequest<span style="color:#666">,</span> servletResponse<span style="color:#666">);</span>
-        <span style="color:#666">}</span>
-    <span style="color:#666">}</span>
-
-</code></pre></div><p>在实际的项目中，全局的跨域设置处理与拦截器可以同时设置，针对带有cookie的请求，我们可以设置拦截器来进行处理，就可以很好的处理跨域问题。</p>
-<blockquote>
-<p>参考自：https://blog.csdn.net/u014029255/article/details/56842509</p>
-</blockquote>
-    </div>
-
-    
-        <div class="tags">
-            
-                <a href="https://haigeek.me/tags/springboot">SpringBoot</a>
-            
-        </div>
-    
-    
-     
-  <div id="comment">
-    
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "your-disqus-shortname" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-  </div>
 
 
-</section>
-
-
-    </main>
-    
-    <footer id="footer">
-    
-        <div id="social">
-
-
-    <a class="symbol" href="https://github.com/haigeek" target="_blank">
-        
-        <svg fill="#bbbbbb" width="28" height="28"  viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    
-    <title>Github</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Social-Icons---Rounded-Black" transform="translate(-264.000000, -939.000000)">
-            <g id="Github" transform="translate(264.000000, 939.000000)">
-                <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z" id="Rounded" fill="#bbbbbb"></path>
-                <path d="M35.9985,13 C22.746,13 12,23.7870921 12,37.096644 C12,47.7406712 18.876,56.7718301 28.4145,59.9584121 C29.6145,60.1797862 30.0525,59.4358488 30.0525,58.7973276 C30.0525,58.2250681 30.0315,56.7100863 30.0195,54.6996482 C23.343,56.1558981 21.9345,51.4693938 21.9345,51.4693938 C20.844,48.6864054 19.2705,47.9454799 19.2705,47.9454799 C17.091,46.4500754 19.4355,46.4801943 19.4355,46.4801943 C21.843,46.6503662 23.1105,48.9634994 23.1105,48.9634994 C25.2525,52.6455377 28.728,51.5823398 30.096,50.9649018 C30.3135,49.4077535 30.9345,48.3460615 31.62,47.7436831 C26.2905,47.1352808 20.688,45.0691228 20.688,35.8361671 C20.688,33.2052792 21.6225,31.0547881 23.1585,29.3696344 C22.911,28.7597262 22.0875,26.3110578 23.3925,22.9934585 C23.3925,22.9934585 25.4085,22.3459017 29.9925,25.4632101 C31.908,24.9285993 33.96,24.6620468 36.0015,24.6515052 C38.04,24.6620468 40.0935,24.9285993 42.0105,25.4632101 C46.5915,22.3459017 48.603,22.9934585 48.603,22.9934585 C49.9125,26.3110578 49.089,28.7597262 48.8415,29.3696344 C50.3805,31.0547881 51.309,33.2052792 51.309,35.8361671 C51.309,45.0917119 45.6975,47.1292571 40.3515,47.7256117 C41.2125,48.4695491 41.9805,49.9393525 41.9805,52.1877301 C41.9805,55.4089489 41.9505,58.0067059 41.9505,58.7973276 C41.9505,59.4418726 42.3825,60.1918338 43.6005,59.9554002 C53.13,56.7627944 60,47.7376593 60,37.096644 C60,23.7870921 49.254,13 35.9985,13" fill="#FFFFFF"></path>
-            </g>
-        </g>
-    </g>
-</svg>
-    </a>
 
 
 </div>
 
-    
 
-    <p class="copyright">
-    
-       © Copyright 
-       2021 
-       <span class="split">
-        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
-  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
-</svg>
-       </span>
-       haigeek
-    
-    </p>
-    <p class="powerby">
-        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
-    </p>
+  <footer class="mt-8 mb-8">
+  <div class="container mx-auto">
+    <div class="mt-8 flex justify-between items-center">
+      <p class="mt-0 text-sm">
+        © 2022 haigeek |
+        <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> on
+        <a href="https://github.com/mivinci/hugo-theme-minima" target="_blank" rel="noopener noreferrer">Minima</a>
+      </p>
+      <p class="flex items-center mt-0">
+        
+          <a class="icon ml-1 mr-1" href="mailto:haigeek@qq.com" title="email">
+          
+            <svg fill="#63636f" width="22" height="22" viewBox="0 0 24 24"><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm9.06 8.683L5.648 6.238L4.353 7.762l7.72 6.555l7.581-6.56l-1.308-1.513l-6.285 5.439z"/></svg>
+          
+          </a>
+        
+          <a class="icon ml-1 mr-1" href="https://github.com/haigeek" title="github">
+          
+            <svg fill="#63636f" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          
+          </a>
+        
+          <a class="icon ml-1 mr-1" href="/index.xml" title="rss">
+          
+            <svg fill="#63636f" t="1626591563876" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1984" width="18" height="16"><path d="M128 768a128 128 0 1 0 0 256 128 128 0 0 0 0-256zM0 368v176c265.104 0 480 214.912 480 480h176c0-362.32-293.696-656-656-656zM0 0v176c468.336 0 848 379.664 848 848h176C1024 458.464 565.536 0 0 0z" p-id="1985"></path></svg>
+          
+          </a>
+        
+      </p>
+    </div>
+  </div>
 </footer>
+</body>
 
-  </body>
 </html>

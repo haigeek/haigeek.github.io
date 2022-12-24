@@ -1,96 +1,129 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <title>centos6.8安装javajdk、tomcat、MySQL环境 | haigeek</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="centos6.8安装javajdk、tomcat、MySQL环境" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://haigeek.me/posts/linux/centos6-8-install-javajdk-tomcat-mysql-env/" />
+<meta property="article:published_time" content="2017-07-15T14:12:28+00:00" />
+<meta property="article:modified_time" content="2017-07-15T14:12:28+00:00" />
 
-    <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">    
-<meta name="viewport" content="width=device-width,minimum-scale=1">
-<meta name="description" content="我是谁 🔗 爱折腾，伪文青，斯人已去，勿念，现在学习编程。(2016-2018） haigeek是我在网络上常用的昵称，因为他的谐音和我们真实名字">
-<meta name="generator" content="Hugo 0.76.5" />
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="centos6.8安装javajdk、tomcat、MySQL环境"/>
+<meta name="twitter:description" content=""/>
 
-
-  <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
-
-
-<link rel="stylesheet" href="/css/style.css">
-<link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
-
-
-
-
-
+  
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#262d33">
+  <title>
+    
+    haigeek blog - centos6.8安装javajdk、tomcat、MySQL环境
+    
+  </title>
+  
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+  
+  
+  
+  <link rel="stylesheet" href="/minima.1671899191.css">
+  
+  
+  <script defer type="text/javascript" src="/minima.1671899191.js"></script>
+  
+</head>
 <script>
-  var _hmt = _hmt || [];
-  (function() {
-    var hm = document.createElement("script");
-    hm.src = "https://hm.baidu.com/hm.js?2917929c3741b51731d979e597a2be52";
-    var s = document.getElementsByTagName("script")[0]; 
-    s.parentNode.insertBefore(hm, s);
-  })();
+  
+  let default_theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+  try {
+    const local = localStorage.getItem('theme')
+    if (local) {
+      default_theme = local
+    }
+    localStorage.setItem('theme', default_theme);
+    window.minima_theme = default_theme;
+    document.querySelector('html').classList.add(default_theme);
+  } catch (e) {
+    console.error(e);
+  }
 </script>
 
 
 
-  </head>
+<body>
+  <header class="mt-3 mb-6">
+  <div class="container mx-auto">
+    <nav class="flex justify-between items-center">
+      <div class="flex items-center">
+        
+        <div id="theme-switch" class="text-3xl cursor-pointer">☼</div>
+      </div>
+      <ul class="flex items-center font-medium
+        whitespace-nowrap overflow-x-auto overflow-y-hidden">
+        
+        <li class="ml-1 mr-1"><a href="/">首页</a></li>
+        
+        <li class="ml-1 mr-1"><a href="/categories">分类</a></li>
+        
+        <li class="ml-1 mr-1"><a href="/tags">标签</a></li>
+        
+        <li class="ml-1 mr-1"><a href="/about">关于</a></li>
+        
+        <li class="ml-1 mr-1"><a href="https://wiki.haigeek.me">Wiki</a></li>
+        
+      </ul>
+      <ul class="flex item-center text-sm font-bold">
+        
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <body>
-    <nav class="navigation">
-	
-		<a href="/"> <span class="arrow">←</span>首页</a>
-	
-	<a href="/posts">归档</a>
-	<a href="/tags">标签</a>
-	<a href="/about">关于</a>
-
-	
-		<a href="https://wiki.haigeek.me">WIKI</a>
-	
-
-	
-	  <a href="https://haigeek.me/index.xml">订阅</a>
-	
-</nav>
-
-
-    <main class="main">
+  
+<div class="container mx-auto">
+  <h1 class="text-4xl font-extrabold mt-6 mb-6">centos6.8安装javajdk、tomcat、MySQL环境</h1>
+  <div class="mb-3 text-sm flex justify-between ">
+    <div>
       
-
-<section id="single">
-    <h1 class="title">centos6.8安装javajdk、tomcat、MySQL环境</h1>
-
-    <div class="tip">
-        <span>
-          Jul 15, 2017 14:12
-        </span>
-        <span class="split">
-          ·
-        </span>
-        <span>
-          
-            805 words
-          
-        </span>
-        <span class="split">
-          ·
-        </span>
-        <span>
-          2 minute read
-        </span>
+      发布于 &mdash; 2017 年 7 月 15 日
+      
+      
     </div>
-
-    <div class="content">
-      <h2 id="jdk安装">jdk安装 <a href="#jdk%e5%ae%89%e8%a3%85" class="anchor">🔗</a></h2><p>建立一个文件夹存放软件安装包</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">cd /opt
+    
+    <div>
+      
+      
+      <a class="ml-1" href="/tags/MySQl">#MySQl</a>
+      
+      
+      <a class="ml-1" href="/tags/java">#java</a>
+      
+      
+      <a class="ml-1" href="/tags/Linux">#Linux</a>
+      
+      
+      <a class="ml-1" href="/tags/Tomcat">#Tomcat</a>
+      
+    </div>
+    
+  </div>
+  <main class="mb-8">
+    <p></p>
+    <article class="md">
+      <h2 id="jdk安装">jdk安装</h2>
+<p>建立一个文件夹存放软件安装包</p>
+<pre><code>cd /opt
 mkdir setups
-</code></pre></div><p>建立java安装文件夹</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">cd /usr
+</code></pre><p>建立java安装文件夹</p>
+<pre><code>cd /usr
 mkdir java
-</code></pre></div><p>解压文件并移动到java文件夹</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">tar -zxvf jdk-8u131-linux-x64.tar.gz
+</code></pre><p>解压文件并移动到java文件夹</p>
+<pre><code>tar -zxvf jdk-8u131-linux-x64.tar.gz
 mv jdk1.8.0_131 /usr/java
-</code></pre></div><p>配置环境变量</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">vim /etc/profile
+</code></pre><p>配置环境变量</p>
+<pre><code>vim /etc/profile
 在末尾添加
 JAVA_HOME=/usr/java/jdk1.8.0_131
   JRE_HOME=$JAVA_HOME/jre
@@ -100,85 +133,87 @@ JAVA_HOME=/usr/java/jdk1.8.0_131
   export JRE_HOME
   export PATH
   export CLASSPATH
-</code></pre></div><p>刷新配置</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">source /etc/profile
-</code></pre></div><p>检查配置</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">java -version
-</code></pre></div><h2 id="tomcat安装">Tomcat安装 <a href="#tomcat%e5%ae%89%e8%a3%85" class="anchor">🔗</a></h2><p>下载解压安装</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">wget http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.16/bin/apache-tomcat-8.5.16.tar.gz
+</code></pre><p>刷新配置</p>
+<pre><code>source /etc/profile
+</code></pre><p>检查配置</p>
+<pre><code>java -version
+</code></pre><h2 id="tomcat安装">Tomcat安装</h2>
+<p>下载解压安装</p>
+<pre><code>wget http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.16/bin/apache-tomcat-8.5.16.tar.gz
 tar -zxvf apache-tomcat-8.5.16.tar.gz
 mv apache-tomcat-8.5.16 /usr/tomcat
-</code></pre></div><p>运行</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">sh /usr/tomcat/apache-tomcat-8.5.16/bin/startup.sh
-</code></pre></div><p>在浏览器输入http:ip地址:8080 测试；可以访问则表示成功，如果不可以访问需要配置防火墙规则</p>
+</code></pre><p>运行</p>
+<pre><code>sh /usr/tomcat/apache-tomcat-8.5.16/bin/startup.sh
+</code></pre><p>在浏览器输入http:ip地址:8080 测试；可以访问则表示成功，如果不可以访问需要配置防火墙规则</p>
 <p>进行如下设置并重启防火墙，这里需要注意，由于centos7采用了firewall防火墙，配置方法有所不同，可以参考相关资料</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
+<pre><code># iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
 # service iptables restart
-</code></pre></div><p>创建脚本文件方便tomcat启动</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">vim /etc/rc.d/init.d/tomcat
-</code></pre></div><p>脚本文件如下，将Jdk和tomcat安装路径更换即可</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#080">#!/bin/bash  
-</span><span style="color:#080"></span><span style="color:#080;font-style:italic"># description: Tomcat7 Start Stop Restart  </span>
-<span style="color:#080;font-style:italic"># processname: tomcat7  </span>
-<span style="color:#080;font-style:italic"># chkconfig: 234 20 80  </span>
-<span style="color:#b8860b">JAVA_HOME</span><span style="color:#666">=</span>/usr/java/jdk1.8.0_133
-<span style="color:#a2f">export</span> JAVA_HOME  
-<span style="color:#b8860b">PATH</span><span style="color:#666">=</span><span style="color:#b8860b">$JAVA_HOME</span>/bin:<span style="color:#b8860b">$PATH</span>  
-<span style="color:#a2f">export</span> PATH  
-<span style="color:#b8860b">CATALINA_HOME</span><span style="color:#666">=</span>/usr/tomcat8
-<span style="color:#a2f;font-weight:bold">case</span> <span style="color:#b8860b">$1</span> in  
-start<span style="color:#666">)</span>  
-sh <span style="color:#b8860b">$CATALINA_HOME</span>/bin/startup.sh  
+</code></pre><p>创建脚本文件方便tomcat启动</p>
+<pre><code>vim /etc/rc.d/init.d/tomcat
+</code></pre><p>脚本文件如下，将Jdk和tomcat安装路径更换即可</p>
+<pre><code>#!/bin/bash  
+# description: Tomcat7 Start Stop Restart  
+# processname: tomcat7  
+# chkconfig: 234 20 80  
+JAVA_HOME=/usr/java/jdk1.8.0_133
+export JAVA_HOME  
+PATH=$JAVA_HOME/bin:$PATH  
+export PATH  
+CATALINA_HOME=/usr/tomcat8
+case $1 in  
+start)  
+sh $CATALINA_HOME/bin/startup.sh  
 ;;   
-stop<span style="color:#666">)</span>     
-sh <span style="color:#b8860b">$CATALINA_HOME</span>/bin/shutdown.sh  
+stop)     
+sh $CATALINA_HOME/bin/shutdown.sh  
 ;;   
-restart<span style="color:#666">)</span>  
-sh <span style="color:#b8860b">$CATALINA_HOME</span>/bin/shutdown.sh  
-sh <span style="color:#b8860b">$CATALINA_HOME</span>/bin/startup.sh  
+restart)  
+sh $CATALINA_HOME/bin/shutdown.sh  
+sh $CATALINA_HOME/bin/startup.sh  
 ;;   
-<span style="color:#a2f;font-weight:bold">esac</span>      
-<span style="color:#a2f">exit</span> <span style="color:#666">0</span>
-</code></pre></div><p>设置文件属性和运行服务级别</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback"># chmod a+x tomcat
+esac      
+exit 0
+</code></pre><p>设置文件属性和运行服务级别</p>
+<pre><code># chmod a+x tomcat
 # chkconfig --add tomcat
-</code></pre></div><p>测试</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">service tomcat start
+</code></pre><p>测试</p>
+<pre><code>service tomcat start
 service tomcat stop
 service tomcat restart
 service tomcat status
-</code></pre></div><h2 id="安装mysql数据库">安装mysql数据库 <a href="#%e5%ae%89%e8%a3%85mysql%e6%95%b0%e6%8d%ae%e5%ba%93" class="anchor">🔗</a></h2><p>检查是否已经安装</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">rpm -q mysql-libs
+</code></pre><h2 id="安装mysql数据库">安装mysql数据库</h2>
+<p>检查是否已经安装</p>
+<pre><code>rpm -q mysql-libs
 yum remove mysql-libs /** if exists **/
-</code></pre></div><p>下载安装mysql</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">wget https://dev.mysql.com/get/Downloads/MySQL-5.5/MySQL-server-5.5.56-1.el6.x86_64.rpm
+</code></pre><p>下载安装mysql</p>
+<pre><code>wget https://dev.mysql.com/get/Downloads/MySQL-5.5/MySQL-server-5.5.56-1.el6.x86_64.rpm
 wget https://dev.mysql.com/get/Downloads/MySQL-5.5/MySQL-client-5.5.56-1.el6.x86_64.rpm
 wget https://dev.mysql.com/get/Downloads/MySQL-5.5/MySQL-devel-5.5.56-1.el6.x86_64.rpm
 rpm -ivh MySQL-server-5.5.56-1.el6.x86_64.rpm
 rpm -ivh MySQL-client-5.5.56-1.el6.x86_64.rpm
 rpm -ivh MySQL-devel-5.5.56-1.el6.x86_64.rpm
-</code></pre></div><p>安装时候需要注意centos系统为6是需要选择上面的版本</p>
+</code></pre><p>安装时候需要注意centos系统为6是需要选择上面的版本</p>
 <p>开启数据库</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">service mysql start
-</code></pre></div><p>设置数据库root账户密码</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">mysql&gt; use mysql;
-mysql&gt; update user set password=PASSWORD(&#34;GIVE-NEW-ROOT-PASSWORD&#34;) where User=&#39;root&#39;;
+<pre><code>service mysql start
+</code></pre><p>设置数据库root账户密码</p>
+<pre><code>mysql&gt; use mysql;
+mysql&gt; update user set password=PASSWORD(&quot;GIVE-NEW-ROOT-PASSWORD&quot;) where User='root';
 mysql&gt; flush privileges;
 mysql&gt; quit
-</code></pre></div><p>数据库的配置</p>
+</code></pre><p>数据库的配置</p>
 <p>在mysql5.5中，默认是没有类似 /etc/my.cof的配置文件的，只有在<code>/usr/share/mysql/</code>下可以找到几个cnf后缀的配置文件，是根据内存大小来进行配置的，而如果想要修改编码，可以安装以下步骤</p>
 <ol>
 <li>
 <p>通过输入命令<code>mysql --help | grep 'Default options' -A 1</code>可以查看mysql5.5读取数据库配置文件的顺序,输出如下</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">default options are read from the following files in the given order:
+<pre><code>default options are read from the following files in the given order:
 /etc/my.cnf /etc/mysql/my.cnf /usr/etc/my.cnf ~/.my.cnf
-</code></pre></div></li>
+</code></pre></li>
 <li>
 <p>创建配置文件 <code>vi /etc/my.cnf</code></p>
 </li>
 <li>
 <p>进行编码设置</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">[client]
+<pre><code>[client]
 port = 3306
 socket = /var/lib/mysql/mysql.sock
 default-character-set=utf8
@@ -189,13 +224,13 @@ character-set-server=utf8
 [mysql]
 no-auto-rehash
 default-character-set=utf8
-</code></pre></div></li>
+</code></pre></li>
 <li>
 <p>重启mysql<code>service mysql restart</code></p>
 </li>
 <li>
 <p>查看是否生效<code>mysql&gt; show variables like 'char%';</code></p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">mysql&gt; show variables like &#39;char%&#39;;
+<pre><code>mysql&gt; show variables like 'char%';
 +--------------------------+----------------------------+
 | Variable_name            | Value                      |
 +--------------------------+----------------------------+
@@ -209,100 +244,85 @@ default-character-set=utf8
 | character_sets_dir       | /usr/share/mysql/charsets/ |
 +--------------------------+----------------------------+
 8 rows in set (0.00 sec)
-</code></pre></div></li>
+</code></pre></li>
 </ol>
 <p>至此，mysql的配置安装也完成。</p>
-    </div>
+    </article>
+  </main>
+  
 
-    
-        <div class="tags">
-            
-                <a href="https://haigeek.me/tags/mysql">MySQl</a>
-            
-                <a href="https://haigeek.me/tags/java">java</a>
-            
-                <a href="https://haigeek.me/tags/linux">Linux</a>
-            
-                <a href="https://haigeek.me/tags/tomcat">Tomcat</a>
-            
-        </div>
-    
-    
-     
-  <div id="comment">
-    
-    <div id="disqus_thread"></div>
-<script type="application/javascript">
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "your-disqus-shortname" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+
+
+
+
+<div id="comment"></div>
+
+
+
+
+<script>
+    const s = document.createElement("script")
+    s.src = "https://giscus.app/client.js"
+    s.crossOrigin = "anonymous"
+    s.async = true
+    s.setAttribute("data-repo", "haigeek\/blog-comment-bygiscus")
+    s.setAttribute("data-repo-id", "R_kgDOIq0W4w")
+    s.setAttribute("data-category", "Announcements")
+    s.setAttribute("data-category-id", "DIC_kwDOIq0W484CTPda")
+    s.setAttribute("data-mapping", "pathname")
+    s.setAttribute("data-strict", "0")
+    s.setAttribute("data-reactions-enabled", "1")
+    s.setAttribute("data-emit-metadata", "0")
+    s.setAttribute("data-input-position", "buttom")
+    s.setAttribute("data-theme", window.minima_theme + "_protanopia")
+    s.setAttribute("data-lang", "en")
+    s.setAttribute("data-loading", "lazy")
+    document.getElementById("comment").appendChild(s)
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-  </div>
 
 
-</section>
 
 
-    </main>
-    
-    <footer id="footer">
-    
-        <div id="social">
 
 
-    <a class="symbol" href="https://github.com/haigeek" target="_blank">
-        
-        <svg fill="#bbbbbb" width="28" height="28"  viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    
-    <title>Github</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Social-Icons---Rounded-Black" transform="translate(-264.000000, -939.000000)">
-            <g id="Github" transform="translate(264.000000, 939.000000)">
-                <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z" id="Rounded" fill="#bbbbbb"></path>
-                <path d="M35.9985,13 C22.746,13 12,23.7870921 12,37.096644 C12,47.7406712 18.876,56.7718301 28.4145,59.9584121 C29.6145,60.1797862 30.0525,59.4358488 30.0525,58.7973276 C30.0525,58.2250681 30.0315,56.7100863 30.0195,54.6996482 C23.343,56.1558981 21.9345,51.4693938 21.9345,51.4693938 C20.844,48.6864054 19.2705,47.9454799 19.2705,47.9454799 C17.091,46.4500754 19.4355,46.4801943 19.4355,46.4801943 C21.843,46.6503662 23.1105,48.9634994 23.1105,48.9634994 C25.2525,52.6455377 28.728,51.5823398 30.096,50.9649018 C30.3135,49.4077535 30.9345,48.3460615 31.62,47.7436831 C26.2905,47.1352808 20.688,45.0691228 20.688,35.8361671 C20.688,33.2052792 21.6225,31.0547881 23.1585,29.3696344 C22.911,28.7597262 22.0875,26.3110578 23.3925,22.9934585 C23.3925,22.9934585 25.4085,22.3459017 29.9925,25.4632101 C31.908,24.9285993 33.96,24.6620468 36.0015,24.6515052 C38.04,24.6620468 40.0935,24.9285993 42.0105,25.4632101 C46.5915,22.3459017 48.603,22.9934585 48.603,22.9934585 C49.9125,26.3110578 49.089,28.7597262 48.8415,29.3696344 C50.3805,31.0547881 51.309,33.2052792 51.309,35.8361671 C51.309,45.0917119 45.6975,47.1292571 40.3515,47.7256117 C41.2125,48.4695491 41.9805,49.9393525 41.9805,52.1877301 C41.9805,55.4089489 41.9505,58.0067059 41.9505,58.7973276 C41.9505,59.4418726 42.3825,60.1918338 43.6005,59.9554002 C53.13,56.7627944 60,47.7376593 60,37.096644 C60,23.7870921 49.254,13 35.9985,13" fill="#FFFFFF"></path>
-            </g>
-        </g>
-    </g>
-</svg>
-    </a>
+
 
 
 </div>
 
-    
 
-    <p class="copyright">
-    
-       © Copyright 
-       2021 
-       <span class="split">
-        <svg fill="#bbbbbb" width="15" height="15" version="1.1" id="heart-15" xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 15 15">
-  <path d="M13.91,6.75c-1.17,2.25-4.3,5.31-6.07,6.94c-0.1903,0.1718-0.4797,0.1718-0.67,0C5.39,12.06,2.26,9,1.09,6.75&#xA;&#x9;C-1.48,1.8,5-1.5,7.5,3.45C10-1.5,16.48,1.8,13.91,6.75z"/>
-</svg>
-       </span>
-       haigeek
-    
-    </p>
-    <p class="powerby">
-        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
-    </p>
+  <footer class="mt-8 mb-8">
+  <div class="container mx-auto">
+    <div class="mt-8 flex justify-between items-center">
+      <p class="mt-0 text-sm">
+        © 2022 haigeek |
+        <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> on
+        <a href="https://github.com/mivinci/hugo-theme-minima" target="_blank" rel="noopener noreferrer">Minima</a>
+      </p>
+      <p class="flex items-center mt-0">
+        
+          <a class="icon ml-1 mr-1" href="mailto:haigeek@qq.com" title="email">
+          
+            <svg fill="#63636f" width="22" height="22" viewBox="0 0 24 24"><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm9.06 8.683L5.648 6.238L4.353 7.762l7.72 6.555l7.581-6.56l-1.308-1.513l-6.285 5.439z"/></svg>
+          
+          </a>
+        
+          <a class="icon ml-1 mr-1" href="https://github.com/haigeek" title="github">
+          
+            <svg fill="#63636f" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          
+          </a>
+        
+          <a class="icon ml-1 mr-1" href="/index.xml" title="rss">
+          
+            <svg fill="#63636f" t="1626591563876" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1984" width="18" height="16"><path d="M128 768a128 128 0 1 0 0 256 128 128 0 0 0 0-256zM0 368v176c265.104 0 480 214.912 480 480h176c0-362.32-293.696-656-656-656zM0 0v176c468.336 0 848 379.664 848 848h176C1024 458.464 565.536 0 0 0z" p-id="1985"></path></svg>
+          
+          </a>
+        
+      </p>
+    </div>
+  </div>
 </footer>
+</body>
 
-  </body>
 </html>

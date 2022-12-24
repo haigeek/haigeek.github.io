@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Linux on haigeek</title>
+    <title>Linux on haigeek blog</title>
     <link>https://haigeek.me/categories/linux/</link>
-    <description>Recent content in Linux on haigeek</description>
+    <description>Recent content in Linux on haigeek blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>© 2022 haigeek</copyright>
     <lastBuildDate>Wed, 06 Sep 2017 20:46:37 +0000</lastBuildDate><atom:link href="https://haigeek.me/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CentOS搭建FTP服务器vsftpd</title>
