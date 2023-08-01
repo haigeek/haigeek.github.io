@@ -1,122 +1,168 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="DubboRpc的ExceptionFilter过滤器" />
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Liste - https://haigeek.me">
+    <title>DubboRpc的ExceptionFilter过滤器 | haigeek blog</title>
+    <meta name="description" content="I&#39;m a software engineer , Use Java as the primary programming language, Interested in Microervices, K8s, Devops ... In this blog , I share my technical problems and life records. ">
+    <meta property="og:title" content="DubboRpc的ExceptionFilter过滤器" />
 <meta property="og:description" content="在使用dubbo进行接口调用的时候,在接口抛出异常的时候会在ExceptionFilter最终抛出异常。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://haigeek.me/posts/backend/dubbo/dubbo-rpc-filter-exception-handler/" />
+<meta property="og:url" content="https://haigeek.me/posts/backend/dubbo/dubbo-rpc-filter-exception-handler/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-12-27T00:34:27+08:00" />
 <meta property="article:modified_time" content="2020-12-27T00:34:27+08:00" />
 
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="DubboRpc的ExceptionFilter过滤器"/>
-<meta name="twitter:description" content="在使用dubbo进行接口调用的时候,在接口抛出异常的时候会在ExceptionFilter最终抛出异常。"/>
-
-  
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#262d33">
-  <title>
+    <meta itemprop="name" content="DubboRpc的ExceptionFilter过滤器">
+<meta itemprop="description" content="在使用dubbo进行接口调用的时候,在接口抛出异常的时候会在ExceptionFilter最终抛出异常。"><meta itemprop="datePublished" content="2020-12-27T00:34:27+08:00" />
+<meta itemprop="dateModified" content="2020-12-27T00:34:27+08:00" />
+<meta itemprop="wordCount" content="25">
+<meta itemprop="keywords" content="dubbo," />
     
-    haigeek blog - DubboRpc的ExceptionFilter过滤器
+    <link rel="canonical" href="https://haigeek.me/posts/backend/dubbo/dubbo-rpc-filter-exception-handler/">
+    <link rel="icon" href="https://haigeek.me/assets/favicon.ico">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
+    <link rel="alternate" type="application/atom+xml" title="haigeek blog" href="https://haigeek.me/atom.xml" />
+    <link rel="alternate" type="application/json" title="haigeek blog" href="https://haigeek.me/feed.json" />
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
     
-  </title>
+    
+    <style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 '-apple-system',BlinkMacSystemFont,avenir next,avenir,helvetica,helvetica neue,ubuntu,roboto,noto,segoe ui,arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;background:#f5f5f5;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}h1,h2,h3,h4,h5,strong,b{font-size:inherit;font-weight:600}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{margin:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}.post-date{margin:5% 0}.index-date{color:#9a9a9a}.animate-blink{animation:opacity 1s infinite;opacity:1}@keyframes opacity{0%{opacity:1}50%{opacity:.5}100%{opacity:0}}.tags{display:flex;justify-content:space-between}.tags ul{padding:0;margin:0}.tags li{display:inline}.avatar{height:120px;width:120px;position:relative;margin:-10px 0 0 15px;float:right;border-radius:50%} </style>
   
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  
-  
-  
-  <link rel="stylesheet" href="/minima.1671899191.css">
+    
   
   
-  <script defer type="text/javascript" src="/minima.1671899191.js"></script>
-  
-</head>
-<script>
-  
-  let default_theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-  try {
-    const local = localStorage.getItem('theme')
-    if (local) {
-      default_theme = local
-    }
-    localStorage.setItem('theme', default_theme);
-    window.minima_theme = default_theme;
-    document.querySelector('html').classList.add(default_theme);
-  } catch (e) {
-    console.error(e);
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "articleSection": "posts",
+      "name": "DubboRpc的ExceptionFilter过滤器",
+      "headline": "DubboRpc的ExceptionFilter过滤器",
+      "alternativeHeadline": "",
+      "description": "\u003cp\u003e在使用dubbo进行接口调用的时候,在接口抛出异常的时候会在ExceptionFilter最终抛出异常。\u003c\/p\u003e",
+      "inLanguage": "zh-cn",
+      "isFamilyFriendly": "true",
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/haigeek.me\/posts\/backend\/dubbo\/dubbo-rpc-filter-exception-handler\/"
+      },
+      "author" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "creator" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "accountablePerson" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "copyrightHolder" : "haigeek blog",
+      "copyrightYear" : "2020",
+      "dateCreated": "2020-12-27T00:34:27.00Z",
+      "datePublished": "2020-12-27T00:34:27.00Z",
+      "dateModified": "2020-12-27T00:34:27.00Z",
+      "publisher":{
+          "@type":"Organization",
+          "name": "haigeek blog",
+          "url": "https://haigeek.me",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "https:\/\/haigeek.me\/assets\/favicon.ico",
+              "width":"32",
+              "height":"32"
+          }
+      },
+      "image": "https://haigeek.me/assets/favicon.ico",
+      "url" : "https:\/\/haigeek.me\/posts\/backend\/dubbo\/dubbo-rpc-filter-exception-handler\/",
+      "wordCount" : "25",
+      "genre" : [ "dubbo" ],
+      "keywords" : [ "dubbo" ]
   }
-</script>
-
-
+  </script>
+  
+  
+  </head>
 
 <body>
-  <header class="mt-3 mb-6">
-  <div class="container mx-auto">
-    <nav class="flex justify-between items-center">
-      <div class="flex items-center">
-        
-        <div id="theme-switch" class="text-3xl cursor-pointer">☼</div>
-      </div>
-      <ul class="flex items-center font-medium
-        whitespace-nowrap overflow-x-auto overflow-y-hidden">
-        
-        <li class="ml-1 mr-1"><a href="/">首页</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/categories">分类</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/tags">标签</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/about">关于</a></li>
-        
-        <li class="ml-1 mr-1"><a href="https://wiki.haigeek.me">Wiki</a></li>
-        
-      </ul>
-      <ul class="flex item-center text-sm font-bold">
-        
-      </ul>
-    </nav>
-  </div>
-</header>
-
+  <a class="skip-link" href="#main">Skip to main</a>
+  <main id="main">
+  <div class="content">
+    <header>
+<p style="padding: 0;margin: 0;">
+  <a href="/">
+    <b>haigeek blog</b>
+    <span class="text-stone-500 animate-blink">▮</span>
+  </a>
+</p>
+<ul style="padding: 0;margin: 0;">
   
-<div class="container mx-auto">
-  <h1 class="text-4xl font-extrabold mt-6 mb-6">DubboRpc的ExceptionFilter过滤器</h1>
-  <div class="mb-3 text-sm flex justify-between ">
-    <div>
-      
-      发布于 &mdash; 2020 年 12 月 27 日
-      
-      
-    </div>
+  
+  <li class="">
+    <a href="/posts/"><span>Post</span></a>
     
-    <div>
-      
-      
-      <a class="ml-1" href="/tags/dubbo">#dubbo</a>
-      
-    </div>
+  <li class="">
+    <a href="/about/"><span>About</span></a>
     
-  </div>
-  <main class="mb-8">
-    <p></p>
-    <article class="md">
+  <li class="">
+    <a href="https://wiki.haigeek.me"><span>Wiki</span></a>
+    
+  </li>
+</ul>
+</header>
+<hr class="hr-list" style="padding: 0;margin: 0;">
+    <section>
+      <h2 class="post">DubboRpc的ExceptionFilter过滤器</h2>
       <p>在使用dubbo进行接口调用的时候,在接口抛出异常的时候会在ExceptionFilter最终抛出异常。</p>
 <h1 id="dubbo-filter下的异常处理">Dubbo filter下的异常处理</h1>
 <h2 id="场景">场景</h2>
 <p>现有的异常处理下,很多时候我们总是会遇到下面的这个异常</p>
-<pre><code>com.alibaba.dubbo.rpc.filter.ExceptionFilter invoke xxx
-</code></pre><p><img src="images/image-20190730113116205-5755339.png" alt="image-20190730113116205"></p>
+<pre tabindex="0"><code>com.alibaba.dubbo.rpc.filter.ExceptionFilter invoke xxx
+</code></pre><p><img
+  src="images/image-20190730113116205-5755339.png"
+  alt="image-20190730113116205"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>那就存在一个问题</p>
 <p>我明明自己定义了自定义异常(继承自RuntimeException),在全局异常处理也做了对应的处理</p>
-<p><img src="images/image-20190730113307443.png" alt="image-20190730113307443"></p>
+<p><img
+  src="images/image-20190730113307443.png"
+  alt="image-20190730113307443"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>但是并没有被处理.</p>
 <h2 id="分析">分析</h2>
 <p>查看dubboFileter的ExceptionFilter发现:</p>
-<p><img src="images/image-20190730121941914.png" alt="image-20190730121941914">抛出异常的代码在68行,查看上下文分析在什么时候会抛出这个异常</p>
-<p><img src="images/image-20190730122226943.png" alt="image-20190730122226943"></p>
+<p><img
+  src="images/image-20190730121941914.png"
+  alt="image-20190730121941914"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+抛出异常的代码在68行,查看上下文分析在什么时候会抛出这个异常</p>
+<p><img
+  src="images/image-20190730122226943.png"
+  alt="image-20190730122226943"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <h2 id="解决">解决</h2>
 <p>那么我们想直接返回异常的message给到前端的时候,根据源码可以制定下面两种方式</p>
 <p>1、使用非运行时异常Exception</p>
@@ -125,87 +171,56 @@
 <p>2、使用RunTimeException,但是只在接口层抛出即可</p>
 <p>如下:</p>
 <p>接口层</p>
-<p><img src="images/image-20190730122743081.png" alt="image-20190730122743081"></p>
+<p><img
+  src="images/image-20190730122743081.png"
+  alt="image-20190730122743081"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>实现层,在实现层不需要专门抛出</p>
-<p><img src="images/image-20190730122812991.png" alt="image-20190730122812991"></p>
+<p><img
+  src="images/image-20190730122812991.png"
+  alt="image-20190730122812991"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>效果:</p>
-<p><img src="images/image-20190730122906444.png" alt="image-20190730122906444"></p>
-    </article>
-  </main>
-  
+<p><img
+  src="images/image-20190730122906444.png"
+  alt="image-20190730122906444"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
 
-
-
-
-
-<div id="comment"></div>
-
-
-
-
-<script>
-    const s = document.createElement("script")
-    s.src = "https://giscus.app/client.js"
-    s.crossOrigin = "anonymous"
-    s.async = true
-    s.setAttribute("data-repo", "haigeek\/blog-comment-bygiscus")
-    s.setAttribute("data-repo-id", "R_kgDOIq0W4w")
-    s.setAttribute("data-category", "Announcements")
-    s.setAttribute("data-category-id", "DIC_kwDOIq0W484CTPda")
-    s.setAttribute("data-mapping", "pathname")
-    s.setAttribute("data-strict", "0")
-    s.setAttribute("data-reactions-enabled", "1")
-    s.setAttribute("data-emit-metadata", "0")
-    s.setAttribute("data-input-position", "buttom")
-    s.setAttribute("data-theme", window.minima_theme + "_protanopia")
-    s.setAttribute("data-lang", "en")
-    s.setAttribute("data-loading", "lazy")
-    document.getElementById("comment").appendChild(s)
+</p>
+      
+      <div class="post-date">
+        <span class="g time">December 27, 2020 </span> &#8729;
+         
+         <a href="https://haigeek.me/tags/dubbo/">dubbo</a>
+      </div>
+      
+    </section>
+    
+    <div id="comments">
+      <script src="https://utteranc.es/client.js"
+    repo=ZgotmplZ
+    issue-term="pathname"
+    theme=ZgotmplZ
+    crossorigin="anonymous"
+    async>
 </script>
 
-
-
-
-
-
-
-
-
-</div>
-
-
-  <footer class="mt-8 mb-8">
-  <div class="container mx-auto">
-    <div class="mt-8 flex justify-between items-center">
-      <p class="mt-0 text-sm">
-        © 2022 haigeek |
-        <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> on
-        <a href="https://github.com/mivinci/hugo-theme-minima" target="_blank" rel="noopener noreferrer">Minima</a>
-      </p>
-      <p class="flex items-center mt-0">
-        
-          <a class="icon ml-1 mr-1" href="mailto:haigeek@qq.com" title="email">
-          
-            <svg fill="#63636f" width="22" height="22" viewBox="0 0 24 24"><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm9.06 8.683L5.648 6.238L4.353 7.762l7.72 6.555l7.581-6.56l-1.308-1.513l-6.285 5.439z"/></svg>
-          
-          </a>
-        
-          <a class="icon ml-1 mr-1" href="https://github.com/haigeek" title="github">
-          
-            <svg fill="#63636f" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          
-          </a>
-        
-          <a class="icon ml-1 mr-1" href="/index.xml" title="rss">
-          
-            <svg fill="#63636f" t="1626591563876" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1984" width="18" height="16"><path d="M128 768a128 128 0 1 0 0 256 128 128 0 0 0 0-256zM0 368v176c265.104 0 480 214.912 480 480h176c0-362.32-293.696-656-656-656zM0 0v176c468.336 0 848 379.664 848 848h176C1024 458.464 565.536 0 0 0z" p-id="1985"></path></svg>
-          
-          </a>
-        
-      </p>
     </div>
+    
   </div>
-</footer>
+</main>
 </body>
-
 </html>

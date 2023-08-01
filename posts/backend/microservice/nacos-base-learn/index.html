@@ -1,108 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="nacos作为配置中心的使用" />
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Liste - https://haigeek.me">
+    <title>nacos作为配置中心的使用 | haigeek blog</title>
+    <meta name="description" content="I&#39;m a software engineer , Use Java as the primary programming language, Interested in Microervices, K8s, Devops ... In this blog , I share my technical problems and life records. ">
+    <meta property="og:title" content="nacos作为配置中心的使用" />
 <meta property="og:description" content="nacos的初步认识与使用" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://haigeek.me/posts/backend/microservice/nacos-base-learn/" />
+<meta property="og:url" content="https://haigeek.me/posts/backend/microservice/nacos-base-learn/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-01-08T22:31:21+00:00" />
 <meta property="article:modified_time" content="2020-01-08T22:31:21+00:00" />
 
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="nacos作为配置中心的使用"/>
-<meta name="twitter:description" content="nacos的初步认识与使用"/>
-
-  
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#262d33">
-  <title>
+    <meta itemprop="name" content="nacos作为配置中心的使用">
+<meta itemprop="description" content="nacos的初步认识与使用"><meta itemprop="datePublished" content="2020-01-08T22:31:21+00:00" />
+<meta itemprop="dateModified" content="2020-01-08T22:31:21+00:00" />
+<meta itemprop="wordCount" content="444">
+<meta itemprop="keywords" content="nacos," />
     
-    haigeek blog - nacos作为配置中心的使用
+    <link rel="canonical" href="https://haigeek.me/posts/backend/microservice/nacos-base-learn/">
+    <link rel="icon" href="https://haigeek.me/assets/favicon.ico">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
+    <link rel="alternate" type="application/atom+xml" title="haigeek blog" href="https://haigeek.me/atom.xml" />
+    <link rel="alternate" type="application/json" title="haigeek blog" href="https://haigeek.me/feed.json" />
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
     
-  </title>
+    
+    <style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 '-apple-system',BlinkMacSystemFont,avenir next,avenir,helvetica,helvetica neue,ubuntu,roboto,noto,segoe ui,arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;background:#f5f5f5;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}h1,h2,h3,h4,h5,strong,b{font-size:inherit;font-weight:600}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{margin:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}.post-date{margin:5% 0}.index-date{color:#9a9a9a}.animate-blink{animation:opacity 1s infinite;opacity:1}@keyframes opacity{0%{opacity:1}50%{opacity:.5}100%{opacity:0}}.tags{display:flex;justify-content:space-between}.tags ul{padding:0;margin:0}.tags li{display:inline}.avatar{height:120px;width:120px;position:relative;margin:-10px 0 0 15px;float:right;border-radius:50%} </style>
   
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  
-  
-  
-  <link rel="stylesheet" href="/minima.1671899191.css">
+    
   
   
-  <script defer type="text/javascript" src="/minima.1671899191.js"></script>
-  
-</head>
-<script>
-  
-  let default_theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-  try {
-    const local = localStorage.getItem('theme')
-    if (local) {
-      default_theme = local
-    }
-    localStorage.setItem('theme', default_theme);
-    window.minima_theme = default_theme;
-    document.querySelector('html').classList.add(default_theme);
-  } catch (e) {
-    console.error(e);
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "articleSection": "posts",
+      "name": "nacos作为配置中心的使用",
+      "headline": "nacos作为配置中心的使用",
+      "alternativeHeadline": "",
+      "description": "\u003cp\u003enacos的初步认识与使用\u003c\/p\u003e",
+      "inLanguage": "zh-cn",
+      "isFamilyFriendly": "true",
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/haigeek.me\/posts\/backend\/microservice\/nacos-base-learn\/"
+      },
+      "author" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "creator" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "accountablePerson" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "copyrightHolder" : "haigeek blog",
+      "copyrightYear" : "2020",
+      "dateCreated": "2020-01-08T22:31:21.00Z",
+      "datePublished": "2020-01-08T22:31:21.00Z",
+      "dateModified": "2020-01-08T22:31:21.00Z",
+      "publisher":{
+          "@type":"Organization",
+          "name": "haigeek blog",
+          "url": "https://haigeek.me",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "https:\/\/haigeek.me\/assets\/favicon.ico",
+              "width":"32",
+              "height":"32"
+          }
+      },
+      "image": "https://haigeek.me/assets/favicon.ico",
+      "url" : "https:\/\/haigeek.me\/posts\/backend\/microservice\/nacos-base-learn\/",
+      "wordCount" : "444",
+      "genre" : [ "nacos" ],
+      "keywords" : [ "nacos" ]
   }
-</script>
-
-
+  </script>
+  
+  
+  </head>
 
 <body>
-  <header class="mt-3 mb-6">
-  <div class="container mx-auto">
-    <nav class="flex justify-between items-center">
-      <div class="flex items-center">
-        
-        <div id="theme-switch" class="text-3xl cursor-pointer">☼</div>
-      </div>
-      <ul class="flex items-center font-medium
-        whitespace-nowrap overflow-x-auto overflow-y-hidden">
-        
-        <li class="ml-1 mr-1"><a href="/">首页</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/categories">分类</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/tags">标签</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/about">关于</a></li>
-        
-        <li class="ml-1 mr-1"><a href="https://wiki.haigeek.me">Wiki</a></li>
-        
-      </ul>
-      <ul class="flex item-center text-sm font-bold">
-        
-      </ul>
-    </nav>
-  </div>
-</header>
-
+  <a class="skip-link" href="#main">Skip to main</a>
+  <main id="main">
+  <div class="content">
+    <header>
+<p style="padding: 0;margin: 0;">
+  <a href="/">
+    <b>haigeek blog</b>
+    <span class="text-stone-500 animate-blink">▮</span>
+  </a>
+</p>
+<ul style="padding: 0;margin: 0;">
   
-<div class="container mx-auto">
-  <h1 class="text-4xl font-extrabold mt-6 mb-6">nacos作为配置中心的使用</h1>
-  <div class="mb-3 text-sm flex justify-between ">
-    <div>
-      
-      发布于 &mdash; 2020 年 1 月 8 日
-      
-      
-    </div>
+  
+  <li class="">
+    <a href="/posts/"><span>Post</span></a>
     
-    <div>
-      
-      
-      <a class="ml-1" href="/tags/nacos">#nacos</a>
-      
-    </div>
+  <li class="">
+    <a href="/about/"><span>About</span></a>
     
-  </div>
-  <main class="mb-8">
-    <p></p>
-    <article class="md">
+  <li class="">
+    <a href="https://wiki.haigeek.me"><span>Wiki</span></a>
+    
+  </li>
+</ul>
+</header>
+<hr class="hr-list" style="padding: 0;margin: 0;">
+    <section>
+      <h2 class="post">nacos作为配置中心的使用</h2>
       <p>nacos的初步认识与使用</p>
 <h2 id="什么是nacos">什么是nacos</h2>
 <p>来自官网的介绍：</p>
@@ -116,16 +130,24 @@
 <p>配置中心化管理让实现无状态服务变得更简单，让服务按需弹性扩展变得更容易。</p>
 </blockquote>
 <p>nacos作为配置中心已经经过了多个版本的迭代，目前处于稳定阶段。</p>
-<p><img src="images/image-20191231112730110.png" alt="image-20191231112730110"></p>
+<p><img
+  src="images/image-20191231112730110.png"
+  alt="image-20191231112730110"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>图片源自nacos官方文档：https://nacos.io/zh-cn/docs/feature-list.html</p>
 <h2 id="安装部署">安装部署</h2>
 <p>首先去 <a href="https://github.com/alibaba/nacos/releases">https://github.com/alibaba/nacos/releases</a> 下载最新的 release 包，然后解压。</p>
 <p>nacos的安装分两种安装方式：</p>
 <h3 id="standalone-模式">standalone 模式</h3>
 <p>在linux下的启动方式：</p>
-<pre><code>sh bin/startup.sh -m standalone
+<pre tabindex="0"><code>sh bin/startup.sh -m standalone
 </code></pre><p>在Windows下启动：</p>
-<pre><code>cmd bin/startup.cmd -m standalone
+<pre tabindex="0"><code>cmd bin/startup.cmd -m standalone
 </code></pre><p>然后在 http://localhost:8848/nacos/index.html 进入控制台，nacos说明已经启动成功。</p>
 <h3 id="cluster-模式">cluster 模式</h3>
 <p>集群模式需要依赖 MySQL，然后修改对用的配置文件。具体的安装方式不再赘述，官方文档有比较清晰的安装步骤。</p>
@@ -133,13 +155,29 @@
 <h3 id="nacos的配置存储位置">nacos的配置存储位置</h3>
 <h4 id="服务端">服务端</h4>
 <p>单体的nacos使用数据库Derby(Derby 是 Java 编写的数据库，属于 Apache 的一个开源项目)来进行数据的存储。存储路径在NACOS_PATH/data/derby-data</p>
-<p><img src="images/image-20200107133626567.png" alt="image-20200107133626567"></p>
+<p><img
+  src="images/image-20200107133626567.png"
+  alt="image-20200107133626567"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>在实际使用的时候发现nacos直接复制程序文件夹到新的位置进行使用的时候，<strong>存储的数据也会直接复制过去</strong>，在启动之后可以直接使用保存好的数据。</p>
 <h4 id="客户端">客户端</h4>
 <p>nacos会将服务端的配置在本地缓存一份，默认位置在用户目录下的nacos文件夹：</p>
-<p><img src="images/image-20200107140159728.png" alt="image-20200107140159728"></p>
+<p><img
+  src="images/image-20200107140159728.png"
+  alt="image-20200107140159728"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>缓存位置需要客户端在启动时使用-D参数进行指定</p>
-<pre><code>-DJM.SNAPSHOT.PATH=xxx
+<pre tabindex="0"><code>-DJM.SNAPSHOT.PATH=xxx
 </code></pre><h2 id="系统集成与使用">系统集成与使用</h2>
 <h3 id="nacos相关配置概念">nacos相关配置概念</h3>
 <p>nacos为我们提供了以下几个功能：</p>
@@ -157,12 +195,28 @@
 <p>集群管理</p>
 </li>
 </ul>
-<p><img src="images/image-20200103141809972.png" alt="image-20200103141809972"></p>
+<p><img
+  src="images/image-20200103141809972.png"
+  alt="image-20200103141809972"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>其中服务管理按照设计是可以支持dubbo服务注册，替代zookeeper作为新的注册中心，但是我们目前使用dubbo版本的不支持使用nacos，因此我们主要使用nacos的配置管理功能。</p>
 <p>nacos支持集群部署，在集群管理部署的情况下可以查看集群的节点。</p>
 <p>主要介绍下命名空间和配置管理功能</p>
 <h4 id="命名空间">命名空间</h4>
-<p><img src="images/image-20200103141952914.png" alt="image-20200103141952914"></p>
+<p><img
+  src="images/image-20200103141952914.png"
+  alt="image-20200103141952914"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>官方对命名空间的介绍：</p>
 <blockquote>
 <p>在日常使用中常常需要不同的环境，比如日常，预发，线上环境，如果是逻辑隔离可以使用命名空间，Nacos支持命名空间来支持多环境隔离，可以在Nacos控制台创建多个命名空间。如果需要物理隔离，就要部署多套Nacos环境。</p>
@@ -181,9 +235,25 @@
 <h3 id="nacos配置管理其他功能">nacos配置管理其他功能</h3>
 <h4 id="配置版本历史管理">配置版本历史管理</h4>
 <p>在配置文件修改完成点击发布的时候，nacos会对比本次更新与上次更新；</p>
-<p><img src="images/image-20200103164500763.png" alt="image-20200103164500763"></p>
+<p><img
+  src="images/image-20200103164500763.png"
+  alt="image-20200103164500763"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>同时针对一份配置文件可以查询配置的历史，历史保留30天，可以选中某一个版本进行回滚</p>
-<p><img src="images/image-20200103164621353.png" alt="image-20200103164621353"></p>
+<p><img
+  src="images/image-20200103164621353.png"
+  alt="image-20200103164621353"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <h4 id="配置监听查询">配置监听查询</h4>
 <p>nacos具有配置修改实时推送到客户端的功能，其背后的实现机制是一个HttpAgent来访问server暴露的http服务来获取配置文件的更新。在nacos的管理端，可以查询某个配置被那些客户端监听</p>
 <h3 id="配置文件迁移到nacos">配置文件迁移到nacos</h3>
@@ -205,7 +275,7 @@
 <h3 id="集成到springboot项目">集成到SpringBoot项目</h3>
 <p>在springboot中集成nacos作为配置中心非常简单，需要进行以下几个步骤的操作：</p>
 <p>1、引入pom文件</p>
-<pre><code>&lt;dependency&gt;
+<pre tabindex="0"><code>&lt;dependency&gt;
     &lt;groupId&gt;com.alibaba.boot&lt;/groupId&gt;
     &lt;artifactId&gt;nacos-config-spring-boot-starter&lt;/artifactId&gt;
     &lt;version&gt;0.1.4&lt;/version&gt;
@@ -213,338 +283,146 @@
 </code></pre><p>此处的版本0.1.4是针对springboot1.x的版本，对于springboot2.x，可以直接使用最新的版本，目前官方给出的最新版本是0.2.4</p>
 <h4 id="配置方式一全局配置">配置方式一：全局配置</h4>
 <p>在配置文件加入如下配置：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">nacos</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">config</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">server-addr</span><span class="p">:</span><span class="w"> </span><span class="m">127.0.0.1</span><span class="p">:</span><span class="m">8848</span><span class="w"> </span><span class="c">#nacos配置中心的地址</span><span class="w">
-</span><span class="w">    </span><span class="nt">data-ids</span><span class="p">:</span><span class="w"> </span><span class="l">application-dev.yml</span><span class="w"> </span><span class="c">#在nacos中配置的dataid</span><span class="w">
-</span><span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l">dgp-dis-server-web</span><span class="w"> </span><span class="c">#在nacos配置的group</span><span class="w">
-</span><span class="w">    </span><span class="nt">auto-refresh</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c">#自动刷新配置</span><span class="w">
-</span><span class="w">    </span><span class="nt">bootstrap</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">log-enable</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="c">#打印配置变更日志</span><span class="w">
-</span><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">yaml</span><span class="w"> </span><span class="c">#必须填写</span><span class="w">
-</span><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">7a4fe144-3303-4013-b259-fdc8ecd0394d</span><span class="w"> </span><span class="c">#此处必须是namespace的命名空间id</span><span class="w">
-</span></code></pre></td></tr></table>
-</div>
-</div><p>将其他配置转移到nacos配置中心。</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 1</span><span><span style="color:#e06c75">nacos</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 2</span><span>  <span style="color:#e06c75">config</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 3</span><span>    <span style="color:#e06c75">server-addr</span>: <span style="color:#d19a66">127.0.0.1</span>:<span style="color:#d19a66">8848</span> <span style="color:#7f848e">#nacos配置中心的地址</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 4</span><span>    <span style="color:#e06c75">data-ids</span>: application-dev.yml <span style="color:#7f848e">#在nacos中配置的dataid</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 5</span><span>    <span style="color:#e06c75">group</span>: dgp-dis-server-web <span style="color:#7f848e">#在nacos配置的group</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 6</span><span>    <span style="color:#e06c75">auto-refresh</span>: <span style="color:#e5c07b">true</span> <span style="color:#7f848e">#自动刷新配置</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 7</span><span>    <span style="color:#e06c75">bootstrap</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 8</span><span>      <span style="color:#e06c75">log-enable</span>: <span style="color:#e5c07b">true</span> <span style="color:#7f848e">#打印配置变更日志</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 9</span><span>    <span style="color:#e06c75">type</span>: yaml <span style="color:#7f848e">#必须填写</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">10</span><span>    <span style="color:#e06c75">namespace</span>: 7a4fe144-3303-4013-b259-fdc8ecd0394d <span style="color:#7f848e">#此处必须是namespace的命名空间id</span>
+</span></span></code></pre></div><p>将其他配置转移到nacos配置中心。</p>
 <p>此配置方式等效于在springboot的启动类上加上@NacosPropertySource注解</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@SpringBootApplication</span>
-<span class="nd">@NacosPropertySource</span><span class="o">(</span><span class="n">dataId</span> <span class="o">=</span> <span class="s">&#34;application-dev.yml&#34;</span><span class="o">,</span> <span class="n">groupId</span> <span class="o">=</span> <span class="s">&#34;dgp-dis-server-web&#34;</span><span class="o">,</span><span class="n">autoRefreshed</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">NacosConfigApplication</span> <span class="o">{</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">NacosConfigApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>在配置中心加入下面的配置</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">useLocalCache</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></code></pre></td></tr></table>
-</div>
-</div><p>在需要使用nacos的数据时，可以借助@NacosValue注解</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"> <span class="nd">@NacosValue</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;${useLocalCache:false}&#34;</span><span class="o">,</span> <span class="n">autoRefreshed</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">useLocalCache</span><span class="o">;</span>
- <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;/get&#34;</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="n">RequestMethod</span><span class="o">.</span><span class="na">GET</span><span class="o">)</span>
-    <span class="nd">@ResponseBody</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">get</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">useLocalCache</span><span class="o">;</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h4 id="配置方式二灵活的局部配置">配置方式二：灵活的局部配置</h4>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1</span><span><span style="color:#61afef">@SpringBootApplication</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">2</span><span><span style="color:#61afef">@NacosPropertySource</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">dataId</span> <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#34;application-dev.yml&#34;</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">groupId</span> <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#34;dgp-dis-server-web&#34;</span><span style="color:#56b6c2">,</span><span style="color:#e06c75">autoRefreshed</span> <span style="color:#56b6c2">=</span> <span style="color:#e5c07b">true</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">3</span><span><span style="color:#c678dd">public</span> <span style="color:#c678dd">class</span> <span style="color:#e5c07b">NacosConfigApplication</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">5</span><span>    <span style="color:#c678dd">public</span> <span style="color:#c678dd">static</span> <span style="color:#e5c07b">void</span> <span style="color:#61afef;font-weight:bold">main</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">[]</span> <span style="color:#e06c75">args</span><span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">6</span><span>        <span style="color:#e06c75">SpringApplication</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">run</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">NacosConfigApplication</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">class</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">args</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">7</span><span>    <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">8</span><span><span style="color:#56b6c2">}</span>
+</span></span></code></pre></div><p>在配置中心加入下面的配置</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1</span><span><span style="color:#e06c75">useLocalCache</span>: <span style="color:#e5c07b">false</span>
+</span></span></code></pre></div><p>在需要使用nacos的数据时，可以借助@NacosValue注解</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1</span><span> <span style="color:#61afef">@NacosValue</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">value</span> <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#34;${useLocalCache:false}&#34;</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">autoRefreshed</span> <span style="color:#56b6c2">=</span> <span style="color:#e5c07b">true</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">2</span><span>    <span style="color:#c678dd">private</span> <span style="color:#e5c07b">boolean</span> <span style="color:#e06c75">useLocalCache</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">3</span><span> <span style="color:#61afef">@RequestMapping</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">value</span> <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#34;/get&#34;</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">method</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">RequestMethod</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">GET</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">4</span><span>    <span style="color:#61afef">@ResponseBody</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">5</span><span>    <span style="color:#c678dd">public</span> <span style="color:#e5c07b">boolean</span> <span style="color:#61afef;font-weight:bold">get</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">6</span><span>        <span style="color:#c678dd">return</span> <span style="color:#e06c75">useLocalCache</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">7</span><span>    <span style="color:#56b6c2">}</span>
+</span></span></code></pre></div><h4 id="配置方式二灵活的局部配置">配置方式二：灵活的局部配置</h4>
 <p>在整体配置的基础上，可以对实体代码进行配置，如下所示</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@NacosConfigurationProperties</span><span class="o">(</span><span class="n">prefix</span> <span class="o">=</span> <span class="s">&#34;apple&#34;</span><span class="o">,</span> <span class="n">dataId</span> <span class="o">=</span> <span class="s">&#34;apple&#34;</span><span class="o">,</span> <span class="n">type</span> <span class="o">=</span> <span class="n">ConfigType</span><span class="o">.</span><span class="na">YAML</span><span class="o">,</span> <span class="n">autoRefreshed</span> <span class="o">=</span> <span class="kc">true</span><span class="o">)</span>
-<span class="nd">@Configuration</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Apple</span> <span class="o">{</span>
-
-	<span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">;</span>
-
-	<span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">listMap</span><span class="o">;</span>
-
-	<span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getList</span><span class="o">()</span> <span class="o">{</span>
-		<span class="k">return</span> <span class="n">list</span><span class="o">;</span>
-	<span class="o">}</span>
-
-	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setList</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">this</span><span class="o">.</span><span class="na">list</span> <span class="o">=</span> <span class="n">list</span><span class="o">;</span>
-	<span class="o">}</span>
-
-	<span class="kd">public</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="nf">getListMap</span><span class="o">()</span> <span class="o">{</span>
-		<span class="k">return</span> <span class="n">listMap</span><span class="o">;</span>
-	<span class="o">}</span>
-
-	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setListMap</span><span class="o">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span> <span class="n">listMap</span><span class="o">)</span> <span class="o">{</span>
-		<span class="k">this</span><span class="o">.</span><span class="na">listMap</span> <span class="o">=</span> <span class="n">listMap</span><span class="o">;</span>
-	<span class="o">}</span>
-
-	<span class="nd">@Override</span>
-	<span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
-		<span class="k">return</span> <span class="s">&#34;Apple{&#34;</span> <span class="o">+</span> <span class="s">&#34;list=&#34;</span> <span class="o">+</span> <span class="n">list</span> <span class="o">+</span> <span class="s">&#34;, listMap=&#34;</span> <span class="o">+</span> <span class="n">listMap</span> <span class="o">+</span> <span class="sc">&#39;}&#39;</span><span class="o">;</span>
-	<span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>在nacos配置中心加上如下的配置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 1</span><span><span style="color:#61afef">@NacosConfigurationProperties</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">prefix</span> <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#34;apple&#34;</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">dataId</span> <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#34;apple&#34;</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">type</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">ConfigType</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">YAML</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">autoRefreshed</span> <span style="color:#56b6c2">=</span> <span style="color:#e5c07b">true</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 2</span><span><span style="color:#61afef">@Configuration</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 3</span><span><span style="color:#c678dd">public</span> <span style="color:#c678dd">class</span> <span style="color:#e5c07b">Apple</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 5</span><span>	<span style="color:#c678dd">private</span> <span style="color:#e06c75">List</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">&gt;</span> <span style="color:#e06c75">list</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 7</span><span>	<span style="color:#c678dd">private</span> <span style="color:#e06c75">Map</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">List</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">&gt;&gt;</span> <span style="color:#e06c75">listMap</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 9</span><span>	<span style="color:#c678dd">public</span> <span style="color:#e06c75">List</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">&gt;</span> <span style="color:#61afef;font-weight:bold">getList</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">10</span><span>		<span style="color:#c678dd">return</span> <span style="color:#e06c75">list</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">11</span><span>	<span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">13</span><span>	<span style="color:#c678dd">public</span> <span style="color:#e5c07b">void</span> <span style="color:#61afef;font-weight:bold">setList</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">List</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">&gt;</span> <span style="color:#e06c75">list</span><span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">14</span><span>		<span style="color:#c678dd">this</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">list</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">list</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">15</span><span>	<span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">16</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">17</span><span>	<span style="color:#c678dd">public</span> <span style="color:#e06c75">Map</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">List</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">&gt;&gt;</span> <span style="color:#61afef;font-weight:bold">getListMap</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">18</span><span>		<span style="color:#c678dd">return</span> <span style="color:#e06c75">listMap</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">19</span><span>	<span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">20</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">21</span><span>	<span style="color:#c678dd">public</span> <span style="color:#e5c07b">void</span> <span style="color:#61afef;font-weight:bold">setListMap</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">Map</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">List</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">&gt;&gt;</span> <span style="color:#e06c75">listMap</span><span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">22</span><span>		<span style="color:#c678dd">this</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">listMap</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">listMap</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">23</span><span>	<span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">24</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">25</span><span>	<span style="color:#61afef">@Override</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">26</span><span>	<span style="color:#c678dd">public</span> <span style="color:#e06c75">String</span> <span style="color:#61afef;font-weight:bold">toString</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">27</span><span>		<span style="color:#c678dd">return</span> <span style="color:#98c379">&#34;Apple{&#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#98c379">&#34;list=&#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e06c75">list</span> <span style="color:#56b6c2">+</span> <span style="color:#98c379">&#34;, listMap=&#34;</span> <span style="color:#56b6c2">+</span> <span style="color:#e06c75">listMap</span> <span style="color:#56b6c2">+</span> <span style="color:#98c379">&#39;}&#39;</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">28</span><span>	<span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">29</span><span><span style="color:#56b6c2">}</span>
+</span></span></code></pre></div><p>在nacos配置中心加上如下的配置：</p>
 <p>DataId：apple</p>
 <p>Group：DEFAULT_GROUP</p>
 <p>配置内容：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">apple</span><span class="p">:</span><span class="w"> 
-</span><span class="w">  </span><span class="nt">list</span><span class="p">:</span><span class="w"> 
-</span><span class="w">    </span>- <span class="m">1</span><span class="w">
-</span><span class="w">    </span>- <span class="m">2</span><span class="w">
-</span><span class="w">    </span>- <span class="m">3</span><span class="w">
-</span><span class="w">  </span><span class="nt">listMap</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">k1</span><span class="p">:</span><span class="w"> 
-</span><span class="w">      </span>- <span class="m">1</span><span class="w">
-</span><span class="w">      </span>- <span class="m">2</span><span class="w">
-</span><span class="w">    </span><span class="nt">k2</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>-<span class="m">3</span><span class="w"> 
-</span><span class="w">      </span>-<span class="m">4</span><span class="w">
-</span></code></pre></td></tr></table>
-</div>
-</div><p>获取配置</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Autowired</span>
-<span class="kd">private</span> <span class="n">Apple</span> <span class="n">apple</span><span class="o">;</span>
-<span class="nd">@GetMapping</span><span class="o">(</span><span class="s">&#34;/apple&#34;</span><span class="o">)</span>
-<span class="nd">@ResponseBody</span>
-<span class="kd">public</span> <span class="n">String</span> <span class="nf">getApplr</span><span class="o">()</span> <span class="o">{</span>
-<span class="k">return</span> <span class="n">apple</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h4 id="在代码中更新配置">在代码中更新配置</h4>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 1</span><span><span style="color:#e06c75">apple</span>: 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 2</span><span>  <span style="color:#e06c75">list</span>: 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 3</span><span>    - <span style="color:#d19a66">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 4</span><span>    - <span style="color:#d19a66">2</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 5</span><span>    - <span style="color:#d19a66">3</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 6</span><span>  <span style="color:#e06c75">listMap</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 7</span><span>    <span style="color:#e06c75">k1</span>: 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 8</span><span>      - <span style="color:#d19a66">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 9</span><span>      - <span style="color:#d19a66">2</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">10</span><span>    <span style="color:#e06c75">k2</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">11</span><span>      -<span style="color:#d19a66">3</span> 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">12</span><span>      -<span style="color:#d19a66">4</span>
+</span></span></code></pre></div><p>获取配置</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1</span><span><span style="color:#61afef">@Autowired</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">2</span><span><span style="color:#c678dd">private</span> <span style="color:#e06c75">Apple</span> <span style="color:#e06c75">apple</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">3</span><span><span style="color:#61afef">@GetMapping</span><span style="color:#56b6c2">(</span><span style="color:#98c379">&#34;/apple&#34;</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">4</span><span><span style="color:#61afef">@ResponseBody</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">5</span><span><span style="color:#c678dd">public</span> <span style="color:#e06c75">String</span> <span style="color:#61afef;font-weight:bold">getApplr</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">6</span><span><span style="color:#c678dd">return</span> <span style="color:#e06c75">apple</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">toString</span><span style="color:#56b6c2">();</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">7</span><span><span style="color:#56b6c2">}</span>
+</span></span></code></pre></div><h4 id="在代码中更新配置">在代码中更新配置</h4>
 <p>nacos提供了发布配置到配置中心的接口，可以在特定的场景进行配置发布操作</p>
 <p>发布主要借助configService这个核心类</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@NacosInjected</span>
-<span class="kd">private</span> <span class="n">ConfigService</span> <span class="n">configService</span><span class="o">;</span>
-<span class="cm">/**
-</span><span class="cm"> * 发布配置 content需要为全量数据
-</span><span class="cm"> * @return
-</span><span class="cm"> * @throws NacosException
-</span><span class="cm"> */</span>
-<span class="nd">@GetMapping</span><span class="o">(</span><span class="s">&#34;/publish&#34;</span><span class="o">)</span>
-<span class="nd">@ResponseBody</span>
-<span class="kd">public</span> <span class="n">Boolean</span> <span class="nf">publishConfig</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">NacosException</span> <span class="o">{</span>
-    <span class="n">configService</span><span class="o">.</span><span class="na">publishConfig</span><span class="o">(</span><span class="s">&#34;example&#34;</span><span class="o">,</span> <span class="n">DEFAULT_GROUP</span><span class="o">,</span> <span class="s">&#34;useLocalCache=false\n&#34;</span> <span class="o">+</span>
-            <span class="s">&#34;people.enable=testPublish&#34;</span><span class="o">);</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>@NacosInjected 是一个核心注解，用于在Spring Beans 中注入 ConfigService，ConfigService支持的功能如下：</p>
-<p><img src="images/image-20200107110503874.png" alt="image-20200107110503874"></p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 1</span><span><span style="color:#61afef">@NacosInjected</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 2</span><span><span style="color:#c678dd">private</span> <span style="color:#e06c75">ConfigService</span> <span style="color:#e06c75">configService</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 3</span><span><span style="color:#7f848e">/**
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 4</span><span><span style="color:#7f848e"> * 发布配置 content需要为全量数据
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 5</span><span><span style="color:#7f848e"> * @return
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 6</span><span><span style="color:#7f848e"> * @throws NacosException
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 7</span><span><span style="color:#7f848e"> */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 8</span><span><span style="color:#61afef">@GetMapping</span><span style="color:#56b6c2">(</span><span style="color:#98c379">&#34;/publish&#34;</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 9</span><span><span style="color:#61afef">@ResponseBody</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">10</span><span><span style="color:#c678dd">public</span> <span style="color:#e06c75">Boolean</span> <span style="color:#61afef;font-weight:bold">publishConfig</span><span style="color:#56b6c2">()</span> <span style="color:#c678dd">throws</span> <span style="color:#e06c75">NacosException</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">11</span><span>    <span style="color:#e06c75">configService</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">publishConfig</span><span style="color:#56b6c2">(</span><span style="color:#98c379">&#34;example&#34;</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">DEFAULT_GROUP</span><span style="color:#56b6c2">,</span> <span style="color:#98c379">&#34;useLocalCache=false\n&#34;</span> <span style="color:#56b6c2">+</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">12</span><span>            <span style="color:#98c379">&#34;people.enable=testPublish&#34;</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">13</span><span>    <span style="color:#c678dd">return</span> <span style="color:#e5c07b">true</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">14</span><span><span style="color:#56b6c2">}</span>
+</span></span></code></pre></div><p>@NacosInjected 是一个核心注解，用于在Spring Beans 中注入 ConfigService，ConfigService支持的功能如下：</p>
+<p><img
+  src="images/image-20200107110503874.png"
+  alt="image-20200107110503874"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <h4 id="多环境配置">多环境配置</h4>
 <p>针对多环境的配置，nacos提供了命名空间来应对这个场景。</p>
 <p>在配置文件加入如下配置：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">nacos</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">config</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">7a4fe144-3303-4013-b259-fdc8ecd0394d</span><span class="w">
-</span></code></pre></td></tr></table>
-</div>
-</div><p>需要注意的是<strong>这里的namespace需要使用guid而不是名称</strong>。</p>
-    </article>
-  </main>
-  
-
-
-
-
-
-<div id="comment"></div>
-
-
-
-
-<script>
-    const s = document.createElement("script")
-    s.src = "https://giscus.app/client.js"
-    s.crossOrigin = "anonymous"
-    s.async = true
-    s.setAttribute("data-repo", "haigeek\/blog-comment-bygiscus")
-    s.setAttribute("data-repo-id", "R_kgDOIq0W4w")
-    s.setAttribute("data-category", "Announcements")
-    s.setAttribute("data-category-id", "DIC_kwDOIq0W484CTPda")
-    s.setAttribute("data-mapping", "pathname")
-    s.setAttribute("data-strict", "0")
-    s.setAttribute("data-reactions-enabled", "1")
-    s.setAttribute("data-emit-metadata", "0")
-    s.setAttribute("data-input-position", "buttom")
-    s.setAttribute("data-theme", window.minima_theme + "_protanopia")
-    s.setAttribute("data-lang", "en")
-    s.setAttribute("data-loading", "lazy")
-    document.getElementById("comment").appendChild(s)
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1</span><span><span style="color:#e06c75">nacos</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">2</span><span>  <span style="color:#e06c75">config</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">3</span><span>    <span style="color:#e06c75">namespace</span>: 7a4fe144-3303-4013-b259-fdc8ecd0394d
+</span></span></code></pre></div><p>需要注意的是<strong>这里的namespace需要使用guid而不是名称</strong>。</p>
+      
+      <div class="post-date">
+        <span class="g time">January 8, 2020 </span> &#8729;
+         
+         <a href="https://haigeek.me/tags/nacos/">nacos</a>
+      </div>
+      
+    </section>
+    
+    <div id="comments">
+      <script src="https://utteranc.es/client.js"
+    repo=ZgotmplZ
+    issue-term="pathname"
+    theme=ZgotmplZ
+    crossorigin="anonymous"
+    async>
 </script>
 
-
-
-
-
-
-
-
-
-</div>
-
-
-  <footer class="mt-8 mb-8">
-  <div class="container mx-auto">
-    <div class="mt-8 flex justify-between items-center">
-      <p class="mt-0 text-sm">
-        © 2022 haigeek |
-        <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> on
-        <a href="https://github.com/mivinci/hugo-theme-minima" target="_blank" rel="noopener noreferrer">Minima</a>
-      </p>
-      <p class="flex items-center mt-0">
-        
-          <a class="icon ml-1 mr-1" href="mailto:haigeek@qq.com" title="email">
-          
-            <svg fill="#63636f" width="22" height="22" viewBox="0 0 24 24"><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm9.06 8.683L5.648 6.238L4.353 7.762l7.72 6.555l7.581-6.56l-1.308-1.513l-6.285 5.439z"/></svg>
-          
-          </a>
-        
-          <a class="icon ml-1 mr-1" href="https://github.com/haigeek" title="github">
-          
-            <svg fill="#63636f" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          
-          </a>
-        
-          <a class="icon ml-1 mr-1" href="/index.xml" title="rss">
-          
-            <svg fill="#63636f" t="1626591563876" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1984" width="18" height="16"><path d="M128 768a128 128 0 1 0 0 256 128 128 0 0 0 0-256zM0 368v176c265.104 0 480 214.912 480 480h176c0-362.32-293.696-656-656-656zM0 0v176c468.336 0 848 379.664 848 848h176C1024 458.464 565.536 0 0 0z" p-id="1985"></path></svg>
-          
-          </a>
-        
-      </p>
     </div>
+    
   </div>
-</footer>
+</main>
 </body>
-
 </html>

@@ -5,8 +5,8 @@
     <link>https://haigeek.me/tags/java/</link>
     <description>Recent content in java on haigeek blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© 2022 haigeek</copyright>
+    <language>zh-cn</language>
+    <copyright>© 2023 haigeek</copyright>
     <lastBuildDate>Sat, 15 Jul 2017 14:12:28 +0000</lastBuildDate><atom:link href="https://haigeek.me/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>centos6.8安装javajdk、tomcat、MySQL环境</title>

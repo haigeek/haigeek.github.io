@@ -1,153 +1,154 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="一次Tcp端口耗尽引发的思考" />
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Liste - https://haigeek.me">
+    <title>一次Tcp端口耗尽引发的思考 | haigeek blog</title>
+    <meta name="description" content="I&#39;m a software engineer , Use Java as the primary programming language, Interested in Microervices, K8s, Devops ... In this blog , I share my technical problems and life records. ">
+    <meta property="og:title" content="一次Tcp端口耗尽引发的思考" />
 <meta property="og:description" content="tcp在实际的使用中，客户端和服务端可能都会出现端口不够用的情况，重新温习了一下tcp的四次挥手来寻找这个问题出现的原因。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://haigeek.me/posts/computerscience/tcp-socker-no-buffer-space-available/" />
+<meta property="og:url" content="https://haigeek.me/posts/computerscience/tcp-socker-no-buffer-space-available/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-05-08T22:38:38+00:00" />
 <meta property="article:modified_time" content="2019-05-08T22:38:38+00:00" />
 
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="一次Tcp端口耗尽引发的思考"/>
-<meta name="twitter:description" content="tcp在实际的使用中，客户端和服务端可能都会出现端口不够用的情况，重新温习了一下tcp的四次挥手来寻找这个问题出现的原因。"/>
-
-  
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#262d33">
-  <title>
+    <meta itemprop="name" content="一次Tcp端口耗尽引发的思考">
+<meta itemprop="description" content="tcp在实际的使用中，客户端和服务端可能都会出现端口不够用的情况，重新温习了一下tcp的四次挥手来寻找这个问题出现的原因。"><meta itemprop="datePublished" content="2019-05-08T22:38:38+00:00" />
+<meta itemprop="dateModified" content="2019-05-08T22:38:38+00:00" />
+<meta itemprop="wordCount" content="114">
+<meta itemprop="keywords" content="Tcp,Socket," />
     
-    haigeek blog - 一次Tcp端口耗尽引发的思考
+    <link rel="canonical" href="https://haigeek.me/posts/computerscience/tcp-socker-no-buffer-space-available/">
+    <link rel="icon" href="https://haigeek.me/assets/favicon.ico">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
+    <link rel="alternate" type="application/atom+xml" title="haigeek blog" href="https://haigeek.me/atom.xml" />
+    <link rel="alternate" type="application/json" title="haigeek blog" href="https://haigeek.me/feed.json" />
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
     
-  </title>
+    
+    <style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 '-apple-system',BlinkMacSystemFont,avenir next,avenir,helvetica,helvetica neue,ubuntu,roboto,noto,segoe ui,arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;background:#f5f5f5;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}h1,h2,h3,h4,h5,strong,b{font-size:inherit;font-weight:600}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{margin:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}.post-date{margin:5% 0}.index-date{color:#9a9a9a}.animate-blink{animation:opacity 1s infinite;opacity:1}@keyframes opacity{0%{opacity:1}50%{opacity:.5}100%{opacity:0}}.tags{display:flex;justify-content:space-between}.tags ul{padding:0;margin:0}.tags li{display:inline}.avatar{height:120px;width:120px;position:relative;margin:-10px 0 0 15px;float:right;border-radius:50%} </style>
   
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  
-  
-  
-  <link rel="stylesheet" href="/minima.1671899191.css">
+    
   
   
-  <script defer type="text/javascript" src="/minima.1671899191.js"></script>
-  
-</head>
-<script>
-  
-  let default_theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-  try {
-    const local = localStorage.getItem('theme')
-    if (local) {
-      default_theme = local
-    }
-    localStorage.setItem('theme', default_theme);
-    window.minima_theme = default_theme;
-    document.querySelector('html').classList.add(default_theme);
-  } catch (e) {
-    console.error(e);
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "articleSection": "posts",
+      "name": "一次Tcp端口耗尽引发的思考",
+      "headline": "一次Tcp端口耗尽引发的思考",
+      "alternativeHeadline": "",
+      "description": "\u003cp\u003etcp在实际的使用中，客户端和服务端可能都会出现端口不够用的情况，重新温习了一下tcp的四次挥手来寻找这个问题出现的原因。\u003c\/p\u003e",
+      "inLanguage": "zh-cn",
+      "isFamilyFriendly": "true",
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/haigeek.me\/posts\/computerscience\/tcp-socker-no-buffer-space-available\/"
+      },
+      "author" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "creator" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "accountablePerson" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "copyrightHolder" : "haigeek blog",
+      "copyrightYear" : "2019",
+      "dateCreated": "2019-05-08T22:38:38.00Z",
+      "datePublished": "2019-05-08T22:38:38.00Z",
+      "dateModified": "2019-05-08T22:38:38.00Z",
+      "publisher":{
+          "@type":"Organization",
+          "name": "haigeek blog",
+          "url": "https://haigeek.me",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "https:\/\/haigeek.me\/assets\/favicon.ico",
+              "width":"32",
+              "height":"32"
+          }
+      },
+      "image": "https://haigeek.me/assets/favicon.ico",
+      "url" : "https:\/\/haigeek.me\/posts\/computerscience\/tcp-socker-no-buffer-space-available\/",
+      "wordCount" : "114",
+      "genre" : [ "Tcp" , "Socket" ],
+      "keywords" : [ "Tcp" , "Socket" ]
   }
-</script>
-
-
+  </script>
+  
+  
+  </head>
 
 <body>
-  <header class="mt-3 mb-6">
-  <div class="container mx-auto">
-    <nav class="flex justify-between items-center">
-      <div class="flex items-center">
-        
-        <div id="theme-switch" class="text-3xl cursor-pointer">☼</div>
-      </div>
-      <ul class="flex items-center font-medium
-        whitespace-nowrap overflow-x-auto overflow-y-hidden">
-        
-        <li class="ml-1 mr-1"><a href="/">首页</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/categories">分类</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/tags">标签</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/about">关于</a></li>
-        
-        <li class="ml-1 mr-1"><a href="https://wiki.haigeek.me">Wiki</a></li>
-        
-      </ul>
-      <ul class="flex item-center text-sm font-bold">
-        
-      </ul>
-    </nav>
-  </div>
-</header>
-
+  <a class="skip-link" href="#main">Skip to main</a>
+  <main id="main">
+  <div class="content">
+    <header>
+<p style="padding: 0;margin: 0;">
+  <a href="/">
+    <b>haigeek blog</b>
+    <span class="text-stone-500 animate-blink">▮</span>
+  </a>
+</p>
+<ul style="padding: 0;margin: 0;">
   
-<div class="container mx-auto">
-  <h1 class="text-4xl font-extrabold mt-6 mb-6">一次Tcp端口耗尽引发的思考</h1>
-  <div class="mb-3 text-sm flex justify-between ">
-    <div>
-      
-      发布于 &mdash; 2019 年 5 月 8 日
-      
-      
-    </div>
+  
+  <li class="">
+    <a href="/posts/"><span>Post</span></a>
     
-    <div>
-      
-      
-      <a class="ml-1" href="/tags/Tcp">#Tcp</a>
-      
-      
-      <a class="ml-1" href="/tags/Socket">#Socket</a>
-      
-    </div>
+  <li class="">
+    <a href="/about/"><span>About</span></a>
     
-  </div>
-  <main class="mb-8">
-    <p></p>
-    <article class="md">
+  <li class="">
+    <a href="https://wiki.haigeek.me"><span>Wiki</span></a>
+    
+  </li>
+</ul>
+</header>
+<hr class="hr-list" style="padding: 0;margin: 0;">
+    <section>
+      <h2 class="post">一次Tcp端口耗尽引发的思考</h2>
       <p>tcp在实际的使用中，客户端和服务端可能都会出现端口不够用的情况，重新温习了一下tcp的四次挥手来寻找这个问题出现的原因。</p>
 <h1 id="一次tcp端口耗尽引发的思考">一次Tcp端口耗尽引发的思考</h1>
 <h2 id="起因">起因</h2>
 <p>访问接口服务端既不报错但是也无响应，登录服务器查看后台有报错，报错的堆栈的信息大致为：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">Caused</span> <span class="n">by</span><span class="o">:</span> <span class="n">java</span><span class="o">.</span><span class="na">net</span><span class="o">.</span><span class="na">SocketException</span><span class="o">:</span> <span class="n">No</span> <span class="n">buffer</span> <span class="n">space</span> <span class="nf">available</span> <span class="o">(</span><span class="n">maximum</span> <span class="n">connections</span> <span class="n">reached</span><span class="o">?):</span> <span class="n">connect</span>
-<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">axis</span><span class="o">.</span><span class="na">AxisFault</span><span class="o">.</span><span class="na">makeFault</span><span class="o">(</span><span class="n">AxisFault</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="n">101</span><span class="o">)</span>
-<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">axis</span><span class="o">.</span><span class="na">transport</span><span class="o">.</span><span class="na">http</span><span class="o">.</span><span class="na">HTTPSender</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">HTTPSender</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="n">154</span><span class="o">)</span>
-<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">axis</span><span class="o">.</span><span class="na">strategies</span><span class="o">.</span><span class="na">InvocationStrategy</span><span class="o">.</span><span class="na">visit</span><span class="o">(</span><span class="n">InvocationStrategy</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="n">32</span><span class="o">)</span>
-<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">axis</span><span class="o">.</span><span class="na">SimpleChain</span><span class="o">.</span><span class="na">doVisiting</span><span class="o">(</span><span class="n">SimpleChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="n">118</span><span class="o">)</span>
-<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">axis</span><span class="o">.</span><span class="na">SimpleChain</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">SimpleChain</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="n">83</span><span class="o">)</span>
-<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">axis</span><span class="o">.</span><span class="na">client</span><span class="o">.</span><span class="na">AxisClient</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">AxisClient</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="n">165</span><span class="o">)</span>
-<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">axis</span><span class="o">.</span><span class="na">client</span><span class="o">.</span><span class="na">Call</span><span class="o">.</span><span class="na">invokeEngine</span><span class="o">(</span><span class="n">Call</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="n">2784</span><span class="o">)</span>
-<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">axis</span><span class="o">.</span><span class="na">client</span><span class="o">.</span><span class="na">Call</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">Call</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="n">2767</span><span class="o">)</span>
-<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">axis</span><span class="o">.</span><span class="na">client</span><span class="o">.</span><span class="na">Call</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">Call</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="n">2443</span><span class="o">)</span>
-<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">axis</span><span class="o">.</span><span class="na">client</span><span class="o">.</span><span class="na">Call</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">Call</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="n">2366</span><span class="o">)</span>
-<span class="n">at</span> <span class="n">org</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">axis</span><span class="o">.</span><span class="na">client</span><span class="o">.</span><span class="na">Call</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">Call</span><span class="o">.</span><span class="na">java</span><span class="o">:</span><span class="n">1812</span><span class="o">)</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="问题分析">问题分析</h2>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 1</span><span><span style="color:#e06c75">Caused</span> <span style="color:#e06c75">by</span><span style="color:#56b6c2">:</span> <span style="color:#e06c75">java</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">net</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">SocketException</span><span style="color:#56b6c2">:</span> <span style="color:#e06c75">No</span> <span style="color:#e06c75">buffer</span> <span style="color:#e06c75">space</span> <span style="color:#61afef;font-weight:bold">available</span> <span style="color:#56b6c2">(</span><span style="color:#e06c75">maximum</span> <span style="color:#e06c75">connections</span> <span style="color:#e06c75">reached</span><span style="color:#56b6c2">?):</span> <span style="color:#e06c75">connect</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 2</span><span><span style="color:#e06c75">at</span> <span style="color:#e06c75">org</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">apache</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">axis</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">AxisFault</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">makeFault</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">AxisFault</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">java</span><span style="color:#56b6c2">:</span><span style="color:#d19a66">101</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 3</span><span><span style="color:#e06c75">at</span> <span style="color:#e06c75">org</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">apache</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">axis</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">transport</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">http</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">HTTPSender</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">invoke</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">HTTPSender</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">java</span><span style="color:#56b6c2">:</span><span style="color:#d19a66">154</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 4</span><span><span style="color:#e06c75">at</span> <span style="color:#e06c75">org</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">apache</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">axis</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">strategies</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">InvocationStrategy</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">visit</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">InvocationStrategy</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">java</span><span style="color:#56b6c2">:</span><span style="color:#d19a66">32</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 5</span><span><span style="color:#e06c75">at</span> <span style="color:#e06c75">org</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">apache</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">axis</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">SimpleChain</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">doVisiting</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">SimpleChain</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">java</span><span style="color:#56b6c2">:</span><span style="color:#d19a66">118</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 6</span><span><span style="color:#e06c75">at</span> <span style="color:#e06c75">org</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">apache</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">axis</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">SimpleChain</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">invoke</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">SimpleChain</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">java</span><span style="color:#56b6c2">:</span><span style="color:#d19a66">83</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 7</span><span><span style="color:#e06c75">at</span> <span style="color:#e06c75">org</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">apache</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">axis</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">client</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">AxisClient</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">invoke</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">AxisClient</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">java</span><span style="color:#56b6c2">:</span><span style="color:#d19a66">165</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 8</span><span><span style="color:#e06c75">at</span> <span style="color:#e06c75">org</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">apache</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">axis</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">client</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">Call</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">invokeEngine</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">Call</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">java</span><span style="color:#56b6c2">:</span><span style="color:#d19a66">2784</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 9</span><span><span style="color:#e06c75">at</span> <span style="color:#e06c75">org</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">apache</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">axis</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">client</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">Call</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">invoke</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">Call</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">java</span><span style="color:#56b6c2">:</span><span style="color:#d19a66">2767</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">10</span><span><span style="color:#e06c75">at</span> <span style="color:#e06c75">org</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">apache</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">axis</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">client</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">Call</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">invoke</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">Call</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">java</span><span style="color:#56b6c2">:</span><span style="color:#d19a66">2443</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">11</span><span><span style="color:#e06c75">at</span> <span style="color:#e06c75">org</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">apache</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">axis</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">client</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">Call</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">invoke</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">Call</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">java</span><span style="color:#56b6c2">:</span><span style="color:#d19a66">2366</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">12</span><span><span style="color:#e06c75">at</span> <span style="color:#e06c75">org</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">apache</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">axis</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">client</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">Call</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">invoke</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">Call</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">java</span><span style="color:#56b6c2">:</span><span style="color:#d19a66">1812</span><span style="color:#56b6c2">)</span>
+</span></span></code></pre></div><h2 id="问题分析">问题分析</h2>
 <p>从报错信息来看是socket端口使用数已经超过了最发限度，定位到应该是服务器的原因，尝试请求这台服务器部署的其他应用，对于的后台也会报相同的错误。基本可以定位到是因为可用的socket端口不足的原因。</p>
 <p>那么为什么会出现这个情况呢？</p>
 <p>出现这种情况，我们可以使用命令 <code>netstat -at</code>来查看一下当前系统下端口的连接状况，可以发现此时会有很多的端口会处于TIME_WAIT的状态，处于这个状态的端口是无法释放的，因此系统并发过大，连接数过多，部分socket连接无法释放关闭，而持续请求又导致无法释放的socket连接不断积压，最终导致No buffer space available。</p>
 <p>我们重新来温习一下TCP连接的三次握手和挥手</p>
 <h3 id="tcp连接的三次握手和挥手">TCP连接的三次握手和挥手</h3>
 <h4 id="三次握手">三次握手</h4>
-<p><img src="https://s2.loli.net/2022/12/24/akyU7GwuMEoQ64N.png" alt=""></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/akyU7GwuMEoQ64N.png"
+  alt=""
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>tcp的三次握手的流程如下：</p>
 <ol>
 <li>
@@ -161,7 +162,15 @@
 </li>
 </ol>
 <h4 id="四次挥手">四次挥手</h4>
-<p><img src="https://s2.loli.net/2022/12/24/2iUhyBfPW7duI8V.png" alt="tcp-bye"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/2iUhyBfPW7duI8V.png"
+  alt="tcp-bye"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>tcp的四次挥手的流程如下：</p>
 <p>连接可以由客户端或者服务端发起，这里以客户端发起为例：</p>
 <ol>
@@ -182,19 +191,12 @@
 </li>
 </ol>
 <p>在centos下可以使用<code>sysctl -a|grep net.ipv4.tcp_fin_timeout</code>查看超时时间</p>
-<pre><code>net.ipv4.tcp_fin_timeout = 60
+<pre tabindex="0"><code>net.ipv4.tcp_fin_timeout = 60
 </code></pre><h3 id="本地有多少端口可用">本地有多少端口可用</h3>
 <p>TCP协议中<code>PORT</code>部分是用两个字节来表示的，也就是说可用的端口数量肯定不能超过65536个。
 另外，这其中还有些端口是系统保留的，需要root权限才可以使用的，在CentOS系统中，client端可以使用的端口可以通过<code>sysctl -a|grep net.ipv4.ip_local_port_range</code>来查看</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">net.ipv4.ip_local_port_range <span class="o">=</span> 32768	<span class="m">60999</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="单机请求的qps">单机请求的QPS</h3>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1</span><span>net.ipv4.ip_local_port_range <span style="color:#56b6c2">=</span> 32768	<span style="color:#d19a66">60999</span>
+</span></span></code></pre></div><h3 id="单机请求的qps">单机请求的QPS</h3>
 <p>如果client机器有32768端口可用，TIME_WAIT 60秒，短连接的方式发起请求，那么这个client发起的请求的QPS是不能超过28233/60的</p>
 <h2 id="问题解决">问题解决</h2>
 <p>以下设置需要根据Windows和linux系统使用对应的命令去设置。</p>
@@ -206,7 +208,7 @@
 </ol>
 <p>windows 系统处理方式</p>
 <p>通过regedit启动注册表编译器找到如下路径：</p>
-<pre><code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
+<pre tabindex="0"><code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
 </code></pre><p>添加参数：</p>
 <p>(1)新建</p>
 <p>值名称：MaxUserPort</p>
@@ -218,82 +220,27 @@
 <p>值名称：TCPTimedWaitDelay</p>
 <p>值类型：DWORD</p>
 <p>值数据：0000001e（30）</p>
-    </article>
-  </main>
-  
-
-
-
-
-
-<div id="comment"></div>
-
-
-
-
-<script>
-    const s = document.createElement("script")
-    s.src = "https://giscus.app/client.js"
-    s.crossOrigin = "anonymous"
-    s.async = true
-    s.setAttribute("data-repo", "haigeek\/blog-comment-bygiscus")
-    s.setAttribute("data-repo-id", "R_kgDOIq0W4w")
-    s.setAttribute("data-category", "Announcements")
-    s.setAttribute("data-category-id", "DIC_kwDOIq0W484CTPda")
-    s.setAttribute("data-mapping", "pathname")
-    s.setAttribute("data-strict", "0")
-    s.setAttribute("data-reactions-enabled", "1")
-    s.setAttribute("data-emit-metadata", "0")
-    s.setAttribute("data-input-position", "buttom")
-    s.setAttribute("data-theme", window.minima_theme + "_protanopia")
-    s.setAttribute("data-lang", "en")
-    s.setAttribute("data-loading", "lazy")
-    document.getElementById("comment").appendChild(s)
+      
+      <div class="post-date">
+        <span class="g time">May 8, 2019 </span> &#8729;
+         
+         <a href="https://haigeek.me/tags/tcp/">tcp</a> <a href="https://haigeek.me/tags/socket/">socket</a>
+      </div>
+      
+    </section>
+    
+    <div id="comments">
+      <script src="https://utteranc.es/client.js"
+    repo=ZgotmplZ
+    issue-term="pathname"
+    theme=ZgotmplZ
+    crossorigin="anonymous"
+    async>
 </script>
 
-
-
-
-
-
-
-
-
-</div>
-
-
-  <footer class="mt-8 mb-8">
-  <div class="container mx-auto">
-    <div class="mt-8 flex justify-between items-center">
-      <p class="mt-0 text-sm">
-        © 2022 haigeek |
-        <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> on
-        <a href="https://github.com/mivinci/hugo-theme-minima" target="_blank" rel="noopener noreferrer">Minima</a>
-      </p>
-      <p class="flex items-center mt-0">
-        
-          <a class="icon ml-1 mr-1" href="mailto:haigeek@qq.com" title="email">
-          
-            <svg fill="#63636f" width="22" height="22" viewBox="0 0 24 24"><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm9.06 8.683L5.648 6.238L4.353 7.762l7.72 6.555l7.581-6.56l-1.308-1.513l-6.285 5.439z"/></svg>
-          
-          </a>
-        
-          <a class="icon ml-1 mr-1" href="https://github.com/haigeek" title="github">
-          
-            <svg fill="#63636f" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          
-          </a>
-        
-          <a class="icon ml-1 mr-1" href="/index.xml" title="rss">
-          
-            <svg fill="#63636f" t="1626591563876" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1984" width="18" height="16"><path d="M128 768a128 128 0 1 0 0 256 128 128 0 0 0 0-256zM0 368v176c265.104 0 480 214.912 480 480h176c0-362.32-293.696-656-656-656zM0 0v176c468.336 0 848 379.664 848 848h176C1024 458.464 565.536 0 0 0z" p-id="1985"></path></svg>
-          
-          </a>
-        
-      </p>
     </div>
+    
   </div>
-</footer>
+</main>
 </body>
-
 </html>

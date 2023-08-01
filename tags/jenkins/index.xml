@@ -5,9 +5,18 @@
     <link>https://haigeek.me/tags/jenkins/</link>
     <description>Recent content in jenkins on haigeek blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© 2022 haigeek</copyright>
+    <language>zh-cn</language>
+    <copyright>© 2023 haigeek</copyright>
     <lastBuildDate>Tue, 01 Jan 2019 22:54:58 +0000</lastBuildDate><atom:link href="https://haigeek.me/tags/jenkins/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Jenkins部署项目到远程windows</title>
+      <link>https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/</link>
+      <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/</guid>
+      <description>&lt;p&gt;核心是使用ssh进行jenkins主节点与目标部署服务器进行通信,文件传输走scp协议,执行执行使用ssh命令远程到目标主机进行执行.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Jenkins快速复制已经存在的项目</title>
       <link>https://haigeek.me/posts/backend/devops/jenkins/jenkins-clone-project/</link>
@@ -18,7 +27,7 @@
 Jenkins快速复制已经存在的项目 针对已经存在的项目，可以快速复制出来，创建新的任务
 前提是需要200.39服务器可以访问目标部署服务器，假如不支持访问，需要先配置目标服务器，后续写配置方式（熟练的话5分钟可配置完成）。
 具体步骤 1、创建任务 2、配置流水线 需要准备的数据有：
- 服务器ip tomcat文件夹 gitlab仓库地址（明确分支）  修改描述
+服务器ip tomcat文件夹 gitlab仓库地址（明确分支） 修改描述
 修改流水线脚本，注意不要直接复制我的下面样例流水线配置，直接从复制出来的修改即可。
 主要做以下操作
 1、修改ip地址和tomcat的webapps地址，这里有个需要有注意的地方，假如tomcat的地址不存在空格的话，可以直接修改相关配置即可。具体看注释1、2、3、4、5
@@ -27,16 +36,7 @@ Jenkins快速复制已经存在的项目 针对已经存在的项目，可以快
 4、设置打包命令和打包环境（如果复制的项目属于同类，基本不用改，确认下即可），修改在注释8，否则重新写打包命令。此处一定要明确部署采用什么环境，推荐先去服务器复制已经有的配置，然后修改代码的test配置，走test环境部署。
 5、确认要发送的war包，同上（如果复制的项目属于同类，基本不用改，确认下即可），否则就修改为target要发送的war包，修改地方在注释9
 6、全部修改完build测试，后续可以稳定使用
- pipeline { environment { // 部署远程主机ip地址,需要通过密钥的方式设置免密登录 //注释1 服务器ip remoteIp = &amp;quot;192.168.1.196&amp;quot; //注释2 服务器登录用户 remoteName = &amp;quot;administrator&amp;quot; //注释3 服务器ssh端口 remotePort=&#39;22&#39; // 远程tomcat位置(使用/来表示路径) //注释4 tomcat安装位置 tomcatPath = &amp;quot;D:/GT/Tomcat_zj&amp;quot; //注释5 tomcat所在磁盘 tomcatPathDisk = &amp;quot;D:&amp;quot; } agent any tools { maven &#39;maven-3.6.1&#39; } stages { stage(&#39;pullcode&#39;){ steps{ //注释7 git branch: &#39;dev&#39;, credentialsId: &#39;zhaohjgitlab&#39;, url: &#39;http://elb-791125809.</description>
-    </item>
-    
-    <item>
-      <title>Jenkins部署项目到远程windows</title>
-      <link>https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/</link>
-      <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/</guid>
-      <description>&lt;p&gt;核心是使用ssh进行jenkins主节点与目标部署服务器进行通信,文件传输走scp协议,执行执行使用ssh命令远程到目标主机进行执行.&lt;/p&gt;</description>
+pipeline { environment { // 部署远程主机ip地址,需要通过密钥的方式设置免密登录 //注释1 服务器ip remoteIp = &amp;#34;192.168.1.196&amp;#34; //注释2 服务器登录用户 remoteName = &amp;#34;administrator&amp;#34; //注释3 服务器ssh端口 remotePort=&amp;#39;22&amp;#39; // 远程tomcat位置(使用/来表示路径) //注释4 tomcat安装位置 tomcatPath = &amp;#34;D:/GT/Tomcat_zj&amp;#34; //注释5 tomcat所在磁盘 tomcatPathDisk = &amp;#34;D:&amp;#34; } agent any tools { maven &amp;#39;maven-3.6.1&amp;#39; } stages { stage(&amp;#39;pullcode&amp;#39;){ steps{ //注释7 git branch: &amp;#39;dev&amp;#39;, credentialsId: &amp;#39;zhaohjgitlab&amp;#39;, url: &amp;#39;http://elb-791125809.</description>
     </item>
     
   </channel>

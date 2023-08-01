@@ -1,111 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="并发登录下session的处理" />
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Liste - https://haigeek.me">
+    <title>并发登录下session的处理 | haigeek blog</title>
+    <meta name="description" content="I&#39;m a software engineer , Use Java as the primary programming language, Interested in Microervices, K8s, Devops ... In this blog , I share my technical problems and life records. ">
+    <meta property="og:title" content="并发登录下session的处理" />
 <meta property="og:description" content="在进行性能测试的时候并发请求登录接口时候出现失败的情况，对排查记录做一下总结。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://haigeek.me/posts/java/spring/concurrent-login-session/" />
+<meta property="og:url" content="https://haigeek.me/posts/java/spring/concurrent-login-session/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-10-16T23:26:39+00:00" />
 <meta property="article:modified_time" content="2019-10-16T23:26:39+00:00" />
 
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="并发登录下session的处理"/>
-<meta name="twitter:description" content="在进行性能测试的时候并发请求登录接口时候出现失败的情况，对排查记录做一下总结。"/>
-
-  
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#262d33">
-  <title>
+    <meta itemprop="name" content="并发登录下session的处理">
+<meta itemprop="description" content="在进行性能测试的时候并发请求登录接口时候出现失败的情况，对排查记录做一下总结。"><meta itemprop="datePublished" content="2019-10-16T23:26:39+00:00" />
+<meta itemprop="dateModified" content="2019-10-16T23:26:39+00:00" />
+<meta itemprop="wordCount" content="372">
+<meta itemprop="keywords" content="session,spring," />
     
-    haigeek blog - 并发登录下session的处理
+    <link rel="canonical" href="https://haigeek.me/posts/java/spring/concurrent-login-session/">
+    <link rel="icon" href="https://haigeek.me/assets/favicon.ico">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
+    <link rel="alternate" type="application/atom+xml" title="haigeek blog" href="https://haigeek.me/atom.xml" />
+    <link rel="alternate" type="application/json" title="haigeek blog" href="https://haigeek.me/feed.json" />
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
     
-  </title>
+    
+    <style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 '-apple-system',BlinkMacSystemFont,avenir next,avenir,helvetica,helvetica neue,ubuntu,roboto,noto,segoe ui,arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;background:#f5f5f5;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}h1,h2,h3,h4,h5,strong,b{font-size:inherit;font-weight:600}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{margin:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}.post-date{margin:5% 0}.index-date{color:#9a9a9a}.animate-blink{animation:opacity 1s infinite;opacity:1}@keyframes opacity{0%{opacity:1}50%{opacity:.5}100%{opacity:0}}.tags{display:flex;justify-content:space-between}.tags ul{padding:0;margin:0}.tags li{display:inline}.avatar{height:120px;width:120px;position:relative;margin:-10px 0 0 15px;float:right;border-radius:50%} </style>
   
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  
-  
-  
-  <link rel="stylesheet" href="/minima.1671899191.css">
+    
   
   
-  <script defer type="text/javascript" src="/minima.1671899191.js"></script>
-  
-</head>
-<script>
-  
-  let default_theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-  try {
-    const local = localStorage.getItem('theme')
-    if (local) {
-      default_theme = local
-    }
-    localStorage.setItem('theme', default_theme);
-    window.minima_theme = default_theme;
-    document.querySelector('html').classList.add(default_theme);
-  } catch (e) {
-    console.error(e);
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "articleSection": "posts",
+      "name": "并发登录下session的处理",
+      "headline": "并发登录下session的处理",
+      "alternativeHeadline": "",
+      "description": "\u003cp\u003e在进行性能测试的时候并发请求登录接口时候出现失败的情况，对排查记录做一下总结。\u003c\/p\u003e",
+      "inLanguage": "zh-cn",
+      "isFamilyFriendly": "true",
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/haigeek.me\/posts\/java\/spring\/concurrent-login-session\/"
+      },
+      "author" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "creator" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "accountablePerson" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "copyrightHolder" : "haigeek blog",
+      "copyrightYear" : "2019",
+      "dateCreated": "2019-10-16T23:26:39.00Z",
+      "datePublished": "2019-10-16T23:26:39.00Z",
+      "dateModified": "2019-10-16T23:26:39.00Z",
+      "publisher":{
+          "@type":"Organization",
+          "name": "haigeek blog",
+          "url": "https://haigeek.me",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "https:\/\/haigeek.me\/assets\/favicon.ico",
+              "width":"32",
+              "height":"32"
+          }
+      },
+      "image": "https://haigeek.me/assets/favicon.ico",
+      "url" : "https:\/\/haigeek.me\/posts\/java\/spring\/concurrent-login-session\/",
+      "wordCount" : "372",
+      "genre" : [ "session" , "spring" ],
+      "keywords" : [ "session" , "spring" ]
   }
-</script>
-
-
+  </script>
+  
+  
+  </head>
 
 <body>
-  <header class="mt-3 mb-6">
-  <div class="container mx-auto">
-    <nav class="flex justify-between items-center">
-      <div class="flex items-center">
-        
-        <div id="theme-switch" class="text-3xl cursor-pointer">☼</div>
-      </div>
-      <ul class="flex items-center font-medium
-        whitespace-nowrap overflow-x-auto overflow-y-hidden">
-        
-        <li class="ml-1 mr-1"><a href="/">首页</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/categories">分类</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/tags">标签</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/about">关于</a></li>
-        
-        <li class="ml-1 mr-1"><a href="https://wiki.haigeek.me">Wiki</a></li>
-        
-      </ul>
-      <ul class="flex item-center text-sm font-bold">
-        
-      </ul>
-    </nav>
-  </div>
-</header>
-
+  <a class="skip-link" href="#main">Skip to main</a>
+  <main id="main">
+  <div class="content">
+    <header>
+<p style="padding: 0;margin: 0;">
+  <a href="/">
+    <b>haigeek blog</b>
+    <span class="text-stone-500 animate-blink">▮</span>
+  </a>
+</p>
+<ul style="padding: 0;margin: 0;">
   
-<div class="container mx-auto">
-  <h1 class="text-4xl font-extrabold mt-6 mb-6">并发登录下session的处理</h1>
-  <div class="mb-3 text-sm flex justify-between ">
-    <div>
-      
-      发布于 &mdash; 2019 年 10 月 16 日
-      
-      
-    </div>
+  
+  <li class="">
+    <a href="/posts/"><span>Post</span></a>
     
-    <div>
-      
-      
-      <a class="ml-1" href="/tags/session">#session</a>
-      
-      
-      <a class="ml-1" href="/tags/spring">#spring</a>
-      
-    </div>
+  <li class="">
+    <a href="/about/"><span>About</span></a>
     
-  </div>
-  <main class="mb-8">
-    <p></p>
-    <article class="md">
+  <li class="">
+    <a href="https://wiki.haigeek.me"><span>Wiki</span></a>
+    
+  </li>
+</ul>
+</header>
+<hr class="hr-list" style="padding: 0;margin: 0;">
+    <section>
+      <h2 class="post">并发登录下session的处理</h2>
       <p>在进行性能测试的时候并发请求登录接口时候出现失败的情况，对排查记录做一下总结。</p>
 <h1 id="并发登录下session的处理">并发登录下session的处理</h1>
 <h2 id="问题">问题</h2>
@@ -116,266 +127,242 @@
 <li>调用被保护的接口，接口在请求时会携带cookie来让服务器鉴别当前请求是否合法</li>
 </ol>
 <p>线程组的具体设置如下：</p>
-<p><img src="https://i.loli.net/2019/12/23/ZKRoBQOF3mna4rd.png" alt="image-20190925090956992"></p>
+<p><img
+  src="https://i.loli.net/2019/12/23/ZKRoBQOF3mna4rd.png"
+  alt="image-20190925090956992"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>标记为3 的接口访问进行了用户鉴权。</p>
 <p>当执行此线程组一次的时候，运行正常，运行结果如下：</p>
-<p><img src="https://i.loli.net/2019/12/23/GZJfDqMyQnEYVB8.png" alt="image-20190924231443836"></p>
+<p><img
+  src="https://i.loli.net/2019/12/23/GZJfDqMyQnEYVB8.png"
+  alt="image-20190924231443836"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>将线程组的线程数调整为2，Rame-Up（线程启动时间间隔）设置为1s，两组线程执行正常，运行结果如下：</p>
-<p><img src="https://s2.loli.net/2022/12/24/SaeMhTqpGtWzQC1.png" alt="image-20190925091109920"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/SaeMhTqpGtWzQC1.png"
+  alt="image-20190925091109920"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>可以看到执行顺序是按照我们1、2、3依次执行的顺序，因为1s的间隔较长，在线程1执行完毕之后线程2执行。</p>
 <p>将线程组的线程数调整为2，Rame-Up（线程启动时间间隔）设置为0.1s，接口请求出现异常，运行结果如下：</p>
-<p><img src="https://s2.loli.net/2022/12/24/FqWciCT8SyNpdkY.png" alt="image-20190925091517378"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/FqWciCT8SyNpdkY.png"
+  alt="image-20190925091517378"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>在这次请求可以看到，两个线程同时出发，模拟了系统可以存在的并发情况，可以确认的是第二个用户的确登录成功但是在与后台进行校验的时候出现了问题。</p>
 <h2 id="分析">分析</h2>
 <p>通过报错的接口的异常信息定位到代码的位置是在从session中取用户信息的时候出现了错误。</p>
-<p><img src="https://s2.loli.net/2022/12/24/qIUNv1gCSjBc7nx.png" alt="image-20190925092015591"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/qIUNv1gCSjBc7nx.png"
+  alt="image-20190925092015591"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>框选的代码为报错行，联系上下文猜测session并没有获取成功或session不存在。因此加入箭头所指代码进行debug。</p>
 <p>发现在此处会报空指针异常，但是session是确实存在的。</p>
 <p>检查redis中存储的session信息，发现有一个session缺少要存储的用户等关键信息</p>
 <p>不完整的session信息：</p>
-<p><img src="https://s2.loli.net/2022/12/24/OPQzvkhIlVrwZWR.png" alt="不完整session"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/OPQzvkhIlVrwZWR.png"
+  alt="不完整session"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>存储正常的session信息：</p>
-<p><img src="https://s2.loli.net/2022/12/24/cfnIAq1gQChoLG4.png" alt="image-20190925092738929"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/cfnIAq1gQChoLG4.png"
+  alt="image-20190925092738929"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>因此定位到是session在存储的时候出了问题。</p>
 <h2 id="解决">解决</h2>
 <p>检查session存储的代码，发现登录接口使用的session是一个共享的变量，因为 spring 的每个 controller 默认都是单例的，这个session 会被其他线程给共享，在多线程的情况下，极容易出现线程不安全的问题。</p>
 <p>现有的session处理方式如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="n">HttpSession</span> <span class="n">session</span><span class="o">;</span>
-<span class="kd">private</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">;</span>
-
-<span class="nd">@ModelAttribute</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="n">HttpSession</span> <span class="n">httpSession</span><span class="o">,</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
-	<span class="k">this</span><span class="o">.</span><span class="na">session</span> <span class="o">=</span> <span class="n">httpSession</span><span class="o">;</span>
-	<span class="k">this</span><span class="o">.</span><span class="na">request</span> <span class="o">=</span> <span class="n">request</span><span class="o">;</span>
-<span class="o">}</span>
-<span class="c1">//登录controller
-</span><span class="c1"></span> <span class="nd">@PostMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;public/client-account/v1/login-dev&#34;</span><span class="o">)</span>
-<span class="nd">@ApiOperation</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;用户登录校验(明文)&#34;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="n">ResponseData</span> <span class="nf">loginDev</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="n">OmsLoginDTO</span> <span class="n">loginDTO</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-  <span class="n">OmsUserVO</span> <span class="n">omsUserVO</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">userFacade</span><span class="o">.</span><span class="na">checkLogin</span><span class="o">(</span><span class="n">loginDTO</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">userFacade</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="n">omsUserVO</span><span class="o">,</span> <span class="n">request</span><span class="o">);</span>
-  <span class="n">sessionCache</span><span class="o">(</span><span class="n">omsUserVO</span><span class="o">,</span> <span class="n">session</span><span class="o">);</span>
-  <span class="k">return</span> <span class="n">ResponseUtil</span><span class="o">.</span><span class="na">success</span><span class="o">(</span><span class="n">omsUserVO</span><span class="o">);</span>
-<span class="o">}</span>
-<span class="cm">/**
-</span><span class="cm">     * 缓存用户session
-</span><span class="cm">     *
-</span><span class="cm">     * @param omsUserVO
-</span><span class="cm">     * @throws Exception
-</span><span class="cm">     */</span>
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">sessionCache</span><span class="o">(</span><span class="n">OmsUserVO</span> <span class="n">omsUserVO</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">repeatLogin</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;true&#34;</span><span class="o">))</span> <span class="o">{</span>
-    <span class="n">httpSession</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="n">FindByIndexNameSessionRepository</span><span class="o">.</span><span class="na">PRINCIPAL_NAME_INDEX_NAME</span><span class="o">,</span> <span class="n">omsUserVO</span><span class="o">.</span><span class="na">getLoginName</span><span class="o">());</span>
-  <span class="o">}</span>
-  <span class="n">httpSession</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">,</span> <span class="n">JSONObject</span><span class="o">.</span><span class="na">toJSONString</span><span class="o">(</span><span class="n">omsUserVO</span><span class="o">));</span>
-  <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">!=</span> <span class="n">omsUserVO</span><span class="o">.</span><span class="na">getRoles</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">omsUserVO</span><span class="o">.</span><span class="na">getRoles</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">roleNameList</span> <span class="o">=</span> <span class="n">omsUserVO</span><span class="o">.</span><span class="na">getRoles</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
-      <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">OmsRoleVO</span><span class="o">::</span><span class="n">getRoleName</span><span class="o">)</span>
-      <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
-    <span class="n">session</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&#34;role&#34;</span><span class="o">,</span> <span class="n">JSONObject</span><span class="o">.</span><span class="na">toJSONString</span><span class="o">(</span><span class="n">roleNameList</span><span class="o">));</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>解决方式有三种：</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 1</span><span><span style="color:#c678dd">private</span> <span style="color:#e06c75">HttpSession</span> <span style="color:#e06c75">session</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 2</span><span><span style="color:#c678dd">private</span> <span style="color:#e06c75">HttpServletRequest</span> <span style="color:#e06c75">request</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 4</span><span><span style="color:#61afef">@ModelAttribute</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 5</span><span><span style="color:#c678dd">public</span> <span style="color:#e5c07b">void</span> <span style="color:#61afef;font-weight:bold">init</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">HttpSession</span> <span style="color:#e06c75">httpSession</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">HttpServletRequest</span> <span style="color:#e06c75">request</span><span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 6</span><span>	<span style="color:#c678dd">this</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">session</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">httpSession</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 7</span><span>	<span style="color:#c678dd">this</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">request</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">request</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 8</span><span><span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 9</span><span><span style="color:#7f848e">//登录controller
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">10</span><span><span style="color:#7f848e"></span> <span style="color:#61afef">@PostMapping</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">value</span> <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#34;public/client-account/v1/login-dev&#34;</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">11</span><span><span style="color:#61afef">@ApiOperation</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">value</span> <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#34;用户登录校验(明文)&#34;</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">12</span><span><span style="color:#c678dd">public</span> <span style="color:#e06c75">ResponseData</span> <span style="color:#61afef;font-weight:bold">loginDev</span><span style="color:#56b6c2">(</span><span style="color:#61afef">@RequestBody</span> <span style="color:#e06c75">OmsLoginDTO</span> <span style="color:#e06c75">loginDTO</span><span style="color:#56b6c2">)</span> <span style="color:#c678dd">throws</span> <span style="color:#e06c75">Exception</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">13</span><span>  <span style="color:#e06c75">OmsUserVO</span> <span style="color:#e06c75">omsUserVO</span> <span style="color:#56b6c2">=</span> <span style="color:#c678dd">this</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">userFacade</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">checkLogin</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">loginDTO</span><span style="color:#56b6c2">,</span> <span style="color:#e5c07b">false</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">14</span><span>  <span style="color:#c678dd">this</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">userFacade</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">log</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">request</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">15</span><span>  <span style="color:#e06c75">sessionCache</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">session</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">16</span><span>  <span style="color:#c678dd">return</span> <span style="color:#e06c75">ResponseUtil</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">success</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">17</span><span><span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">18</span><span><span style="color:#7f848e">/**
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">19</span><span><span style="color:#7f848e">     * 缓存用户session
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">20</span><span><span style="color:#7f848e">     *
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">21</span><span><span style="color:#7f848e">     * @param omsUserVO
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">22</span><span><span style="color:#7f848e">     * @throws Exception
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">23</span><span><span style="color:#7f848e">     */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">24</span><span><span style="color:#c678dd">private</span> <span style="color:#e5c07b">void</span> <span style="color:#61afef;font-weight:bold">sessionCache</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">OmsUserVO</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">)</span> <span style="color:#c678dd">throws</span> <span style="color:#e06c75">Exception</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">25</span><span>  <span style="color:#c678dd">if</span> <span style="color:#56b6c2">(</span><span style="color:#e06c75">repeatLogin</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">equals</span><span style="color:#56b6c2">(</span><span style="color:#98c379">&#34;true&#34;</span><span style="color:#56b6c2">))</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">26</span><span>    <span style="color:#e06c75">httpSession</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">setAttribute</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">FindByIndexNameSessionRepository</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">PRINCIPAL_NAME_INDEX_NAME</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">getLoginName</span><span style="color:#56b6c2">());</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">27</span><span>  <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">28</span><span>  <span style="color:#e06c75">httpSession</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">setAttribute</span><span style="color:#56b6c2">(</span><span style="color:#98c379">&#34;user&#34;</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">JSONObject</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">toJSONString</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">));</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">29</span><span>  <span style="color:#c678dd">if</span> <span style="color:#56b6c2">(</span><span style="color:#e5c07b">null</span> <span style="color:#56b6c2">!=</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">getRoles</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">&amp;&amp;</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">getRoles</span><span style="color:#56b6c2">().</span><span style="color:#e06c75">size</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">&gt;</span> <span style="color:#d19a66">0</span><span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">30</span><span>    <span style="color:#e06c75">List</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">&gt;</span> <span style="color:#e06c75">roleNameList</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">getRoles</span><span style="color:#56b6c2">().</span><span style="color:#e06c75">stream</span><span style="color:#56b6c2">()</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">31</span><span>      <span style="color:#56b6c2">.</span><span style="color:#e06c75">map</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">OmsRoleVO</span><span style="color:#56b6c2">::</span><span style="color:#e06c75">getRoleName</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">32</span><span>      <span style="color:#56b6c2">.</span><span style="color:#e06c75">collect</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">Collectors</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">toList</span><span style="color:#56b6c2">());</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">33</span><span>    <span style="color:#e06c75">session</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">setAttribute</span><span style="color:#56b6c2">(</span><span style="color:#98c379">&#34;role&#34;</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">JSONObject</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">toJSONString</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">roleNameList</span><span style="color:#56b6c2">));</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">34</span><span>  <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">35</span><span><span style="color:#56b6c2">}</span>
+</span></span></code></pre></div><p>解决方式有三种：</p>
 <p>首先介绍最简单的一种，</p>
 <h4 id="使用autowired注解">使用@Autowired注解</h4>
 <p>使用@Autowired代替@ModelAttribute</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Autowired</span>
-<span class="kd">private</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">;</span>
-<span class="nd">@Autowired</span>
-<span class="kd">private</span> <span class="n">HttpSession</span> <span class="n">session</span><span class="o">;</span>
-    
-<span class="c1">//@ModelAttribute
-</span><span class="c1">//public void init(HttpSession httpSession, HttpServletRequest request) {
-</span><span class="c1"></span>  <span class="c1">//this.session = httpSession;
-</span><span class="c1"></span>  <span class="c1">//this.request = request;
-</span><span class="c1">//}
-</span></code></pre></td></tr></table>
-</div>
-</div><p>对上述代码进行调试</p>
-<p><img src="https://s2.loli.net/2022/12/24/K8FQeTgMwufvoil.png" alt="image-20190925110213553"></p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 1</span><span><span style="color:#61afef">@Autowired</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 2</span><span><span style="color:#c678dd">private</span> <span style="color:#e06c75">HttpServletRequest</span> <span style="color:#e06c75">request</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 3</span><span><span style="color:#61afef">@Autowired</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 4</span><span><span style="color:#c678dd">private</span> <span style="color:#e06c75">HttpSession</span> <span style="color:#e06c75">session</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 5</span><span>    
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 6</span><span><span style="color:#7f848e">//@ModelAttribute
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 7</span><span><span style="color:#7f848e">//public void init(HttpSession httpSession, HttpServletRequest request) {
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 8</span><span><span style="color:#7f848e"></span>  <span style="color:#7f848e">//this.session = httpSession;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 9</span><span><span style="color:#7f848e"></span>  <span style="color:#7f848e">//this.request = request;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">10</span><span><span style="color:#7f848e">//}
+</span></span></span></code></pre></div><p>对上述代码进行调试</p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/K8FQeTgMwufvoil.png"
+  alt="image-20190925110213553"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>加上了@Autowired注解之后进行debug发现，request并不是原始的HttpServletRequest对象，而是HttpServletRequest的一个代理类。找到代理类的实现如下</p>
-<p><img src="https://s2.loli.net/2022/12/24/HIjl3nckNPm8Ddw.png" alt="image-20190925110822925"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/HIjl3nckNPm8Ddw.png"
+  alt="image-20190925110822925"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>实际上Autowire进来的并不是原始的HttpServletRequest对象，而是HttpServletRequest的一个代理类。实际上它会通过</p>
-<pre><code>((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest()
+<pre tabindex="0"><code>((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest()
 </code></pre><p>到这一步骤已经很明显了，那如何看出是线程安全的，继续往下看。</p>
-<p><img src="https://s2.loli.net/2022/12/24/SvHB7gA4CbhTNMt.png" alt="image-20190925110859572"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/SvHB7gA4CbhTNMt.png"
+  alt="image-20190925110859572"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>进一步去看RequestContextHolder发现RequestContextHolder是通过ThreadLocal来实现的，可以保证每个线程获取得到的Request对象一定是当前请求的Request对象，从而保证线程安全。</p>
-<p><img src="https://s2.loli.net/2022/12/24/7bu9BqrfIQxmLjo.png" alt="image-20190925111025094"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/7bu9BqrfIQxmLjo.png"
+  alt="image-20190925111025094"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <h4 id="一种是在登录相关接口将session作为参数传递到方法中使用">一种是在登录相关接口将session作为参数传递到方法中使用</h4>
 <p>在请求和存储的时候加上单独的HttpSession session</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@PostMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;public/client-account/v1/login-dev&#34;</span><span class="o">)</span>
-<span class="nd">@ApiOperation</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&#34;用户登录校验(明文)&#34;</span><span class="o">)</span>
-<span class="kd">public</span> <span class="n">ResponseData</span> <span class="nf">loginDev</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="n">OmsLoginDTO</span> <span class="n">loginDTO</span><span class="o">,</span><span class="n">HttpSession</span> <span class="n">httpSession</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-  <span class="n">OmsUserVO</span> <span class="n">omsUserVO</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">userFacade</span><span class="o">.</span><span class="na">checkLogin</span><span class="o">(</span><span class="n">loginDTO</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">userFacade</span><span class="o">.</span><span class="na">log</span><span class="o">(</span><span class="n">omsUserVO</span><span class="o">,</span> <span class="n">request</span><span class="o">);</span>
-  <span class="n">sessionCache</span><span class="o">(</span><span class="n">omsUserVO</span><span class="o">,</span> <span class="n">httpSession</span><span class="o">);</span>
-  <span class="k">return</span> <span class="n">ResponseUtil</span><span class="o">.</span><span class="na">success</span><span class="o">(</span><span class="n">omsUserVO</span><span class="o">);</span>
-<span class="o">}</span>
-
-<span class="cm">/**
-</span><span class="cm">     * 缓存用户session
-</span><span class="cm">     *
-</span><span class="cm">     * @param omsUserVO
-</span><span class="cm">     * @throws Exception
-</span><span class="cm">     */</span>
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">sessionCache</span><span class="o">(</span><span class="n">OmsUserVO</span> <span class="n">omsUserVO</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">repeatLogin</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;true&#34;</span><span class="o">))</span> <span class="o">{</span>
-    <span class="n">session</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="n">FindByIndexNameSessionRepository</span><span class="o">.</span><span class="na">PRINCIPAL_NAME_INDEX_NAME</span><span class="o">,</span> <span class="n">omsUserVO</span><span class="o">.</span><span class="na">getLoginName</span><span class="o">());</span>
-  <span class="o">}</span>
-  <span class="n">session</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">,</span> <span class="n">JSONObject</span><span class="o">.</span><span class="na">toJSONString</span><span class="o">(</span><span class="n">omsUserVO</span><span class="o">));</span>
-  <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">!=</span> <span class="n">omsUserVO</span><span class="o">.</span><span class="na">getRoles</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">omsUserVO</span><span class="o">.</span><span class="na">getRoles</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">roleNameList</span> <span class="o">=</span> <span class="n">omsUserVO</span><span class="o">.</span><span class="na">getRoles</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
-      <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">OmsRoleVO</span><span class="o">::</span><span class="n">getRoleName</span><span class="o">)</span>
-      <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
-    <span class="n">session</span><span class="o">.</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&#34;role&#34;</span><span class="o">,</span> <span class="n">JSONObject</span><span class="o">.</span><span class="na">toJSONString</span><span class="o">(</span><span class="n">roleNameList</span><span class="o">));</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h4 id="另外一种是将session使用threadlocal来处理">另外一种是将session使用ThreadLocal来处理</h4>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 1</span><span><span style="color:#61afef">@PostMapping</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">value</span> <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#34;public/client-account/v1/login-dev&#34;</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 2</span><span><span style="color:#61afef">@ApiOperation</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">value</span> <span style="color:#56b6c2">=</span> <span style="color:#98c379">&#34;用户登录校验(明文)&#34;</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 3</span><span><span style="color:#c678dd">public</span> <span style="color:#e06c75">ResponseData</span> <span style="color:#61afef;font-weight:bold">loginDev</span><span style="color:#56b6c2">(</span><span style="color:#61afef">@RequestBody</span> <span style="color:#e06c75">OmsLoginDTO</span> <span style="color:#e06c75">loginDTO</span><span style="color:#56b6c2">,</span><span style="color:#e06c75">HttpSession</span> <span style="color:#e06c75">httpSession</span><span style="color:#56b6c2">)</span> <span style="color:#c678dd">throws</span> <span style="color:#e06c75">Exception</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 4</span><span>  <span style="color:#e06c75">OmsUserVO</span> <span style="color:#e06c75">omsUserVO</span> <span style="color:#56b6c2">=</span> <span style="color:#c678dd">this</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">userFacade</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">checkLogin</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">loginDTO</span><span style="color:#56b6c2">,</span> <span style="color:#e5c07b">false</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 5</span><span>  <span style="color:#c678dd">this</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">userFacade</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">log</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">request</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 6</span><span>  <span style="color:#e06c75">sessionCache</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">httpSession</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 7</span><span>  <span style="color:#c678dd">return</span> <span style="color:#e06c75">ResponseUtil</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">success</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 8</span><span><span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">10</span><span><span style="color:#7f848e">/**
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">11</span><span><span style="color:#7f848e">     * 缓存用户session
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">12</span><span><span style="color:#7f848e">     *
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">13</span><span><span style="color:#7f848e">     * @param omsUserVO
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">14</span><span><span style="color:#7f848e">     * @throws Exception
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">15</span><span><span style="color:#7f848e">     */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">16</span><span><span style="color:#c678dd">private</span> <span style="color:#e5c07b">void</span> <span style="color:#61afef;font-weight:bold">sessionCache</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">OmsUserVO</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">)</span> <span style="color:#c678dd">throws</span> <span style="color:#e06c75">Exception</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">17</span><span>  <span style="color:#c678dd">if</span> <span style="color:#56b6c2">(</span><span style="color:#e06c75">repeatLogin</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">equals</span><span style="color:#56b6c2">(</span><span style="color:#98c379">&#34;true&#34;</span><span style="color:#56b6c2">))</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">18</span><span>    <span style="color:#e06c75">session</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">setAttribute</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">FindByIndexNameSessionRepository</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">PRINCIPAL_NAME_INDEX_NAME</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">getLoginName</span><span style="color:#56b6c2">());</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">19</span><span>  <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">20</span><span>  <span style="color:#e06c75">session</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">setAttribute</span><span style="color:#56b6c2">(</span><span style="color:#98c379">&#34;user&#34;</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">JSONObject</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">toJSONString</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">));</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">21</span><span>  <span style="color:#c678dd">if</span> <span style="color:#56b6c2">(</span><span style="color:#e5c07b">null</span> <span style="color:#56b6c2">!=</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">getRoles</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">&amp;&amp;</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">getRoles</span><span style="color:#56b6c2">().</span><span style="color:#e06c75">size</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">&gt;</span> <span style="color:#d19a66">0</span><span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">22</span><span>    <span style="color:#e06c75">List</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">&gt;</span> <span style="color:#e06c75">roleNameList</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">getRoles</span><span style="color:#56b6c2">().</span><span style="color:#e06c75">stream</span><span style="color:#56b6c2">()</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">23</span><span>      <span style="color:#56b6c2">.</span><span style="color:#e06c75">map</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">OmsRoleVO</span><span style="color:#56b6c2">::</span><span style="color:#e06c75">getRoleName</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">24</span><span>      <span style="color:#56b6c2">.</span><span style="color:#e06c75">collect</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">Collectors</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">toList</span><span style="color:#56b6c2">());</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">25</span><span>    <span style="color:#e06c75">session</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">setAttribute</span><span style="color:#56b6c2">(</span><span style="color:#98c379">&#34;role&#34;</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">JSONObject</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">toJSONString</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">roleNameList</span><span style="color:#56b6c2">));</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">26</span><span>  <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">27</span><span><span style="color:#56b6c2">}</span>
+</span></span></code></pre></div><h4 id="另外一种是将session使用threadlocal来处理">另外一种是将session使用ThreadLocal来处理</h4>
 <p>重点在于session的初始化设置</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">ThreadLocal</span><span class="o">&lt;</span><span class="n">HttpSession</span><span class="o">&gt;</span> <span class="n">session</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ThreadLocal</span><span class="o">&lt;&gt;();</span>
-<span class="nd">@ModelAttribute</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">(</span><span class="n">HttpSession</span> <span class="n">httpSession</span><span class="o">,</span> <span class="n">HttpServletRequest</span> <span class="n">request</span><span class="o">)</span> <span class="o">{</span>
-  <span class="n">ClientAccountController</span><span class="o">.</span><span class="na">session</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">httpSession</span><span class="o">);</span>
-  <span class="k">this</span><span class="o">.</span><span class="na">request</span> <span class="o">=</span> <span class="n">request</span><span class="o">;</span>
-<span class="o">}</span>
-<span class="c1">//在涉及到session的获取时候需要使用session.get()
-</span><span class="c1"></span><span class="cm">/**
-</span><span class="cm">     * 缓存用户session
-</span><span class="cm">     * @param omsUserVO
-</span><span class="cm">     * @throws Exception
-</span><span class="cm">     */</span>
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">sessionCache</span><span class="o">(</span><span class="n">OmsUserVO</span> <span class="n">omsUserVO</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
-  <span class="k">if</span> <span class="o">(</span><span class="n">repeatLogin</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;true&#34;</span><span class="o">))</span> <span class="o">{</span>
-    <span class="n">session</span><span class="o">.</span><span class="na">get</span><span class="o">().</span><span class="na">setAttribute</span><span class="o">(</span><span class="n">FindByIndexNameSessionRepository</span><span class="o">.</span><span class="na">PRINCIPAL_NAME_INDEX_NAME</span><span class="o">,</span> <span class="n">omsUserVO</span><span class="o">.</span><span class="na">getLoginName</span><span class="o">());</span>
-  <span class="o">}</span>
-  <span class="n">session</span><span class="o">.</span><span class="na">get</span><span class="o">().</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&#34;user&#34;</span><span class="o">,</span> <span class="n">JSONObject</span><span class="o">.</span><span class="na">toJSONString</span><span class="o">(</span><span class="n">omsUserVO</span><span class="o">));</span>
-  <span class="k">if</span> <span class="o">(</span><span class="kc">null</span> <span class="o">!=</span> <span class="n">omsUserVO</span><span class="o">.</span><span class="na">getRoles</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">omsUserVO</span><span class="o">.</span><span class="na">getRoles</span><span class="o">().</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">roleNameList</span> <span class="o">=</span> <span class="n">omsUserVO</span><span class="o">.</span><span class="na">getRoles</span><span class="o">().</span><span class="na">stream</span><span class="o">()</span>
-      <span class="o">.</span><span class="na">map</span><span class="o">(</span><span class="n">OmsRoleVO</span><span class="o">::</span><span class="n">getRoleName</span><span class="o">)</span>
-      <span class="o">.</span><span class="na">collect</span><span class="o">(</span><span class="n">Collectors</span><span class="o">.</span><span class="na">toList</span><span class="o">());</span>
-    <span class="n">session</span><span class="o">.</span><span class="na">get</span><span class="o">().</span><span class="na">setAttribute</span><span class="o">(</span><span class="s">&#34;role&#34;</span><span class="o">,</span> <span class="n">JSONObject</span><span class="o">.</span><span class="na">toJSONString</span><span class="o">(</span><span class="n">roleNameList</span><span class="o">));</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>使用上述三种方式任意方式之后，最终请求正常</p>
-<p><img src="https://s2.loli.net/2022/12/24/lo4m7psr3f2AM96.png" alt="image-20190925094039469"></p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 1</span><span><span style="color:#c678dd">private</span> <span style="color:#c678dd">static</span> <span style="color:#c678dd">final</span> <span style="color:#e06c75">ThreadLocal</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">HttpSession</span><span style="color:#56b6c2">&gt;</span> <span style="color:#e06c75">session</span> <span style="color:#56b6c2">=</span> <span style="color:#c678dd">new</span> <span style="color:#e06c75">ThreadLocal</span><span style="color:#56b6c2">&lt;&gt;();</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 2</span><span><span style="color:#61afef">@ModelAttribute</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 3</span><span><span style="color:#c678dd">public</span> <span style="color:#e5c07b">void</span> <span style="color:#61afef;font-weight:bold">init</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">HttpSession</span> <span style="color:#e06c75">httpSession</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">HttpServletRequest</span> <span style="color:#e06c75">request</span><span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 4</span><span>  <span style="color:#e06c75">ClientAccountController</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">session</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">set</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">httpSession</span><span style="color:#56b6c2">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 5</span><span>  <span style="color:#c678dd">this</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">request</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">request</span><span style="color:#56b6c2">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 6</span><span><span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 7</span><span><span style="color:#7f848e">//在涉及到session的获取时候需要使用session.get()
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 8</span><span><span style="color:#7f848e"></span><span style="color:#7f848e">/**
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 9</span><span><span style="color:#7f848e">     * 缓存用户session
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">10</span><span><span style="color:#7f848e">     * @param omsUserVO
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">11</span><span><span style="color:#7f848e">     * @throws Exception
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">12</span><span><span style="color:#7f848e">     */</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">13</span><span><span style="color:#c678dd">private</span> <span style="color:#e5c07b">void</span> <span style="color:#61afef;font-weight:bold">sessionCache</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">OmsUserVO</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">)</span> <span style="color:#c678dd">throws</span> <span style="color:#e06c75">Exception</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">14</span><span>  <span style="color:#c678dd">if</span> <span style="color:#56b6c2">(</span><span style="color:#e06c75">repeatLogin</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">equals</span><span style="color:#56b6c2">(</span><span style="color:#98c379">&#34;true&#34;</span><span style="color:#56b6c2">))</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">15</span><span>    <span style="color:#e06c75">session</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">get</span><span style="color:#56b6c2">().</span><span style="color:#e06c75">setAttribute</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">FindByIndexNameSessionRepository</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">PRINCIPAL_NAME_INDEX_NAME</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">getLoginName</span><span style="color:#56b6c2">());</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">16</span><span>  <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">17</span><span>  <span style="color:#e06c75">session</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">get</span><span style="color:#56b6c2">().</span><span style="color:#e06c75">setAttribute</span><span style="color:#56b6c2">(</span><span style="color:#98c379">&#34;user&#34;</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">JSONObject</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">toJSONString</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">));</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">18</span><span>  <span style="color:#c678dd">if</span> <span style="color:#56b6c2">(</span><span style="color:#e5c07b">null</span> <span style="color:#56b6c2">!=</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">getRoles</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">&amp;&amp;</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">getRoles</span><span style="color:#56b6c2">().</span><span style="color:#e06c75">size</span><span style="color:#56b6c2">()</span> <span style="color:#56b6c2">&gt;</span> <span style="color:#d19a66">0</span><span style="color:#56b6c2">)</span> <span style="color:#56b6c2">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">19</span><span>    <span style="color:#e06c75">List</span><span style="color:#56b6c2">&lt;</span><span style="color:#e06c75">String</span><span style="color:#56b6c2">&gt;</span> <span style="color:#e06c75">roleNameList</span> <span style="color:#56b6c2">=</span> <span style="color:#e06c75">omsUserVO</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">getRoles</span><span style="color:#56b6c2">().</span><span style="color:#e06c75">stream</span><span style="color:#56b6c2">()</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">20</span><span>      <span style="color:#56b6c2">.</span><span style="color:#e06c75">map</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">OmsRoleVO</span><span style="color:#56b6c2">::</span><span style="color:#e06c75">getRoleName</span><span style="color:#56b6c2">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">21</span><span>      <span style="color:#56b6c2">.</span><span style="color:#e06c75">collect</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">Collectors</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">toList</span><span style="color:#56b6c2">());</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">22</span><span>    <span style="color:#e06c75">session</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">get</span><span style="color:#56b6c2">().</span><span style="color:#e06c75">setAttribute</span><span style="color:#56b6c2">(</span><span style="color:#98c379">&#34;role&#34;</span><span style="color:#56b6c2">,</span> <span style="color:#e06c75">JSONObject</span><span style="color:#56b6c2">.</span><span style="color:#e06c75">toJSONString</span><span style="color:#56b6c2">(</span><span style="color:#e06c75">roleNameList</span><span style="color:#56b6c2">));</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">23</span><span>  <span style="color:#56b6c2">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">24</span><span><span style="color:#56b6c2">}</span>
+</span></span></code></pre></div><p>使用上述三种方式任意方式之后，最终请求正常</p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/lo4m7psr3f2AM96.png"
+  alt="image-20190925094039469"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>继续调整请求线程为10，问题没有出现。</p>
 <h2 id="总结">总结</h2>
 <p>1、在并发的情况下要注意考虑共享变量的问题</p>
@@ -386,82 +373,27 @@
 <p><a href="https://www.cnblogs.com/kismetv/p/8757260.html#t4">https://www.cnblogs.com/kismetv/p/8757260.html#t4</a></p>
 <p><a href="https://segmentfault.com/q/1010000005139036">https://segmentfault.com/q/1010000005139036</a></p>
 </blockquote>
-    </article>
-  </main>
-  
-
-
-
-
-
-<div id="comment"></div>
-
-
-
-
-<script>
-    const s = document.createElement("script")
-    s.src = "https://giscus.app/client.js"
-    s.crossOrigin = "anonymous"
-    s.async = true
-    s.setAttribute("data-repo", "haigeek\/blog-comment-bygiscus")
-    s.setAttribute("data-repo-id", "R_kgDOIq0W4w")
-    s.setAttribute("data-category", "Announcements")
-    s.setAttribute("data-category-id", "DIC_kwDOIq0W484CTPda")
-    s.setAttribute("data-mapping", "pathname")
-    s.setAttribute("data-strict", "0")
-    s.setAttribute("data-reactions-enabled", "1")
-    s.setAttribute("data-emit-metadata", "0")
-    s.setAttribute("data-input-position", "buttom")
-    s.setAttribute("data-theme", window.minima_theme + "_protanopia")
-    s.setAttribute("data-lang", "en")
-    s.setAttribute("data-loading", "lazy")
-    document.getElementById("comment").appendChild(s)
+      
+      <div class="post-date">
+        <span class="g time">October 16, 2019 </span> &#8729;
+         
+         <a href="https://haigeek.me/tags/session/">session</a> <a href="https://haigeek.me/tags/spring/">spring</a>
+      </div>
+      
+    </section>
+    
+    <div id="comments">
+      <script src="https://utteranc.es/client.js"
+    repo=ZgotmplZ
+    issue-term="pathname"
+    theme=ZgotmplZ
+    crossorigin="anonymous"
+    async>
 </script>
 
-
-
-
-
-
-
-
-
-</div>
-
-
-  <footer class="mt-8 mb-8">
-  <div class="container mx-auto">
-    <div class="mt-8 flex justify-between items-center">
-      <p class="mt-0 text-sm">
-        © 2022 haigeek |
-        <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> on
-        <a href="https://github.com/mivinci/hugo-theme-minima" target="_blank" rel="noopener noreferrer">Minima</a>
-      </p>
-      <p class="flex items-center mt-0">
-        
-          <a class="icon ml-1 mr-1" href="mailto:haigeek@qq.com" title="email">
-          
-            <svg fill="#63636f" width="22" height="22" viewBox="0 0 24 24"><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm9.06 8.683L5.648 6.238L4.353 7.762l7.72 6.555l7.581-6.56l-1.308-1.513l-6.285 5.439z"/></svg>
-          
-          </a>
-        
-          <a class="icon ml-1 mr-1" href="https://github.com/haigeek" title="github">
-          
-            <svg fill="#63636f" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          
-          </a>
-        
-          <a class="icon ml-1 mr-1" href="/index.xml" title="rss">
-          
-            <svg fill="#63636f" t="1626591563876" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1984" width="18" height="16"><path d="M128 768a128 128 0 1 0 0 256 128 128 0 0 0 0-256zM0 368v176c265.104 0 480 214.912 480 480h176c0-362.32-293.696-656-656-656zM0 0v176c468.336 0 848 379.664 848 848h176C1024 458.464 565.536 0 0 0z" p-id="1985"></path></svg>
-          
-          </a>
-        
-      </p>
     </div>
+    
   </div>
-</footer>
+</main>
 </body>
-
 </html>

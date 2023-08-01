@@ -5,8 +5,8 @@
     <link>https://haigeek.me/tags/spring/</link>
     <description>Recent content in spring on haigeek blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© 2022 haigeek</copyright>
+    <language>zh-cn</language>
+    <copyright>© 2023 haigeek</copyright>
     <lastBuildDate>Wed, 16 Oct 2019 23:26:39 +0000</lastBuildDate><atom:link href="https://haigeek.me/tags/spring/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>并发登录下session的处理</title>

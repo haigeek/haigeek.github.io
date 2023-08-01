@@ -1,229 +1,139 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <url>
-    <loc>https://haigeek.me/tags/dubbo/</loc>
-    <lastmod>2020-12-27T00:34:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/backend/dubbo/dubbo-rpc-filter-exception-handler/</loc>
-    <lastmod>2020-12-27T00:34:27+08:00</lastmod>
-  </url>
-  
   <url>
     <loc>https://haigeek.me/</loc>
     <lastmod>2020-12-27T00:34:27+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://haigeek.me/tags/dubbo/</loc>
+    <lastmod>2020-12-27T00:34:27+08:00</lastmod>
+  </url><url>
+    <loc>https://haigeek.me/posts/backend/dubbo/dubbo-rpc-filter-exception-handler/</loc>
+    <lastmod>2020-12-27T00:34:27+08:00</lastmod>
+  </url><url>
     <loc>https://haigeek.me/posts/</loc>
     <lastmod>2020-12-27T00:34:27+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/</loc>
     <lastmod>2020-12-27T00:34:27+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/posts/backend/dubbo/dubbo-random-port/</loc>
     <lastmod>2020-04-01T23:17:02+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/categories/</loc>
     <lastmod>2020-01-08T22:31:21+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/nacos/</loc>
     <lastmod>2020-01-08T22:31:21+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/posts/backend/microservice/nacos-base-learn/</loc>
     <lastmod>2020-01-08T22:31:21+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2020-01-08T22:31:21+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/%E7%94%9F%E6%B4%BB/2019-life-summary/</loc>
+  </url><url>
+    <loc>https://haigeek.me/posts/life/2019-life-summary/</loc>
     <lastmod>2019-12-29T22:34:23+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/categories/%E6%88%91%E7%9A%84%E7%BB%8F%E5%8E%86/</loc>
-    <lastmod>2019-12-29T22:34:23+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2019-12-29T22:34:23+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://haigeek.me/categories/%E6%88%91%E7%9A%84%E7%BB%8F%E5%8E%86/</loc>
+    <lastmod>2019-12-29T22:34:23+00:00</lastmod>
+  </url><url>
     <loc>https://haigeek.me/tags/session/</loc>
     <lastmod>2019-10-16T23:26:39+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/spring/</loc>
     <lastmod>2019-10-16T23:26:39+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/categories/spring/</loc>
     <lastmod>2019-10-16T23:26:39+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/posts/java/spring/concurrent-login-session/</loc>
     <lastmod>2019-10-16T23:26:39+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/socket/</loc>
     <lastmod>2019-05-08T22:38:38+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/tcp/</loc>
     <lastmod>2019-05-08T22:38:38+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/posts/computerscience/tcp-socker-no-buffer-space-available/</loc>
     <lastmod>2019-05-08T22:38:38+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/about/</loc>
     <lastmod>2019-05-07T12:18:37+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/springboot/</loc>
     <lastmod>2019-01-06T23:05:54+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/categories/springboot/</loc>
     <lastmod>2019-01-06T23:05:54+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/posts/java/springboot/springboot-filter-cros/</loc>
     <lastmod>2019-01-06T23:05:54+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/posts/java/springboot/springboot-maven-profile/</loc>
     <lastmod>2019-01-06T23:05:54+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/%E7%94%9F%E6%B4%BB/2018-life-summary/</loc>
+  </url><url>
+    <loc>https://haigeek.me/posts/life/2018-life-summary/</loc>
     <lastmod>2019-01-01T22:54:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/jenkins/</loc>
     <lastmod>2019-01-01T22:54:58+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/backend/devops/jenkins/jenkins-clone-project/</loc>
-    <lastmod>2019-01-01T22:54:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/</loc>
     <lastmod>2019-01-01T22:54:58+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://haigeek.me/posts/backend/devops/jenkins/jenkins-clone-project/</loc>
+    <lastmod>2019-01-01T22:54:58+00:00</lastmod>
+  </url><url>
     <loc>https://haigeek.me/posts/linux/centos-install-ftp-vsftpd/</loc>
     <lastmod>2017-09-06T20:46:37+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/linux/</loc>
     <lastmod>2017-09-06T20:46:37+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/categories/linux/</loc>
     <lastmod>2017-09-06T20:46:37+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/java-web/</loc>
     <lastmod>2017-07-22T20:27:55+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/struts2/</loc>
     <lastmod>2017-07-22T20:27:55+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/posts/project/winestory-struts2/</loc>
     <lastmod>2017-07-22T20:27:55+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/posts/linux/centos6-8-install-javajdk-tomcat-mysql-env/</loc>
     <lastmod>2017-07-15T14:12:28+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/java/</loc>
     <lastmod>2017-07-15T14:12:28+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/mysql/</loc>
     <lastmod>2017-07-15T14:12:28+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/tomcat/</loc>
     <lastmod>2017-07-15T14:12:28+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/tags/http/</loc>
     <lastmod>2017-03-08T16:25:16+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/categories/web/</loc>
     <lastmod>2017-03-08T16:25:16+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/posts/frontend/http/web-http-basic/</loc>
     <lastmod>2017-03-08T16:25:16+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://haigeek.me/posts/%E7%94%9F%E6%B4%BB/you-are-my-like-once/</loc>
+  </url><url>
+    <loc>https://haigeek.me/posts/life/you-are-my-like-once/</loc>
     <lastmod>2016-12-02T23:08:57+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2016-12-02T23:08:57+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://haigeek.me/series/</loc>
   </url>
-  
 </urlset>

@@ -1,108 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:title" content="Jenkins部署项目到远程windows" />
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Liste - https://haigeek.me">
+    <title>Jenkins部署项目到远程windows | haigeek blog</title>
+    <meta name="description" content="I&#39;m a software engineer , Use Java as the primary programming language, Interested in Microervices, K8s, Devops ... In this blog , I share my technical problems and life records. ">
+    <meta property="og:title" content="Jenkins部署项目到远程windows" />
 <meta property="og:description" content="核心是使用ssh进行jenkins主节点与目标部署服务器进行通信,文件传输走scp协议,执行执行使用ssh命令远程到目标主机进行执行." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/" />
+<meta property="og:url" content="https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-01-01T22:54:58+00:00" />
 <meta property="article:modified_time" content="2019-01-01T22:54:58+00:00" />
 
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Jenkins部署项目到远程windows"/>
-<meta name="twitter:description" content="核心是使用ssh进行jenkins主节点与目标部署服务器进行通信,文件传输走scp协议,执行执行使用ssh命令远程到目标主机进行执行."/>
-
-  
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#262d33">
-  <title>
+    <meta itemprop="name" content="Jenkins部署项目到远程windows">
+<meta itemprop="description" content="核心是使用ssh进行jenkins主节点与目标部署服务器进行通信,文件传输走scp协议,执行执行使用ssh命令远程到目标主机进行执行."><meta itemprop="datePublished" content="2019-01-01T22:54:58+00:00" />
+<meta itemprop="dateModified" content="2019-01-01T22:54:58+00:00" />
+<meta itemprop="wordCount" content="276">
+<meta itemprop="keywords" content="jenkins," />
     
-    haigeek blog - Jenkins部署项目到远程windows
+    <link rel="canonical" href="https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/">
+    <link rel="icon" href="https://haigeek.me/assets/favicon.ico">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
+    <link rel="alternate" type="application/atom+xml" title="haigeek blog" href="https://haigeek.me/atom.xml" />
+    <link rel="alternate" type="application/json" title="haigeek blog" href="https://haigeek.me/feed.json" />
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
     
-  </title>
+    
+    <style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 '-apple-system',BlinkMacSystemFont,avenir next,avenir,helvetica,helvetica neue,ubuntu,roboto,noto,segoe ui,arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;background:#f5f5f5;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}h1,h2,h3,h4,h5,strong,b{font-size:inherit;font-weight:600}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{margin:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}.post-date{margin:5% 0}.index-date{color:#9a9a9a}.animate-blink{animation:opacity 1s infinite;opacity:1}@keyframes opacity{0%{opacity:1}50%{opacity:.5}100%{opacity:0}}.tags{display:flex;justify-content:space-between}.tags ul{padding:0;margin:0}.tags li{display:inline}.avatar{height:120px;width:120px;position:relative;margin:-10px 0 0 15px;float:right;border-radius:50%} </style>
   
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-  
-  
-  
-  <link rel="stylesheet" href="/minima.1671899191.css">
+    
   
   
-  <script defer type="text/javascript" src="/minima.1671899191.js"></script>
-  
-</head>
-<script>
-  
-  let default_theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-
-  try {
-    const local = localStorage.getItem('theme')
-    if (local) {
-      default_theme = local
-    }
-    localStorage.setItem('theme', default_theme);
-    window.minima_theme = default_theme;
-    document.querySelector('html').classList.add(default_theme);
-  } catch (e) {
-    console.error(e);
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "articleSection": "posts",
+      "name": "Jenkins部署项目到远程windows",
+      "headline": "Jenkins部署项目到远程windows",
+      "alternativeHeadline": "",
+      "description": "\u003cp\u003e核心是使用ssh进行jenkins主节点与目标部署服务器进行通信,文件传输走scp协议,执行执行使用ssh命令远程到目标主机进行执行.\u003c\/p\u003e",
+      "inLanguage": "zh-cn",
+      "isFamilyFriendly": "true",
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/haigeek.me\/posts\/backend\/devops\/jenkins\/jenkins-deploy-remote-windows-server\/"
+      },
+      "author" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "creator" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "accountablePerson" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "copyrightHolder" : "haigeek blog",
+      "copyrightYear" : "2019",
+      "dateCreated": "2019-01-01T22:54:58.00Z",
+      "datePublished": "2019-01-01T22:54:58.00Z",
+      "dateModified": "2019-01-01T22:54:58.00Z",
+      "publisher":{
+          "@type":"Organization",
+          "name": "haigeek blog",
+          "url": "https://haigeek.me",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "https:\/\/haigeek.me\/assets\/favicon.ico",
+              "width":"32",
+              "height":"32"
+          }
+      },
+      "image": "https://haigeek.me/assets/favicon.ico",
+      "url" : "https:\/\/haigeek.me\/posts\/backend\/devops\/jenkins\/jenkins-deploy-remote-windows-server\/",
+      "wordCount" : "276",
+      "genre" : [ "jenkins" ],
+      "keywords" : [ "jenkins" ]
   }
-</script>
-
-
+  </script>
+  
+  
+  </head>
 
 <body>
-  <header class="mt-3 mb-6">
-  <div class="container mx-auto">
-    <nav class="flex justify-between items-center">
-      <div class="flex items-center">
-        
-        <div id="theme-switch" class="text-3xl cursor-pointer">☼</div>
-      </div>
-      <ul class="flex items-center font-medium
-        whitespace-nowrap overflow-x-auto overflow-y-hidden">
-        
-        <li class="ml-1 mr-1"><a href="/">首页</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/categories">分类</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/tags">标签</a></li>
-        
-        <li class="ml-1 mr-1"><a href="/about">关于</a></li>
-        
-        <li class="ml-1 mr-1"><a href="https://wiki.haigeek.me">Wiki</a></li>
-        
-      </ul>
-      <ul class="flex item-center text-sm font-bold">
-        
-      </ul>
-    </nav>
-  </div>
-</header>
-
+  <a class="skip-link" href="#main">Skip to main</a>
+  <main id="main">
+  <div class="content">
+    <header>
+<p style="padding: 0;margin: 0;">
+  <a href="/">
+    <b>haigeek blog</b>
+    <span class="text-stone-500 animate-blink">▮</span>
+  </a>
+</p>
+<ul style="padding: 0;margin: 0;">
   
-<div class="container mx-auto">
-  <h1 class="text-4xl font-extrabold mt-6 mb-6">Jenkins部署项目到远程windows</h1>
-  <div class="mb-3 text-sm flex justify-between ">
-    <div>
-      
-      发布于 &mdash; 2019 年 1 月 1 日
-      
-      
-    </div>
+  
+  <li class="">
+    <a href="/posts/"><span>Post</span></a>
     
-    <div>
-      
-      
-      <a class="ml-1" href="/tags/jenkins">#jenkins</a>
-      
-    </div>
+  <li class="">
+    <a href="/about/"><span>About</span></a>
     
-  </div>
-  <main class="mb-8">
-    <p></p>
-    <article class="md">
+  <li class="">
+    <a href="https://wiki.haigeek.me"><span>Wiki</span></a>
+    
+  </li>
+</ul>
+</header>
+<hr class="hr-list" style="padding: 0;margin: 0;">
+    <section>
+      <h2 class="post">Jenkins部署项目到远程windows</h2>
       <p>核心是使用ssh进行jenkins主节点与目标部署服务器进行通信,文件传输走scp协议,执行执行使用ssh命令远程到目标主机进行执行.</p>
 <h1 id="jenkins部署项目到远程windows">Jenkins部署项目到远程windows</h1>
 <p>使用ssh进行jenkins主节点与目标部署服务器进行通信,文件传输走scp协议,执行执行使用ssh命令远程到目标主机进行执行.</p>
@@ -118,71 +132,120 @@
 <h2 id="要解决的问题">要解决的问题</h2>
 <h3 id="ssh调用的进程的生命周期问题"><strong>ssh调用的进程的生命周期问题</strong></h3>
 <p>查阅资料发现</p>
-<p><img src="https://s2.loli.net/2022/12/24/RSt43Z2rHJxyqBL.png" alt="image-20190704223510253.png"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/RSt43Z2rHJxyqBL.png"
+  alt="image-20190704223510253.png"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>针对上述情况在linux下的解决方案很多,这里描述下winsows的解决方案.</p>
 <p>在这个<a href="https://stackoverflow.com/questions/3382082/whats-the-nohup-on-windows">回答</a>下,采取了将tomcat做成Windows服务的方式,问题得到解决,具体的配置方式如下:</p>
 <h4 id="设置tomcat的环境变量">设置tomcat的环境变量</h4>
 <p>下载安装版的Windows版tomcat,在bin目录下分别为server.bat、startup.bat、shutdown.bat设置环境变量,如下所示</p>
-<p><img src="https://s2.loli.net/2022/12/24/zDkqpmhANiVUSwv.png" alt="image-20190704224910131.png"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/zDkqpmhANiVUSwv.png"
+  alt="image-20190704224910131.png"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <h4 id="将tomcat注册为服务">将tomcat注册为服务</h4>
 <p>进入bin文件夹下执行</p>
 <p>service install 服务名称</p>
-<p><img src="https://s2.loli.net/2022/12/24/1U8BFIoHsxwm4Xi.png" alt="[图片上传中&hellip;(image-20190704230244896.png-4869a1-1562942345129-0)]"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/1U8BFIoHsxwm4Xi.png"
+  alt="[图片上传中&amp;hellip;(image-20190704230244896.png-4869a1-1562942345129-0)]
+"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <h4 id="服务的启动与停止">服务的启动与停止</h4>
-<pre><code>net stop server-name
+<pre tabindex="0"><code>net stop server-name
 net start server-name
-</code></pre><p><img src="https://s2.loli.net/2022/12/24/uXMvU1ZebLsGHoc.png" alt="image-20190704230244896.png"></p>
+</code></pre><p><img
+  src="https://s2.loli.net/2022/12/24/uXMvU1ZebLsGHoc.png"
+  alt="image-20190704230244896.png"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>将这两条指令做成bat脚本,放在bin目录下,供之后jenkins直接调用.</p>
-<p><img src="https://s2.loli.net/2022/12/24/EfkJxQhyedWLj1H.png" alt="image-20190704230544740.png"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/EfkJxQhyedWLj1H.png"
+  alt="image-20190704230544740.png"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <h3 id="jenkins的终端输出乱码">jenkins的终端输出乱码</h3>
 <p>在linux下远程调用Windows的终端的时候,在jenksin的控制台总是乱码.查阅资料多数是说设置Jenkins的编码为U8,但是我安装的jenkins本身设置就是U8,后来发现在远程调用的bat脚本第一行设置为</p>
-<pre><code>chcp 65001
+<pre tabindex="0"><code>chcp 65001
 </code></pre><p>表示切换到utf-8模式即可,之后输出默认为英文且不会再乱码.</p>
 <h3 id="是否有必要每次重启tomcat">是否有必要每次重启Tomcat</h3>
 <h4 id="场景">场景</h4>
 <p>在实际使用的过程中,每次部署假如都需要重启tomcat的话使得整个系统变得不稳定,那么是否每次更新都要重启tomcat呢?</p>
 <p>首先我描述一下我遇到的一个问题,在jenkins中设置了一个重启tomcat的脚本,脚本如下:</p>
-<pre><code>pipeline {
+<pre tabindex="0"><code>pipeline {
     environment {
         // 部署远程主机ip地址,需要通过密钥的方式设置免密登录
-        remoteIp = &quot;127.0.0.1&quot;
-        remotePort='22'
+        remoteIp = &#34;127.0.0.1&#34;
+        remotePort=&#39;22&#39;
         // 失败通知Email
-        email = &quot;test@haigeek.cn&quot;
+        email = &#34;test@haigeek.cn&#34;
         // 远程tomcat位置(windows要使用/来表示路径)
-        tomcatPath = &quot;E:/tomcat/apache-tomcat-8.5&quot;
-        tomcatPathDisk = &quot;E:&quot;
+        tomcatPath = &#34;E:/tomcat/apache-tomcat-8.5&#34;
+        tomcatPathDisk = &#34;E:&#34;
     }
     agent any
     tools {
-        maven 'maven-3.6.1'
+        maven &#39;maven-3.6.1&#39;
     }
     stages {
-        stage('Deploy') {
+        stage(&#39;Deploy&#39;) {
             steps {
-                withEnv(['JENKINS_NODE_COOKIE=dontKillMe']) {
-                    sh '''
+                withEnv([&#39;JENKINS_NODE_COOKIE=dontKillMe&#39;]) {
+                    sh &#39;&#39;&#39;
                         export BUILD_ID=dontKillMe
-                        echo &quot;开始使用scp传输文件&quot;
-                        echo &quot;开始调用远程tomcat进行重启&quot;
-                        ssh  -p ${remotePort} administrator@${remoteIp} &quot;cd ${tomcatPath}/bin &amp;&amp; ${tomcatPathDisk} &amp;&amp; restart&quot;
-                    '''
+                        echo &#34;开始使用scp传输文件&#34;
+                        echo &#34;开始调用远程tomcat进行重启&#34;
+                        ssh  -p ${remotePort} administrator@${remoteIp} &#34;cd ${tomcatPath}/bin &amp;&amp; ${tomcatPathDisk} &amp;&amp; restart&#34;
+                    &#39;&#39;&#39;
                 }
             }
         }
     }
 }
 </code></pre><p>上面的脚本核心功能就是调用远程tomca下的restart脚本来重启动tomcat,因为使用net stop tomcat 来关闭tomcat需要比较长时间,加上我们tomcat上运行的是dubbo项目,因此我直接使用taskkill的方式,根据dubbo端口来杀进程,结论是每次都可以成功杀死进程并重启tomcat,如下图,kill的脚本如下:</p>
-<pre><code>@echo off
+<pre tabindex="0"><code>@echo off
 chcp 65001
 REM 设置dubbo端口号
  set port=30109
- for /f &quot;tokens=5&quot; %%i in ('netstat -aon ^| findstr &quot;:%port%&quot;') do (
+ for /f &#34;tokens=5&#34; %%i in (&#39;netstat -aon ^| findstr &#34;:%port%&#34;&#39;) do (
     set n=%%i
  )
  taskkill /pid %n% -F
 </code></pre><p>jenkins的输出如下:</p>
-<p><img src="https://s2.loli.net/2022/12/24/hznKDZfcUkq1bwS.png" alt="image-20190712221521459.png"></p>
+<p><img
+  src="https://s2.loli.net/2022/12/24/hznKDZfcUkq1bwS.png"
+  alt="image-20190712221521459.png"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
 <p>但是当我将这个脚本集成在完整的pipeline中,会出现taskkill失败的情况,报错为<strong>PIDxxx为系统进程,无法杀死</strong>.</p>
 <h4 id="分析">分析</h4>
 <p>分析了一下,唯一不同的是我在杀死tomcat之前将最新打包出的war包移动到了tomcat下,此时tomcat开始自动解压并重新部署,注意<strong>此时进程已经不是tomcat的进程id,而是切换为系统的进程</strong>.</p>
@@ -190,142 +253,87 @@ REM 设置dubbo端口号
 <h4 id="解决">解决</h4>
 <p>解决方法很简单,将kill tomcat的指令放在移动war包之前,不再报错.</p>
 <h2 id="完整pipeline">完整Pipeline</h2>
-<pre><code>// 持续集成脚本，勿动
+<pre tabindex="0"><code>// 持续集成脚本，勿动
 
 pipeline {
     environment {
         // 部署远程主机ip地址,需要通过密钥的方式设置免密登录
-        remoteIp = &quot;127.0.0.1&quot;
-        remoteName = &quot;administrator&quot;
-        remotePort='22'
+        remoteIp = &#34;127.0.0.1&#34;
+        remoteName = &#34;administrator&#34;
+        remotePort=&#39;22&#39;
         // 远程tomcat位置(使用/来表示路径)
-        tomcatPath = &quot;C:/tomcat/apache-tomcat-8&quot;
-        tomcatPathDisk = &quot;C:&quot;
+        tomcatPath = &#34;C:/tomcat/apache-tomcat-8&#34;
+        tomcatPathDisk = &#34;C:&#34;
     }
     agent any
     tools {
-        maven 'maven-3.6.1'
+        maven &#39;maven-3.6.1&#39;
     }
     stages {
-         stage('pullcode'){
+         stage(&#39;pullcode&#39;){
             steps{
-                git branch: 'dev', credentialsId: 'xxx', url: 'http://xxx.git'
+                git branch: &#39;dev&#39;, credentialsId: &#39;xxx&#39;, url: &#39;http://xxx.git&#39;
             }
         }
 
-        stage('Build') {
+        stage(&#39;Build&#39;) {
             steps {
-                sh '''
-                    echo &quot;开始编译打包过程&quot;
-                    echo &quot;PATH = ${PATH}&quot;
-                    echo &quot;M2_HOME = ${M2_HOME}&quot;
+                sh &#39;&#39;&#39;
+                    echo &#34;开始编译打包过程&#34;
+                    echo &#34;PATH = ${PATH}&#34;
+                    echo &#34;M2_HOME = ${M2_HOME}&#34;
                     mvn clean &amp;&amp; mvn package -DskipTests=true
-                '''
+                &#39;&#39;&#39;
             }
         }
-          stage('Test'){
+          stage(&#39;Test&#39;){
             steps {
-                sh 'echo &quot;Test stage&quot;'
+                sh &#39;echo &#34;Test stage&#34;&#39;
             }
         }
 
-        stage('Deploy') {
+        stage(&#39;Deploy&#39;) {
             steps {
-                withEnv(['JENKINS_NODE_COOKIE=dontKillMe']) {
-                    sh '''
+                withEnv([&#39;JENKINS_NODE_COOKIE=dontKillMe&#39;]) {
+                    sh &#39;&#39;&#39;
                         export BUILD_ID=dontKillMe
-                        echo &quot;关闭tomcat,此步非必须,可使用war进行热部署&quot;
-                        ssh  -p ${remotePort} administrator@${remoteIp} &quot;cd ${tomcatPath}/bin &amp;&amp; ${tomcatPathDisk} &amp;&amp; dubbokill&quot;
-                        echo &quot;开始使用scp传输文件&quot;
+                        echo &#34;关闭tomcat,此步非必须,可使用war进行热部署&#34;
+                        ssh  -p ${remotePort} administrator@${remoteIp} &#34;cd ${tomcatPath}/bin &amp;&amp; ${tomcatPathDisk} &amp;&amp; dubbokill&#34;
+                        echo &#34;开始使用scp传输文件&#34;
                         warfile1=$(ls 项目名称/target/*.war)
-                        scp -P ${remotePort} &quot;${warfile1}&quot;  ${remoteName}@${remoteIp}:${tomcatPath}/webapps
+                        scp -P ${remotePort} &#34;${warfile1}&#34;  ${remoteName}@${remoteIp}:${tomcatPath}/webapps
                         warfile2=$(ls 项目名称/target/*.war)
-                        scp -P ${remotePort} &quot;${warfile2}&quot;  ${remoteName}@${remoteIp}:${tomcatPath}/webapps
-                        echo &quot;开始调用远程tomcat进行重启,此步骤非必须&quot;
-                        ssh  -p ${remotePort} administrator@${remoteIp} &quot;cd ${tomcatPath}/bin &amp;&amp; ${tomcatPathDisk} &amp;&amp; servicestart&quot;
-                    '''
+                        scp -P ${remotePort} &#34;${warfile2}&#34;  ${remoteName}@${remoteIp}:${tomcatPath}/webapps
+                        echo &#34;开始调用远程tomcat进行重启,此步骤非必须&#34;
+                        ssh  -p ${remotePort} administrator@${remoteIp} &#34;cd ${tomcatPath}/bin &amp;&amp; ${tomcatPathDisk} &amp;&amp; servicestart&#34;
+                    &#39;&#39;&#39;
                 }
             }
         }
     }
 }
 </code></pre>
-    </article>
-  </main>
-  
-
-
-
-
-
-<div id="comment"></div>
-
-
-
-
-<script>
-    const s = document.createElement("script")
-    s.src = "https://giscus.app/client.js"
-    s.crossOrigin = "anonymous"
-    s.async = true
-    s.setAttribute("data-repo", "haigeek\/blog-comment-bygiscus")
-    s.setAttribute("data-repo-id", "R_kgDOIq0W4w")
-    s.setAttribute("data-category", "Announcements")
-    s.setAttribute("data-category-id", "DIC_kwDOIq0W484CTPda")
-    s.setAttribute("data-mapping", "pathname")
-    s.setAttribute("data-strict", "0")
-    s.setAttribute("data-reactions-enabled", "1")
-    s.setAttribute("data-emit-metadata", "0")
-    s.setAttribute("data-input-position", "buttom")
-    s.setAttribute("data-theme", window.minima_theme + "_protanopia")
-    s.setAttribute("data-lang", "en")
-    s.setAttribute("data-loading", "lazy")
-    document.getElementById("comment").appendChild(s)
+      
+      <div class="post-date">
+        <span class="g time">January 1, 2019 </span> &#8729;
+         
+         <a href="https://haigeek.me/tags/jenkins/">jenkins</a>
+      </div>
+      
+    </section>
+    
+    <div id="comments">
+      <script src="https://utteranc.es/client.js"
+    repo=ZgotmplZ
+    issue-term="pathname"
+    theme=ZgotmplZ
+    crossorigin="anonymous"
+    async>
 </script>
 
-
-
-
-
-
-
-
-
-</div>
-
-
-  <footer class="mt-8 mb-8">
-  <div class="container mx-auto">
-    <div class="mt-8 flex justify-between items-center">
-      <p class="mt-0 text-sm">
-        © 2022 haigeek |
-        <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">Hugo</a> on
-        <a href="https://github.com/mivinci/hugo-theme-minima" target="_blank" rel="noopener noreferrer">Minima</a>
-      </p>
-      <p class="flex items-center mt-0">
-        
-          <a class="icon ml-1 mr-1" href="mailto:haigeek@qq.com" title="email">
-          
-            <svg fill="#63636f" width="22" height="22" viewBox="0 0 24 24"><path d="M3 3h18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm9.06 8.683L5.648 6.238L4.353 7.762l7.72 6.555l7.581-6.56l-1.308-1.513l-6.285 5.439z"/></svg>
-          
-          </a>
-        
-          <a class="icon ml-1 mr-1" href="https://github.com/haigeek" title="github">
-          
-            <svg fill="#63636f" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-          
-          </a>
-        
-          <a class="icon ml-1 mr-1" href="/index.xml" title="rss">
-          
-            <svg fill="#63636f" t="1626591563876" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1984" width="18" height="16"><path d="M128 768a128 128 0 1 0 0 256 128 128 0 0 0 0-256zM0 368v176c265.104 0 480 214.912 480 480h176c0-362.32-293.696-656-656-656zM0 0v176c468.336 0 848 379.664 848 848h176C1024 458.464 565.536 0 0 0z" p-id="1985"></path></svg>
-          
-          </a>
-        
-      </p>
     </div>
+    
   </div>
-</footer>
+</main>
 </body>
-
 </html>
