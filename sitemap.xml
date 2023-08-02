@@ -35,10 +35,13 @@
     <loc>https://haigeek.me/posts/life/2019-life-summary/</loc>
     <lastmod>2019-12-29T22:34:23+00:00</lastmod>
   </url><url>
-    <loc>https://haigeek.me/tags/%E7%94%9F%E6%B4%BB/</loc>
+    <loc>https://haigeek.me/categories/experience/</loc>
     <lastmod>2019-12-29T22:34:23+00:00</lastmod>
   </url><url>
-    <loc>https://haigeek.me/categories/%E6%88%91%E7%9A%84%E7%BB%8F%E5%8E%86/</loc>
+    <loc>https://haigeek.me/tags/life/</loc>
+    <lastmod>2019-12-29T22:34:23+00:00</lastmod>
+  </url><url>
+    <loc>https://haigeek.me/tags/summary/</loc>
     <lastmod>2019-12-29T22:34:23+00:00</lastmod>
   </url><url>
     <loc>https://haigeek.me/tags/session/</loc>
@@ -98,15 +101,6 @@
     <loc>https://haigeek.me/categories/linux/</loc>
     <lastmod>2017-09-06T20:46:37+00:00</lastmod>
   </url><url>
-    <loc>https://haigeek.me/tags/java-web/</loc>
-    <lastmod>2017-07-22T20:27:55+00:00</lastmod>
-  </url><url>
-    <loc>https://haigeek.me/tags/struts2/</loc>
-    <lastmod>2017-07-22T20:27:55+00:00</lastmod>
-  </url><url>
-    <loc>https://haigeek.me/posts/project/winestory-struts2/</loc>
-    <lastmod>2017-07-22T20:27:55+00:00</lastmod>
-  </url><url>
     <loc>https://haigeek.me/posts/linux/centos6-8-install-javajdk-tomcat-mysql-env/</loc>
     <lastmod>2017-07-15T14:12:28+00:00</lastmod>
   </url><url>
@@ -119,19 +113,10 @@
     <loc>https://haigeek.me/tags/tomcat/</loc>
     <lastmod>2017-07-15T14:12:28+00:00</lastmod>
   </url><url>
-    <loc>https://haigeek.me/tags/http/</loc>
-    <lastmod>2017-03-08T16:25:16+00:00</lastmod>
-  </url><url>
-    <loc>https://haigeek.me/categories/web/</loc>
-    <lastmod>2017-03-08T16:25:16+00:00</lastmod>
-  </url><url>
-    <loc>https://haigeek.me/posts/frontend/http/web-http-basic/</loc>
-    <lastmod>2017-03-08T16:25:16+00:00</lastmod>
-  </url><url>
-    <loc>https://haigeek.me/posts/life/you-are-my-like-once/</loc>
+    <loc>https://haigeek.me/categories/thoughts/</loc>
     <lastmod>2016-12-02T23:08:57+00:00</lastmod>
   </url><url>
-    <loc>https://haigeek.me/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <loc>https://haigeek.me/posts/life/you-are-my-like-once/</loc>
     <lastmod>2016-12-02T23:08:57+00:00</lastmod>
   </url><url>
     <loc>https://haigeek.me/series/</loc>

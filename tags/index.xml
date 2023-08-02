@@ -27,11 +27,20 @@
     </item>
     
     <item>
-      <title>生活</title>
-      <link>https://haigeek.me/tags/%E7%94%9F%E6%B4%BB/</link>
+      <title>life</title>
+      <link>https://haigeek.me/tags/life/</link>
       <pubDate>Sun, 29 Dec 2019 22:34:23 +0000</pubDate>
       
-      <guid>https://haigeek.me/tags/%E7%94%9F%E6%B4%BB/</guid>
+      <guid>https://haigeek.me/tags/life/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>summary</title>
+      <link>https://haigeek.me/tags/summary/</link>
+      <pubDate>Sun, 29 Dec 2019 22:34:23 +0000</pubDate>
+      
+      <guid>https://haigeek.me/tags/summary/</guid>
       <description></description>
     </item>
     
@@ -99,24 +108,6 @@
     </item>
     
     <item>
-      <title>java web</title>
-      <link>https://haigeek.me/tags/java-web/</link>
-      <pubDate>Sat, 22 Jul 2017 20:27:55 +0000</pubDate>
-      
-      <guid>https://haigeek.me/tags/java-web/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>struts2</title>
-      <link>https://haigeek.me/tags/struts2/</link>
-      <pubDate>Sat, 22 Jul 2017 20:27:55 +0000</pubDate>
-      
-      <guid>https://haigeek.me/tags/struts2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>java</title>
       <link>https://haigeek.me/tags/java/</link>
       <pubDate>Sat, 15 Jul 2017 14:12:28 +0000</pubDate>
@@ -140,15 +131,6 @@
       <pubDate>Sat, 15 Jul 2017 14:12:28 +0000</pubDate>
       
       <guid>https://haigeek.me/tags/tomcat/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>http</title>
-      <link>https://haigeek.me/tags/http/</link>
-      <pubDate>Wed, 08 Mar 2017 16:25:16 +0000</pubDate>
-      
-      <guid>https://haigeek.me/tags/http/</guid>
       <description></description>
     </item>
     

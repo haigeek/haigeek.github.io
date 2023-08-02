@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>summary on haigeek blog</title>
+    <link>https://haigeek.me/tags/summary/</link>
+    <description>Recent content in summary on haigeek blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2023 haigeek</copyright>
+    <lastBuildDate>Sun, 29 Dec 2019 22:34:23 +0000</lastBuildDate><atom:link href="https://haigeek.me/tags/summary/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2019掠影</title>
+      <link>https://haigeek.me/posts/life/2019-life-summary/</link>
+      <pubDate>Sun, 29 Dec 2019 22:34:23 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/life/2019-life-summary/</guid>
+      <description>&lt;p&gt;2019年度总结&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>2018-life-summary</title>
+      <link>https://haigeek.me/posts/life/2018-life-summary/</link>
+      <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
+      
+      <guid>https://haigeek.me/posts/life/2018-life-summary/</guid>
+      <description>&lt;p&gt;2018年度总结&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

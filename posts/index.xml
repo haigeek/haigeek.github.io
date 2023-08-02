@@ -131,29 +131,11 @@ pipeline { environment { // 部署远程主机ip地址,需要通过密钥的方�
     </item>
     
     <item>
-      <title>winestory中struts2的使用</title>
-      <link>https://haigeek.me/posts/project/winestory-struts2/</link>
-      <pubDate>Sat, 22 Jul 2017 20:27:55 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/project/winestory-struts2/</guid>
-      <description>&lt;p&gt;使用ssh框架做的一个小论坛是我的第一个项目，ssh框架在现在早已经过时，但是当初学习和解决问题的精神却是最重要的，因此我将相关的博文进行归档，记录并缅怀初学编程时的历程。这一篇是struts2框架相关内容。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>centos6.8安装javajdk、tomcat、MySQL环境</title>
       <link>https://haigeek.me/posts/linux/centos6-8-install-javajdk-tomcat-mysql-env/</link>
       <pubDate>Sat, 15 Jul 2017 14:12:28 +0000</pubDate>
       
       <guid>https://haigeek.me/posts/linux/centos6-8-install-javajdk-tomcat-mysql-env/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>web程序运行机制与HTTP基础</title>
-      <link>https://haigeek.me/posts/frontend/http/web-http-basic/</link>
-      <pubDate>Wed, 08 Mar 2017 16:25:16 +0000</pubDate>
-      
-      <guid>https://haigeek.me/posts/frontend/http/web-http-basic/</guid>
       <description></description>
     </item>
     
