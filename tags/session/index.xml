@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2023 haigeek</copyright>
-    <lastBuildDate>Wed, 16 Oct 2019 23:26:39 +0000</lastBuildDate><atom:link href="https://haigeek.me/tags/session/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 16 Oct 2019 23:26:39 +0800</lastBuildDate><atom:link href="https://haigeek.me/tags/session/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>并发登录下session的处理</title>
       <link>https://haigeek.me/posts/java/spring/concurrent-login-session/</link>
-      <pubDate>Wed, 16 Oct 2019 23:26:39 +0000</pubDate>
+      <pubDate>Wed, 16 Oct 2019 23:26:39 +0800</pubDate>
       
       <guid>https://haigeek.me/posts/java/spring/concurrent-login-session/</guid>
       <description>&lt;p&gt;在进行性能测试的时候并发请求登录接口时候出现失败的情况，对排查记录做一下总结。&lt;/p&gt;</description>

@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2023 haigeek</copyright>
-    <lastBuildDate>Sat, 15 Jul 2017 14:12:28 +0000</lastBuildDate><atom:link href="https://haigeek.me/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Jul 2017 14:12:28 +0800</lastBuildDate><atom:link href="https://haigeek.me/tags/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>centos6.8安装javajdk、tomcat、MySQL环境</title>
       <link>https://haigeek.me/posts/linux/centos6-8-install-javajdk-tomcat-mysql-env/</link>
-      <pubDate>Sat, 15 Jul 2017 14:12:28 +0000</pubDate>
+      <pubDate>Sat, 15 Jul 2017 14:12:28 +0800</pubDate>
       
       <guid>https://haigeek.me/posts/linux/centos6-8-install-javajdk-tomcat-mysql-env/</guid>
       <description></description>

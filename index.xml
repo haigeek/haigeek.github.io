@@ -7,11 +7,122 @@
     
     <language>en</language>
     <copyright>Copyright 2023, Calvin Tran</copyright>
-    <lastBuildDate>Sun, 27 Dec 2020 00:34:27 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 13 Aug 2023 17:14:21 +0800</lastBuildDate>
     <generator>Hugo - gohugo.io</generator>
     <docs>http://cyber.harvard.edu/rss/rss.html</docs>
     <atom:link href="https://haigeek.me/atom.xml" rel="self" type="application/atom+xml"/>
     
+    
+    <item>
+      <title>一次磁盘误操作恢复记录</title>
+      <link>https://haigeek.me/posts/ops/disk-recovery-experience/</link>
+      <description>&lt;h2 id=&#34;起因&#34;&gt;起因&lt;/h2&gt;
+&lt;p&gt;服务器使用hyperv创建了一台虚拟机，早期创建的磁盘大小是300G，但是随着长时间的使用系统磁盘，需要对磁盘进行扩容。hyper-v的磁盘扩容并不算复杂，我参照这了这篇&lt;a href=&#34;https://www.linuxprobe.com/hyperv-data-centos7.html&#34;&gt;文章&lt;/a&gt;，找到磁盘调整大小并重启后机器即可识别到新的磁盘大小。&lt;/p&gt;
+&lt;h2 id=&#34;错误操作&#34;&gt;错误操作&lt;/h2&gt;
+&lt;p&gt;开机使用 lsblk 识别到新的磁盘大小之后就对磁盘开始分区，我这里的磁盘是 /dev/sdb&lt;/p&gt;
+&lt;p&gt;执行 fdisk  /dev/sdb ，进行了下述操作&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;删除旧分区&lt;/li&gt;
+&lt;li&gt;创建新的分区&lt;/li&gt;
+&lt;li&gt;为新的分区划分全部空间&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在划分完新的空间之后，程序提示我:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f&#34;&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;Partition&lt;/span&gt; #&lt;span style=&#34;color:#d19a66&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;contains&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;a&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;ext4&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;signature&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;此时我对这个提示表示疑惑，简单百度资料之后直接选择了删除，结果也就操作了分区数据的丢失。&lt;/p&gt;
+&lt;p&gt;&lt;img
+  src=&#34;./images/remove-signature.png&#34;
+  alt=&#34;remove-signature&#34;
+  loading=&#34;lazy&#34;
+  decoding=&#34;async&#34;
+  class=&#34;full-width&#34;
+/&gt;
+
+&lt;/p&gt;
+&lt;p&gt;具体的表现在于：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;磁盘无法被正常挂载，提示未知错误（具体的报错没有记录了）&lt;/li&gt;
+&lt;li&gt;磁盘无法使用&lt;code&gt;resize2fs&lt;/code&gt; 执行合并&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;补救&#34;&gt;补救&lt;/h2&gt;
+&lt;h3 id=&#34;备份磁盘数据&#34;&gt;备份磁盘数据&lt;/h3&gt;
+&lt;p&gt;因为这个磁盘数据已经有300G，磁盘是机械磁盘，因此存有侥幸心里并没有对磁盘进行备份。意识到磁盘可能出问题之后，还是花了2个多小时对磁盘进行了备份，这里我备份的方式是选择通过hyperv管理器新建一个磁盘，选择从已有磁盘还原数据的方式，速度能稳定在50M/s，相比直接备份磁盘文件会快不少。虽然说现在备份已经为时已晚，但是想到后续如果还是要再操作，万一数据错的更离谱，总比什么都没有好。&lt;/p&gt;
+&lt;h3 id=&#34;使用-testdisk-进行恢复&#34;&gt;使用 testdisk 进行恢复&lt;/h3&gt;
+&lt;p&gt;查了一圈资料，选择使用 testdisk 进行数据恢复。按照官网的给出的&lt;a href=&#34;https://www.cgsecurity.org/wiki/Testdisk_%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97&#34;&gt;教程&lt;/a&gt;执行下来，也可以直接阅读阿里云提供的&lt;a href=&#34;https://help.aliyun.com/zh/ecs/use-cases/restore-data-in-linux-instances?spm=a2c4g.11186623.0.0.73da249dASt2fn&#34;&gt;文档&lt;/a&gt;，情况如下。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以识别到被删除的分区&lt;/li&gt;
+&lt;li&gt;执行分区恢复之后问题依然存在，磁盘不能被挂载。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;尝试进行superblock修复&#34;&gt;尝试进行Superblock修复&lt;/h3&gt;
+&lt;p&gt;testdisk 除了回恢复分区模式之外，还提供了直接恢复数据的方式，在扫描出分区之后可以直接按 p 列出当前磁盘分区下的文件，我发现我的文件都还在，所以我觉得数据应该还是可以恢复的，只不过是方式不对，加上上一步已经对数据进行了备份，于是就进一步开始尝试恢复的方式。&lt;/p&gt;
+&lt;p&gt;使用 &lt;code&gt;testdisk /dev/sdb&lt;/code&gt; 进入数据恢复界面。选择 Advanced&lt;/p&gt;
+&lt;p&gt;&lt;img
+  src=&#34;./images/testdisk-1.png&#34;
+  alt=&#34;testdisk-1&#34;
+  loading=&#34;lazy&#34;
+  decoding=&#34;async&#34;
+  class=&#34;full-width&#34;
+/&gt;
+
+&lt;/p&gt;
+&lt;p&gt;程序列出了识别到的分区，选择 Superblock&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;超级块保存了文件系统设定的文件块大小、操作函数、inode链表等重要信息&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img
+  src=&#34;./images/testdisk-2.png&#34;
+  alt=&#34;testdisk-2&#34;
+  loading=&#34;lazy&#34;
+  decoding=&#34;async&#34;
+  class=&#34;full-width&#34;
+/&gt;
+
+&lt;/p&gt;
+&lt;p&gt;&lt;img
+  src=&#34;./images/testdisk-superblock.png&#34;
+  alt=&#34;testdisk-superblock&#34;
+  loading=&#34;lazy&#34;
+  decoding=&#34;async&#34;
+  class=&#34;full-width&#34;
+/&gt;
+
+&lt;/p&gt;
+&lt;p&gt;可以看到superblock信息被识别出来了，按照程序的提示：如果希望修复文件系统使用备用的超级块，可以执行&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f&#34;&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;fsck&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;ext4&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;p&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;superblock&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;blocksize&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;device&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;但是这个命令只是提示，需要把对应的参数修改为自己的，testdisk 已经显示出当前磁盘的分区superblock信息，替换后执行的命令为：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f&#34;&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;fsck&lt;/span&gt;.&lt;span style=&#34;color:#e06c75&#34;&gt;ext4&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;p&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;b&lt;/span&gt; &lt;span style=&#34;color:#d19a66&#34;&gt;32768&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;B&lt;/span&gt; &lt;span style=&#34;color:#d19a66&#34;&gt;4096&lt;/span&gt; &lt;span style=&#34;color:#56b6c2&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;dev&lt;/span&gt;&lt;span style=&#34;color:#56b6c2&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;sdb1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;参数解释：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;superblock  指定备用超级块的位置&lt;/li&gt;
+&lt;li&gt;blocksize 块大小&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;命令执行结果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img
+  src=&#34;./images/exec-fsck-superblock.png&#34;
+  alt=&#34;exec-fsck-superblock&#34;
+  loading=&#34;lazy&#34;
+  decoding=&#34;async&#34;
+  class=&#34;full-width&#34;
+/&gt;
+
+&lt;/p&gt;
+&lt;p&gt;在执行了上述命令之后，磁盘可以被成功挂载了，挂载之后数据也都存在，数据并没有丢失。&lt;/p&gt;
+&lt;h2 id=&#34;误删分析&#34;&gt;误删分析&lt;/h2&gt;
+&lt;p&gt;磁盘分区误操作的核心在于这一句提示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-jsx&#34; data-lang=&#34;jsx&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f&#34;&gt;1&lt;/span&gt;&lt;span&gt;&lt;span style=&#34;color:#e06c75&#34;&gt;Do&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;you&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;want&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;to&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;remove&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;the&lt;/span&gt; &lt;span style=&#34;color:#e06c75&#34;&gt;signature&lt;/span&gt;&lt;span style=&#34;color:#56b6c2&#34;&gt;?&lt;/span&gt; [&lt;span style=&#34;color:#e06c75&#34;&gt;Y&lt;/span&gt;]&lt;span style=&#34;color:#e06c75&#34;&gt;es&lt;/span&gt;&lt;span style=&#34;color:#56b6c2&#34;&gt;/&lt;/span&gt;[&lt;span style=&#34;color:#e06c75&#34;&gt;N&lt;/span&gt;]&lt;span style=&#34;color:#e06c75&#34;&gt;o&lt;/span&gt;&lt;span style=&#34;color:#56b6c2&#34;&gt;:&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;我选择了 &lt;code&gt;Y&lt;/code&gt;，选择移除的话分区的 UUID 会发生变更，也就是一个全新的磁盘，且之前的分区信息（例如分区是什么的格式）都不复存在。所以我在进行挂载的时候会提示我无法识别的分区，此时如果直接对这个磁盘进行格式化然后重新划分分区，也是可以被挂载的，代价就是数据就真的全无了。&lt;/p&gt;
+&lt;h2 id=&#34;分区备份&#34;&gt;分区备份&lt;/h2&gt;
+&lt;p&gt;经过这一次操作，再次认识到数据备份的重要性。&lt;/p&gt;
+&lt;p&gt;使用 &lt;strong&gt;&lt;code&gt;sfdisk&lt;/code&gt;&lt;/strong&gt; 命令备份和还原分区表：
+&lt;strong&gt;&lt;code&gt;sfdisk&lt;/code&gt;&lt;/strong&gt; 命令可以用于备份和还原分区表。要备份分区表，执行以下命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f&#34;&gt;1&lt;/span&gt;&lt;span&gt;sudo sfdisk -d /dev/sdb1 &amp;gt; /path/to/backup/partition_table_backup
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这会将磁盘 &lt;strong&gt;&lt;code&gt;/dev/sdb1&lt;/code&gt;&lt;/strong&gt; 的分区表信息备份到指定路径的文件中。&lt;/p&gt;
+&lt;p&gt;要还原备份的分区表，执行以下命令：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span style=&#34;white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f&#34;&gt;1&lt;/span&gt;&lt;span&gt;sudo sfdisk /dev/sdb1 &amp;lt; /path/to/backup/partition_table_backup
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这会将备份的分区表信息还原到磁盘 &lt;strong&gt;&lt;code&gt;/dev/sdb1&lt;/code&gt;&lt;/strong&gt; 上。&lt;/p&gt;</description>
+      <author>haigeek</author>
+      <guid>https://haigeek.me/posts/ops/disk-recovery-experience/</guid>
+      <pubDate>Sun, 13 Aug 2023 17:14:21 +0800</pubDate>
+    </item>
     
     <item>
       <title>DubboRpc的ExceptionFilter过滤器</title>
@@ -178,7 +289,7 @@
 &lt;p&gt;假如后期使用了容器化，每个dubbo应用作为一个容器的话，端口问题也可以得到比较好的解决。&lt;/p&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/backend/dubbo/dubbo-random-port/</guid>
-      <pubDate>Wed, 01 Apr 2020 23:17:02 +0000</pubDate>
+      <pubDate>Wed, 01 Apr 2020 23:17:02 +0800</pubDate>
     </item>
     
     <item>
@@ -471,7 +582,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;需要注意的是&lt;strong&gt;这里的namespace需要使用guid而不是名称&lt;/strong&gt;。&lt;/p&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/backend/microservice/nacos-base-learn/</guid>
-      <pubDate>Wed, 08 Jan 2020 22:31:21 +0000</pubDate>
+      <pubDate>Wed, 08 Jan 2020 22:31:21 +0800</pubDate>
     </item>
     
     <item>
@@ -481,7 +592,7 @@
 &lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s?__biz=MzI4MjQ4MzAzMg==&amp;amp;mid=2247483834&amp;amp;idx=1&amp;amp;sn=3ad0efc7d166165671f6ba0dff493a02&amp;amp;chksm=eb98018ddcef889b9ee1796909f3177fc50f0b91d29cb5229471fc47a4897da21d39416b1981&amp;amp;token=1478250301&amp;amp;lang=zh_CN#rd&#34;&gt;2019掠影&lt;/a&gt;&lt;/p&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/life/2019-life-summary/</guid>
-      <pubDate>Sun, 29 Dec 2019 22:34:23 +0000</pubDate>
+      <pubDate>Sun, 29 Dec 2019 22:34:23 +0800</pubDate>
     </item>
     
     <item>
@@ -745,7 +856,7 @@
 &lt;/blockquote&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/java/spring/concurrent-login-session/</guid>
-      <pubDate>Wed, 16 Oct 2019 23:26:39 +0000</pubDate>
+      <pubDate>Wed, 16 Oct 2019 23:26:39 +0800</pubDate>
     </item>
     
     <item>
@@ -856,7 +967,7 @@
 &lt;p&gt;值数据：0000001e（30）&lt;/p&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/computerscience/tcp-socker-no-buffer-space-available/</guid>
-      <pubDate>Wed, 08 May 2019 22:38:38 +0000</pubDate>
+      <pubDate>Wed, 08 May 2019 22:38:38 +0800</pubDate>
     </item>
     
     <item>
@@ -936,7 +1047,7 @@ Access-Control-Allow-Credentials: true | false // 是否允许携带 Cookie
 &lt;/blockquote&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/java/springboot/springboot-filter-cros/</guid>
-      <pubDate>Sun, 06 Jan 2019 23:05:54 +0000</pubDate>
+      <pubDate>Sun, 06 Jan 2019 23:05:54 +0800</pubDate>
     </item>
     
     <item>
@@ -1069,7 +1180,7 @@ Access-Control-Allow-Credentials: true | false // 是否允许携带 Cookie
 &lt;/blockquote&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/java/springboot/springboot-maven-profile/</guid>
-      <pubDate>Sun, 06 Jan 2019 23:05:54 +0000</pubDate>
+      <pubDate>Sun, 06 Jan 2019 23:05:54 +0800</pubDate>
     </item>
     
     <item>
@@ -1079,7 +1190,7 @@ Access-Control-Allow-Credentials: true | false // 是否允许携带 Cookie
 &lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s?__biz=MzI4MjQ4MzAzMg==&amp;amp;mid=2247483717&amp;amp;idx=1&amp;amp;sn=4ce9dab02828d12aa56689d096cbcfa7&amp;amp;chksm=eb980172dcef88644cb4d47311e300cfde0f260291b3d237b6899463a65c9b05941f1092e1e6&amp;amp;token=1478250301&amp;amp;lang=zh_CN#rd&#34;&gt;2018掠影&lt;/a&gt;&lt;/p&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/life/2018-life-summary/</guid>
-      <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
+      <pubDate>Tue, 01 Jan 2019 22:54:58 +0800</pubDate>
     </item>
     
     <item>
@@ -1283,7 +1394,7 @@ pipeline {
 &lt;/code&gt;&lt;/pre&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/backend/devops/jenkins/jenkins-deploy-remote-windows-server/</guid>
-      <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
+      <pubDate>Tue, 01 Jan 2019 22:54:58 +0800</pubDate>
     </item>
     
     <item>
@@ -1397,7 +1508,7 @@ pipeline {
 &lt;/code&gt;&lt;/pre&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/backend/devops/jenkins/jenkins-clone-project/</guid>
-      <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
+      <pubDate>Tue, 01 Jan 2019 22:54:58 +0800</pubDate>
     </item>
     
     <item>
@@ -1468,7 +1579,7 @@ chmod 777 /var/ftp/guest
 &lt;p&gt;其他配置待补充&lt;/p&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/linux/centos-install-ftp-vsftpd/</guid>
-      <pubDate>Wed, 06 Sep 2017 20:46:37 +0000</pubDate>
+      <pubDate>Wed, 06 Sep 2017 20:46:37 +0800</pubDate>
     </item>
     
     <item>
@@ -1611,7 +1722,7 @@ default-character-set=utf8
 &lt;p&gt;至此，mysql的配置安装也完成。&lt;/p&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/linux/centos6-8-install-javajdk-tomcat-mysql-env/</guid>
-      <pubDate>Sat, 15 Jul 2017 14:12:28 +0000</pubDate>
+      <pubDate>Sat, 15 Jul 2017 14:12:28 +0800</pubDate>
     </item>
     
     <item>
@@ -1640,7 +1751,7 @@ default-character-set=utf8
 &lt;p&gt;今天也是一个表姐结婚的日子，希望他们幸福。祝好。&lt;/p&gt;</description>
       <author>haigeek</author>
       <guid>https://haigeek.me/posts/life/you-are-my-like-once/</guid>
-      <pubDate>Fri, 02 Dec 2016 23:08:57 +0000</pubDate>
+      <pubDate>Fri, 02 Dec 2016 23:08:57 +0800</pubDate>
     </item>
     
   </channel>

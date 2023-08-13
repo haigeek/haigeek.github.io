@@ -7,7 +7,25 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2023 haigeek</copyright>
-    <lastBuildDate>Sun, 27 Dec 2020 00:34:27 +0800</lastBuildDate><atom:link href="https://haigeek.me/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 13 Aug 2023 17:14:21 +0800</lastBuildDate><atom:link href="https://haigeek.me/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>https://haigeek.me/tags/linux/</link>
+      <pubDate>Sun, 13 Aug 2023 17:14:21 +0800</pubDate>
+      
+      <guid>https://haigeek.me/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ops</title>
+      <link>https://haigeek.me/tags/ops/</link>
+      <pubDate>Sun, 13 Aug 2023 17:14:21 +0800</pubDate>
+      
+      <guid>https://haigeek.me/tags/ops/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>dubbo</title>
       <link>https://haigeek.me/tags/dubbo/</link>
@@ -20,7 +38,7 @@
     <item>
       <title>nacos</title>
       <link>https://haigeek.me/tags/nacos/</link>
-      <pubDate>Wed, 08 Jan 2020 22:31:21 +0000</pubDate>
+      <pubDate>Wed, 08 Jan 2020 22:31:21 +0800</pubDate>
       
       <guid>https://haigeek.me/tags/nacos/</guid>
       <description></description>
@@ -29,7 +47,7 @@
     <item>
       <title>life</title>
       <link>https://haigeek.me/tags/life/</link>
-      <pubDate>Sun, 29 Dec 2019 22:34:23 +0000</pubDate>
+      <pubDate>Sun, 29 Dec 2019 22:34:23 +0800</pubDate>
       
       <guid>https://haigeek.me/tags/life/</guid>
       <description></description>
@@ -38,7 +56,7 @@
     <item>
       <title>summary</title>
       <link>https://haigeek.me/tags/summary/</link>
-      <pubDate>Sun, 29 Dec 2019 22:34:23 +0000</pubDate>
+      <pubDate>Sun, 29 Dec 2019 22:34:23 +0800</pubDate>
       
       <guid>https://haigeek.me/tags/summary/</guid>
       <description></description>
@@ -47,7 +65,7 @@
     <item>
       <title>session</title>
       <link>https://haigeek.me/tags/session/</link>
-      <pubDate>Wed, 16 Oct 2019 23:26:39 +0000</pubDate>
+      <pubDate>Wed, 16 Oct 2019 23:26:39 +0800</pubDate>
       
       <guid>https://haigeek.me/tags/session/</guid>
       <description></description>
@@ -56,7 +74,7 @@
     <item>
       <title>spring</title>
       <link>https://haigeek.me/tags/spring/</link>
-      <pubDate>Wed, 16 Oct 2019 23:26:39 +0000</pubDate>
+      <pubDate>Wed, 16 Oct 2019 23:26:39 +0800</pubDate>
       
       <guid>https://haigeek.me/tags/spring/</guid>
       <description></description>
@@ -65,7 +83,7 @@
     <item>
       <title>Socket</title>
       <link>https://haigeek.me/tags/socket/</link>
-      <pubDate>Wed, 08 May 2019 22:38:38 +0000</pubDate>
+      <pubDate>Wed, 08 May 2019 22:38:38 +0800</pubDate>
       
       <guid>https://haigeek.me/tags/socket/</guid>
       <description></description>
@@ -74,7 +92,7 @@
     <item>
       <title>Tcp</title>
       <link>https://haigeek.me/tags/tcp/</link>
-      <pubDate>Wed, 08 May 2019 22:38:38 +0000</pubDate>
+      <pubDate>Wed, 08 May 2019 22:38:38 +0800</pubDate>
       
       <guid>https://haigeek.me/tags/tcp/</guid>
       <description></description>
@@ -83,7 +101,7 @@
     <item>
       <title>SpringBoot</title>
       <link>https://haigeek.me/tags/springboot/</link>
-      <pubDate>Sun, 06 Jan 2019 23:05:54 +0000</pubDate>
+      <pubDate>Sun, 06 Jan 2019 23:05:54 +0800</pubDate>
       
       <guid>https://haigeek.me/tags/springboot/</guid>
       <description></description>
@@ -92,25 +110,16 @@
     <item>
       <title>jenkins</title>
       <link>https://haigeek.me/tags/jenkins/</link>
-      <pubDate>Tue, 01 Jan 2019 22:54:58 +0000</pubDate>
+      <pubDate>Tue, 01 Jan 2019 22:54:58 +0800</pubDate>
       
       <guid>https://haigeek.me/tags/jenkins/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Linux</title>
-      <link>https://haigeek.me/tags/linux/</link>
-      <pubDate>Wed, 06 Sep 2017 20:46:37 +0000</pubDate>
-      
-      <guid>https://haigeek.me/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>java</title>
       <link>https://haigeek.me/tags/java/</link>
-      <pubDate>Sat, 15 Jul 2017 14:12:28 +0000</pubDate>
+      <pubDate>Sat, 15 Jul 2017 14:12:28 +0800</pubDate>
       
       <guid>https://haigeek.me/tags/java/</guid>
       <description></description>
@@ -119,7 +128,7 @@
     <item>
       <title>MySQl</title>
       <link>https://haigeek.me/tags/mysql/</link>
-      <pubDate>Sat, 15 Jul 2017 14:12:28 +0000</pubDate>
+      <pubDate>Sat, 15 Jul 2017 14:12:28 +0800</pubDate>
       
       <guid>https://haigeek.me/tags/mysql/</guid>
       <description></description>
@@ -128,7 +137,7 @@
     <item>
       <title>Tomcat</title>
       <link>https://haigeek.me/tags/tomcat/</link>
-      <pubDate>Sat, 15 Jul 2017 14:12:28 +0000</pubDate>
+      <pubDate>Sat, 15 Jul 2017 14:12:28 +0800</pubDate>
       
       <guid>https://haigeek.me/tags/tomcat/</guid>
       <description></description>

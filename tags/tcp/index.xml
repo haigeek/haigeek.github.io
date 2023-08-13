@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2023 haigeek</copyright>
-    <lastBuildDate>Wed, 08 May 2019 22:38:38 +0000</lastBuildDate><atom:link href="https://haigeek.me/tags/tcp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 May 2019 22:38:38 +0800</lastBuildDate><atom:link href="https://haigeek.me/tags/tcp/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>一次Tcp端口耗尽引发的思考</title>
       <link>https://haigeek.me/posts/computerscience/tcp-socker-no-buffer-space-available/</link>
-      <pubDate>Wed, 08 May 2019 22:38:38 +0000</pubDate>
+      <pubDate>Wed, 08 May 2019 22:38:38 +0800</pubDate>
       
       <guid>https://haigeek.me/posts/computerscience/tcp-socker-no-buffer-space-available/</guid>
       <description>&lt;p&gt;tcp在实际的使用中，客户端和服务端可能都会出现端口不够用的情况，重新温习了一下tcp的四次挥手来寻找这个问题出现的原因。&lt;/p&gt;</description>

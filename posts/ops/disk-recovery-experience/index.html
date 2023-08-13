@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Liste - https://haigeek.me">
+    <title>一次磁盘误操作恢复记录 | haigeek blog</title>
+    <meta name="description" content="I&#39;m a software engineer , Use Java as the primary programming language, Interested in Microervices, K8s, Devops ... In this blog , I share my technical problems and life records. ">
+    <meta property="og:title" content="一次磁盘误操作恢复记录" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://haigeek.me/posts/ops/disk-recovery-experience/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-13T17:14:21+08:00" />
+<meta property="article:modified_time" content="2023-08-13T17:14:21+08:00" />
+
+    <meta itemprop="name" content="一次磁盘误操作恢复记录">
+<meta itemprop="description" content=""><meta itemprop="datePublished" content="2023-08-13T17:14:21+08:00" />
+<meta itemprop="dateModified" content="2023-08-13T17:14:21+08:00" />
+<meta itemprop="wordCount" content="113">
+<meta itemprop="keywords" content="linux,ops," />
+    
+    <link rel="canonical" href="https://haigeek.me/posts/ops/disk-recovery-experience/">
+    <link rel="icon" href="https://haigeek.me/assets/favicon.ico">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link href="https://www.google-analytics.com" rel="preconnect" crossorigin>
+    <link rel="alternate" type="application/atom+xml" title="haigeek blog" href="https://haigeek.me/atom.xml" />
+    <link rel="alternate" type="application/json" title="haigeek blog" href="https://haigeek.me/feed.json" />
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=">
+    
+    
+    <style>*,:after,:before{box-sizing:border-box;padding:0}body{font:1rem/1.5 '-apple-system',BlinkMacSystemFont,avenir next,avenir,helvetica,helvetica neue,ubuntu,roboto,noto,segoe ui,arial,sans-serif;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;padding:2rem;background:#f5f5f5;color:#000}.skip-link{position:absolute;top:-40px;left:0;background:#eee;z-index:100}.skip-link:focus{top:0}h1,h2,h3,h4,h5,strong,b{font-weight:600}header{line-height:2;padding-bottom:1.5rem}.link{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-decoration:none}.time{font-variant-numeric:tabular-nums;white-space:nowrap}blockquote{border-left:5px solid #eee;padding-left:1rem;margin:0}a,a:visited{color:inherit}a:hover,a.heading-link{text-decoration:none}pre{padding:.5rem;overflow:auto;overflow-x:scroll;overflow-wrap:normal}code,pre{font-family:San Francisco Mono,Monaco,consolas,lucida console,dejavu sans mono,bitstream vera sans mono,monospace;font-size:normal;font-size:small;background:#eee}code{margin:.1rem;border:none}ul{list-style-type:square}ul,ol{padding-left:1.2rem}.list{line-height:2;list-style-type:none;padding-left:0}.list li{padding-bottom:.1rem}.meta{color:#777}.content{max-width:70ch;margin:0 auto}header{line-height:2;display:flex;justify-content:space-between;padding-bottom:1rem}header a{text-decoration:none}header ul{list-style-type:none;padding:0}header li,header a{display:inline}h2.post{padding-top:.5rem}header ul a:first-child{padding-left:1rem}.nav{height:1px;background:#000;content:'';max-width:10%}.list li{display:flex;align-items:baseline}.list li time{flex:initial}.hr-list{margin-top:0;margin-bottom:0;margin-right:.5rem;margin-left:.5rem;height:1px;border:0;border-bottom:1px dotted #ccc;flex:1 0 1rem}.m,hr{border:0;margin:3rem 0}img{max-width:100%;height:auto}.post-date{margin:5% 0}.index-date{color:#9a9a9a}.animate-blink{animation:opacity 1s infinite;opacity:1}@keyframes opacity{0%{opacity:1}50%{opacity:.5}100%{opacity:0}}.tags{display:flex;justify-content:space-between}.tags ul{padding:0;margin:0}.tags li{display:inline}.avatar{height:120px;width:120px;position:relative;margin:-10px 0 0 15px;float:right;border-radius:50%} </style>
+  
+    
+  
+  
+  <script type="application/ld+json">
+  {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "articleSection": "posts",
+      "name": "一次磁盘误操作恢复记录",
+      "headline": "一次磁盘误操作恢复记录",
+      "alternativeHeadline": "",
+      "description": "",
+      "inLanguage": "zh-cn",
+      "isFamilyFriendly": "true",
+      "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https:\/\/haigeek.me\/posts\/ops\/disk-recovery-experience\/"
+      },
+      "author" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "creator" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "accountablePerson" : {
+          "@type": "Person",
+          "name": ""
+      },
+      "copyrightHolder" : "haigeek blog",
+      "copyrightYear" : "2023",
+      "dateCreated": "2023-08-13T17:14:21.00Z",
+      "datePublished": "2023-08-13T17:14:21.00Z",
+      "dateModified": "2023-08-13T17:14:21.00Z",
+      "publisher":{
+          "@type":"Organization",
+          "name": "haigeek blog",
+          "url": "https://haigeek.me",
+          "logo": {
+              "@type": "ImageObject",
+              "url": "https:\/\/haigeek.me\/assets\/favicon.ico",
+              "width":"32",
+              "height":"32"
+          }
+      },
+      "image": "https://haigeek.me/assets/favicon.ico",
+      "url" : "https:\/\/haigeek.me\/posts\/ops\/disk-recovery-experience\/",
+      "wordCount" : "113",
+      "genre" : [ "linux" , "ops" ],
+      "keywords" : [ "linux" , "ops" ]
+  }
+  </script>
+  
+  
+  </head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to main</a>
+  <main id="main">
+  <div class="content">
+    <header>
+<p style="padding: 0;margin: 0;">
+  <a href="/">
+    <b>haigeek blog</b>
+    <span class="text-stone-500 animate-blink">▮</span>
+  </a>
+</p>
+<ul style="padding: 0;margin: 0;">
+  
+  
+  <li class="">
+    <a href="/posts/"><span>Post</span></a>
+    
+  <li class="">
+    <a href="/about/"><span>About</span></a>
+    
+  <li class="">
+    <a href="https://wiki.haigeek.me"><span>Wiki</span></a>
+    
+  </li>
+</ul>
+</header>
+<hr class="hr-list" style="padding: 0;margin: 0;">
+    <section>
+      <h2 class="post">一次磁盘误操作恢复记录</h2>
+      <h2 id="起因">起因</h2>
+<p>服务器使用hyperv创建了一台虚拟机，早期创建的磁盘大小是300G，但是随着长时间的使用系统磁盘，需要对磁盘进行扩容。hyper-v的磁盘扩容并不算复杂，我参照这了这篇<a href="https://www.linuxprobe.com/hyperv-data-centos7.html">文章</a>，找到磁盘调整大小并重启后机器即可识别到新的磁盘大小。</p>
+<h2 id="错误操作">错误操作</h2>
+<p>开机使用 lsblk 识别到新的磁盘大小之后就对磁盘开始分区，我这里的磁盘是 /dev/sdb</p>
+<p>执行 fdisk  /dev/sdb ，进行了下述操作</p>
+<ol>
+<li>删除旧分区</li>
+<li>创建新的分区</li>
+<li>为新的分区划分全部空间</li>
+</ol>
+<p>在划分完新的空间之后，程序提示我:</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1</span><span><span style="color:#e06c75">Partition</span> #<span style="color:#d19a66">1</span> <span style="color:#e06c75">contains</span> <span style="color:#e06c75">a</span> <span style="color:#e06c75">ext4</span> <span style="color:#e06c75">signature</span>
+</span></span></code></pre></div><p>此时我对这个提示表示疑惑，简单百度资料之后直接选择了删除，结果也就操作了分区数据的丢失。</p>
+<p><img
+  src="./images/remove-signature.png"
+  alt="remove-signature"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
+<p>具体的表现在于：</p>
+<ol>
+<li>磁盘无法被正常挂载，提示未知错误（具体的报错没有记录了）</li>
+<li>磁盘无法使用<code>resize2fs</code> 执行合并</li>
+</ol>
+<h2 id="补救">补救</h2>
+<h3 id="备份磁盘数据">备份磁盘数据</h3>
+<p>因为这个磁盘数据已经有300G，磁盘是机械磁盘，因此存有侥幸心里并没有对磁盘进行备份。意识到磁盘可能出问题之后，还是花了2个多小时对磁盘进行了备份，这里我备份的方式是选择通过hyperv管理器新建一个磁盘，选择从已有磁盘还原数据的方式，速度能稳定在50M/s，相比直接备份磁盘文件会快不少。虽然说现在备份已经为时已晚，但是想到后续如果还是要再操作，万一数据错的更离谱，总比什么都没有好。</p>
+<h3 id="使用-testdisk-进行恢复">使用 testdisk 进行恢复</h3>
+<p>查了一圈资料，选择使用 testdisk 进行数据恢复。按照官网的给出的<a href="https://www.cgsecurity.org/wiki/Testdisk_%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97">教程</a>执行下来，也可以直接阅读阿里云提供的<a href="https://help.aliyun.com/zh/ecs/use-cases/restore-data-in-linux-instances?spm=a2c4g.11186623.0.0.73da249dASt2fn">文档</a>，情况如下。</p>
+<ul>
+<li>可以识别到被删除的分区</li>
+<li>执行分区恢复之后问题依然存在，磁盘不能被挂载。</li>
+</ul>
+<h3 id="尝试进行superblock修复">尝试进行Superblock修复</h3>
+<p>testdisk 除了回恢复分区模式之外，还提供了直接恢复数据的方式，在扫描出分区之后可以直接按 p 列出当前磁盘分区下的文件，我发现我的文件都还在，所以我觉得数据应该还是可以恢复的，只不过是方式不对，加上上一步已经对数据进行了备份，于是就进一步开始尝试恢复的方式。</p>
+<p>使用 <code>testdisk /dev/sdb</code> 进入数据恢复界面。选择 Advanced</p>
+<p><img
+  src="./images/testdisk-1.png"
+  alt="testdisk-1"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
+<p>程序列出了识别到的分区，选择 Superblock</p>
+<blockquote>
+<p>超级块保存了文件系统设定的文件块大小、操作函数、inode链表等重要信息</p>
+</blockquote>
+<p><img
+  src="./images/testdisk-2.png"
+  alt="testdisk-2"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
+<p><img
+  src="./images/testdisk-superblock.png"
+  alt="testdisk-superblock"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
+<p>可以看到superblock信息被识别出来了，按照程序的提示：如果希望修复文件系统使用备用的超级块，可以执行</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1</span><span><span style="color:#e06c75">fsck</span>.<span style="color:#e06c75">ext4</span> <span style="color:#56b6c2">-</span><span style="color:#e06c75">p</span> <span style="color:#56b6c2">-</span><span style="color:#e06c75">b</span> <span style="color:#e06c75">superblock</span> <span style="color:#56b6c2">-</span><span style="color:#e06c75">B</span> <span style="color:#e06c75">blocksize</span> <span style="color:#e06c75">device</span>
+</span></span></code></pre></div><p>但是这个命令只是提示，需要把对应的参数修改为自己的，testdisk 已经显示出当前磁盘的分区superblock信息，替换后执行的命令为：</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1</span><span><span style="color:#e06c75">fsck</span>.<span style="color:#e06c75">ext4</span> <span style="color:#56b6c2">-</span><span style="color:#e06c75">p</span> <span style="color:#56b6c2">-</span><span style="color:#e06c75">b</span> <span style="color:#d19a66">32768</span> <span style="color:#56b6c2">-</span><span style="color:#e06c75">B</span> <span style="color:#d19a66">4096</span> <span style="color:#56b6c2">/</span><span style="color:#e06c75">dev</span><span style="color:#56b6c2">/</span><span style="color:#e06c75">sdb1</span>
+</span></span></code></pre></div><p>参数解释：</p>
+<ul>
+<li>superblock  指定备用超级块的位置</li>
+<li>blocksize 块大小</li>
+</ul>
+<p>命令执行结果如下：</p>
+<p><img
+  src="./images/exec-fsck-superblock.png"
+  alt="exec-fsck-superblock"
+  loading="lazy"
+  decoding="async"
+  class="full-width"
+/>
+
+</p>
+<p>在执行了上述命令之后，磁盘可以被成功挂载了，挂载之后数据也都存在，数据并没有丢失。</p>
+<h2 id="误删分析">误删分析</h2>
+<p>磁盘分区误操作的核心在于这一句提示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-jsx" data-lang="jsx"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1</span><span><span style="color:#e06c75">Do</span> <span style="color:#e06c75">you</span> <span style="color:#e06c75">want</span> <span style="color:#e06c75">to</span> <span style="color:#e06c75">remove</span> <span style="color:#e06c75">the</span> <span style="color:#e06c75">signature</span><span style="color:#56b6c2">?</span> [<span style="color:#e06c75">Y</span>]<span style="color:#e06c75">es</span><span style="color:#56b6c2">/</span>[<span style="color:#e06c75">N</span>]<span style="color:#e06c75">o</span><span style="color:#56b6c2">:</span> 
+</span></span></code></pre></div><p>我选择了 <code>Y</code>，选择移除的话分区的 UUID 会发生变更，也就是一个全新的磁盘，且之前的分区信息（例如分区是什么的格式）都不复存在。所以我在进行挂载的时候会提示我无法识别的分区，此时如果直接对这个磁盘进行格式化然后重新划分分区，也是可以被挂载的，代价就是数据就真的全无了。</p>
+<h2 id="分区备份">分区备份</h2>
+<p>经过这一次操作，再次认识到数据备份的重要性。</p>
+<p>使用 <strong><code>sfdisk</code></strong> 命令备份和还原分区表：
+<strong><code>sfdisk</code></strong> 命令可以用于备份和还原分区表。要备份分区表，执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1</span><span>sudo sfdisk -d /dev/sdb1 &gt; /path/to/backup/partition_table_backup
+</span></span></code></pre></div><p>这会将磁盘 <strong><code>/dev/sdb1</code></strong> 的分区表信息备份到指定路径的文件中。</p>
+<p>要还原备份的分区表，执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1</span><span>sudo sfdisk /dev/sdb1 &lt; /path/to/backup/partition_table_backup
+</span></span></code></pre></div><p>这会将备份的分区表信息还原到磁盘 <strong><code>/dev/sdb1</code></strong> 上。</p>
+      
+      <div class="post-date">
+        <span class="g time">August 13, 2023 </span> &#8729;
+         
+         <a href="https://haigeek.me/tags/linux/">linux</a> <a href="https://haigeek.me/tags/ops/">ops</a>
+      </div>
+      
+    </section>
+    
+    <div id="comments">
+      <script src="https://utteranc.es/client.js"
+    repo=ZgotmplZ
+    issue-term="pathname"
+    theme=ZgotmplZ
+    crossorigin="anonymous"
+    async>
+</script>
+
+    </div>
+    
+  </div>
+</main>
+</body>
+</html>

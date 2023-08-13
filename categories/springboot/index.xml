@@ -7,11 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>© 2023 haigeek</copyright>
-    <lastBuildDate>Sun, 06 Jan 2019 23:05:54 +0000</lastBuildDate><atom:link href="https://haigeek.me/categories/springboot/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Jan 2019 23:05:54 +0800</lastBuildDate><atom:link href="https://haigeek.me/categories/springboot/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>springboot全局跨域与过滤器跨域</title>
       <link>https://haigeek.me/posts/java/springboot/springboot-filter-cros/</link>
-      <pubDate>Sun, 06 Jan 2019 23:05:54 +0000</pubDate>
+      <pubDate>Sun, 06 Jan 2019 23:05:54 +0800</pubDate>
       
       <guid>https://haigeek.me/posts/java/springboot/springboot-filter-cros/</guid>
       <description>&lt;p&gt;当项目中使用了过滤器的时候,使用springboot全局跨域设置有时候并不能满足我们的需求,具体表现为明明设置了全局允许跨域,前端同学依旧说我们的接口不允许跨域。&lt;/p&gt;</description>
@@ -20,7 +20,7 @@
     <item>
       <title>使用Maven Profile和Spring Profile进行多环境配置</title>
       <link>https://haigeek.me/posts/java/springboot/springboot-maven-profile/</link>
-      <pubDate>Sun, 06 Jan 2019 23:05:54 +0000</pubDate>
+      <pubDate>Sun, 06 Jan 2019 23:05:54 +0800</pubDate>
       
       <guid>https://haigeek.me/posts/java/springboot/springboot-maven-profile/</guid>
       <description>&lt;p&gt;Springboot使用Maven Profile和Spring Profile进行多环境配置&lt;/p&gt;

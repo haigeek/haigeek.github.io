@@ -20,7 +20,7 @@
     <item>
       <title>Dubbo Rpc 使用随机端口</title>
       <link>https://haigeek.me/posts/backend/dubbo/dubbo-random-port/</link>
-      <pubDate>Wed, 01 Apr 2020 23:17:02 +0000</pubDate>
+      <pubDate>Wed, 01 Apr 2020 23:17:02 +0800</pubDate>
       
       <guid>https://haigeek.me/posts/backend/dubbo/dubbo-random-port/</guid>
       <description>&lt;p&gt;dubbo在进行服务间通信的时候需要使用端口进行通信,但是这个端口的指定规则是什么。&lt;/p&gt;</description>

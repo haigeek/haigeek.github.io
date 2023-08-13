@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ops on haigeek blog</title>
+    <link>https://haigeek.me/tags/ops/</link>
+    <description>Recent content in ops on haigeek blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>© 2023 haigeek</copyright>
+    <lastBuildDate>Sun, 13 Aug 2023 17:14:21 +0800</lastBuildDate><atom:link href="https://haigeek.me/tags/ops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一次磁盘误操作恢复记录</title>
+      <link>https://haigeek.me/posts/ops/disk-recovery-experience/</link>
+      <pubDate>Sun, 13 Aug 2023 17:14:21 +0800</pubDate>
+      
+      <guid>https://haigeek.me/posts/ops/disk-recovery-experience/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
